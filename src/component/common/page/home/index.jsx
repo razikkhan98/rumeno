@@ -13,6 +13,7 @@ import mobcaroimg5 from "../../../assets/home/homecaromob3.png";
 import mobcaroimg6 from "../../../assets/home/hen.png";
 import Carousel from "react-bootstrap/Carousel";
 
+
 const Home = () => {
   return (
     <>

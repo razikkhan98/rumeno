@@ -30,6 +30,10 @@ import Parentcard from "./component/common/page/parentcard";
 import Record from "./component/common/page/record";
 import Products from "./component/common/page/products";
 import Addtocart from "./component/common/page/addtocart";
+// import VeterinaryService from "./component/common/page/veterinaryService";
+import DairyConsultantService from "./component/common/page/service/dairyConsultant";
+import GoatFarmingService from "./component/common/page/service/goatFarming";
+import VeterinaryService from "./component/common/page/service/veterinaryService";
 
 const App = () => {
   return (
@@ -54,6 +58,10 @@ const App = () => {
         <Route path="/products" element={<Products/>} />
         <Route path="/training" element={<Training />} />
         <Route path="/addtocart" element={<Addtocart />} />
+        <Route path="/service" element={<VeterinaryService />} />
+        <Route path="/dairyconsultant" element={<DairyConsultantService />} />
+        <Route path="/goatfarming" element={<GoatFarmingService />} />
+
       </Routes>
       
     </>
