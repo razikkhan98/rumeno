@@ -16,6 +16,26 @@ import Mainnav from "../../navbar/mainnavbar";
 import Footer from "../../footer";
 
 
+const Homefaqs = [
+  {
+    question: "1. What are animal feed supplements?",
+    answer:
+      "The purpose of animal feed supplements is to improve the nutritional value of animal diets by the use of specialty items. They supply vital elements such as vitamins, minerals, and amino acids, which may be deficient in ordinary food.",
+  },
+  {
+    question: "2. Why are animal feed supplements important?",
+    answer:"Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+  },
+  {
+    question: "3. What types of animals benefit from feed supplements?",
+    answer:"Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+  },
+  {
+    question: "4. How do I contact Rumeno Farmotech?",
+    answer:"You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+  },
+];
+
 const Main = () => {
   return (
     <>
@@ -31,7 +51,7 @@ const Main = () => {
       <Research />
       <Manufacture />
       <Livestock />
-      <Faq />
+      <Faq faqs={Homefaqs} />
       <Blog />
       <Footer />
     </>

@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
 
   const toggleNavbar = () => {
@@ -17,11 +18,8 @@ const Mainnav = () => {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    if (link === "Products") {
-      setIsProductsOpen(!isProductsOpen);
-    } else {
-      setIsProductsOpen(false);
-    }
+    setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
+    setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
 
   return (
@@ -49,9 +47,8 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${
-            isNavbarOpen ? "custom-collapse-show" : ""
-          }`}
+          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
+            }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -67,18 +64,16 @@ const Mainnav = () => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${
-                  activeLink === "Products" ? "active" : ""
-                }`}
+                className={`nav-link ${activeLink === "Products" ? "active" : ""
+                  }`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
                 Products
               </a>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isProductsOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -154,15 +149,52 @@ const Mainnav = () => {
               </div>
             )} */}
             <li className="nav-item">
-              <a
-                className={`nav-link ${
-                  activeLink === "Services" ? "active" : ""
-                }`}
-                href=""
+              <div
+                className={`nav-link ${activeLink === "Services" ? "active" : ""
+                  }`}
+                // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
-              </a>
+              </div>
+              <div
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
+                  }`}
+              >
+                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
+                  <div className="ms-4">
+                    <p className="products-title text-start text-uppercase">
+                      VETERINARY Services
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>Why Choose US?</li>
+                      <NavLink to="/service" className="text-decoration-none">
+                        <li>Our Consulting team members</li>
+                      </NavLink>
+                      <li>Business Startup Support </li>
+                      <li>Query Form</li>
+                      {/* <li>Poultry Supplements</li> */}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title text-start text-uppercase">
+                      Goat Farming Consultant
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>About</li>
+                      <li>FAQs</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title text-start text-uppercase">dairy consultant</p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>About</li>
+                      <li>Dairy Management</li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
             <li className="nav-item">
               <a
@@ -175,9 +207,8 @@ const Mainnav = () => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${
-                  activeLink === "Contact Us" ? "active" : ""
-                }`}
+                className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
+                  }`}
                 href=""
                 onClick={() => handleLinkClick("Contact Us")}
               >

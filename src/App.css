@@ -1650,3 +1650,75 @@ body {
     margin-top: 20px;
   }
 }
+
+
+
+/* Service css */
+.service-bg-color{
+  background-color: rgba(236, 114, 41, 0.08);
+}
+.service-heading{
+  font-size: 32px;
+  font-weight: 500;
+  color: #373737;
+}
+.heading-description{
+  font-size: 16px;
+  font-weight: 500;
+  color: #373737;
+}
+.service-border{
+ border-radius: 16px;
+}
+.content-heading{
+  font-size: 18px;
+  font-weight: 500;
+  color: #111111;
+}
+.service-inner-text{
+  font-size: 14px;
+  font-weight: 400;
+}
+.service-img{
+  width: 650px;
+  height: 555px;
+}
+
+/* Font Css class */
+.font-size-28{
+  font-size: 28px;
+  font-weight: 500;
+}
+.font-size-18{
+  font-size: 18px;
+  font-weight: 500;
+}
+.font-size-24{
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.chinese-black-color{
+  color: #111111;
+}
+.text-gray-color{
+  color: #707070;
+}
+.business{
+  background-color: #F4FAFD;
+}
+.text-justify{
+  text-align: justify;
+}
+.border-orange{
+  border: 1px solid #EC7229;
+}
+.text-color-orange{
+  color: #EC7229;
+}
+.bg-light-orange-color{
+  background-color: rgba(253, 199, 158, 0.2);
+}
+.form-radius{
+  border-radius: 24px;
+}
