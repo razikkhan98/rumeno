@@ -15,7 +15,7 @@ const Training = () => {
                   <div className="col-lg-12 px-5">
                     <nav aria-label="breadcrumb" className="py-2 px-3">
                       <ol className="breadcrumb mb-0">
-                        <li className="breadcrumb-item">Farm Data</li>
+                        <li className="breadcrumb-item">Home</li>
                         <li className="breadcrumb-item active">
                           Goat farming training
                         </li>

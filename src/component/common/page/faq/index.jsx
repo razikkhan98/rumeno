@@ -3,24 +3,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const faqs = [
   {
-    question: "1. What is Semantic HTML and how does it work?",
+    question: "1. What are animal feed supplements?",
     answer:
       "The purpose of animal feed supplements is to improve the nutritional value of animal diets by the use of specialty items. They supply vital elements such as vitamins, minerals, and amino acids, which may be deficient in ordinary food.",
   },
   {
-    question: "2. What do you know about the Box Sizing property?",
-    answer:
-      "The Box Sizing property in CSS defines how developers should calculate the width and height of a box.",
+    question: "2. Why are animal feed supplements important?",
+    answer:"Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
   },
   {
-    question: "3. Define the ways in which you can hide an element using CSS.",
-    answer:
-      "display:none, visibility:hidden, and position:absolute are the three ways to hide elements with CSS.",
+    question: "3. What types of animals benefit from feed supplements?",
+    answer:"Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
   },
   {
-    question: "4. What does Callback mean in JavaScript?",
-    answer:
-      "Callback is a JavaScript function that developers send as a parameter or argument to other functions.",
+    question: "4. How do I contact Rumeno Farmotech?",
+    answer:"You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
   },
 ];
 

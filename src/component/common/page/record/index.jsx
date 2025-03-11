@@ -13,7 +13,7 @@ const Record = () => {
   return (
     <>
       <div>
-        <Navbar/>
+        <Navbar />
         {/* <div className="row">
           <div className="col-lg-12">
             <header
@@ -85,6 +85,7 @@ const Record = () => {
                   <Tab eventKey="deworm" title="Deworm" />
                   <Tab eventKey="estrusHeat" title="Estrus Heat" />
                   <Tab eventKey="farmSanitation" title="Farm Sanitation" />
+                  <Tab eventKey="child" title="Child" />
                 </Tabs>
 
                 <div className="tab-content-area">
@@ -145,9 +146,7 @@ const Record = () => {
                           </Form.Group>
                         </div>
 
-                        <Button className="record-btn">
-                          Submit
-                        </Button>
+                        <Button className="record-btn">Submit</Button>
                       </Form>
                     </>
                   )}
@@ -161,7 +160,9 @@ const Record = () => {
                         <div className="row mb-4">
                           <div className="col-lg-2">
                             <Form.Group>
-                              <Form.Label className="form-lable-record">Milk Volume (Ltr)</Form.Label>
+                              <Form.Label className="form-lable-record">
+                                Milk Volume (Ltr)
+                              </Form.Label>
                               <Form.Control
                                 className="form-control-record py-2"
                                 type="text"
@@ -171,15 +172,19 @@ const Record = () => {
                           </div>
                           <div className="col-lg-2 col-md-4">
                             <Form.Group>
-                              <Form.Label className="form-lable-record">No of Kids</Form.Label>
+                              <Form.Label className="form-lable-record">
+                                No of Kids
+                              </Form.Label>
                               <Form.Select className="form-control-record py-2">
-                                <option >Enter no of kids</option>
+                                <option>Enter no of kids</option>
                               </Form.Select>
                             </Form.Group>
                           </div>
                           <div className="col-lg-3 col-md-4">
                             <Form.Group>
-                              <Form.Label className="form-lable-record">Date</Form.Label>
+                              <Form.Label className="form-lable-record">
+                                Date
+                              </Form.Label>
                               <Form.Control
                                 className="form-control-record py-2"
                                 type="date"
@@ -189,9 +194,7 @@ const Record = () => {
                           </div>
                         </div>
 
-                        <Button className="record-btn">
-                          Submit
-                        </Button>
+                        <Button className="record-btn">Submit</Button>
                       </Form>
                     </>
                   )}
@@ -207,7 +210,9 @@ const Record = () => {
                         <div className="row mb-4">
                           <div className="col-lg-3 col-md-6">
                             <Form.Group>
-                              <Form.Label className="form-lable-record">Vaccine Name</Form.Label>
+                              <Form.Label className="form-lable-record">
+                                Vaccine Name
+                              </Form.Label>
                               <Form.Control
                                 className="form-control-record py-2"
                                 type="text"
@@ -217,7 +222,9 @@ const Record = () => {
                           </div>
                           <div className="col-lg-3 col-md-6">
                             <Form.Group>
-                              <Form.Label className="form-lable-record">Date</Form.Label>
+                              <Form.Label className="form-lable-record">
+                                Date
+                              </Form.Label>
                               <Form.Control
                                 className="form-control-record py-2"
                                 type="date"
@@ -227,10 +234,245 @@ const Record = () => {
                           </div>
                         </div>
 
-                        <Button className="record-btn">
-                          Submit
-                        </Button>
+                        <Button className="record-btn">Submit</Button>
                       </Form>
+                    </>
+                  )}
+
+                  {activeTab === "child" && (
+                    <>
+                      <p className="mb-2 record-head">Child</p>
+                      <p className="record-para mb-4">
+                        Fill Child details below
+                      </p>
+
+                      <form>
+                        <div className="row g-4">
+                          {/* First Row */}
+                          <div className="row pt-3">
+                            <div className="col-lg-3">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Unique Name
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Unique Name"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Kid Age
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Age"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Kid Weight
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Weight"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label text-muted small">
+                                  Mother's Age
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Age"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Second Row */}
+                          <div className="row pt-3">
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Breed
+                                </label>
+                                <select className="form-select form-control-detail">
+                                  <option>Select Breed</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-lg-4">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Date Of Purchasing
+                                </label>
+                                <input
+                                  type="date"
+                                  className="form-control form-control-detail"
+                                  placeholder="dd-mm-yyyy"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-4">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Select Gender
+                                </label>
+                                <div className="d-flex gap-4 mt-2">
+                                  {["Male", "Female", "Other"].map((type) => (
+                                    <div key={type} className="form-check">
+                                      <input
+                                        className="form-check-input"
+                                        type="radio"
+                                        name="animalType"
+                                        id={type.toLowerCase()}
+                                      />
+                                      <label
+                                        style={{
+                                          fontSize: "16px",
+                                          fontWeight: "400",
+                                          color: "#707070",
+                                        }}
+                                        className="form-check-label "
+                                        htmlFor={type.toLowerCase()}
+                                      >
+                                        {type}
+                                      </label>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Third Row */}
+                          <div className="row pt-3">
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Kid Code
+                                </label>
+                                <select className="form-select form-control-detail">
+                                  <option>Select details</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Kid Score
+                                </label>
+                                <select className="form-select form-control-detail">
+                                  <option>Select details</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Birth Type
+                                </label>
+                                <select className="form-select form-control-detail">
+                                  <option>Select details</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div className="col-lg-2">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Birth Weight
+                                </label>
+                                <select className="form-select form-control-detail">
+                                  <option>Select details</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Fourth Row */}
+                          <div className="row pt-3">
+                            <div className="col-lg-3">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Wean Weight
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Weight"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-4">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Castration Date (not able to reproduce)
+                                </label>
+                                <input
+                                  type="date"
+                                  className="form-control form-control-detail"
+                                  placeholder="dd-mm-yyyy"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Fifth Row */}
+                          <div className="row pt-3">
+                            <div className="col-lg-3">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Mother Wean Date (when child starts eating
+                                  food)
+                                </label>
+                                <input
+                                  type="date"
+                                  className="form-control form-control-detail"
+                                  placeholder="dd-mm-yyyy"
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-4">
+                              <div className="form-group">
+                                <label className="form-label form-lable-detail">
+                                  Mother's Weight At Wean (weight of mother goat
+                                  when child starts eating food)
+                                </label>
+                                <input
+                                  type="text"
+                                  className="form-control form-control-detail"
+                                  placeholder="Enter Weight"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="col-lg-3 pt-2 pe-5">
+                            <button
+                              type="submit"
+                              className="btn w-100 text-white py-2 rounded-pill"
+                              style={{
+                                backgroundColor: "#F4863E",
+                                fontSize: "14px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                      </form>
                     </>
                   )}
                 </div>

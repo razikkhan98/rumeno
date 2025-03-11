@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is loaded
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Ensure Bootstrap JS is loaded
 
 import { IoSearch } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -62,6 +63,7 @@ const Navbar = () => {
                         </div>
 
                         {/* Add Goat Button */}
+                        <NavLink to="/parentform">
                         <button
                           className="btn text-white px-4 border rounded-pill"
                           style={{
@@ -71,6 +73,7 @@ const Navbar = () => {
                         >
                           <span className="me-1">+</span> Add Goat
                         </button>
+                        </NavLink>
                       </div>
                     </div>
                   </div>

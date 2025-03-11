@@ -16,6 +16,7 @@ import {
 import { GiWeightScale } from "react-icons/gi";
 // import Image from "../../../assets/homeimage/goat.png";
 import Sidebar from "../sidebar/index";
+import { NavLink } from "react-router-dom";
 
 const Parent = () => {
 
@@ -256,7 +257,7 @@ const Parent = () => {
                     >
                       <PiTrashSimple className="fs-3 text-danger" />
                     </Button>
-
+                    <NavLink to="/record">
                     <Button
                       size="sm"
                       style={{ color: "white", background: "#FB9038" }}
@@ -264,6 +265,7 @@ const Parent = () => {
                     >
                       Add Details
                     </Button>
+                    </NavLink>
                   </Card.Footer>
                 </Card>
               </div>

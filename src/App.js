@@ -22,12 +22,14 @@ import Blog from "./component/common/page/blog";
 import Training from "./component/common/page/goattraining";
 import Main from "./component/common/page/main/main";
 // import Slick from "./component/common/page/slick";
-// import Formdatapage from "./component/common/page/formdatapage";
+import Formdatapage from "./component/common/page/formdatapage";
 // import Sidebar from "./component/common/page/sidebar";
-// import Basic from "./component/common/page/basicdetail/index";
+import Basic from "./component/common/page/basicdetail/index";
 // import Detail from "./component/common/page/detail/index";
-// import Parentcard from "./component/common/page/parentcard";
-// import Record from "./component/common/page/record";
+import Parentcard from "./component/common/page/parentcard";
+import Record from "./component/common/page/record";
+import Products from "./component/common/page/products";
+import Addtocart from "./component/common/page/addtocart";
 
 const App = () => {
   return (
@@ -45,8 +47,13 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Main />} />
-
+        <Route path="/farmdata" element={<Formdatapage/>} />
+        <Route path="/parentcard" element={<Parentcard/>} />
+        <Route path="/parentform" element={<Basic/>} />
+        <Route path="/record" element={<Record/>} />
+        <Route path="/products" element={<Products/>} />
         <Route path="/training" element={<Training />} />
+        <Route path="/addtocart" element={<Addtocart />} />
       </Routes>
       
     </>

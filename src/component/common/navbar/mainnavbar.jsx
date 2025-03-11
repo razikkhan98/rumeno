@@ -1,251 +1,14 @@
-// import React from "react";
-// import Logo from "../../assets/img/logo/logorumneo.svg";
-// import { IoSearch } from "react-icons/io5";
-// import { PiShoppingCartSimpleFill } from "react-icons/pi";
-// import User from "../../assets/img/user/loginuser.svg";
-// import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
-// const Mainnav = () => {
-//   return (
-//     <>
-//       <div>
-//         <div style={{ backgroundColor: "#DDF0F8" }}>
-//           <div className="container-fluid">
-//             <div className="row">
-//               <div className="col-lg-12">
-//                 <header className="px-5 detail-header">
-//                   <div className="d-flex justify-content-between align-items-center p-2">
-//                     <div className="header-logo d-flex align-items-center">
-//                       <img
-//                         src={Logo}
-//                         alt="Logo"
-//                         className="pe-5"
-//                         style={{ width: "100px", height: "68px" }}
-//                       />
-//                       <ul
-//                         className="list-unstyled text-decoration-none mb-0 gap-5 d-flex"
-//                         style={{ color: "#707070", fontSize: "14px", fontWeight: "400" }}
-//                       >
-//                         <li>Home</li>
-//                         <li>Veterinary Product</li>
-//                         <li>Veterinary Service</li>
-//                         <li>Blogs</li>
-//                         <li>Contact Us</li>
-//                       </ul>
-//                     </div>
-//                     <div className=" d-flex gap-4">
-//                       <button
-//                         className="rounded-pill px-4 text-light border-0"
-//                         style={{
-//                           fontSize: "16px",
-//                           fontWeight: "600",
-//                           background:
-//                             "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
-//                         }}
-//                       >
-//                         Form Data
-//                       </button>
-
-//                       <div
-//                         className="bg-light rounded-circle text-center d-flex align-items-center justify-content-center"
-//                         style={{ height: "40px", width: "40px" }}
-//                       >
-//                         <IoSearch
-//                           className="fs-5"
-//                           style={{ color: "#FB9038" }}
-//                         />
-//                       </div>
-//                       <div
-//                         className="bg-light rounded-circle text-center d-flex align-items-center justify-content-center"
-//                         style={{ height: "40px", width: "40px" }}
-//                       >
-//                         <PiShoppingCartSimpleFill
-//                           className="fs-5"
-//                           style={{ color: "#FB9038" }}
-//                         />
-//                       </div>
-//                       <div
-//                         className="rounded-circle gap-2 text-center d-flex align-items-center justify-content-center"
-//                         style={{ height: "40px", width: "70px" }}
-//                       >
-//                         <img src={User} alt="" />
-//                         <MdOutlineKeyboardArrowDown />
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </header>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Mainnav;
-
-// import React, { useState } from "react";
-// import Logo from "../../assets/img/logo/logorumneo.svg";
-// import { IoSearch } from "react-icons/io5";
-// import { PiShoppingCartSimpleFill } from "react-icons/pi";
-// import User from "../../assets/img/user/loginuser.svg";
-// import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
-// const Mainnav = () => {
-//   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-
-//   const toggleNavbar = () => {
-//     setIsNavbarOpen(!isNavbarOpen);
-//   };
-//   return (
-//     <nav
-//       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100"
-//       style={{ backgroundColor: "#DDF0F8" }}
-//     >
-//       <div className="container-fluid px-5">
-//         {/* Logo */}
-//         <a className="navbar-brand" href="#">
-//           <img
-//             src={Logo}
-//             alt="Logo"
-//             style={{ width: "100px", height: "68px" }}
-//           />
-//         </a>
-
-//         {/* Navbar Toggler for Mobile */}
-//         <button
-//           className="navbar-toggler"
-//           type="button"
-//           onClick={toggleNavbar}
-//           aria-expanded={isNavbarOpen}
-//           aria-label="Toggle navigation"
-//         >
-//           <span className="navbar-toggler-icon"></span>
-//         </button>
-
-//         {/* Navbar Links and Actions */}
-//         <div
-//           className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""}`}
-//           id="navbarNav"
-//         >
-//           {/* Links Section */}
-//           <ul className="navbar-nav gap-lg-4 me-auto mb-2 mb-lg-0 text-center">
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link text-muted"
-//                 href="#"
-//                 style={{ fontSize: "14px" }}
-//               >
-//                 Home
-//               </a>
-//             </li>
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link text-muted"
-//                 href="#"
-//                 style={{ fontSize: "14px" }}
-//               >
-//                 Veterinary Product
-//               </a>
-//             </li>
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link text-muted"
-//                 href="#"
-//                 style={{ fontSize: "14px" }}
-//               >
-//                 Veterinary Service
-//               </a>
-//             </li>
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link text-muted"
-//                 href="#"
-//                 style={{ fontSize: "14px" }}
-//               >
-//                 Blogs
-//               </a>
-//             </li>
-//             <li className="nav-item">
-//               <a
-//                 className="nav-link text-muted"
-//                 href="#"
-//                 style={{ fontSize: "14px" }}
-//               >
-//                 Contact Us
-//               </a>
-//             </li>
-//           </ul>
-
-//           {/* Action Buttons */}
-//           <div className="d-lg-flex align-items-center gap-4">
-//             {/* Form Data Button */}
-//             <div className="text-center">
-//               <button
-//                 className="btn rounded-pill text-white "
-//                 style={{
-//                   fontSize: "16px",
-//                   fontWeight: "600",
-//                   background:
-//                     "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
-//                     width: "160px",
-//                     height: "52px"
-//                 }}
-//               >
-//                 Form Data
-//               </button>
-//             </div>
-
-//             {/* Icons */}
-//             <div
-//               className="bg-light rounded-circle text-center m-auto my-1 d-flex align-items-center justify-content-center"
-//               style={{ height: "40px", width: "40px" }}
-//             >
-//               <IoSearch className="fs-5" style={{ color: "#FB9038" }} />
-//             </div>
-
-//             <div
-//               className="bg-light rounded-circle text-center my-1 m-auto d-flex align-items-center justify-content-center"
-//               style={{ height: "40px", width: "40px" }}
-//             >
-//               <PiShoppingCartSimpleFill
-//                 className="fs-5"
-//                 style={{ color: "#FB9038" }}
-//               />
-//             </div>
-
-//             {/* User Profile Section */}
-//             <div
-//               className="my-1 d-flex align-items-center justify-content-center gap-2"
-//               style={{ cursor: "pointer" }}
-//             >
-//               <img
-//                 src={User}
-//                 alt="User"
-//                 className="rounded-circle"
-//                 style={{ height: "40px", width: "40px" }}
-//               />
-//               <MdOutlineKeyboardArrowDown />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Mainnav;
-
 import React, { useState } from "react";
 import Logo from "../../assets/img/logo/logorumneo.svg";
 import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import User from "../../assets/img/user/loginuser.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
 
   const toggleNavbar = () => {
@@ -254,6 +17,11 @@ const Mainnav = () => {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+    if (link === "Products") {
+      setIsProductsOpen(!isProductsOpen);
+    } else {
+      setIsProductsOpen(false);
+    }
   };
 
   return (
@@ -300,29 +68,106 @@ const Mainnav = () => {
             <li className="nav-item">
               <a
                 className={`nav-link ${
-                  activeLink === "Veterinary Product" ? "active" : ""
+                  activeLink === "Products" ? "active" : ""
                 }`}
-                href="#"
-                onClick={() => handleLinkClick("Veterinary Product")}
+                onClick={() => handleLinkClick("Products")}
+                aria-expanded={isProductsOpen}
               >
-                Veterinary Product
+                Products
               </a>
+              <div
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isProductsOpen ? "show" : ""
+                }`}
+              >
+                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
+                  <div className="ms-4">
+                    <p className="products-title text-start">
+                      VETERINARY PRODUCTS
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>All Animal Supplements</li>
+                      <NavLink to="/products" className="text-decoration-none">
+                        <li>Goat Supplements</li>
+                      </NavLink>
+                      <li>Sheep Supplements</li>
+                      <li>Buffalo Supplements</li>
+                      <li>Cow Supplements</li>
+                      {/* <li>Poultry Supplements</li> */}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title text-start">
+                      OTHER CATEGORIES
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>Farmhouse Equipments</li>
+                      <li>Human Consumable</li>
+                      <li>Crop Seeds</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title text-start">GOAT FOR SELL</p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>Lorem Ipsum</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
+            {/* {isProductsOpen && (
+              <div
+                className="products-collapse shadow p-3 mt-2 w-100 rounded-bottom-5"
+                style={{ background: "#F4FAFD" }}
+              >
+                <div className="d-flex gap-5 ms-lg-5">
+                  <div>
+                    <p className="products-title text-start">
+                      VETERINARY PRODUCTS
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>All Animal Supplements</li>
+                      <li>Goat Supplements</li>
+                      <li>Dog Supplements</li>
+                      <li>Buffalo Supplements</li>
+                      <li>Cattle Supplements</li>
+                      <li>Poultry Supplements</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title text-start">
+                      OTHER CATEGORIES
+                    </p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>Farmhouse Equipments</li>
+                      <li>Human Consumable</li>
+                      <li>Crop Seeds</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="products-title">GOAT FOR SELL</p>
+                    <ul className="list-unstyled products-list text-start">
+                      <li>Lorem Ipsum</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )} */}
             <li className="nav-item">
               <a
                 className={`nav-link ${
-                  activeLink === "Veterinary Service" ? "active" : ""
+                  activeLink === "Services" ? "active" : ""
                 }`}
-                href="#"
-                onClick={() => handleLinkClick("Veterinary Service")}
+                href=""
+                onClick={() => handleLinkClick("Services")}
               >
-                Veterinary Service
+                Services
               </a>
             </li>
             <li className="nav-item">
               <a
                 className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
-                href="#"
+                href=""
                 onClick={() => handleLinkClick("Blogs")}
               >
                 Blogs
@@ -333,7 +178,7 @@ const Mainnav = () => {
                 className={`nav-link ${
                   activeLink === "Contact Us" ? "active" : ""
                 }`}
-                href="#"
+                href=""
                 onClick={() => handleLinkClick("Contact Us")}
               >
                 Contact Us
@@ -344,9 +189,11 @@ const Mainnav = () => {
           {/* Action Buttons */}
           <div className="d-lg-flex align-items-center gap-4">
             <div className="text-center farm-btn">
-              <button className="btn rounded-pill text-white p-0">
-                Farm Data
-              </button>
+              <NavLink to="/farmdata">
+                <button className="btn rounded-pill text-white p-0">
+                  Farm Data
+                </button>
+              </NavLink>
             </div>
 
             <div

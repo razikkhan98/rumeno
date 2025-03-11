@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import Image1 from "../../../assets/img/goatfeed/goatfeed.png";
-import Image2 from "../../../assets/img/goatfeed/slide1.png";
-import Image3 from "../../../assets/img/goatfeed/slide3.png";
-import Image4 from "../../../assets/img/goatfeed/goatfeed.png";
+import Goat from "../../../assets/img/goatfeed/goatfeed.png";
+import Sheep from "../../../assets/img/goatfeed/sheepimg.png";
+import Buffalo from "../../../assets/img/goatfeed/buffaloimg.png";
+import Cow from "../../../assets/img/goatfeed/cowimg.png";
 
 const feeddata = [
   {
@@ -13,25 +13,22 @@ const feeddata = [
   },
   {
     id: "#2",
-    title: "Cattle Feed Supplement",
-    content:
-      "These goods help cattle grow and develop. Your cows and buffaloes will be well-nourished thanks to Rumeno Farmotech's mineral combinations and calcium supplements.",
+    title: "Sheep Feed Supplement",
+    content:"Rumeno Farmotech offers a high-quality sheep feed supplement specially formulated to improve your flock's health and performance. Packed with essential nutrients, vitamins, and minerals, our supplement supports healthy weight gain, wool quality, and immunity. Whether for meat or wool production, our feed helps your sheep achieve optimal growth and productivity.",
   },
   {
     id: "#3",
-    title: "Dog Feed Supplement",
-    content:
-      "Rumeno, an Indian veterinary company, offers dog feed supplements designed to improve digestion, immunity, and overall health. These supplements come in powder form and can be easily mixed with your dog's regular food.",
+    title: "Buffalo Feed Supplement",
+    content:"Rumeno Farmotech delivers a nutrient-rich buffalo feed supplement to boost your buffaloes' health and productivity. Our supplement is designed to support high milk production, muscle development, and overall well-being. With a balanced mix of vitamins, minerals, and energy boosters, our feed ensures your buffaloes perform at their best while maintaining good health.",
   },
   {
     id: "#4",
-    title: "Pigeon Feed Supplement",
-    content:
-      "Avian enthusiasts can rely on Rumeno Farmotech to provide their feathered companions with the proper nourishment. Rumeno Farmotech takes great satisfaction in the effectiveness and high quality of its feed supplements. Every product is painstakingly designed to meet particular dietary needs. The goal of all products, including liver tonics, digestive powders, and toxin binders, is to improve animal health.",
+    title: "Cow Feed Supplement",
+    content:"Rumeno Farmotech provides a premium cow feed supplement designed to enhance your cows' health, productivity, and overall well-being. Our supplement is enriched with essential vitamins, minerals, and nutrients that promote better milk yield, improved digestion, and healthy growth. Whether for dairy or breeding cows, our feed supplement ensures your cattle receive the best nutrition to thrive.",
   },
 ];
 
-const images = [Image1, Image2, Image3, Image4];
+const images = [Goat, Sheep, Buffalo, Cow];
 
 const Goatfeed = () => {
   const [activeIndex, setActiveIndex] = useState(0);

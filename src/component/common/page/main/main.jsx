@@ -15,6 +15,7 @@ import Blog from "../blog";
 import Mainnav from "../../navbar/mainnavbar";
 import Footer from "../../footer";
 
+
 const Main = () => {
   return (
     <>

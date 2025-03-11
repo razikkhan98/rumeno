@@ -5,6 +5,7 @@ import Sheep from "../../../assets/formdata/sheep.png";
 import Cow from "../../../assets/formdata/cow.png";
 import Buffalo from "../../../assets/formdata/buffalo.png";
 import Navbar2 from "../../navbar/navbar2";
+import { NavLink } from "react-router-dom";
 
 const Formdata = () => {
   return (
@@ -25,10 +26,12 @@ const Formdata = () => {
                 <h2>Please select an animal to proceed</h2>
                 <div className="animal-images d-flex justify-content-around pt-lg-5">
                   <div className="goat-image">
+                    <NavLink to="/parentcard" className="text-decoration-none">
                     <div className="form-data-img">
                       <img src={Goat} alt="" />
                     </div>
-                    <h3>Goat</h3>
+                    <h3 className="text-dark">Goat</h3>
+                    </NavLink>
                   </div>
                   <div className="sheep-image">
                     <div className="form-data-img">
