@@ -1697,7 +1697,10 @@ body {
   font-size: 24px;
   font-weight: 500;
 }
-
+.font-size-32{
+  font-size: 32px;
+  font-weight: 500;
+}
 .chinese-black-color{
   color: #111111;
 }
@@ -1721,4 +1724,13 @@ body {
 }
 .form-radius{
   border-radius: 24px;
+}
+.form-img{
+  width: 510.73px;
+  height: 766px;
+  background: url('./component//assets//img//service-img/form-side-img.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 }
