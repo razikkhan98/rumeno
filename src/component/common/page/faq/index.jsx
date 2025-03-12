@@ -44,7 +44,7 @@ const Faq = () => {
                     <h2 className="accordion-header">
                       <button
                         className={`accordion-button ${
-                          openIndex === index ? "" : "collapsed"
+                          openIndex === index ? "faq-colapse" : "collapsed"
                         }`}
                         type="button"
                         // data-bs-toggle="collapse"
