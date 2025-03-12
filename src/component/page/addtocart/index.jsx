@@ -5,8 +5,8 @@ import { Button } from "react-bootstrap";
 import productImage from "../../assets/img/addtocart/addproduct.png";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
-import Flipcard from "../../footerFlipCard/footerCard";
-import Footer from "../../footer";
+import Flipcard from "../../common/footerFlipCard/footerCard";
+import Footer from "../../common/footer/index";
 import { NavLink } from "react-router-dom";
 
 const faqs = [
