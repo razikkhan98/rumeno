@@ -37,7 +37,6 @@ import VeterinaryService from "./component/page/service/veterinaryService";
 import Login from "./component/common/Auth/Login/login";
 import Forgot from "./component/common/Auth/Forgot/forgot";
 import Register from "./component/common/Auth/Register/register";
-
 const App = () => {
   return (
     <>
@@ -61,10 +60,7 @@ const App = () => {
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/register" element={<Register />} />
 
-
-
-
-        <Route path="/cart" element={<Cart/>} />
+        {/* <Route path="/cart" element={<Cart/>} /> */}
       </Routes>
       
     </>
