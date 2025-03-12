@@ -197,11 +197,44 @@ const VeterinaryService = () => {
 
         <div className='container my-5'>
           <div className='bg-light-orange-color row g-0 form-radius'>
-            <div className='col-lg-5'>
-              <img src={FormImg} alt="Loading" />
+            <div className='col-lg-6 p-5  text-white form-img'>
+              {/* <img src={FormImg} className='form-img' alt="Loading" /> */}
+              <div>
+                <p className='font-size-32'>LET’S TALK ABOUT YOUR NEEDS!!</p>
+                <p className='font-size-18'>Reach us anytime by simply filling this basic form</p>
+              </div>
             </div>
-            <div className='col-lg-7'>
-
+            <div className='col-lg-6 container px-5'>
+              <form>
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="" placeholder="Full name" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Address</label>
+                  <input type="text" class="form-control" placeholder="Your Address" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Contact No</label>
+                  <input type="text" class="form-control" placeholder="Your Mobile No" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Experience in Livestock Farming</label>
+                  <select class="form-control">
+                    <option>Select Experience</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Size of the land for animal farming</label>
+                  <div>
+                    <input type="radio" name="farm" id="goat" /> Goat
+                    <input type="radio" name="farm" id="sheep" /> Sheep
+                    <input type="radio" name="farm" id="cow" /> Cow
+                    <input type="radio" name="farm" id="buffalo" /> Buffalo
+                  </div>
+                </div>
+                <button class="btn btn-warning w-100">Submit</button>
+              </form>
             </div>
           </div>
 
