@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { FaLinkedin, FaPhone, FaYoutube } from "react-icons/fa6";
 import { PiEnvelopeSimpleFill } from "react-icons/pi";
-import { ImFacebook2 } from "react-icons/im";
 import { AiFillInstagram } from "react-icons/ai";
 import { IoLogoFacebook } from "react-icons/io";
 
 const Footer = () => {
   return (
     <>
+    
       <div className="footer py-5">
         <div className="container pt-lg-5">
           <div className="row">

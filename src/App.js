@@ -43,14 +43,7 @@ const App = () => {
     <>
       
 
-      {/* <Slick/> */}
-      {/* <Formdatapage /> */}
-      {/* <Navbar /> */}
-      {/* <Basic/> */}
-      {/* <Detail /> */}
-      {/* <Parentcard /> */}
-      {/* <Sidebar/> */}
-      {/* <Record /> */}
+      
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -71,7 +64,7 @@ const App = () => {
 
 
 
-
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
       
     </>
