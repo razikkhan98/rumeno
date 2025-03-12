@@ -199,36 +199,42 @@ const Products = () => {
                 <div className="products-card">
                   <div className="products-img-top">
                     <NavLink to="/addtocart">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                    />
-                    <div class="overlay">
-                      {cart[product.id] ? (
-                        <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
-                          <button
-                            className="btn product-quantity-btn btn-light btn-sm"
-                            onClick={() => handleDecrement(product.id)}
-                          >
-                            -
-                          </button>
-                          <span className="bg-light px-2" style={{ color: "#EC7229" }}>{cart[product.id]}</span>
-                          <button
-                            className="btn btn-light product-quantity-btn btn-sm"
-                            onClick={() => handleIncrement(product.id)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      ) : (
-                        <button
-                          className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                          onClick={() => handleAddClick(product.id)}
-                        >
-                          +
-                        </button>
-                      )}
-                    </div>
+                      <img src={product.image} alt={product.name} />
+                      <div class="overlay">
+                        {cart[product.id] ? (
+                          <NavLink className="text-decoration-none" to={"/products"}>
+                            <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
+                              <button
+                                className="btn product-quantity-btn btn-light btn-sm"
+                                onClick={() => handleDecrement(product.id)}
+                              >
+                                -
+                              </button>
+                              <span
+                                className="bg-light px-2"
+                                style={{ color: "#EC7229" }}
+                              >
+                                {cart[product.id]}
+                              </span>
+                              <button
+                                className="btn btn-light product-quantity-btn btn-sm"
+                                onClick={() => handleIncrement(product.id)}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </NavLink>
+                        ) : (
+                          <NavLink className="text-decoration-none" to={"/products"}>
+                            <button
+                              className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
+                              onClick={() => handleAddClick(product.id)}
+                            >
+                              +
+                            </button>
+                          </NavLink>
+                        )}
+                      </div>
                     </NavLink>
                   </div>
                   <div className="card-body d-flex flex-column justify-content-center">
