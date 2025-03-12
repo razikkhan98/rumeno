@@ -34,7 +34,9 @@ import Addtocart from "./component/page/addtocart";
 import DairyConsultantService from "./component/page/service/dairyConsultant";
 import GoatFarmingService from "./component/page/service/goatFarming";
 import VeterinaryService from "./component/page/service/veterinaryService";
-import Cart from "./component/page/cart/index";
+import Login from "./component/common/Auth/Login/login";
+import Forgot from "./component/common/Auth/Forgot/forgot";
+import Register from "./component/common/Auth/Register/register";import Cart from "./component/page/cart/index";
 import Payment from "./component/page/payment/index";
 
 const App = () => {
@@ -56,8 +58,12 @@ const App = () => {
         <Route path="/service" element={<VeterinaryService />} />
         <Route path="/dairyconsultant" element={<DairyConsultantService />} />
         <Route path="/goatfarming" element={<GoatFarmingService />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<Payment />} /> */}
       </Routes>
       
     </>
