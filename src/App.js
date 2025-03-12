@@ -40,14 +40,7 @@ const App = () => {
     <>
       
 
-      {/* <Slick/> */}
-      {/* <Formdatapage /> */}
-      {/* <Navbar /> */}
-      {/* <Basic/> */}
-      {/* <Detail /> */}
-      {/* <Parentcard /> */}
-      {/* <Sidebar/> */}
-      {/* <Record /> */}
+      
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -61,7 +54,7 @@ const App = () => {
         <Route path="/service" element={<VeterinaryService />} />
         <Route path="/dairyconsultant" element={<DairyConsultantService />} />
         <Route path="/goatfarming" element={<GoatFarmingService />} />
-
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
       
     </>

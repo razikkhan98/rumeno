@@ -1153,7 +1153,7 @@ body {
 /* <------- Blog -------> */
 
 .blog {
-  height: 716px;
+  height: 600px;
   background: linear-gradient(
     0deg,
     rgba(255, 255, 255, 1) 20%,
@@ -1343,7 +1343,7 @@ body {
   line-height: 24px;
 }
 .product-faq {
-  height: 780px;
+  height: 650px;
 }
 
 @media (max-width: 1024px) {
@@ -1408,7 +1408,9 @@ body {
 /* <------- Products End --------> */
 
 /* <--------- AddtoCart ---------> */
-
+/* .addtocart{
+  height: 1000px;
+} */
 .addtocart-content-title{
   font-size: 24px;
   font-weight: 400;
@@ -1438,7 +1440,9 @@ body {
   background-color: #ffffff !important;
 }
 
-
+.addtocartfooter{
+  height: 360px;
+}
 /* <--------- AddtoCart End ---------> */
 
 

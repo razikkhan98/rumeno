@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 400px;
+    top: 300px;
     z-index: -0;
   }
   
@@ -53,7 +53,7 @@
   @media only screen and (min-width: 320px) and (max-width: 992px) {
     .card-container {
       position: relative;
-      top: 40px;
+      top: 220px;
       display: inline-flex !important;
       justify-content: center !important;
       align-items: unset !important;
