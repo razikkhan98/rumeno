@@ -202,7 +202,10 @@ const Products = () => {
                       <img src={product.image} alt={product.name} />
                       <div class="overlay">
                         {cart[product.id] ? (
-                          <NavLink className="text-decoration-none" to={"/products"}>
+                          <NavLink
+                            className="text-decoration-none"
+                            to={"/products"}
+                          >
                             <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
                               <button
                                 className="btn product-quantity-btn btn-light btn-sm"
@@ -225,7 +228,10 @@ const Products = () => {
                             </div>
                           </NavLink>
                         ) : (
-                          <NavLink className="text-decoration-none" to={"/products"}>
+                          <NavLink
+                            className="text-decoration-none"
+                            to={"/products"}
+                          >
                             <button
                               className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
                               onClick={() => handleAddClick(product.id)}

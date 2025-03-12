@@ -34,20 +34,16 @@ import Addtocart from "./component/page/addtocart";
 import DairyConsultantService from "./component/page/service/dairyConsultant";
 import GoatFarmingService from "./component/page/service/goatFarming";
 import VeterinaryService from "./component/page/service/veterinaryService";
+import Login from "./component/common/Auth/Login/login";
+import Forgot from "./component/common/Auth/Forgot/forgot";
+import Register from "./component/common/Auth/Register/register";
 
 const App = () => {
   return (
     <>
       
 
-      {/* <Slick/> */}
-      {/* <Formdatapage /> */}
-      {/* <Navbar /> */}
-      {/* <Basic/> */}
-      {/* <Detail /> */}
-      {/* <Parentcard /> */}
-      {/* <Sidebar/> */}
-      {/* <Record /> */}
+      
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -61,7 +57,14 @@ const App = () => {
         <Route path="/service" element={<VeterinaryService />} />
         <Route path="/dairyconsultant" element={<DairyConsultantService />} />
         <Route path="/goatfarming" element={<GoatFarmingService />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/register" element={<Register />} />
 
+
+
+
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
       
     </>

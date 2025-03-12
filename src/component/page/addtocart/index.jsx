@@ -5,6 +5,9 @@ import { Button } from "react-bootstrap";
 import productImage from "../../assets/img/addtocart/addproduct.png";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
+import Flipcard from "../../footerFlipCard/footerCard";
+import Footer from "../../footer";
+import { NavLink } from "react-router-dom";
 
 const faqs = [
   {
@@ -43,7 +46,7 @@ const Addtocart = () => {
   return (
     <>
       <Navbar />
-      <div className="addtocart py-5">
+      <div className="addtocart pt-5">
         <div className="container pt-lg-5">
           <div className="row pt-lg-3">
             <div className="col-lg-6">
@@ -260,27 +263,28 @@ const Addtocart = () => {
                       +
                     </Button>
                   </div>
-
-                  <Button
-                    className=" mx-3 border-0"
-                    style={{
-                      background: "#EC7229",
-                      width: "200px",
-                      height: "56px",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    Add To Cart
-                  </Button>
+                  <NavLink to="/cart">
+                    <Button
+                      className=" mx-3 border-0"
+                      style={{
+                        background: "#EC7229",
+                        width: "200px",
+                        height: "56px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      Add To Cart
+                    </Button>
+                  </NavLink>
                 </div>
               </div>
             </div>
 
             <div className="col-lg-6 py-5">
               <div className="addtocart-faq">
-                <div className="accordion pt-lg-3" id="faqAccordion">
+                <div className="accordion" id="faqAccordion">
                   {faqs.map((faq, index) => (
-                    <div className="accordion-item" key={index}>
+                    <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
                           className={`accordion-button  ${
@@ -412,6 +416,14 @@ const Addtocart = () => {
           </div>
         </div>
       </div>
+      <div className="addtocartfooter">
+        <div className="container">
+          <div className="row">
+            <Flipcard />
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };

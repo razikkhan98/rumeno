@@ -3,6 +3,8 @@ import React from 'react'
 // Common Components
 import Navbar from "../../common/navbar/mainnavbar";
 import Footer from '../../common/footer';
+import Faq from '../faq';
+import ServiceForm from '../../common/ServiceForm/serviceform';
 // import Flipcard from "../../common/footerFlipCard/footerCard";
 
 
@@ -12,7 +14,7 @@ import Service2 from "../../assets/img/service-img/close-up-scientific-analyzing
 import Service3 from "../../assets/img/service-img/sheep-grazing-field.png";
 import Doctor from "../../assets/img/service-img/Group 1171277285.png";
 import Sir from "../../assets/img/service-img/Group 1171277284.png";
-import Faq from '../faq';
+
 // import FormImg from "../../assets/img/service-img/form-side-img.png";
 const BusinessFqa = [
   {
@@ -137,18 +139,20 @@ const VeterinaryService = () => {
             </div>
           </div>
         </div>
-        <div className='container py-5 position-relative'>
-          <div className='row'>
-            <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center text-center'>
-              <img src={Doctor} className='rounded-circle img-fluid team-img' alt="Loading" />
-              <p className='font-size-28 chinese-black-color pt-5'>Dr. H. A. Tiwari</p>
-              <p className='font-size-18 text-gray-color text-center'>Chief Consultant Medical Science Management</p>
-            </div>
+        <div className='position-relative'>
+          <div className='container py-5'>
+            <div className='row'>
+              <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center text-center'>
+                <img src={Doctor} className='rounded-circle img-fluid team-img' alt="Loading" />
+                <p className='font-size-28 chinese-black-color pt-5'>Dr. H. A. Tiwari</p>
+                <p className='font-size-18 text-gray-color text-center'>Chief Consultant Medical Science Management</p>
+              </div>
 
-            <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center'>
-              <img src={Sir} className='rounded-circle img-fluid team-img' alt="Loading" />
-              <p className='font-size-28 chinese-black-color pt-5'>Mohammed Rizwan</p>
-              <p className='font-size-18 text-gray-color'>Founder & CEO Market and Products Management</p>
+              <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center'>
+                <img src={Sir} className='rounded-circle img-fluid team-img' alt="Loading" />
+                <p className='font-size-28 chinese-black-color pt-5'>Mohammed Rizwan</p>
+                <p className='font-size-18 text-gray-color'>Founder & CEO Market and Products Management</p>
+              </div>
             </div>
           </div>
         </div>
@@ -195,78 +199,10 @@ const VeterinaryService = () => {
         {/* FAQ Start */}
         <Faq faqs={BusinessFqa} showHeading={false} />
 
-        <div className='container my-5'>
-          <div className='bg-light-orange-color row g-0 form-radius'>
-            <div className='col-lg-6 p-5  text-white form-img'>
-              {/* <img src={FormImg} className='form-img' alt="Loading" /> */}
-              <div>
-                <p className='font-size-32'>LET’S TALK ABOUT YOUR NEEDS!!</p>
-                <p className='font-size-18'>Reach us anytime by simply filling this basic form</p>
-              </div>
-            </div>
-            <div className='col-lg-6 container d-flex align-items-center'>
-              <form className='row px-5'>
-                <div className="mb-3 d-flex flex-column col-lg-12">
-                  <label className="form-label">Full Name</label>
-                  <input type="text" className="service-form-input" placeholder="Full name" />
-                </div>
-                <div className="mb-3 d-flex flex-column col-lg-12">
-                  <label className="form-label">Address</label>
-                  <input type="text" className="service-form-input" placeholder="Your Address" />
-                </div>
-                <div className="mb-4 d-flex flex-column col-lg-6">
-                  <label className="form-label">When can we call you</label>
-                  <input type="text" className="service-form-input" placeholder="Select Time" />
-                </div>
-                <div className="mb-4 d-flex flex-column col-lg-6">
-                  <label className="form-label">Contact No</label>
-                  <input type="text" className="service-form-input" placeholder="Your Mobile No" />
-                </div>
-                <div className="mb-4 d-flex flex-column col-lg-6">
-                  <label className="form-label">Experience in Livestock Farming</label>
-                  <select className="service-form-input">
-                    <option>Select Experience</option>
-                  </select>
-                </div>
-                <div className="mb-4 d-flex flex-column col-lg-6">
-                  <label className="form-label">No of animals</label>
-                  <select className="service-form-input">
-                    <option>Select no of animals</option>
-                  </select>
-                </div>
-                <div className="mb-3 d-flex flex-column col-lg-12">
-                  <label className="form-label">Size of the land for animal farming</label>
-                  <div>
-                    <input type="radio" name="farm" id="goat" />
-                    <label htmlFor="goat" className="ms-2 me-5">Goat</label>
 
-                    <input type="radio" name="farm" id="sheep" />
-                    <label htmlFor="sheep" className="ms-2 me-5">Sheep</label>
+        {/* Service Form Section Start */}
+        <ServiceForm />
 
-                    <input type="radio" name="farm" id="cow" />
-                    <label htmlFor="cow" className="ms-2 me-5">Cow</label>
-
-                    <input type="radio" name="farm" id="buffalo" />
-                    <label htmlFor="buffalo" className="ms-2">Buffalo</label>
-                  </div>
-                </div>
-                <div className="mb-4 d-flex flex-column col-lg-12">
-                  {/* <label className="form-label">Full Name</label> */}
-                  <input type="text" className="service-form-input" placeholder="Size of land" />
-                </div>
-
-                <div className="mb-4 d-flex flex-column col-lg-12">
-                  <label className="form-label">How can we help?</label>
-                  <input type="text" className="service-form-input" placeholder="Tell us more about" />
-                </div>
-
-                <button className="btn py-3 mt-3 text-white w-100 bg-orange-color">Submit</button>
-              </form>
-            </div>
-          </div>
-
-        </div>
-        {/* <Flipcard /> */}
       </div>
 
       {/* Footer Start */}

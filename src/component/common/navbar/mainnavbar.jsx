@@ -181,14 +181,18 @@ const Mainnav = () => {
                       Goat Farming Consultant
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>About</li>
+                      <NavLink to={"/goatfarming"} className="text-decoration-none">
+                        <li>About</li>
+                      </NavLink>
                       <li>FAQs</li>
                     </ul>
                   </div>
                   <div>
                     <p className="products-title text-start text-uppercase">dairy consultant</p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>About</li>
+                      <NavLink to={"/dairyconsultant"} className="text-decoration-none">
+                        <li>About</li>
+                      </NavLink>
                       <li>Dairy Management</li>
 
                     </ul>
