@@ -1815,6 +1815,9 @@ body {
 .text-color-orange{
   color: #EC7229;
 }
+.bg-orange-color{
+  background-color: #EC7229;
+}
 .bg-light-orange-color{
   background-color: rgba(253, 199, 158, 0.2);
 }
@@ -1829,4 +1832,24 @@ body {
   display: flex;
   /* align-items: center; */
   justify-content: center;
+}
+
+.service-form-input {
+  background-color: transparent;
+  border: none;
+  border-bottom:2px solid #000000;
+  border-radius: 0px;
+  padding: 10px;
+}
+.service-form-input:focus {
+  background-color: transparent;
+  outline: none;
+}
+.btn-submit {
+  background-color: #ff8c00;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
 }
