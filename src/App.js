@@ -36,7 +36,9 @@ import GoatFarmingService from "./component/page/service/goatFarming";
 import VeterinaryService from "./component/page/service/veterinaryService";
 import Login from "./component/common/Auth/Login/login";
 import Forgot from "./component/common/Auth/Forgot/forgot";
-import Register from "./component/common/Auth/Register/register";
+import Register from "./component/common/Auth/Register/register";import Cart from "./component/page/cart/index";
+import Payment from "./component/page/payment/index";
+
 import ContactUs from "./component/page/ContactUs/contactus";
 import ErrorPage from "./component/page/Error/error";
 import { ToastContainer } from "react-toastify";
@@ -65,7 +67,8 @@ const App = () => {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/error" element={<ErrorPage />} />
 
-        {/* <Route path="/cart" element={<Cart/>} /> */}
+        {/* <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<Payment />} /> */}
       </Routes>
       
     </>

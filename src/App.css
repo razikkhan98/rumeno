@@ -26,15 +26,27 @@ body {
 .background-orange {
   background: #ec7229 !important;
 }
-
-.font-10-400 {
+.bg-skyblue{
+  background-color: #F3FAFC !important;
+}
+.bg-white{
+  background-color: #FFFFFF !important;
+}
+.font-10-400{
   font-size: 10px !important;
   font-weight: 400 !important;
 }
-
-.font-12-400 {
+.font-12-300{
+  font-size: 12px !important;
+  font-weight: 300 !important;
+}
+.font-12-400{
   font-size: 12px !important;
   font-weight: 400 !important;
+}
+.font-12-500{
+  font-size: 12px !important;
+  font-weight: 500 !important;
 }
 
 .font-14-400 {
@@ -46,13 +58,31 @@ body {
   font-size: 14px !important;
   font-weight: 500 !important;
 }
-
-.font-24-400 {
+.font-16-300{
+  font-size: 16px !important;
+  font-weight: 300 !important;
+}
+.font-16-400{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+.font-16-500{
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+.font-20-400{
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}
+.font-24-400{
   font-size: 24px !important;
   font-weight: 400 !important;
 }
-
-.border-1px-orange {
+.font-24-500{
+  font-size: 24px !important;
+  font-weight: 500 !important;
+}
+.border-1px-orange{
   border: 1px solid #ec7229 !important;
 }
 
@@ -65,9 +95,8 @@ body {
 }
 .border-radius-16{
   border-radius: 16px;
-}
-.bg-skyblue {
-  background-color: #F3FAFC !important;
+}.border-radius-16{
+  border-radius: 16px !important;
 }
 
 .colorEC7229 {
@@ -1256,6 +1285,7 @@ body {
 }
 
 .accordion {
+  color: #111111 !important;
   border: none !important;
   --bs-accordion-border-width: none !important;
 }
@@ -1621,6 +1651,14 @@ body {
 }
 
 /* <--------- AddtoCart End ---------> */
+
+/* <--------- Cart ---------> */
+
+
+
+
+/* <--------- Cart End ---------> */
+
 
 
 /* <-------- Slick --------> */
@@ -2095,6 +2133,12 @@ body {
   padding: 10px;
   width: 100%;
 }
+
+.payment-radio-btn [type='radio'] {
+  accent-color: #EC7229 !important;
+  
+}
+
 
 .dairy-img {
   width: 633px;
