@@ -5,6 +5,11 @@ import { useForm } from "react-hook-form";
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { LoginAPI } from "../../APIs/api";
+
+// Images
+import LoginImg from "../../../assets/img/Login/login-img.png";
 
 const Login = () => {
     const {
@@ -14,34 +19,57 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        reset();
-        console.log("Login Data:", data);
+    const onSubmit = async (data) => {
+
+        console.log('data: ', data);
+        try {
+            const payload = {
+                mobile: data?.mobile,
+                password: data?.password,
+            };
+            const response = await LoginAPI(payload);
+
+            reset();
+            if (response?.data?.success) {
+                toast.success(response?.data?.message);
+            }
+            toast.error(response?.data?.message);
+
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+
+        }
     };
 
     return (
         <>
             <Navbar />
             <div className="container py-5">
-                <div className="login-bg">
-                    <div className="row g-0">
+                <div className="">
+                    <div className="row g-0 login-bg">
                         {/* Left Section */}
-                        <div className="col-md-6 login-img text-white p-5 d-flex flex-column justify-content-end align-items-baseline">
-                            <p className="font-size-32 text-uppercase">Welcome to Rumeno</p>
-                            <p className="font-size-18">
-                                Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
-                                including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
-                                premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
-                            </p>
+                        <div className="col-md-6 text-white  position-relative">
+                            <img src={LoginImg} className="login-img" alt="Loading" />
+                            <div className="overlay-text position-absolute bottom-0 start-0 p-5">
+                                <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
+                                <p className="font-size-18 font-md-size-12">
+                                    Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
+                                    including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
+                                    premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Right Section (Login Form) */}
-                        <div className="col-md-6 p-5">
-                            <div className="form container px-5">
+                        <div className="col-md-6 p-lg-5 p-3 d-flex justify-content-center">
+                            <div className="form container px-lg-5 p-x-2">
                                 <div className="text-center">
-                                    <span className="text-uppercase font-size-24">Login</span>
-                                    <p>Login to your account to continue</p>
-                                    <p className="text-color-orange">Don’t have an account? Create an account</p>
+                                    <span className="text-uppercase font-size-24 font-md-size-20">Login</span>
+                                    <p className="font-size-16 font-md-size-12">Login to your account to continue</p>
+                                    <NavLink to={"/register"} className="text-decoration-none" >
+                                        <p className="text-color-orange font-size-16 font-md-size-12">Don’t have an account? Create an account</p>
+
+                                    </NavLink>
                                 </div>
 
                                 {/* Form */}
@@ -83,9 +111,9 @@ const Login = () => {
                                     </div>
 
                                     {/* Forgot Password */}
-                                   <NavLink to={"/forgot"} className="text-decoration-none">
-                                   <p className="text-end font-size-12 text-color-orange mt-2">Forgot Password?</p>
-                                   </NavLink>
+                                    <NavLink to={"/forgot"} className="text-decoration-none">
+                                        <p className="text-end font-size-12 text-color-orange mt-2">Forgot Password?</p>
+                                    </NavLink>
 
                                     {/* Submit Button */}
                                     <button type="submit" className="background-blue-pink-orange btn text-white w-100 mt-4 py-3">

@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-
+import { toast } from "react-toastify";
 // Images
 import Google from "../../../assets/img/Login/devicon_google.png";
+import RegisterImg from "../../../assets/img/Login/Register-img.png";
 import { NavLink } from "react-router-dom";
+import { RegisterAPI } from "../../APIs/api";
 
 const Register = () => {
     const {
@@ -18,10 +20,27 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log("Register Data:", data);
-        reset();
-    };
+    const onSubmit = async (data) => {
+
+        try {
+            const payload = {
+                firstName: data?.firstName,
+                email: data?.email,
+                password: data?.password,
+                mobile: data?.mobile,
+            };
+            const response = await RegisterAPI(payload);
+            console.log('response: ', response);
+            if (response?.message) {
+                toast.success(response?.data?.message)
+                
+                // window.location = "/login"
+            }
+            reset();
+        } catch (error) {
+            toast?.error(error?.response?.data?.message)
+        }
+    }
 
     return (
         <>
@@ -30,23 +49,26 @@ const Register = () => {
                 <div className="login-bg">
                     <div className="row rounded-3">
                         {/* Left Section */}
-                        <div className="col-lg-6 col-md-6 login-img register-img text-white p-5 d-flex flex-column justify-content-end align-items-baseline">
-                            <p className="font-size-32 text-uppercase">Welcome to Rumeno</p>
-                            <p className="font-size-18">
+                        <div className="col-lg-6 col-md-6 text-white position-relative">
+                           <img src={RegisterImg} className="login-img" alt="Loading" />
+                            <div className="overlay-text position-absolute bottom-0 start-0 p-5">
+                            <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
+                            <p className="font-size-18 font-md-size-12">
                                 Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
                                 including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
                                 premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
                             </p>
+                            </div>
                         </div>
 
                         {/* Right Section (Register Form) */}
-                        <div className="col-lg-6 col-md-6 py-4 px-5">
-                            <div className="form container px-5">
+                        <div className="col-lg-6 col-md-6 py-4 px-lg-5">
+                            <div className="form container px-lg-5 px-3">
                                 <div className="text-center">
-                                    <span className="text-uppercase font-size-24">Create an account</span>
-                                    <p>Fill these simple details and create an account</p>
+                                    <span className="text-uppercase font-size-24 font-md-size-20">Create an account</span>
+                                    <p className="font-size-16 font-md-size-12">Fill these simple details and create an account</p>
                                     <NavLink to={"/login"} className="text-decoration-none">
-                                    <p className="text-color-orange">Already have an account? Login</p>
+                                    <p className="text-color-orange font-size-16 font-md-size-12">Already have an account? Login</p>
                                     </NavLink>
                                 </div>
 
@@ -57,11 +79,11 @@ const Register = () => {
                                         <label className="form-label mb-2 font-size-12 text-gray-color">Name</label>
                                         <input
                                             type="text"
-                                            {...register("name", { required: "Name is required" })}
+                                            {...register("firstName", { required: "Name is required" })}
                                             className="form-control p-3 border-0 rounded-3"
                                             placeholder="Enter your full name"
                                         />
-                                        <p className="text-danger">{errors.name?.message}</p>
+                                        <p className="text-danger">{errors.firstName?.message}</p>
                                     </div>
 
                                     {/* Mobile No. */}

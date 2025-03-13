@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import productImage from "../../assets/img/addtocart/addproduct.png";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
-import Flipcard from "../../common/footerFlipCard/footerCard";
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
 
@@ -416,13 +415,7 @@ const Addtocart = () => {
           </div>
         </div>
       </div>
-      <div className="addtocartfooter">
-        <div className="container">
-          <div className="row">
-            <Flipcard />
-          </div>
-        </div>
-      </div>
+      
       <Footer />
     </>
   );
