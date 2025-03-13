@@ -13,7 +13,32 @@ import Navbar from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
 
-const products = [
+
+const faqs = [
+  {
+    question: "1. What are Veterinary Products?",
+    answer:
+      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
+  },
+  {
+    question: "2. How to Sell Veterinary Products?",
+    answer:
+      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+  },
+  {
+    question: "3. Veterinary Products and Services?",
+    answer:
+      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+  },
+  {
+    question: "4. Veterinary Products Manufacturers in India?",
+    answer:
+      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+  },
+];
+
+
+const productItem = [
   {
     id: 1,
     name: "Neonato Veterinary products for Goat, Cow, and Buf...",
@@ -107,28 +132,7 @@ const products = [
   },
 ];
 
-const faqs = [
-  {
-    question: "1. What are Veterinary Products?",
-    answer:
-      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
-  },
-  {
-    question: "2. How to Sell Veterinary Products?",
-    answer:
-      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
-  },
-  {
-    question: "3. Veterinary Products and Services?",
-    answer:
-      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
-  },
-  {
-    question: "4. Veterinary Products Manufacturers in India?",
-    answer:
-      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
-  },
-];
+
 
 const Products = () => {
   const [cart, setCart] = useState({});
@@ -163,11 +167,11 @@ const Products = () => {
   // Calculate pagination
   const indexOfLastProduct = currentPage * rowsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - rowsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = productItem.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
-  const totalPages = Math.ceil(products.length / rowsPerPage);
+  const totalPages = Math.ceil(productItem.length / rowsPerPage);
 
   // Handle page change
   const handlePageChange = (pageNumber) => {

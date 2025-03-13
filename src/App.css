@@ -2128,10 +2128,11 @@ body {
   width: 100%;
 }
 
-.payment-radio-btn [type='radio'] {
+input[type='radio'] {
   accent-color: #EC7229 !important;
-  
+  background-color: #FFFFFF;
 }
+
 
 
 .dairy-img {
@@ -2204,3 +2205,4 @@ body {
     border-radius: 12px;
   }
 }
+

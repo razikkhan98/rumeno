@@ -152,7 +152,15 @@ const Cart = () => {
                 </div>
                 <div className="d-flex justify-content-center">
                   <NavLink to="/payment">
-                    <button>procced to pay</button>
+                    <button
+                      className=" mx-3 border-0 colorffffff font-16-500 background-orange border-radius-8"
+                      style={{
+                        width: "200px",
+                        height: "56px",
+                      }}
+                    >
+                      Procced to pay
+                    </button>
                   </NavLink>
                 </div>
               </div>
