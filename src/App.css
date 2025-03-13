@@ -26,15 +26,27 @@ body {
 .background-orange {
   background: #ec7229 !important;
 }
-
-.font-10-400 {
+.bg-skyblue{
+  background-color: #F3FAFC !important;
+}
+.bg-white{
+  background-color: #FFFFFF !important;
+}
+.font-10-400{
   font-size: 10px !important;
   font-weight: 400 !important;
 }
-
-.font-12-400 {
+.font-12-300{
+  font-size: 12px !important;
+  font-weight: 300 !important;
+}
+.font-12-400{
   font-size: 12px !important;
   font-weight: 400 !important;
+}
+.font-12-500{
+  font-size: 12px !important;
+  font-weight: 500 !important;
 }
 
 .font-14-400 {
@@ -46,13 +58,31 @@ body {
   font-size: 14px !important;
   font-weight: 500 !important;
 }
-
-.font-24-400 {
+.font-16-300{
+  font-size: 16px !important;
+  font-weight: 300 !important;
+}
+.font-16-400{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+.font-16-500{
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+.font-20-400{
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}
+.font-24-400{
   font-size: 24px !important;
   font-weight: 400 !important;
 }
-
-.border-1px-orange {
+.font-24-500{
+  font-size: 24px !important;
+  font-weight: 500 !important;
+}
+.border-1px-orange{
   border: 1px solid #ec7229 !important;
 }
 
@@ -63,9 +93,10 @@ body {
 .border-radius-12 {
   border-radius: 12px !important;
 }
-
-.bg-skyblue {
-  background-color: #F3FAFC !important;
+.border-radius-16{
+  border-radius: 16px;
+}.border-radius-16{
+  border-radius: 16px !important;
 }
 
 .colorEC7229 {
@@ -1254,6 +1285,7 @@ body {
 }
 
 .accordion {
+  color: #111111 !important;
   border: none !important;
   --bs-accordion-border-width: none !important;
 }
@@ -1290,12 +1322,10 @@ body {
 /* <------- Blog -------> */
 
 .blog {
-  height: 600px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 20%,
-    rgba(179, 220, 239, 0.4) 100%
-  );
+  height: 400px;
+  background: linear-gradient(0deg,
+      rgba(255, 255, 255, 1) 20%,
+      rgba(179, 220, 239, 0.4) 100%);
 }
 
 .blog-heading {
@@ -1505,7 +1535,7 @@ body {
 }
 
 .product-faq {
-  height: 650px;
+  height: 400px;
 }
 
 @media (max-width: 1024px) {
@@ -1582,7 +1612,7 @@ body {
 /* .addtocart{
   height: 1000px;
 } */
-.addtocart-content-title{
+.addtocart-content-title {
   font-size: 24px;
   font-weight: 400;
 }
@@ -1616,10 +1646,19 @@ body {
   background-color: #ffffff !important;
 }
 
-.addtocartfooter{
+.addtocartfooter {
   height: 360px;
 }
+
 /* <--------- AddtoCart End ---------> */
+
+/* <--------- Cart ---------> */
+
+
+
+
+/* <--------- Cart End ---------> */
+
 
 
 /* <-------- Slick --------> */
@@ -1950,7 +1989,7 @@ body {
 
 
 
-/* Service css */
+/* ------------------- Service css --------------------- */
 .service-bg-color {
   background-color: rgba(236, 114, 41, 0.08);
 }
@@ -1987,7 +2026,7 @@ body {
   height: 555px;
 }
 
-/* Font Css class */
+/* --------------------- Font Css class ---------------------- */
 .font-size-28 {
   font-size: 28px;
   font-weight: 500;
@@ -2005,6 +2044,11 @@ body {
 
 .font-size-14 {
   font-size: 14px;
+  font-weight: 400;
+}
+
+.font-size-16 {
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -2071,7 +2115,7 @@ body {
 .service-form-input {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #000000;
+  border-bottom: 1px solid #000000;
   border-radius: 0px;
   padding: 10px;
 }
@@ -2090,12 +2134,18 @@ body {
   width: 100%;
 }
 
+.payment-radio-btn [type='radio'] {
+  accent-color: #EC7229 !important;
+  
+}
+
+
 .dairy-img {
   width: 633px;
   height: 467px;
 }
 
-/* Login css */
+/* ------------------------- Login css ----------------------- */
 .login-bg {
   margin: 100px 0px 100px 0px;
   background-color: rgba(137, 201, 230, 0.1);
@@ -2104,18 +2154,10 @@ body {
 
 .login-img {
   width: 100%;
-  max-width: 640px;
-  height: auto;
+  height: 748px;
   border-radius: 24px;
-  max-height: 748px;
-  background: url('./component//assets//img/Login//login-img.png') no-repeat center center;
-  background-size: cover;
 }
 
-.register-img {
-  border-radius: 24px;
-  background: url('./component//assets/img/Login/Register-img.png') no-repeat center center;
-}
 
 .otp-input {
   width: 48px;
@@ -2128,35 +2170,75 @@ body {
   border-radius: 5px;
 }
 
-/* 🔹 Media Queries for Mobile & Tablets */
+/* ----------------------- Conatact Us Css ---------------------- */
+.contact-us-bg-img {
+  margin: 100px 0px 100px 0px;
+  background: url(./component/assets/img/Login/contact-us.png) no-repeat center center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+/* ------------------- Error Page Css -------------------- */
+.error-bg-color{
+  background-color: #DDF0F8;
+  min-height: 100vh;
+}
+.error-img{
+  width: 426px;
+  height: 388px;
+}
+ .error-cow{
+  width: 116px;
+  height: 172px;
+ }
+ .error-btn{
+  background-color: #A4BE7B;
+ }
+/* 🔹 ---------------- Media Queries for Mobile & Tablets ---------------------- */
 @media (max-width: 1024px) {
 
-  .login-img,
-  .register-img {
-    max-width: 100%;
-    min-height: 300px;
-    /* Reduce height for tablets */
+  .login-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Font Responsive Css */
+  .font-md-size-20 {
+    font-size: 20px;
+  }
+
+  .font-md-size-20 {
+    font-size: 20px;
+  }
+
+  .font-md-size-12 {
+    font-size: 12px;
+  }
+
+  .service-img {
+    border-radius: 10px;
+  }
+
+  .dairy-img {
+    border-radius: 10px;
+  }
+
+  .otp-input {
+    width: 40px;
+    height: 40px;
+
   }
 }
 
 @media (max-width: 768px) {
-
-  .login-img,
-  .register-img {
-    height: 250px;
-    /* Adjust for smaller screens */
-    min-height: 250px;
-    border-radius: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .login-img,
-  .register-img {
+  .error-img{
+    width: 200px;
     height: 200px;
-    /* Smaller height for mobile */
-    min-height: 200px;
-    border-radius: 12px;
   }
+   .error-cow{
+    width: 90px;
+    height: 90px;
+   }
 }
+
+@media (max-width: 480px) {}
