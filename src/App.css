@@ -2242,22 +2242,3 @@ input[type='radio'] {
    }
 }
 
-@media (max-width: 480px) {
-
-  .login-img,
-  .register-img {
-    height: 200px;
-    /* Smaller height for mobile */
-    min-height: 200px;
-    border-radius: 12px;
-  }
-}
-
-
-   .error-cow{
-    width: 90px;
-    height: 90px;
-   }
-}
-
-@media (max-width: 480px) {}
