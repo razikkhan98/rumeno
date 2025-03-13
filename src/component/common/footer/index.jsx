@@ -3,6 +3,7 @@ import Image1 from "../../../component/assets/img/footer/footerimg.svg";
 import { NavLink } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { FaLinkedin, FaPhone, FaYoutube } from "react-icons/fa6";
+import Flipcard from "../../common/footerFlipCard/footerCard";
 import { PiEnvelopeSimpleFill } from "react-icons/pi";
 import { AiFillInstagram } from "react-icons/ai";
 import { IoLogoFacebook } from "react-icons/io";
@@ -10,7 +11,13 @@ import { IoLogoFacebook } from "react-icons/io";
 const Footer = () => {
   return (
     <>
-    
+    <div className="addtocartfooter">
+            <div className="container">
+              <div className="row">
+                <Flipcard />
+              </div>
+            </div>
+          </div>
       <div className="footer py-5">
         <div className="container pt-lg-5">
           <div className="row">

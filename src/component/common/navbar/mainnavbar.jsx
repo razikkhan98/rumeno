@@ -209,16 +209,17 @@ const Mainnav = () => {
                 Blogs
               </a>
             </li>
-            <li className="nav-item">
-              <a
+           <NavLink to={"/contactus"} className={"text-decoration-none"}>
+           <li className="nav-item">
+              <div
                 className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
                   }`}
-                href=""
                 onClick={() => handleLinkClick("Contact Us")}
               >
                 Contact Us
-              </a>
+              </div>
             </li>
+           </NavLink>
           </ul>
 
           {/* Action Buttons */}

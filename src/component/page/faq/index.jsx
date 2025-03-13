@@ -25,7 +25,7 @@ const Faq = ({faqs,  showHeading = true }) => {
             )}
               <div className="accordion pt-lg-3" id="faqAccordion">
                 {faqs?.map((faq, index) => (
-                  <div className="accordion-item p-2" key={index}>
+                  <div className="accordion-item p-2 " key={index}>
                     <h2 className="accordion-header">
                       <button
                         className={`accordion-button ${
@@ -41,7 +41,7 @@ const Faq = ({faqs,  showHeading = true }) => {
                           fontSize: "18px",
                           fontWeight: "500",
                           borderBottom: "1px solid #E8E8E8",
-                          height: "58px"
+                          // height: "58px"
                         }}
                       >
                         {faq.question}{" "}

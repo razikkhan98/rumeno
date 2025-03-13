@@ -7,7 +7,6 @@ import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
 import Firstaid from "../../assets/img/products/sterilization.svg";
 import Star from "../../assets/img/products/star.svg";
-import Flipcard from "../../common/footerFlipCard/footerCard";
 import Navbar from "../../common/navbar/mainnavbar";
 
 import Footer from "../../common/footer";
@@ -637,7 +636,6 @@ const Products = () => {
                 ))}
               </div>
             </div>
-            <Flipcard />
           </div>
         </div>
       </div>

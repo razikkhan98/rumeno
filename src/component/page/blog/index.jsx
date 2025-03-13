@@ -1,5 +1,4 @@
 import React from "react";
-import CollapsingCards from "../../common/footerFlipCard/footerCard";
 
 const Blog = () => {
     return(
@@ -17,7 +16,7 @@ const Blog = () => {
                             </button>
                         </div>
                     </div>
-                    <CollapsingCards/>
+                   
                 </div>
             </div>
         </div>
