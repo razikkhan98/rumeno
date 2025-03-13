@@ -8,15 +8,15 @@ import Footer from "../../footer/index";
 // images
 import LoginImg from "../../../assets/img/Login/login-img.png";
 const Forgot = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const onSubmit = (data) => {
-        console.log("Forgot Password Data:", data);
-    };
+  const onSubmit = (data) => {
+    console.log("Forgot Password Data:", data);
+  };
 
     return (
         <>
@@ -46,67 +46,77 @@ const Forgot = () => {
                                     <p className="font-size-16 font-md-size-12">Enter your registered E-mail ID/ Mobile no and we will send you a verification code</p>
                                 </div>
 
-                                {/* Form */}
-                                <form onSubmit={handleSubmit(onSubmit)}>
-                                    {/* Mobile No. */}
-                                    <div className="py-4">
-                                        <label htmlFor="mobile" className="form-label text-start mb-2 font-size-12 text-gray-color">
-                                            Mobile No.
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="mobile"
-                                            {...register("mobile", {
-                                                required: "Mobile number is required",
-                                                pattern: {
-                                                    value: /^\d{10}$/,
-                                                    message: "Mobile number must be 10 digits",
-                                                },
-                                            })}
-                                            className="form-control p-3 border-0 rounded-3"
-                                            placeholder="Enter your mobile no"
-                                        />
-                                        <p className="text-danger">{errors.mobile?.message}</p>
-                                    </div>
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  {/* Mobile No. */}
+                  <div className="py-4">
+                    <label
+                      htmlFor="mobile"
+                      className="form-label text-start mb-2 font-size-12 text-gray-color"
+                    >
+                      Mobile No.
+                    </label>
+                    <input
+                      type="text"
+                      id="mobile"
+                      {...register("mobile", {
+                        required: "Mobile number is required",
+                        pattern: {
+                          value: /^\d{10}$/,
+                          message: "Mobile number must be 10 digits",
+                        },
+                      })}
+                      className="form-control p-3 border-0 rounded-3"
+                      placeholder="Enter your mobile no"
+                    />
+                    <p className="text-danger">{errors.mobile?.message}</p>
+                  </div>
 
-                                    {/* OTP Inputs */}
-                                    <div className="mb-3 text-start">
-                                        <label className="form-label text-gray-color font-size-12">Verification Code</label>
-                                        <div className="d-flex justify-content-between">
-                                            {Array(6)
-                                                .fill(0)
-                                                .map((_, index) => (
-                                                    <input
-                                                        key={index}
-                                                        type="text"
-                                                        maxLength="1"
-                                                        className="otp-input"
-                                                        {...register(`otp[${index}]`, {
-                                                            required: "All OTP digits are required",
-                                                            pattern: {
-                                                                value: /^[0-9]$/,
-                                                                message: "Only digits allowed",
-                                                            },
-                                                        })}
-                                                    />
-                                                ))}
-                                        </div>
-                                        {errors.otp && <p className="text-danger">OTP must be 6 digits</p>}
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <button type="submit" className="background-blue-pink-orange btn text-white w-100 mt-4 py-3">
-                                        Submit
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                  {/* OTP Inputs */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label text-gray-color font-size-12">
+                      Verification Code
+                    </label>
+                    <div className="d-flex justify-content-between">
+                      {Array(6)
+                        .fill(0)
+                        .map((_, index) => (
+                          <input
+                            key={index}
+                            type="text"
+                            maxLength="1"
+                            className="otp-input"
+                            {...register(`otp[${index}]`, {
+                              required: "All OTP digits are required",
+                              pattern: {
+                                value: /^[0-9]$/,
+                                message: "Only digits allowed",
+                              },
+                            })}
+                          />
+                        ))}
                     </div>
-                </div>
+                    {errors.otp && (
+                      <p className="text-danger">OTP must be 6 digits</p>
+                    )}
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="background-blue-pink-orange btn text-white w-100 mt-4 py-3"
+                  >
+                    Submit
+                  </button>
+                </form>
+              </div>
             </div>
-            <Footer />
-        </>
-    );
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default Forgot;

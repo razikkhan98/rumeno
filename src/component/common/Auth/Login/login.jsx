@@ -12,12 +12,12 @@ import { LoginAPI } from "../../APIs/api";
 import LoginImg from "../../../assets/img/Login/login-img.png";
 
 const Login = () => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
     const onSubmit = async (data) => {
 
@@ -72,62 +72,73 @@ const Login = () => {
                                     </NavLink>
                                 </div>
 
-                                {/* Form */}
-                                <form onSubmit={handleSubmit(onSubmit)}>
-                                    {/* Mobile No. */}
-                                    <div className="py-4">
-                                        <label htmlFor="mobile" className="form-label text-start mb-2 font-size-12 text-gray-color">
-                                            Mobile No.
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="mobile"
-                                            {...register("mobile", {
-                                                required: "Mobile number is required",
-                                                pattern: {
-                                                    value: /^\d{10}$/,
-                                                    message: "Mobile number must be 10 digits",
-                                                },
-                                            })}
-                                            className="form-control p-3 border-0 rounded-3"
-                                            placeholder="Enter your mobile no"
-                                        />
-                                        <p className="text-danger">{errors.mobile?.message}</p>
-                                    </div>
+                {/* Form */}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  {/* Mobile No. */}
+                  <div className="py-4">
+                    <label
+                      htmlFor="mobile"
+                      className="form-label text-start mb-2 font-size-12 text-gray-color"
+                    >
+                      Mobile No.
+                    </label>
+                    <input
+                      type="text"
+                      id="mobile"
+                      {...register("mobile", {
+                        required: "Mobile number is required",
+                        pattern: {
+                          value: /^\d{10}$/,
+                          message: "Mobile number must be 10 digits",
+                        },
+                      })}
+                      className="form-control p-3 border-0 rounded-3"
+                      placeholder="Enter your mobile no"
+                    />
+                    <p className="text-danger">{errors.mobile?.message}</p>
+                  </div>
 
-                                    {/* Password */}
-                                    <div>
-                                        <label htmlFor="password" className="form-label text-start mb-2 font-size-12 text-gray-color">
-                                            Enter Password
-                                        </label>
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            {...register("password", { required: "Password is required" })}
-                                            className="form-control p-3 border-0 rounded-3"
-                                            placeholder="Enter your password"
-                                        />
-                                        <p className="text-danger">{errors.password?.message}</p>
-                                    </div>
+                  {/* Password */}
+                  <div>
+                    <label
+                      htmlFor="password"
+                      className="form-label text-start mb-2 font-size-12 text-gray-color"
+                    >
+                      Enter Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      {...register("password", {
+                        required: "Password is required",
+                      })}
+                      className="form-control p-3 border-0 rounded-3"
+                      placeholder="Enter your password"
+                    />
+                    <p className="text-danger">{errors.password?.message}</p>
+                  </div>
 
                                     {/* Forgot Password */}
                                     <NavLink to={"/forgot"} className="text-decoration-none">
                                         <p className="text-end font-size-12 text-color-orange mt-2">Forgot Password?</p>
                                     </NavLink>
 
-                                    {/* Submit Button */}
-                                    <button type="submit" className="background-blue-pink-orange btn text-white w-100 mt-4 py-3">
-                                        Login
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="background-blue-pink-orange btn text-white w-100 mt-4 py-3"
+                  >
+                    Login
+                  </button>
+                </form>
+              </div>
             </div>
-            <Footer />
-        </>
-    );
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default Login;
