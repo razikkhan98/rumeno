@@ -14,7 +14,9 @@ import Service4 from "../../assets/img/service-img/dairy-img-4.png";
 
 
 
-// Json
+// Json Role
+
+// FAQ Json
 const DairyFaq = [
     {
         question: "1. What are dairy farm management services?",
@@ -156,9 +158,7 @@ const DairyConsultantService = () => {
             {/* Faq Section Start */}
             <div className='bg-white'>
                 <div className='container'>
-
                     <Faq faqs={DairyFaq} showHeading={false} />
-
                 </div>
 
             </div>

@@ -11,7 +11,9 @@ import Service2 from "../../assets/img/service-img/elder-man-farm 1.png";
 import Service3 from "../../assets/img/service-img/goats-farm-sunny-day 1.png";
 
 
-// Json
+// Json Role
+
+// FAQ Json
 const FarmingFaq = [
   {
     question: "1. What is a goat farming consultant?",
@@ -47,6 +49,7 @@ const FarmingFaq = [
 const GoatFarmingService = () => {
   return (
     <>
+    {/* Navbar */}
       <Navbar />
       <div className='service-bg-color products'>
         <div className='container pt-lg-5'>
@@ -141,17 +144,15 @@ const GoatFarmingService = () => {
         </div>
 
       </div>
-      
-        {/* Faq Section Start */}
-        <div className='bg-white'>
-          <div className='container'>
 
-            <Faq faqs={FarmingFaq} showHeading={false} />
-
-          </div>
-
+      {/* Faq Section Start */}
+      <div className='bg-white'>
+        <div className='container'>
+          <Faq faqs={FarmingFaq} showHeading={false} />
         </div>
+      </div>
 
+      {/* Footer Section Start */}
       <Footer />
     </>
   )

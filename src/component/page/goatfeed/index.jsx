@@ -9,7 +9,7 @@ const feeddata = [
     id: "#1",
     title: "Goat Feed Supplement",
     content:
-      "Rumeno Farmotech provides a premium goat feed supplement that is intended to improve your goats' well-being and output. Our supplement is full of vital vitamins, minerals, and nutrients that support healthy growth, milk production, and general wellbeing. Our feed supplement guarantees that your goats,whether dairy or meat, get the nutrition they need to thrive as a herd.",
+      "Rumeno Farmotech provides a premium goat feed supplement that is intended to improve your goats' well-being and output. Our supplement is full of vital vitamins, minerals, and nutrients that support healthy growth, milk production, and general wellbeing. Our feed supplement guarantees that your goats, whether dairy or meat, get the nutrition they need to thrive as a herd.",
   },
   {
     id: "#2",
