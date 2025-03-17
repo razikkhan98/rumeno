@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Goat from "../../assets/img/goatfeed/goatfeed.png";
 import Sheep from "../../assets/img/goatfeed/sheepimg.png";
-import Buffalo from "../../assets/img/goatfeed/buffaloimg.png";
+import Dog from "../../assets/img/goatfeed/dog2.jpg";
 import Cow from "../../assets/img/goatfeed/cowimg.png";
 import Fish from "../../assets/img/goatfeed/FISH1.webp";
 import Pigeon from "../../assets/img/goatfeed/pigeon1.jpg";
@@ -38,7 +38,7 @@ const feeddata = [
   },
 ];
 
-const images = [Goat, Sheep, Buffalo, Cow, Fish, Pigeon];
+const images = [Goat, Sheep, Dog, Cow, Fish, Pigeon];
 
 const Goatfeed = () => {
   const [activeIndex, setActiveIndex] = useState(0);
