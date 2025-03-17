@@ -3,7 +3,8 @@ import Goat from "../../assets/img/goatfeed/goatfeed.png";
 import Sheep from "../../assets/img/goatfeed/sheepimg.png";
 import Buffalo from "../../assets/img/goatfeed/buffaloimg.png";
 import Cow from "../../assets/img/goatfeed/cowimg.png";
-
+import Fish from "../../assets/img/goatfeed/FISH1.webp";
+import Pigeon from "../../assets/img/goatfeed/pigeon1.jpg";
 const feeddata = [
   {
     id: "#1",
@@ -37,7 +38,7 @@ const feeddata = [
   },
 ];
 
-const images = [Goat, Sheep, Buffalo, Cow];
+const images = [Goat, Sheep, Buffalo, Cow, Fish, Pigeon];
 
 const Goatfeed = () => {
   const [activeIndex, setActiveIndex] = useState(0);
