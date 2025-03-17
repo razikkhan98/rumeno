@@ -89,7 +89,7 @@ const ContactUs = () => {
 
 
                                     {/* Submit Button */}
-                                    <button type="submit" className="background-blue-pink-orange btn text-white w-100 mt-5 py-3">
+                                    <button type="submit" className="bg-gradient-color border-0 btn text-white w-100 mt-5 py-3">
                                         Send
                                     </button>
                                 </form>
