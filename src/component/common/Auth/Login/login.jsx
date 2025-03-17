@@ -1,11 +1,13 @@
 import React from "react";
+
+// Import Third Party Components
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
 import { LoginAPI } from "../../APIs/api";
 
 // Images
@@ -43,7 +45,10 @@ const Login = () => {
 
   return (
     <>
+      {/* Navbar */}
       <Navbar />
+
+      {/* Main Section */}
       <div className="container py-5">
         <div className="">
           <div className="row g-0 login-bg">
@@ -136,6 +141,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {/* Footer */}
       <Footer />
     </>
   );

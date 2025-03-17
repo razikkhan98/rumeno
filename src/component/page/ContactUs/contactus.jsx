@@ -1,10 +1,13 @@
 import React from 'react'
 
+// Import third Party Components
 import { useForm } from "react-hook-form";
 
 // Common Components
 import Navbar from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer/index";
+
+// Import React Icons
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaLinkedin, FaYoutube, FaSquareFacebook } from 'react-icons/fa6';
 
@@ -22,11 +25,14 @@ const ContactUs = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log("Forgot Password Data:", data);
+        console.log("Data:", data);
     };
     return (
         <>
+        {/* Navbar */}
             <Navbar />
+
+            {/* Main Section */}
             <div className="container py-5">
                 <div className="contact-us-bg-img p-lg-5 p-4">
                     <div>
@@ -98,6 +104,7 @@ const ContactUs = () => {
                     </div>
                 </div>
             </div>
+            {/* Footer */}
             <Footer />
         </>
     )

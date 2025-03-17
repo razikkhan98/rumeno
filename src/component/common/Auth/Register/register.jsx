@@ -1,15 +1,19 @@
 import React from "react";
+
+// Import Third Party Components
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-import { toast } from "react-toastify";
+import { RegisterAPI } from "../../APIs/api";
+
 // Images
 import Google from "../../../assets/img/Login/devicon_google.png";
 import RegisterImg from "../../../assets/img/Login/Register-img.png";
-import { NavLink } from "react-router-dom";
-import { RegisterAPI } from "../../APIs/api";
+
 
 const Register = () => {
     const {
@@ -33,7 +37,7 @@ const Register = () => {
             console.log('response: ', response);
             if (response?.message) {
                 toast.success(response?.data?.message)
-                
+
                 // window.location = "/login"
             }
             reset();
@@ -44,20 +48,23 @@ const Register = () => {
 
     return (
         <>
+            {/* Navbar */}
             <Navbar />
+
+            {/* Main Section */}
             <div className="container py-5">
                 <div className="login-bg">
                     <div className="row rounded-3">
                         {/* Left Section */}
                         <div className="col-lg-6 col-md-6 text-white position-relative">
-                           <img src={RegisterImg} className="login-img" alt="Loading" />
+                            <img src={RegisterImg} className="login-img" alt="Loading" />
                             <div className="overlay-text position-absolute bottom-0 start-0 p-5">
-                            <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
-                            <p className="font-size-18 font-md-size-12">
-                                Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
-                                including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
-                                premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
-                            </p>
+                                <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
+                                <p className="font-size-18 font-md-size-12">
+                                    Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
+                                    including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
+                                    premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
+                                </p>
                             </div>
                         </div>
 
@@ -68,7 +75,7 @@ const Register = () => {
                                     <span className="text-uppercase font-size-24 font-md-size-20">Create an account</span>
                                     <p className="font-size-16 font-md-size-12">Fill these simple details and create an account</p>
                                     <NavLink to={"/login"} className="text-decoration-none">
-                                    <p className="text-color-orange font-size-16 font-md-size-12">Already have an account? Login</p>
+                                        <p className="text-color-orange font-size-16 font-md-size-12">Already have an account? Login</p>
                                     </NavLink>
                                 </div>
 
@@ -170,6 +177,8 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Footer */}
             <Footer />
         </>
     );

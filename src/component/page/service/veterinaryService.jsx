@@ -16,6 +16,8 @@ import Doctor from "../../assets/img/service-img/Group 1171277285.png";
 import Sir from "../../assets/img/service-img/Group 1171277284.png";
 
 // import FormImg from "../../assets/img/service-img/form-side-img.png";
+
+// FAQ Json
 const BusinessFqa = [
   {
     question: "1. Are Vet Services Taxable?",
@@ -202,7 +204,6 @@ const VeterinaryService = () => {
 
         {/* Service Form Section Start */}
         <ServiceForm />
-
       </div>
 
       {/* Footer Start */}
