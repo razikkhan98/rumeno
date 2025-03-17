@@ -2042,6 +2042,10 @@ body {
   color: var(--white-color) !important;
 }
 
+.social-icons{
+  display: flex;
+}
+
 @media (max-width: 992px) {
   .footer-img {
     /* width: 70%; */
@@ -2071,6 +2075,11 @@ body {
     color: var(--white-color);
     line-height: 28px;
     margin-top: 20px;
+  }
+  .social-icons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
