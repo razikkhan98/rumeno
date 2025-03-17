@@ -43,35 +43,34 @@ import Payment from "./component/page/payment/index";
 import ContactUs from "./component/page/ContactUs/contactus";
 import ErrorPage from "./component/page/Error/error";
 import { ToastContainer } from "react-toastify";
+import { CartProvider } from "./component/common/Context/index";
 const App = () => {
   return (
     <>
-      
+      <CartProvider>
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/farmdata" element={<Formdatapage />} />
+          <Route path="/parentcard" element={<Parentcard />} />
+          <Route path="/parentform" element={<Basic />} />
+          <Route path="/record" element={<Record />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/addtocart" element={<Addtocart />} />
+          <Route path="/service" element={<VeterinaryService />} />
+          <Route path="/dairyconsultant" element={<DairyConsultantService />} />
+          <Route path="/goatfarming" element={<GoatFarmingService />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<Forgot />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/error" element={<ErrorPage />} />
 
-      
-      <ToastContainer/>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/farmdata" element={<Formdatapage/>} />
-        <Route path="/parentcard" element={<Parentcard/>} />
-        <Route path="/parentform" element={<Basic/>} />
-        <Route path="/record" element={<Record/>} />
-        <Route path="/products" element={<Products/>} />
-        <Route path="/training" element={<Training />} />
-        <Route path="/addtocart" element={<Addtocart />} />
-        <Route path="/service" element={<VeterinaryService />} />
-        <Route path="/dairyconsultant" element={<DairyConsultantService />} />
-        <Route path="/goatfarming" element={<GoatFarmingService />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgot" element={<Forgot />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/error" element={<ErrorPage />} />
-
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<Payment />} />
-      </Routes>
-      
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<Payment />} />
+        </Routes>
+      </CartProvider>
     </>
   );
 };
