@@ -47,10 +47,10 @@ const Trust = () => {
 
   return (
     <>
-      <div className="trust-card pb-5">
-        <div className="container">
+      <div className="trust-card py-5">
+        <div className="container pt-lg-5">
           <div className="row">
-            <div className="col-lg-12 species-col rounded">
+            {/* <div className="col-lg-12 species-col rounded">
               <div
                 className="species-section shadow text-center pt-3"
                 style={{ background: "rgba(255, 255, 255, 1)" }}
@@ -95,7 +95,8 @@ const Trust = () => {
                     <p className="mt-2 species-name">Sheep</p>
                   </div>
                 </div>
-                {/* <div className="d-flex align-items-center justify-content-between">
+                
+                 <div className="d-flex align-items-center justify-content-between">
                   <button
                     className="slider-btn-left rounded-circle p-0 ms-4"
                     onClick={() => sliderRef.current.slickPrev()}
@@ -144,9 +145,9 @@ const Trust = () => {
                       }}
                     ></span>
                   ))}
-                </div> */}
+                </div> 
               </div>
-            </div>
+            </div> */}
 
             <div className=" pb-5">
               <p className="trust-heading text-uppercase text-center">
@@ -168,8 +169,12 @@ const Trust = () => {
                             Scientific Excellence
                           </p>
                           <p className="trust-card-para">
-                            Their group of professionals is always looking for
-                            new ways to solve problems
+                            Rumeno exemplifies scientific excellence in animal
+                            husbandry through innovative research and
+                            sustainable practices that enhance livestock health,
+                            productivity, and welfare, while advancing the
+                            understanding of animal nutrition and digestive
+                            efficiency.
                           </p>
                         </div>
                       </div>
@@ -187,11 +192,14 @@ const Trust = () => {
                         </div>
                         <div className="curved-card-bs-content text-center">
                           <p className="trust-card-heading">
-                            Franchise Network
+                            Factory Direct Network
                           </p>
                           <p className="trust-card-para">
-                            Accessibility is never a problem because to the more
-                            than 150 franchise locations
+                            Our nationwide delivery system ensures premium
+                            quality and affordability by delivering products
+                            directly from the factory to your farm, eliminating
+                            middlemen for better price control, transparency,
+                            and guaranteed freshness.
                           </p>
                         </div>
                       </div>
@@ -212,8 +220,12 @@ const Trust = () => {
                             Customer Satisfaction
                           </p>
                           <p className="trust-card-para">
-                            Farmers receive individualised help thanks to their
-                            customer-centric approach
+                            At Rumeno , we prioritize customer satisfaction by
+                            offering top-quality products and expert services
+                            directly to your farm. From premium supplies to
+                            personalized support, we ensure your livestock
+                            thrives. Your trust inspires us to deliver
+                            excellence every day.
                           </p>
                         </div>
                       </div>

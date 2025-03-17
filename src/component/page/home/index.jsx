@@ -12,7 +12,25 @@ import mobcaroimg4 from "../../assets/home/homecaromob2.png";
 import mobcaroimg5 from "../../assets/home/homecaromob3.png";
 import mobcaroimg6 from "../../assets/home/hen.png";
 import Carousel from "react-bootstrap/Carousel";
+import Prdimg1 from "../../assets/img/animals/prdaml1.png";
+import Prdimg2 from "../../assets/img/animals/prdaml2.png";
+import Prdimg3 from "../../assets/img/animals/prdaml3.png";
+import Prdimg4 from "../../assets/img/animals/prdaml4.png";
+import Prdimg5 from "../../assets/img/animals/prdaml5.png";
+import Prdimg6 from "../../assets/img/animals/prdaml6.png";
+import Prdimg7 from "../../assets/img/animals/prdaml7.png";
+import Prdimg8 from "../../assets/img/animals/prdaml8.png";
 
+const animals = [
+  { id: "cow", imgSrc: Prdimg1 },
+  { id: "goat", imgSrc: Prdimg2 },
+  { id: "dog", imgSrc: Prdimg3 },
+  { id: "poultry", imgSrc: Prdimg4 },
+  { id: "fish", imgSrc: Prdimg5 },
+  { id: "horse", imgSrc: Prdimg6 },
+  { id: "pigeon", imgSrc: Prdimg7 },
+  { id: "pig", imgSrc: Prdimg8 },
+];
 
 const Home = () => {
   return (
@@ -39,7 +57,6 @@ const Home = () => {
               interval={3000}
               pause={false}
             >
-              
               <Carousel.Item>
                 <picture>
                   <source
@@ -146,6 +163,46 @@ const Home = () => {
               chat here
             </small> */}
           </div>
+        </div>
+      </div>
+
+      <div className="container-fluid py-5">
+        <div className="text-center pt-lg-5 px-lg-5">
+          <div
+            className="d-flex my-3"
+           
+          >
+            <span className="label-title">
+              Our Products According To Species
+            </span>
+            <div>
+              <div className="about-line-large"></div>
+              <div className="about-line-small"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row px-5 align-items-end">
+          <div className="col-lg-6">
+            <div className="section-header text-start mb-3">
+              <p className="fw-bold fs-5">Rumeno Products For Animals</p>
+            </div>
+          </div>
+        </div>
+        <div className="row px-5">
+          {animals?.map((animal) => (
+            <div key={animal?.id} className="col-lg-3 col-md-6 col-sm-6">
+              <div className="card-box my-2 ">
+                <div className="card1 border-radius-20 shadow-2">
+                  <img
+                    src={animal?.imgSrc}
+                    alt="Rumeno-Veterinary-Product"
+                    className="card-img"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

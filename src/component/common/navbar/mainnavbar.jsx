@@ -24,8 +24,8 @@ const Mainnav = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100"
-      style={{ backgroundColor: "#DDF0F8" }}
+      className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
         <a className="navbar-brand" href="#">
@@ -227,7 +227,7 @@ const Mainnav = () => {
             <div className="text-center farm-btn">
               <NavLink to="/farmdata">
                 <button className="btn rounded-pill text-white p-0">
-                  Farm Data
+                Smart Livestock Manager
                 </button>
               </NavLink>
             </div>

@@ -157,7 +157,7 @@ const Register = () => {
 
                                     {/* Submit & Google Login Buttons */}
                                     <div className="col-lg-12 d-flex flex-column">
-                                        <button type="submit" className="background-blue-pink-orange btn text-white mt-2 py-3">
+                                        <button type="submit" className="bg-gradient-color border-0 btn text-white mt-2 py-3">
                                             Create Account
                                         </button>
                                         <button className="btn py-3 text-color-orange border-orange mt-3">

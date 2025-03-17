@@ -18,33 +18,33 @@ const Forgot = () => {
     console.log("Forgot Password Data:", data);
   };
 
-    return (
-        <>
-            <Navbar />
-            <div className="container py-5">
-                <div className="login-bg">
-                    <div className="row g-0">
-                        {/* Left Section */}
-                        <div className="col-lg-6 col-md-6 text-white position-relative">
-                        <img src={LoginImg} className="login-img" alt="Loading" />
-                            <div className="overlay-text position-absolute bottom-0 start-0 p-5">
-                            <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
-                            <p className="font-size-18 font-md-size-12">
-                                Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
-                                including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
-                                premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
-                            </p>
-                            </div>
-                        </div>
+  return (
+    <>
+      <Navbar />
+      <div className="container py-5">
+        <div className="login-bg">
+          <div className="row g-0">
+            {/* Left Section */}
+            <div className="col-lg-6 col-md-6 text-white position-relative">
+              <img src={LoginImg} className="login-img" alt="Loading" />
+              <div className="overlay-text position-absolute bottom-0 start-0 p-5">
+                <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
+                <p className="font-size-18 font-md-size-12">
+                  Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
+                  including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
+                  premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
+                </p>
+              </div>
+            </div>
 
-                        {/* Right Section (Forgot Password Form) */}
-                        <div className="col-lg-6 col-md-6 p-lg-5 p-3">
-                            <div className="container px-lg-5 px-3">
-                                <div className="text-center">
-                                    <span className="text-uppercase font-size-24 font-md-size-20">Forgot Password?</span>
-                                    <p className="text-color-orange font-size-16 font-md-size-12">No Worries, We help you set a new password</p>
-                                    <p className="font-size-16 font-md-size-12">Enter your registered E-mail ID/ Mobile no and we will send you a verification code</p>
-                                </div>
+            {/* Right Section (Forgot Password Form) */}
+            <div className="col-lg-6 col-md-6 p-lg-5 p-3">
+              <div className="container px-lg-5 px-3">
+                <div className="text-center">
+                  <span className="text-uppercase font-size-24 font-md-size-20">Forgot Password?</span>
+                  <p className="text-color-orange font-size-16 font-md-size-12">No Worries, We help you set a new password</p>
+                  <p className="font-size-16 font-md-size-12">Enter your registered E-mail ID/ Mobile no and we will send you a verification code</p>
+                </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -104,7 +104,7 @@ const Forgot = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="background-blue-pink-orange btn text-white w-100 mt-4 py-3"
+                    className="bg-gradient-color border-0 btn text-white w-100 mt-4 py-3"
                   >
                     Submit
                   </button>

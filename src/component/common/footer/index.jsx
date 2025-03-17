@@ -2,22 +2,23 @@ import React from "react";
 import Image1 from "../../../component/assets/img/footer/footerimg.svg";
 import { NavLink } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
-import { FaLinkedin, FaPhone, FaYoutube } from "react-icons/fa6";
+import { FaPhone, FaYoutube } from "react-icons/fa6";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { PiEnvelopeSimpleFill } from "react-icons/pi";
 import { AiFillInstagram } from "react-icons/ai";
 import { IoLogoFacebook } from "react-icons/io";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <>
-    <div className="addtocartfooter">
-            <div className="container">
-              <div className="row">
-                <Flipcard />
-              </div>
-            </div>
+      <div className="addtocartfooter">
+        <div className="container">
+          <div className="row">
+            <Flipcard />
           </div>
+        </div>
+      </div>
       <div className="footer py-5">
         <div className="container pt-lg-5">
           <div className="row">
@@ -131,11 +132,33 @@ const Footer = () => {
                 </p>
 
                 {/* Social Icons */}
-                <div className="social-icons" style={{ color: "#DAA51E" }}>
-                  <IoLogoFacebook className="me-5 " size={28} />
-                  <AiFillInstagram className="me-5 " size={28} />
-                  <FaYoutube className="me-5 " size={28} />
-                  <FaLinkedin className="me-5 " size={28} />
+                <div className="social-icons d-flex" style={{ color: "#DAA51E" }}>
+                  <li className="list-unstyled text-decoration-none">
+                    <a href="">
+                      <IoLogoFacebook
+                        className="me-3 text-decoration-none"
+                        size={28}
+                      />
+                    </a>
+                  </li>
+                  <li className="list-unstyled text-decoration-none">
+                    <a href="">
+                      <AiFillInstagram className="me-3 text-decoration-none" size={28} />
+                    </a>
+                  </li>
+
+                  <li className="list-unstyled text-decoration-none">
+                    <a href="">
+                      <FaYoutube className="me-3 text-decoration-none" size={28} />
+                    </a>
+                  </li>
+
+                  <li className="list-unstyled text-decoration-none">
+                    <a href="">
+                      <FaWhatsapp  className="me-3 text-decoration-none" size={28} />
+                    </a>
+                  </li>
+
                 </div>
                 <p
                   className="text-light mb-1"
