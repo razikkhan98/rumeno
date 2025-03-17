@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 // Images
 import ErrorImg from "../../assets/img/error-img/404.png";
 import Cow from "../../assets/img/error-img/error-cow.png";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 const ErrorPage = () => {
     return (
         <>

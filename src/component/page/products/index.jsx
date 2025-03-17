@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image1 from "../../assets/img/products/productimage.png";
 import Image2 from "../../assets/img/products/productimage2.png";
@@ -11,6 +11,7 @@ import Navbar from "../../common/navbar/mainnavbar";
 
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../../common/Context";
 
 
 const faqs = [
@@ -134,30 +135,8 @@ const productItem = [
 
 
 const Products = () => {
-  const [cart, setCart] = useState({});
+  const { cart, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
 
-  const handleAddClick = (productId) => {
-    setCart((prevCart) => ({ ...prevCart, [productId]: 1 }));
-  };
-
-  const handleIncrement = (productId) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      [productId]: prevCart[productId] + 1,
-    }));
-  };
-
-  const handleDecrement = (productId) => {
-    setCart((prevCart) => {
-      const updatedCart = { ...prevCart };
-      if (updatedCart[productId] === 1) {
-        delete updatedCart[productId];
-      } else {
-        updatedCart[productId] -= 1;
-      }
-      return updatedCart;
-    });
-  };
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -212,7 +191,7 @@ const Products = () => {
                             <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
                               <button
                                 className="btn product-quantity-btn btn-light btn-sm"
-                                onClick={() => handleDecrement(product.id)}
+                                onClick={() => decrementQuantity(product.id)}
                               >
                                 -
                               </button>
@@ -220,11 +199,11 @@ const Products = () => {
                                 className="bg-light px-2"
                                 style={{ color: "#EC7229" }}
                               >
-                                {cart[product.id]}
+                                {cart[product.id].quantity}
                               </span>
                               <button
                                 className="btn btn-light product-quantity-btn btn-sm"
-                                onClick={() => handleIncrement(product.id)}
+                                onClick={() => incrementQuantity(product.id)}
                               >
                                 +
                               </button>
@@ -237,7 +216,7 @@ const Products = () => {
                           >
                             <button
                               className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                              onClick={() => handleAddClick(product.id)}
+                              onClick={() => addToCart(product)}
                             >
                               +
                             </button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../common/navbar/mainnavbar";
 import { Button } from "react-bootstrap";
@@ -7,6 +7,7 @@ import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../../common/Context";
 
 const faqs = [
   {
@@ -22,15 +23,8 @@ const faqs = [
 ];
 
 const Addtocart = () => {
-  const [quantity, setQuantity] = useState(0);
-
-  const handleDecrease = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
-  };
+  const { cart, incrementQuantity, decrementQuantity } =
+    useContext(CartContext);
 
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -48,236 +42,234 @@ const Addtocart = () => {
       <div className="addtocart pt-5">
         <div className="container pt-lg-5">
           <div className="row pt-lg-3">
-            <div className="col-lg-6">
-              <div className="addtocart-img">
-                <img
-                  src={productImage}
-                  alt="Minromix Mineral Mixture"
-                  className="img-fluid border rounded-4"
-                />
-              </div>
-            </div>
-            <div className="col-lg-1"></div>
-            <div className="col-lg-5">
-              <div className="addtocart-content">
-                <p className="addtocart-content-title">
-                  Minromix | Mineral Mixture For Cattle, Goat, Poultry, Dog And
-                  Cat
-                </p>
-                <div className="d-flex align-items-center">
-                  <span className="fs-3 me-2" style={{ color: "#EC7229" }}>
-                    ☆☆☆☆☆
-                  </span>
-                  <span
-                    style={{
-                      color: "#707070",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                    }}
-                  >
-                    3.5 (312 Reviews)
-                  </span>
-                </div>
-                <p
-                  className="mt-2 pb-4 border-bottom"
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "500",
-                  }}
-                >
-                  ₹ 285 /-{" "}
-                  <span
-                    className="badge ms-2 p-2"
-                    style={{
-                      background: "#E32C2B",
-                      fontSize: "14px",
-                      fontWeight: "300",
-                      color: "#ffffff",
-                    }}
-                  >
-                    <RiDiscountPercentFill className="me-1" />
-                    5% Off
-                  </span>
-                </p>
-
-                <p
-                  className="mt-4"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "400",
-                    color: "#707070",
-                  }}
-                >
-                  Select Size
-                </p>
-
-                <div className="d-flex flex-wrap gap-4 pb-4 border-bottom">
-                  <button
-                    className="addtocart-btn d-flex border rounded-3"
-                    style={{ background: "#ffffff" }}
-                  >
-                    <div
-                      className="input-group-text border-0"
-                      style={{
-                        background: "#ffffff",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#707070",
-                      }}
-                      id="btnGroupAddon"
-                    >
-                      ₹ 285 /-{" "}
+            {Object.values(cart).length > 0 ? (
+              Object.values(cart).map((product) => (
+                <div key={product.id} className="row">
+                  <div className="col-lg-6">
+                    <div className="addtocart-img">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="img-fluid border rounded-4"
+                      />
                     </div>
-                    <div
-                      className="input-group-text border-0 product-kg"
-                      id="btnGroupAddon"
-                      style={{
-                        color: "#111111",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      1 Kg{" "}
-                    </div>
-                  </button>
-                  <button
-                    className="addtocart-btn d-flex border rounded-3"
-                    style={{ background: "#ffffff" }}
-                  >
-                    <div
-                      className="input-group-text border-0"
-                      style={{
-                        background: "#ffffff",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#707070",
-                      }}
-                      id="btnGroupAddon"
-                    >
-                      ₹ 285 /-{" "}
-                    </div>
-                    <div
-                      className="input-group-text border-0 product-kg"
-                      id="btnGroupAddon"
-                      style={{
-                        color: "#111111",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      5 Kg{" "}
-                    </div>
-                  </button>
-                  <button
-                    className="addtocart-btn d-flex border rounded-3"
-                    style={{ background: "#ffffff" }}
-                  >
-                    <div
-                      className="input-group-text border-0"
-                      style={{
-                        background: "#ffffff",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#707070",
-                      }}
-                      id="btnGroupAddon"
-                    >
-                      ₹ 285 /-{" "}
-                    </div>
-                    <div
-                      className="input-group-text border-0 product-kg"
-                      id="btnGroupAddon"
-                      style={{
-                        color: "#111111",
-                        fontSize: "14px",
-                        fontWeight: "400",
-                      }}
-                    >
-                      25 Kg{" "}
-                    </div>
-                  </button>
-                </div>
-
-                <p
-                  className="mt-3 mb-2"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "400",
-                    color: "#707070",
-                  }}
-                >
-                  Delivery
-                </p>
-                <p
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "500",
-                    color: "#111111",
-                  }}
-                >
-                  4-5 working days
-                </p>
-                <p
-                  style={{
-                    color: "#EC7229",
-                    fontSize: "12px",
-                    fontWeight: "400",
-                  }}
-                >
-                  <FiRefreshCw /> Refundable for any manufacturing defect within
-                  1 week
-                </p>
-                <div className="d-flex align-items-center gap-3 pt-lg-5 mt-lg-5">
-                  <div
-                    className="d-flex align-items-center justify-content-between"
-                    style={{
-                      background: "#ffffff",
-                      width: "200px",
-                      height: "56px",
-                      borderRadius: "8px",
-                      color: "#EC7229",
-                      border: "1px solid",
-                      borderColor: "#EC7229",
-                    }}
-                  >
-                    <Button
-                      className="border-0 rounded-3 fs-3"
-                      style={{
-                        background: "#ffffff",
-                        color: "#EC7229",
-                      }}
-                      onClick={handleDecrease}
-                    >
-                      -
-                    </Button>
-                    <span className="mx-3 fs-4">{quantity}</span>
-                    <Button
-                      onClick={handleIncrease}
-                      className="fs-3 border-0 rounded-3"
-                      style={{
-                        background: "#ffffff",
-                        color: "#EC7229",
-                      }}
-                    >
-                      +
-                    </Button>
                   </div>
-                  <NavLink to="/cart">
-                    <Button
-                      className=" mx-3 border-0"
-                      style={{
-                        background: "#EC7229",
-                        width: "200px",
-                        height: "56px",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      Add To Cart
-                    </Button>
-                  </NavLink>
+                  <div className="col-lg-5">
+                    <div className="addtocart-content">
+                      <p className="addtocart-content-title">{product.name}</p>
+                      <div className="d-flex align-items-center">
+                        <span
+                          className="fs-3 me-2"
+                          style={{ color: "#EC7229" }}
+                        >
+                          ☆☆☆☆☆
+                        </span>
+                        <span
+                          style={{
+                            color: "#707070",
+                            fontSize: "14px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          3.5 (312 Reviews)
+                        </span>
+                      </div>
+                      <p
+                        className="mt-2 pb-4 border-bottom"
+                        style={{ fontSize: "24px", fontWeight: "500" }}
+                      >
+                        ₹ {product.price.toFixed(2)} /-{" "}
+                        <span
+                          className="badge ms-2 p-2"
+                          style={{
+                            background: "#E32C2B",
+                            fontSize: "14px",
+                            fontWeight: "300",
+                            color: "#ffffff",
+                          }}
+                        >
+                          <RiDiscountPercentFill className="me-1" />
+                          5% Off
+                        </span>
+                      </p>
+
+                      <p
+                        className="mt-4"
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: "400",
+                          color: "#707070",
+                        }}
+                      >
+                        Select Size
+                      </p>
+
+                      <div className="d-flex flex-wrap gap-3 pb-4 border-bottom">
+                        <button
+                          className="addtocart-btn d-flex border rounded-3"
+                          style={{ background: "#ffffff" }}
+                        >
+                          <div
+                            className="input-group-text border-0"
+                            style={{
+                              background: "#ffffff",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                              color: "#707070",
+                            }}
+                            id="btnGroupAddon"
+                          >
+                            ₹ {product.price.toFixed(2)} /-{" "}
+                          </div>
+                          <div
+                            className="input-group-text border-0 product-kg"
+                            id="btnGroupAddon"
+                            style={{
+                              color: "#111111",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                            }}
+                          >
+                            1 Kg{" "}
+                          </div>
+                        </button>
+                        <button
+                          className="addtocart-btn d-flex border rounded-3"
+                          style={{ background: "#ffffff" }}
+                        >
+                          <div
+                            className="input-group-text border-0"
+                            style={{
+                              background: "#ffffff",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                              color: "#707070",
+                            }}
+                            id="btnGroupAddon"
+                          >
+                            ₹ {product.price.toFixed(2)} /-{" "}
+                          </div>
+                          <div
+                            className="input-group-text border-0 product-kg"
+                            id="btnGroupAddon"
+                            style={{
+                              color: "#111111",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                            }}
+                          >
+                            5 Kg{" "}
+                          </div>
+                        </button>
+                        <button
+                          className="addtocart-btn d-flex border rounded-3"
+                          style={{ background: "#ffffff" }}
+                        >
+                          <div
+                            className="input-group-text border-0"
+                            style={{
+                              background: "#ffffff",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                              color: "#707070",
+                            }}
+                            id="btnGroupAddon"
+                          >
+                            ₹ {product.price.toFixed(2)} /-{" "}
+                          </div>
+                          <div
+                            className="input-group-text border-0 product-kg"
+                            id="btnGroupAddon"
+                            style={{
+                              color: "#111111",
+                              fontSize: "14px",
+                              fontWeight: "400",
+                            }}
+                          >
+                            25 Kg{" "}
+                          </div>
+                        </button>
+                      </div>
+
+                      <p
+                        className="mt-3 mb-2"
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: "400",
+                          color: "#707070",
+                        }}
+                      >
+                        Delivery
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: "500",
+                          color: "#111111",
+                        }}
+                      >
+                        4-5 working days
+                      </p>
+                      <p
+                        style={{
+                          color: "#EC7229",
+                          fontSize: "12px",
+                          fontWeight: "400",
+                        }}
+                      >
+                        <FiRefreshCw /> Refundable for any manufacturing defect
+                        within 1 week
+                      </p>
+                      <div className="d-flex align-items-center gap-3 pt-lg-5 mt-lg-5">
+                        <div
+                          className="d-flex align-items-center justify-content-between"
+                          style={{
+                            background: "#ffffff",
+                            width: "200px",
+                            height: "56px",
+                            borderRadius: "8px",
+                            color: "#EC7229",
+                            border: "1px solid",
+                            borderColor: "#EC7229",
+                          }}
+                        >
+                          <Button
+                            className="border-0 rounded-3 fs-3"
+                            style={{ background: "#ffffff", color: "#EC7229" }}
+                            onClick={() => decrementQuantity(product.id)}
+                          >
+                            -
+                          </Button>
+                          <span className="mx-3 fs-4">{product.quantity}</span>
+                          <Button
+                            onClick={() => incrementQuantity(product.id)}
+                            className="fs-3 border-0 rounded-3"
+                            style={{ background: "#ffffff", color: "#EC7229" }}
+                          >
+                            +
+                          </Button>
+                        </div>
+                        <NavLink to="/cart">
+                          <Button
+                            className="mx-3 border-0"
+                            style={{
+                              background: "#EC7229",
+                              width: "200px",
+                              height: "56px",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            Add To Cart
+                          </Button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <p>Your cart is empty!</p>
+            )}
 
             <div className="col-lg-6 py-5">
               <div className="addtocart-faq">
@@ -415,7 +407,7 @@ const Addtocart = () => {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </>
   );
