@@ -142,16 +142,16 @@ const VeterinaryService = () => {
         <div className='position-relative'>
           <div className='container py-5'>
             <div className='row'>
-              <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center text-center'>
+              <div className='col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center text-center'>
                 <img src={Doctor} className='rounded-circle img-fluid team-img' alt="Loading" />
-                <p className='font-size-28 chinese-black-color pt-5'>Dr. H. A. Tiwari</p>
+                <p className='font-size-28 text-chinese-black-color pt-5'>Dr. H. A. Tiwari</p>
                 <p className='font-size-18 text-gray-color text-center'>Chief Consultant Medical Science Management</p>
               </div>
 
-              <div className='col-lg-6 d-flex flex-column align-items-center justify-content-center'>
+              <div className='col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center'>
                 <img src={Sir} className='rounded-circle img-fluid team-img' alt="Loading" />
-                <p className='font-size-28 chinese-black-color pt-5'>Mohammed Rizwan</p>
-                <p className='font-size-18 text-gray-color'>Founder & CEO Market and Products Management</p>
+                <p className='font-size-28 text-chinese-black-color pt-5'>Mohammed Rizwan</p>
+                <p className='font-size-18 text-gray-color text-center'>Founder & CEO Market and Products Management</p>
               </div>
             </div>
           </div>
