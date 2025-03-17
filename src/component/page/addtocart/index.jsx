@@ -54,38 +54,31 @@ const Addtocart = () => {
                       />
                     </div>
                   </div>
+                  <div className="col-lg-1"></div>
                   <div className="col-lg-5">
                     <div className="addtocart-content">
                       <p className="addtocart-content-title">{product.name}</p>
                       <div className="d-flex align-items-center">
                         <span
-                          className="fs-3 me-2"
-                          style={{ color: "#EC7229" }}
+                          className="fs-3 me-2 colorEC7229"
                         >
                           ☆☆☆☆☆
                         </span>
-                        <span
-                          style={{
-                            color: "#707070",
-                            fontSize: "14px",
-                            fontWeight: "500",
-                          }}
+                        <span className="font-14-500 color707070"
+                          
                         >
                           3.5 (312 Reviews)
                         </span>
                       </div>
                       <p
-                        className="mt-2 pb-4 border-bottom"
-                        style={{ fontSize: "24px", fontWeight: "500" }}
+                        className="mt-2 pb-4 border-bottom font-24-500"
                       >
                         ₹ {product.price.toFixed(2)} /-{" "}
                         <span
-                          className="badge ms-2 p-2"
+                          className="badge ms-2 p-2 font-14-300 colorffffff"
                           style={{
                             background: "#E32C2B",
-                            fontSize: "14px",
-                            fontWeight: "300",
-                            color: "#ffffff",
+                           
                           }}
                         >
                           <RiDiscountPercentFill className="me-1" />

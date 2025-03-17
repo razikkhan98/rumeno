@@ -227,7 +227,7 @@ const Mainnav = () => {
             <div className="text-center farm-btn">
               <NavLink to="/farmdata">
                 <button className="btn rounded-pill text-white p-0">
-                  Farm Data
+                Smart Livestock Manager
                 </button>
               </NavLink>
             </div>
