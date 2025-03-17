@@ -3,7 +3,7 @@ import axios from "axios";
 // const URL = process.env.REACT_APP_API;
 
 const axiosInstance = axios.create({
-    baseURL: "https://9066-106-222-215-174.ngrok-free.app",
+    baseURL: "https://decc-106-222-214-222.ngrok-free.app",
     headers: {
       "ngrok-skip-browser-warning": "69420",
     "Content-Type": "application/json",
