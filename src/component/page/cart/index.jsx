@@ -40,7 +40,7 @@ const Cart = () => {
         <div className="container pt-md-3 pt-lg-5">
           <div className="row pt-5">
             <div className="col-lg-12 text-center mb-3 mb-md-4">
-              <p className="font-24-400 color111111">CART</p>
+              <p className="font-24-400 text-chinese-black-color">CART</p>
             </div>
           </div>
 
@@ -50,13 +50,13 @@ const Cart = () => {
                 {/* Header row - hidden on mobile, visible from sm up */}
                 <div className="row mb-1 d-none d-sm-flex border-bottom">
                   <div className="col-lg-6 col-sm-6">
-                    <p className="font-16-400 color707070">PRODUCTS</p>
+                    <p className="font-16-400 text-gray-color">PRODUCTS</p>
                   </div>
                   <div className="col-lg-3 col-sm-3 text-end">
-                    <p className="font-16-400 color707070">QUANTITY</p>
+                    <p className="font-16-400 text-gray-color">QUANTITY</p>
                   </div>
                   <div className="col-lg-3 col-sm-3 text-end">
-                    <p className="font-16-400 color707070">TOTAL</p>
+                    <p className="font-16-400 text-gray-color">TOTAL</p>
                   </div>
                 </div>
 
@@ -76,15 +76,15 @@ const Cart = () => {
                         }}
                       />
                       <div>
-                        <p className="mb-0 font-16-300 color373737">
+                        <p className="mb-0 font-16-300 text-muted-gray-color">
                           Minromix 1 Mineral mixture
                         </p>
-                        <p className="mb-0 font-16-500 color373737">₹ 285 /-</p>
+                        <p className="mb-0 font-16-500 text-muted-gray-color">₹ 285 /-</p>
                         <p className="mb-0">
-                          <span className="colorEC7229 font-12-300">
+                          <span className="text-color-orange font-12-300">
                             Size:{" "}
                           </span>
-                          <span className="font-16-300 color373737">1 KG</span>
+                          <span className="font-16-300 text-muted-gray-color">1 KG</span>
                         </p>
                       </div>
                     </div>
@@ -98,17 +98,17 @@ const Cart = () => {
                         style={{ width: "fit-content" }}
                       >
                         <button
-                          className="btn py-1 font-24-500 color111111"
+                          className="btn py-1 font-24-500 text-chinese-black-color"
                           type="button"
                           onClick={decreaseQuantity}
                         >
                           −
                         </button>
-                        <span className="mx-3 font-24-500 colorEC7229 d-flex align-items-center">
+                        <span className="mx-3 font-24-500 text-color-orange d-flex align-items-center">
                           {quantity}
                         </span>
                         <button
-                          className="btn py-1 font-24-500 color111111"
+                          className="btn py-1 font-24-500 text-chinese-black-color"
                           type="button"
                           onClick={increaseQuantity}
                         >
@@ -120,7 +120,7 @@ const Cart = () => {
 
                   {/* Total - right aligned on mobile */}
                   <div className="col-6 col-sm-3 text-end">
-                    <p className="mb-0 font-24-500 color373737">₹ 285 /-</p>
+                    <p className="mb-0 font-24-500 text-muted-gray-color">₹ 285 /-</p>
                   </div>
                 </div>
 
@@ -128,32 +128,32 @@ const Cart = () => {
                 <div className="row justify-content-end mb-2">
                   <div className="col-6 col-md-3 text-end">
                     {" "}
-                    <span className="font-16-400 color707070 me-3">
+                    <span className="font-16-400 text-gray-color me-3">
                       TAX:{" "}
                     </span>₹{" "}
-                    <span className="font-20-400 color373737">15 /-</span>
+                    <span className="font-20-400 text-muted-gray-color">15 /-</span>
                   </div>
                 </div>
 
                 <div className="row justify-content-end pb-3 border-bottom">
                   <div className="col-6 col-md-3 text-end">
-                    <span className="font-16-400 color707070 me-3">GST: </span>₹{" "}
-                    <span className="font-20-400 color373737">85 /-</span>
+                    <span className="font-16-400 text-gray-color me-3">GST: </span>₹{" "}
+                    <span className="font-20-400 text-muted-gray-color">85 /-</span>
                   </div>
                 </div>
 
                 <div className="row justify-content-end mb-2 mt-3">
                   <div className="col-6 col-md-3 text-end">
-                    <span className="font-16-400 color707070 me-3">
+                    <span className="font-16-400 text-gray-color me-3">
                       AMOUNT TO PAY:{" "}
                     </span>
-                    <span className="font-24-500 color373737"></span>₹ 285 /-
+                    <span className="font-24-500 text-muted-gray-color"></span>₹ 285 /-
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">
                   <NavLink to="/payment">
                     <button
-                      className=" mx-3 border-0 colorffffff font-16-500 background-orange border-radius-8"
+                      className=" mx-3 border-0 text-white-color font-16-500 bg-orange-color border-radius-8"
                       style={{
                         width: "200px",
                         height: "56px",

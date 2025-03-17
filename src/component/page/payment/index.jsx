@@ -36,8 +36,8 @@ const Payment = () => {
         <div className="container pt-lg-5">
           <div className="row pt-lg-5">
             <div className="text-center">
-              <p className="color111111 font-24-400">Payment process</p>
-              <p className="color111111 font-16-300">Transaction details</p>
+              <p className="text-chinese-black-color font-24-400">Payment process</p>
+              <p className="text-chinese-black-color font-16-300">Transaction details</p>
             </div>
             <div className="col-lg-11 p-5 border-radius-16 m-auto  bg-skyblue">
               <div className="row">
@@ -45,7 +45,7 @@ const Payment = () => {
                   <div className="">
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="mb-3">
-                        <label className="font-14-400 color707070">Name</label>
+                        <label className="font-14-400 text-gray-color">Name</label>
                         <input
                           type="text"
                           placeholder="Enter your full name"
@@ -56,7 +56,7 @@ const Payment = () => {
                       </div>
                       <div className="row">
                         <div className=" col-lg-5">
-                          <label className="font-14-400 color707070">
+                          <label className="font-14-400 text-gray-color">
                             Mobile No
                           </label>
                           <input
@@ -71,7 +71,7 @@ const Payment = () => {
                         </div>
                         <div className="col-lg-2"></div>
                         <div className="col-lg-5">
-                          <label className="font-14-400 color707070">
+                          <label className="font-14-400 text-gray-color">
                             Email
                           </label>
                           <input
@@ -85,7 +85,7 @@ const Payment = () => {
                       </div>
 
                       <div className="mb-3">
-                        <label className="font-14-400 color707070">
+                        <label className="font-14-400 text-gray-color">
                           Address
                         </label>
                         <textarea
@@ -100,7 +100,7 @@ const Payment = () => {
                       <div className="mb-3">
                         <div className="row">
                           <div className="col-lg-6">
-                            <p className="mb-0 color707070 font-12-500">COD</p>
+                            <p className="mb-0 text-gray-color font-12-500">COD</p>
                             <div className="payment-radio-btn">
                               <input
                                 type="radio"
@@ -110,7 +110,7 @@ const Payment = () => {
                             </div>
                           </div>
                           <div className="col-lg-6">
-                            <p className="mb-0 color707070 font-12-500">
+                            <p className="mb-0 text-gray-color font-12-500">
                               Pay Via UPI
                             </p>
                             <div className="payment-radio-btn">
@@ -126,18 +126,18 @@ const Payment = () => {
                       </div>
 
                       <button
-                        className="w-100 btn background-blue-pink-orange border-0 py-3 font-16-500 colorffffff"
+                        className="w-100 btn bg-gradient-color border-0 py-3 font-16-500 text-white-color"
                         type="submit"
                       >
                         Submit
                       </button>
                       <p className="text-center mt-2">
-                        <span className="font-12-400 colorEC7229">
+                        <span className="font-12-400 text-color-orange">
                           Transaction issue?
                         </span>{" "}
                         <a
                           href="#"
-                          className="text-decoration-none font-14-500 colorEC7229"
+                          className="text-decoration-none font-14-500 text-color-orange"
                         >
                           Click here
                         </a>
@@ -148,8 +148,8 @@ const Payment = () => {
                 <div className="col-lg-3"></div>
                 <div className="col-lg-4">
                   <div className="">
-                    <Card className="border-radius-12 text-center border-1px-orange">
-                      <div className="d-flex justify-content-between text-white background-orange rounded-top-3 p-2">
+                    <Card className="border-radius-12 text-center border-orange">
+                      <div className="d-flex justify-content-between text-white bg-orange-color rounded-top-3 p-2">
                         <span className="text-start">To Pay:</span>{" "}
                         <span className="text-end">₹ 285 /-</span>
                       </div>

@@ -24,8 +24,8 @@ const Mainnav = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100"
-      style={{ backgroundColor: "#DDF0F8" }}
+      className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
         <a className="navbar-brand" href="#">
