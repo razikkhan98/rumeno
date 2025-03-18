@@ -12,6 +12,7 @@ import Navbar from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../common/Context";
+import Header from "../../common/Header/header";
 
 
 const faqs = [
@@ -174,10 +175,13 @@ const Products = () => {
     <>
       <Navbar />
       <div className="products">
-        <div className="container pt-lg-5">
+        <div className="mt-lg-4">
+        <Header/>
+        </div>
+        <div className="container pt-5">
           <div className="row pt-lg-3">
             {currentProducts.map((product) => (
-              <div key={product.id} className="col-lg-3 col-sm-3 mb-lg-4">
+              <div key={product.id} className="col-lg-3 col-md-6  mb-lg-4">
                 <div className="products-card">
                   <div className="products-img-top">
                     <NavLink to="/addtocart">

@@ -44,17 +44,17 @@ const Payment = () => {
                 <div className="col-lg-5">
                   <div className="">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="mb-3">
+                      <div className="mb-4">
                         <label className="font-14-400 text-gray-color">Name</label>
                         <input
                           type="text"
                           placeholder="Enter your full name"
                           {...register("name")}
-                          className="form-control form-control-detail"
+                          className="form-control form-control-detail border-0"
                         />
                         <p className="text-danger">{errors.name?.message}</p>
                       </div>
-                      <div className="row">
+                      <div className="row mb-3">
                         <div className=" col-lg-5">
                           <label className="font-14-400 text-gray-color">
                             Mobile No
@@ -63,7 +63,7 @@ const Payment = () => {
                             type="text"
                             placeholder="Enter Mobile No"
                             {...register("mobile")}
-                            className="form-control form-control-detail"
+                            className="form-control form-control-detail border-0"
                           />
                           <p className="text-danger">
                             {errors.mobile?.message}
@@ -78,13 +78,13 @@ const Payment = () => {
                             type="email"
                             placeholder="Enter E-mail ID"
                             {...register("email")}
-                            className="form-control  form-control-detail"
+                            className="form-control  form-control-detail border-0"
                           />
                           <p className="text-danger">{errors.email?.message}</p>
                         </div>
                       </div>
 
-                      <div className="mb-3">
+                      <div className="mb-4">
                         <label className="font-14-400 text-gray-color">
                           Address
                         </label>
@@ -92,7 +92,7 @@ const Payment = () => {
                           rows={2}
                           placeholder="Type full address here"
                           {...register("address")}
-                          className="form-control form-control-detail"
+                          className="form-control form-control-detail border-0"
                         ></textarea>
                         <p className="text-danger">{errors.address?.message}</p>
                       </div>
@@ -100,23 +100,25 @@ const Payment = () => {
                       <div className="mb-3">
                         <div className="row">
                           <div className="col-lg-6">
-                            <p className="mb-0 text-gray-color font-12-500">COD</p>
+                            <p className="mb-1 text-gray-color font-12-500">COD</p>
                             <div className="payment-radio-btn">
                               <input
                                 type="radio"
                                 value="COD"
+                                className="custom-radio"
                                 {...register("payment")}
                               />{" "}
                             </div>
                           </div>
                           <div className="col-lg-6">
-                            <p className="mb-0 text-gray-color font-12-500">
+                            <p className="mb-1 text-gray-color font-12-500">
                               Pay Via UPI
                             </p>
                             <div className="payment-radio-btn">
                               <input
                                 type="radio"
                                 value="UPI"
+                                 className="custom-radio"
                                 {...register("payment")}
                               />{" "}
                             </div>
