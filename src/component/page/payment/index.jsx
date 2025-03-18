@@ -6,6 +6,7 @@ import { Card } from "react-bootstrap";
 import Faq from "../faq/index";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
+import Header from "../../common/Header/header";
 
 const CartFaq = [
   {
@@ -33,6 +34,9 @@ const Payment = () => {
     <>
       <Navbar />
       <div className="payment py-5">
+        <div className="pt-5">
+          <Header title="Minromix.." subtitle="Cart" />
+        </div>
         <div className="container pt-lg-5">
           <div className="row pt-lg-5">
             <div className="text-center">
@@ -118,7 +122,7 @@ const Payment = () => {
                               <input
                                 type="radio"
                                 value="UPI"
-                                 className="custom-radio"
+                                className="custom-radio"
                                 {...register("payment")}
                               />{" "}
                             </div>

@@ -82,20 +82,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div style={{ background: "#F4FAFD" }}>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12 px-5">
-                <nav aria-label="breadcrumb" className="py-2 px-3">
-                  <ol className="breadcrumb mb-0">
-                    <li className="breadcrumb-item">Farm Data</li>
-                    <li className="breadcrumb-item active">Goat</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </>
   );

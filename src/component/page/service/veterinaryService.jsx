@@ -14,6 +14,7 @@ import Service2 from "../../assets/img/service-img/close-up-scientific-analyzing
 import Service3 from "../../assets/img/service-img/sheep-grazing-field.png";
 import Doctor from "../../assets/img/service-img/Group 1171277285.png";
 import Sir from "../../assets/img/service-img/Group 1171277284.png";
+import Header from '../../common/Header/header';
 
 // import FormImg from "../../assets/img/service-img/form-side-img.png";
 
@@ -38,6 +39,9 @@ const VeterinaryService = () => {
       {/* Navbar Start */}
       <Navbar />
       <div className='service-bg-color products'>
+        <div className="pt-4">
+          <Header title="Services" subtitle="Veteriniary Services" />
+        </div>
         <div className='container pt-lg-5'>
           <div className='text-center'>
             <p className='service-heading'>Why Choose Our Veterinary Services?</p>

@@ -11,6 +11,7 @@ import Service1 from "../../assets/img/service-img/dairy-img-1.png";
 import Service2 from "../../assets/img/service-img/dairy-img-2.png";
 import Service3 from "../../assets/img/service-img/dairy-img-3.png";
 import Service4 from "../../assets/img/service-img/dairy-img-4.png";
+import Header from '../../common/Header/header';
 
 
 
@@ -54,6 +55,9 @@ const DairyConsultantService = () => {
         <>
             <Navbar />
             <div className='service-bg-color products'>
+                <div className="pt-4">
+                    <Header title="Services" subtitle="Goat Farming Consultant" />
+                </div>
                 <div className='container pt-lg-5'>
                     <div className='text-center'>
                         <p className='service-heading'>Dairy Consultant Services by Rumeno Farmotech</p>

@@ -5,6 +5,7 @@ import Faq from "../faq";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { NavLink } from "react-router-dom";
+import Header from "../../common/Header/header";
 
 const CartFaq = [
   {
@@ -37,6 +38,9 @@ const Cart = () => {
     <>
       <Navbar />
       <div className="cart pt-5">
+      <div className="pt-5">
+      <Header title="Minromix.." subtitle="Cart" />
+      </div>
         <div className="container pt-md-3 pt-lg-5">
           <div className="row pt-5">
             <div className="col-lg-12 text-center mb-3 mb-md-4">
@@ -45,8 +49,8 @@ const Cart = () => {
           </div>
 
           <div className="row">
-            <div className="col-12">
-              <div className="cart-container bg-skyblue border-radius-16 p-3 p-4">
+            <div className="col-lg-12">
+              <div className="cart-container m-auto bg-skyblue border-radius-16 p-3 p-4">
                 {/* Header row - hidden on mobile, visible from sm up */}
                 <div className="row mb-1 d-none d-sm-flex border-bottom">
                   <div className="col-lg-6 col-sm-6">
@@ -64,17 +68,19 @@ const Cart = () => {
                 <div className="row align-items-center mb-4">
                   {/* Product info - full width on mobile */}
                   <div className="col-12 col-sm-6 mb-3 mb-sm-0">
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="cart-img">
                       <img
                         src={Image}
                         alt=""
-                        className="me-3"
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          objectFit: "cover",
-                        }}
+                        className=""
+                        // style={{
+                        //   width: "60px",
+                        //   height: "60px",
+                        //   objectFit: "cover",
+                        // }}
                       />
+                      </div>
                       <div>
                         <p className="mb-0 font-16-300 text-muted-gray-color">
                           Minromix 1 Mineral mixture
@@ -125,7 +131,7 @@ const Cart = () => {
                 </div>
 
                 {/* Summary section - always right aligned */}
-                <div className="row justify-content-end mb-2">
+                <div className="row justify-content-end mt-5 mb-2">
                   <div className="col-6 col-md-3 text-end">
                     {" "}
                     <span className="font-16-400 text-gray-color me-3">
@@ -143,11 +149,11 @@ const Cart = () => {
                 </div>
 
                 <div className="row justify-content-end mb-2 mt-3">
-                  <div className="col-6 col-md-3 text-end">
+                  <div className="col-lg-6 col-md-3 p-0 text-end">
                     <span className="font-16-400 text-gray-color me-3">
                       AMOUNT TO PAY:{" "}
                     </span>
-                    <span className="font-24-500 text-muted-gray-color"></span>₹ 285 /-
+                    <span className="font-24-500 text-muted-gray-color">₹ 285 /-</span>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">
@@ -172,13 +178,13 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <div className="addtocartfooter">
+      {/* <div className="addtocartfooter">
         <div className="container">
           <div className="row">
             <Flipcard />
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </>
   );

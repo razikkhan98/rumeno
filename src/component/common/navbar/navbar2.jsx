@@ -54,7 +54,7 @@ const Navbar2 = () => {
             </div>
           </div>
         </div>
-        <div style={{ background: "#F4FAFD" }}>
+        {/* <div style={{ background: "#F4FAFD" }}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-12 px-5">
@@ -67,7 +67,7 @@ const Navbar2 = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

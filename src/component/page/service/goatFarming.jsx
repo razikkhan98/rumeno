@@ -9,6 +9,7 @@ import Faq from '../faq';
 import Service1 from "../../assets/img/service-img/Premium Photo _ Farmer giving food to cattle at his farm 1.png";
 import Service2 from "../../assets/img/service-img/elder-man-farm 1.png";
 import Service3 from "../../assets/img/service-img/goats-farm-sunny-day 1.png";
+import Header from '../../common/Header/header';
 
 
 // Json Role
@@ -49,9 +50,12 @@ const FarmingFaq = [
 const GoatFarmingService = () => {
   return (
     <>
-    {/* Navbar */}
+      {/* Navbar */}
       <Navbar />
       <div className='service-bg-color products'>
+        <div className="pt-4">
+          <Header title="Services" subtitle="Goat Farming Consultant" />
+        </div>
         <div className='container pt-lg-5'>
           <div className='text-center'>
             <p className='service-heading'>Rumeno's Goat Farming Consultant : Rumeno Farmotech's Expertise</p>
