@@ -1760,6 +1760,7 @@ body {
 }
 
 .addtocart-btn {
+  width: 150px;
   height: 45px !important;
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
@@ -1771,6 +1772,9 @@ body {
 }
 
 .product-kg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   background-color: rgba(235, 235, 235, 0.2) !important;
   border-start-end-radius: 4px !important;
   border-end-end-radius: 4px !important;
