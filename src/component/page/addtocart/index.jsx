@@ -8,6 +8,7 @@ import { FiRefreshCw } from "react-icons/fi";
 import Footer from "../../common/footer";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../common/Context";
+import { CiStar } from "react-icons/ci";
 
 const faqs = [
   {
@@ -59,26 +60,17 @@ const Addtocart = () => {
                     <div className="addtocart-content">
                       <p className="addtocart-content-title">{product.name}</p>
                       <div className="d-flex align-items-center">
-                        <span
-                          className="fs-3 me-2 colorEC7229"
-                        >
-                          ☆☆☆☆☆
-                        </span>
-                        <span className="font-14-500 color707070"
-                          
-                        >
+                        <span className="fs-3 me-2 colorEC7229">☆☆☆☆☆</span>
+                        <span className="font-14-500 text-gray-color">
                           3.5 (312 Reviews)
                         </span>
                       </div>
-                      <p
-                        className="mt-2 pb-4 border-bottom font-24-500"
-                      >
+                      <p className="mt-2 pb-4 border-bottom font-24-500">
                         ₹ {product.price.toFixed(2)} /-{" "}
                         <span
-                          className="badge ms-2 p-2 font-14-300 colorffffff"
+                          className="badge ms-2 p-2 font-14-300 text-white-color"
                           style={{
                             background: "#E32C2B",
-                           
                           }}
                         >
                           <RiDiscountPercentFill className="me-1" />
@@ -315,7 +307,7 @@ const Addtocart = () => {
                         }`}
                         data-bs-parent="#faqAccordion"
                       >
-                        <div className="accordion-body color707070">
+                        <div className="accordion-body text-gray-color">
                           {faq.answer}
                         </div>
                       </div>
@@ -329,34 +321,40 @@ const Addtocart = () => {
               {showReviewForm ? (
                 // Review Form
                 <div className="bg-skyblue border-radius-12 text-center py-5 px-5">
-                  <p className="font-24-400 color111111">Write a review</p>
-                  <p className="font-14-400 color111111">Rating</p>
-                  <p className="fs-3">☆☆☆☆☆</p>
-                  <label className="color707070 font-12-400">
+                  <p className="font-24-400 text-chinese-black-color">
+                    Write a review
+                  </p>
+                  <p className="font-14-400 text-chinese-black-color">Rating</p>
+                  <p className="fs-3">
+                    <CiStar /> <CiStar /> <CiStar /> <CiStar /> <CiStar />
+                  </p>
+                  <label className="text-gray-color font-12-400">
                     Review Title
                   </label>
                   <input
                     type="text"
                     placeholder="Give your review a title"
-                    className="form-control mb-5 color707070 font-14-400"
+                    className="form-control mb-5 text-gray-color font-14-400"
                   />
-                  <label className="color707070 font-12-400">Review</label>
+                  <label className="text-gray-color font-12-400">Review</label>
                   <textarea
                     placeholder="Write your review"
-                    className="form-control mb-5 border border-bottom  color707070 font-14-400"
+                    className="form-control mb-5 border border-bottom  text-gray-color font-14-400"
                   ></textarea>
                   <p className="border border-white"></p>
-                  <label className="color707070 font-12-400">Your Name</label>
+                  <label className="text-gray-color font-12-400">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    className="form-control mb-5 color707070 font-14-400"
+                    className="form-control mb-5 text-gray-color font-14-400"
                   />
-                  <label className="color707070 font-12-400">E-Mail</label>
+                  <label className="text-gray-color font-12-400">E-Mail</label>
                   <input
                     type="email"
                     placeholder="Enter Your E-mail"
-                    className="form-control mb-5 color707070 font-14-400"
+                    className="form-control mb-5 text-gray-color font-14-400"
                   />
 
                   <p className="font-10-400 color373737 text-start mb-5">
@@ -368,27 +366,35 @@ const Addtocart = () => {
 
                   <div className="d-flex justify-content-center gap-3">
                     <button
-                      className="btn border-1px-orange colorEC7229 font-14-500 py-2"
+                      className="btn border-orange text-color-orange font-14-500 py-2"
                       onClick={() => setShowReviewForm(false)}
                     >
                       Cancel Review
                     </button>
-                    <button className="btn background-orange colorffffff font-14-500 py-2">
+                    <button className="btn bg-orange-color text-white-color font-14-500 py-2">
                       Submit Review
                     </button>
                   </div>
                 </div>
               ) : (
                 // Default Review Card
-                <div className="addtocart-review bg-skyblue border-radius-12 text-center py-5">
-                  <p className="mb-5 font-24-400">Customer reviews</p>
-                  <p className="fs-3 mb-0 color111111">☆☆☆☆☆</p>
-                  <p className="color707070 font-14-400">
+                <div className="addtocart-review m-auto bg-skyblue border-radius-12 text-center py-5">
+                  <p className="mb-5 font-24-400 text-chinese-black-color">
+                    Customer reviews
+                  </p>
+                  <p className="fs-3 mb-0 text-chinese-black-color">
+                    <CiStar />
+                    <CiStar />
+                    <CiStar />
+                    <CiStar />
+                    <CiStar />
+                  </p>
+                  <p className="text-gray-color font-14-400">
                     Be the first to write a review
                   </p>
-                  <div className="cart-review-btn w-100 mt-lg-5">
+                  <div className="cart-review-btn m-auto mt-lg-5">
                     <button
-                      className="py-2 w-50 background-blue-pink-orange colorffffff border-0 border-radius-8"
+                      className="py-2 w-100 h-100 bg-gradient-color text-white-color border-0 border-radius-8"
                       onClick={() => setShowReviewForm(true)}
                     >
                       Write a Review

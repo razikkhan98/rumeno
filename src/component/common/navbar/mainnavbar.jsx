@@ -75,7 +75,7 @@ const Mainnav = () => {
                 className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
                   }`}
               >
-                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
+                <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
                     <p className="products-title text-start">
                       VETERINARY PRODUCTS
