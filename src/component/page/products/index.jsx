@@ -481,9 +481,9 @@ const Products = () => {
 
       <div className="container py-5">
         <div className="row text-center justify-content-center py-lg-5">
-          <div className="col-lg-4 mb-5">
+          <div className="col-lg-4 my-5">
             <div
-              className="product-contant-card p-4 rounded"
+              className="product-contant-card m-auto p-4 rounded"
               style={{ background: "rgba(253, 199, 158, 0.2)" }}
             >
               <div className="product-star-img">
@@ -499,9 +499,9 @@ const Products = () => {
               </p>
             </div>
           </div>
-          <div className="col-lg-4 mb-5">
+          <div className="col-lg-4 my-5">
             <div
-              className="product-contant-card p-4 rounded"
+              className="product-contant-card m-auto p-4 rounded"
               style={{ background: "rgba(191, 227, 241, 0.2)" }}
             >
               <div className="product-star-img">
@@ -517,9 +517,9 @@ const Products = () => {
               </p>
             </div>
           </div>
-          <div className="col-lg-4 mb-5">
+          <div className="col-lg-4 my-5">
             <div
-              className="product-contant-card p-4 rounded"
+              className="product-contant-card m-auto p-4 rounded"
               style={{ background: "rgba(244, 166, 191, 0.2)" }}
             >
               <div className="product-star-img">
