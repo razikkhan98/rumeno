@@ -184,8 +184,8 @@ const Home = () => {
 
         <div className="row px-lg-5 align-items-end">
           <div className="col-lg-6">
-            <div className="section-header text-start mb-3">
-              <p className="fs-5">Rumeno Products For Animals</p>
+            <div className=" text-start mb-3">
+              <p className="section-header">Rumeno Products For Animals</p>
             </div>
           </div>
         </div>

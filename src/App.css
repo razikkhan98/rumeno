@@ -463,21 +463,26 @@ body {
 .shadow-2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-.section-header p{
+.section-header {
+  font-size: 24px !important;
   font-weight: 600;
 }
 
 @media (max-width: 580px) {
   .label-title {
     display: inline-block;
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 16px;
     /* border-radius: 6.1875rem; */
     color: #013220;
     font-family: Poppins !important;
   }
+  .section-header {
+    text-align: center;
+    font-size: 16px !important;
+    font-weight: 500;
+  }
 }
-
 /* <-------- Trust Card --------> */
 .about-label-title {
   display: inline-block;

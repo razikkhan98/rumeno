@@ -42,7 +42,7 @@ const Addtocart = () => {
     <>
       <Navbar />
       <div className="addtocart pt-5">
-      <div className="pt-5">
+        <div className="pt-5">
           <Header title="Goat Suppliment" subtitle="Minromix.." />
         </div>
         <div className="container pt-lg-5">
@@ -64,12 +64,16 @@ const Addtocart = () => {
                     <div className="addtocart-content">
                       <p className="addtocart-content-title">{product.name}</p>
                       <div className="d-flex align-items-center">
-                        <span className="fs-3 me-2 colorEC7229">☆☆☆☆☆</span>
-                        <span className="font-14-500 text-gray-color">
+                        <div className="fs-3 me-2 text-color-orange">
+                          {[...Array(5)].map((_, index) => (
+                            <CiStar key={index} />
+                          ))}
+                        </div>
+                        <div className="font-14-500 text-gray-color pt-1">
                           3.5 (312 Reviews)
-                        </span>
+                        </div>
                       </div>
-                      <p className="mt-2 pb-4 border-bottom font-24-500">
+                      <p className="mt-2 pb-4 border-bottom d-flex align-items-center font-24-500">
                         ₹ {product.price.toFixed(2)} /-{" "}
                         <span
                           className="badge ms-2 p-2 font-14-300 text-white-color"
@@ -267,11 +271,10 @@ const Addtocart = () => {
                     <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button  ${
-                            openIndex === index
-                              ? "addtocart-colapse color-707070"
-                              : "collapsed "
-                          }`}
+                          className={`accordion-button  ${openIndex === index
+                            ? "addtocart-colapse color-707070"
+                            : "collapsed "
+                            }`}
                           type="button"
                           // data-bs-toggle="collapse"
                           // data-bs-target={`#collapse${index}`}
@@ -306,9 +309,8 @@ const Addtocart = () => {
                       </h2>
                       <div
                         id={`collapse${index}`}
-                        className={`accordion-collapse collapse ${
-                          openIndex === index ? "show" : ""
-                        }`}
+                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                          }`}
                         data-bs-parent="#faqAccordion"
                       >
                         <div className="accordion-body text-gray-color">
@@ -330,7 +332,9 @@ const Addtocart = () => {
                   </p>
                   <p className="font-14-400 text-chinese-black-color">Rating</p>
                   <p className="fs-3">
-                    <CiStar /> <CiStar /> <CiStar /> <CiStar /> <CiStar />
+                    {[...Array(5)].map((_, index) => (
+                      <CiStar key={index} />
+                    ))}
                   </p>
                   <label className="text-gray-color font-12-400">
                     Review Title
@@ -387,11 +391,9 @@ const Addtocart = () => {
                     Customer reviews
                   </p>
                   <p className="fs-3 mb-0 text-chinese-black-color">
-                    <CiStar />
-                    <CiStar />
-                    <CiStar />
-                    <CiStar />
-                    <CiStar />
+                    {[...Array(5)].map((_, index) => (
+                      <CiStar key={index} />
+                    ))}
                   </p>
                   <p className="text-gray-color font-14-400">
                     Be the first to write a review
