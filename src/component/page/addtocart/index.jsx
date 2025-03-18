@@ -74,7 +74,7 @@ const Addtocart = () => {
                         </div>
                       </div>
                       <p className="mt-2 pb-4 border-bottom d-flex align-items-center font-24-500">
-                        ₹ {product.price.toFixed(2)} /-{" "}
+                        ₹ {product.price.toFixed(0)} /-{" "}
                         <span
                           className="badge ms-2 p-2 font-14-300 text-white-color"
                           style={{
@@ -97,7 +97,7 @@ const Addtocart = () => {
                         Select Size
                       </p>
 
-                      <div className="d-flex flex-wrap gap-3 pb-4 border-bottom">
+                      <div className="d-flex flex-wrap gap-4 pb-4 border-bottom">
                         <button
                           className="addtocart-btn d-flex border rounded-3"
                           style={{ background: "#ffffff" }}
@@ -112,7 +112,7 @@ const Addtocart = () => {
                             }}
                             id="btnGroupAddon"
                           >
-                            ₹ {product.price.toFixed(2)} /-{" "}
+                            ₹ {product.price.toFixed(0)} /-{" "}
                           </div>
                           <div
                             className="input-group-text border-0 product-kg"
@@ -140,7 +140,7 @@ const Addtocart = () => {
                             }}
                             id="btnGroupAddon"
                           >
-                            ₹ {product.price.toFixed(2)} /-{" "}
+                            ₹ {product.price.toFixed(0)} /-{" "}
                           </div>
                           <div
                             className="input-group-text border-0 product-kg"
@@ -168,7 +168,7 @@ const Addtocart = () => {
                             }}
                             id="btnGroupAddon"
                           >
-                            ₹ {product.price.toFixed(2)} /-{" "}
+                            ₹ {product.price.toFixed(0)} /-{" "}
                           </div>
                           <div
                             className="input-group-text border-0 product-kg"
