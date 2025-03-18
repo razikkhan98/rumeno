@@ -30,12 +30,15 @@ const Login = () => {
         password: data?.password,
       };
       const response = await LoginAPI(payload);
+      console.log('response: ', response);
 
       reset();
-      if (response?.data?.success) {
-        toast.success(response?.data?.message);
-      }
+      if (response?.success) {
+        toast.success(response?.message);
+        // console.log("Login Successful:", response.data);
+      } else{
       toast.error(response?.data?.message);
+     }
 
     } catch (error) {
       toast.error(error?.response?.data?.message);
