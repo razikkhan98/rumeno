@@ -17,12 +17,14 @@ import { GiWeightScale } from "react-icons/gi";
 // import Image from "../../../assets/homeimage/goat.png";
 import Sidebar from "../sidebar/index";
 import { NavLink } from "react-router-dom";
+import Header from "../../common/Header/header";
 
 const Parent = () => {
 
   return (
     <>
       <div className="parent">
+     
         {/* <div className="row">
           <div className="col-lg-12">
             <header
@@ -74,6 +76,9 @@ const Parent = () => {
           </div>
         </div> */}
         <Navbar/>
+        <div className="">
+          <Header title="Smart Farming" subtitle="Goat" />
+        </div>
         <div className="row">
           <div className="col-lg-2">
             {/* Sidebar */}

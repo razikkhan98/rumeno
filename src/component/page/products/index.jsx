@@ -133,6 +133,32 @@ const productItem = [
   },
 ];
 
+const petProducts = [
+  {
+    icon: Virus,
+    title: "CONTROL OF FLEAS AND TICKS",
+    description:
+      "Our veterinarian-approved tick and flea solutions offer strong defense against these bothersome parasites. Select from collars, oral pills, and topical treatments. Preserve your animal friends' health and prevent illness in them.",
+  },
+  {
+    icon: Medicine,
+    title: "SUPPLEMENTAL NUTRITION",
+    description:
+      "Give your pets the finest with our nutrients made just for them. Their whole vitality is improved by our veterinary products, which address everything from joint health to skin and coat care. Examine our selection of probiotics, minerals, and vitamins.",
+  },
+  {
+    icon: Firstaid,
+    title: "SUPPLIES FOR PET GROOMING",
+    description:
+      "Take care of your pet's hygiene with our essential grooming products. Shampoos, brushes, nail clippers, dental care supplies—all you need to maintain the greatest possible appearance and well-being for your pets.",
+  },
+  {
+    icon: Medical,
+    title: "FIRST AID PACKAGES",
+    description:
+      "Our pet first aid kits can help you be ready for any emergency. When mishaps occur, being equipped with the appropriate materials might be crucial. Bandages, antiseptics, and wound care supplies are all included in our kits.",
+  },
+];
 
 
 const Products = () => {
@@ -176,7 +202,7 @@ const Products = () => {
       <Navbar />
       <div className="products">
         <div className="mt-lg-4">
-        <Header/>
+        <Header  title="Products" subtitle="Goat Supplement" products={"27 Products"} showSortFilter/>
         </div>
         <div className="container pt-5">
           <div className="row pt-lg-3">
@@ -342,113 +368,24 @@ const Products = () => {
               PRODUCT CATEGORIES
             </p>
             <div className="row text-center mt-3">
-              <div className="col-md-3 mb-4">
-                <div className="p-3">
-                  <img src={Virus} size={44} className="mb-3" />
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#707070",
-                    }}
-                  >
-                    CONTROL OF FLEAS AND TICKS
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#373737",
-                    }}
-                  >
-                    Our veterinarian-approved tick and flea solutions offer
-                    strong defense against these bothersome parasites. Select
-                    from collars, oral pills, and topical treatments. Preserve
-                    your animal friends' health and prevent illness in them.
-                  </p>
-                </div>
-              </div>
-              <div className="col-md-3 mb-4">
-                <div className="p-3">
-                  <img src={Medicine} size={44} className="mb-3" />
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#707070",
-                    }}
-                  >
-                    SUPPLEMENTAL NUTRITION
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#373737",
-                    }}
-                  >
-                    Give your pets the finest with our nutrients made just for
-                    them. Their whole vitality is improved by our veterinary
-                    products, which address everything from joint health to skin
-                    and coat care. Examine our selection of probiotics,
-                    minerals, and vitamins.
-                  </p>
-                </div>
-              </div>
-              <div className="col-md-3 mb-4">
-                <div className="p-3">
-                  <img src={Firstaid} size={44} className="mb-3" />
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#707070",
-                    }}
-                  >
-                    SUPPLIES FOR PET GROOMING
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#373737",
-                    }}
-                  >
-                    Take care of your pet's hygiene with our essential grooming
-                    products. Shampoos, brushes, nail clippers, dental care
-                    supplies—all you need to maintain the greatest possible
-                    appearance and well-being for your pets.
-                  </p>
-                </div>
-              </div>
-              <div className="col-md-3 mb-4">
-                <div className="p-3">
-                  <img src={Medical} size={44} className="mb-3" />
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#707070",
-                    }}
-                  >
-                    FIRST AID PACKAGES
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "400",
-                      color: "#373737",
-                    }}
-                  >
-                    Our pet first aid kits can help you be ready for any
-                    emergency. When mishaps occur, being equipped with the
-                    appropriate materials might be crucial. Bandages,
-                    antiseptics, and wound care supplies are all included in our
-                    kits.
-                  </p>
-                </div>
-              </div>
-            </div>
+      {petProducts.map((product, index) => (
+        <div key={index} className="col-lg-3 col-md-6 mb-4">
+          <div className="p-3">
+            <img src={product.icon} size={44} className="mb-3" alt={product.title} />
+            <p
+              style={{ fontSize: "14px", fontWeight: "400", color: "#707070" }}
+            >
+              {product.title}
+            </p>
+            <p
+              style={{ fontSize: "14px", fontWeight: "400", color: "#373737" }}
+            >
+              {product.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
           </div>
         </div>
         <div className="row pt-lg-4 pb-lg-5 px-2">

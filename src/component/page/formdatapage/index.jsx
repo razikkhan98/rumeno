@@ -6,12 +6,16 @@ import Cow from "../../assets/formdata/cow.png";
 import Buffalo from "../../assets/formdata/buffalo.png";
 import Navbar2 from "../../common/navbar/navbar2";
 import { NavLink } from "react-router-dom";
+import Header from "../../common/Header/header";
 
 const Formdata = () => {
   return (
     <>
       <div className="form-data">
         <Navbar2/>
+        <div className="">
+          <Header title="Home" subtitle="Smart Farming" />
+        </div>
         <div className="container">
           <div className="row">
             {/* <div className="col-lg-12 pt-lg-5">

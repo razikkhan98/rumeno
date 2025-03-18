@@ -172,9 +172,9 @@ const Home = () => {
             className="d-flex my-3"
            
           >
-            <span className="label-title">
+            <div className="label-title">
               Our Products According To Species
-            </span>
+            </div>
             <div>
               <div className="about-line-large"></div>
               <div className="about-line-small"></div>
@@ -182,10 +182,10 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="row px-5 align-items-end">
+        <div className="row px-lg-5 align-items-end">
           <div className="col-lg-6">
             <div className="section-header text-start mb-3">
-              <p className="fw-bold fs-5">Rumeno Products For Animals</p>
+              <p className="fs-5">Rumeno Products For Animals</p>
             </div>
           </div>
         </div>

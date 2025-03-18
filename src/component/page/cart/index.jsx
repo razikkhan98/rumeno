@@ -5,6 +5,7 @@ import Faq from "../faq";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { NavLink } from "react-router-dom";
+import Header from "../../common/Header/header";
 
 const CartFaq = [
   {
@@ -37,6 +38,9 @@ const Cart = () => {
     <>
       <Navbar />
       <div className="cart pt-5">
+      <div className="pt-5">
+      <Header title="Minromix.." subtitle="Cart" />
+      </div>
         <div className="container pt-md-3 pt-lg-5">
           <div className="row pt-5">
             <div className="col-lg-12 text-center mb-3 mb-md-4">

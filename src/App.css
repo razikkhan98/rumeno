@@ -454,7 +454,7 @@ body {
 
 .label-title {
   display: inline-block;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 35px;
   /* border-radius: 6.1875rem; */
   color: #013220;
@@ -463,12 +463,15 @@ body {
 .shadow-2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.section-header p{
+  font-weight: 600;
+}
 
 @media (max-width: 580px) {
   .label-title {
     display: inline-block;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 18px;
     /* border-radius: 6.1875rem; */
     color: #013220;
     font-family: Poppins !important;
@@ -632,6 +635,15 @@ body {
 
   .slider-btn-right {
     right: 0px;
+  }
+  .about-line-large {
+    width: 54px;
+    height: 2px;
+  }
+  
+  .about-line-small {
+    width: 40px;
+    height: 2px;
   }
 }
 
