@@ -1829,6 +1829,25 @@ body {
 
 /* <--------- Cart ---------> */
 
+.cart-container{
+  width: 1104px;
+  height: 549px;
+}
+.cart-img{
+  width: 90px;
+  height: 90px;
+}
+.cart-img img{
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .cart-container{
+    width: 100%;
+    height: auto;
+  }
+}
 /* <--------- Cart End ---------> */
 
 /* <-------- Slick --------> */
