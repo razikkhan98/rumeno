@@ -25,16 +25,18 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-      // style={{ backgroundColor: "#DDF0F8" }}
+    // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
-        <a className="navbar-brand" href="#">
-          <img
-            src={Logo}
-            alt="Logo"
-            style={{ width: "100px", height: "68px" }}
-          />
-        </a>
+        <div className="navbar-brand">
+          <NavLink to={"/"}>
+            <img
+              src={Logo}
+              alt="Logo"
+              style={{ width: "100px", height: "68px" }}
+            />
+          </NavLink>
+        </div>
 
         <button
           className="navbar-toggler"
@@ -63,14 +65,14 @@ const Mainnav = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a
+              <div
                 className={`nav-link ${activeLink === "Products" ? "active" : ""
                   }`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
                 Products
-              </a>
+              </div>
               <div
                 className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
                   }`}
@@ -167,12 +169,12 @@ const Mainnav = () => {
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>Why Choose US?</li>
+                      <li className="cursor">Why Choose US?</li>
                       <NavLink to="/service" className="text-decoration-none">
-                        <li>Our Consulting team members</li>
+                        <li className="cursor">Our Consulting team members</li>
                       </NavLink>
-                      <li>Business Startup Support </li>
-                      <li>Query Form</li>
+                      <li className="cursor">Business Startup Support </li>
+                      <li className="cursor">Query Form</li>
                       {/* <li>Poultry Supplements</li> */}
                     </ul>
                   </div>
@@ -182,18 +184,18 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink to={"/goatfarming"} className="text-decoration-none">
-                        <li>About</li>
+                        <li className="cursor">About</li>
                       </NavLink>
-                      <li>FAQs</li>
+                      <li className="cursor">FAQs</li>
                     </ul>
                   </div>
                   <div>
                     <p className="products-title text-start text-uppercase">dairy consultant</p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink to={"/dairyconsultant"} className="text-decoration-none">
-                        <li>About</li>
+                        <li className="cursor">About</li>
                       </NavLink>
-                      <li>Dairy Management</li>
+                      <li className="cursor">Dairy Management</li>
 
                     </ul>
                   </div>
@@ -201,25 +203,25 @@ const Mainnav = () => {
               </div>
             </li>
             <li className="nav-item">
-              <a
+              <div
                 className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
-                href=""
+
                 onClick={() => handleLinkClick("Blogs")}
               >
                 Blogs
-              </a>
-            </li>
-           <NavLink to={"/contactus"} className={"text-decoration-none"}>
-           <li className="nav-item">
-              <div
-                className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
-                  }`}
-                onClick={() => handleLinkClick("Contact Us")}
-              >
-                Contact Us
               </div>
             </li>
-           </NavLink>
+            <NavLink to={"/contactus"} className={"text-decoration-none"}>
+              <li className="nav-item">
+                <div
+                  className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
+                    }`}
+                  onClick={() => handleLinkClick("Contact Us")}
+                >
+                  Contact Us
+                </div>
+              </li>
+            </NavLink>
           </ul>
 
           {/* Action Buttons */}
@@ -227,13 +229,13 @@ const Mainnav = () => {
             <div className="text-center farm-btn">
               <NavLink to="/farmdata">
                 <button className="btn rounded-pill text-white p-0">
-                Smart Livestock Manager
+                  Smart Livestock Manager
                 </button>
               </NavLink>
             </div>
 
             <div
-              className="search-icon bg-light rounded-circle text-center m-auto my-3 d-flex align-items-center justify-content-center"
+              className="cursor search-icon bg-light rounded-circle text-center m-auto my-3 d-flex align-items-center justify-content-center"
               style={{ height: "40px", width: "40px" }}
             >
               <IoSearch
@@ -243,7 +245,7 @@ const Mainnav = () => {
             </div>
 
             <div
-              className="cart-icon bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
+              className="cursor cart-icon bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
               style={{ height: "40px", width: "40px" }}
             >
               <PiShoppingCartSimpleFill
