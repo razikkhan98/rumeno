@@ -268,7 +268,7 @@ const Nutrition = () => {
                     </div>
                     <div>
                       <p
-                        className={`mt-4 ${
+                        className={`mt-4 font-20-500 ${
                           activeIndex === index ? "text-white" : "text-second"
                         }`}
                         style={{

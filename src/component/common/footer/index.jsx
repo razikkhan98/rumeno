@@ -30,30 +30,30 @@ const Footer = () => {
             </div>
             <div className="col-lg-4">
               <div className="footer-link ">
-                <p className="footer-heading">Pages</p>
+                <p className="footer-heading josefin-sans-font-family-500">Pages</p>
                 <ul className="list-unstyled footer-ul">
-                  <li>
+                  <li className="py-1 inter-font-family-400">
                     <NavLink to="/" className="text-light text-decoration-none">
                       Home
                     </NavLink>
                   </li>
-                  <li>
+                  <li className="py-1 inter-font-family-400">
                     <NavLink
                       to="/blog"
-                      className="text-light text-decoration-none"
+                      className="text-light text-decoration-none py-2"
                     >
                       Blog
                     </NavLink>
                   </li>
-                  <li>
+                  <li className="py-1 inter-font-family-400">
                     <NavLink
                       to="/products"
-                      className="text-light text-decoration-none"
+                      className="text-light text-decoration-none py-2"
                     >
                       Products
                     </NavLink>
                   </li>
-                  <li>
+                  <li className="py-1 inter-font-family-400">
                     <NavLink
                       to="/privacy-policy"
                       className="text-light text-decoration-none"
@@ -61,7 +61,7 @@ const Footer = () => {
                       Privacy Policy
                     </NavLink>
                   </li>
-                  <li>
+                  <li className="py-1 inter-font-family-400">
                     <NavLink
                       to="/terms-conditions"
                       className="text-light text-decoration-none"
@@ -74,7 +74,7 @@ const Footer = () => {
             </div>
             <div className="col-lg-4">
               <div className="footer-contact">
-                <p className="footer-heading-contact">Contact Us</p>
+                <p className="footer-heading-contact josefin-sans-font-family-500">Contact Us</p>
                 <div className="text-light d-flex align-items-center mb-4">
                   <MdLocationOn
                     className=" rounded-circle p-1 me-3"
@@ -85,12 +85,12 @@ const Footer = () => {
                     }}
                   />
 
-                  <p className="text-light footer-contact mb-0">
+                  <p className="text-light footer-contact mb-0  inter-font-family-400">
                     {" "}
                     598 Lala Mahaveer Prasad Rd, Sadar Bazar, Lucknow, UP 226002
                   </p>
                 </div>
-                <p className="text-light mb-4">
+                <p className="text-light mb-4  inter-font-family-400">
                   <FaPhone
                     className="me-2 rounded-circle p-1"
                     style={{
@@ -101,7 +101,7 @@ const Footer = () => {
                   />{" "}
                   +91-7355043892
                 </p>
-                <p className="text-light">
+                <p className="text-light  inter-font-family-400">
                   <PiEnvelopeSimpleFill
                     className="me-2 rounded-circle p-1"
                     style={{
@@ -123,11 +123,11 @@ const Footer = () => {
                 }}
               >
                 <p
-                  className="text-light mb-1"
+                  className="text-light mb-1 inter-font-family-400"
                   style={{ fontSize: "12px", fontWeight: "400" }}
                 >
                   Copyright @ 2024 Rumeno Farmotech <br />{" "}
-                  <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                  <span className="inter-font-family-500 font-14-500">
                     All Rights Reserved
                   </span>
                 </p>
@@ -269,11 +269,10 @@ m846 -144 c8 -20 8 -948 0 -968 -5 -14 -30 -16 -175 -16 l-169 0 0 500 0 500
                   </li>
                 </div>
                 <p
-                  className="text-light mb-1"
-                  style={{ fontSize: "12px", fontWeight: "400" }}
+                  className="text-light mb-1 inter-font-family-400 font-12-400"
                 >
                   Powered By <br />
-                  <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                  <span className="inter-font-family-500 font-14-500">
                     Intelligence Fusion Technologies
                   </span>
                 </p>
