@@ -10,9 +10,9 @@ import Star from "../../assets/img/products/star.svg";
 import Navbar from "../../common/navbar/mainnavbar";
 
 import Footer from "../../common/footer";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
-
+import { toast } from "react-toastify";
 
 const faqs = [
   {
@@ -36,7 +36,6 @@ const faqs = [
       "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
   },
 ];
-
 
 const productItem = [
   {
@@ -132,11 +131,13 @@ const productItem = [
   },
 ];
 
-
-
 const Products = () => {
-  const { cart, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
+  const { cart, addToCart, incrementQuantity, decrementQuantity } =
+    useContext(CartContext);
 
+  const navigate = useNavigate();
+  const isAuthenticated = !!sessionStorage.getItem("token");
+  // const uid = sessionStorage.getItem("uid");
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -170,6 +171,19 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Handle Add to Cart
+  const handleAddToCart = (product) => {
+    if (!isAuthenticated) {
+      console.log("Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 100);
+      toast.warning("Please login to add items!", { autoClose: 3000 });
+      return;
+    }
+    addToCart(product);
+  };
+
   return (
     <>
       <Navbar />
@@ -180,50 +194,64 @@ const Products = () => {
               <div key={product.id} className="col-lg-3 col-sm-3 mb-lg-4">
                 <div className="products-card">
                   <div className="products-img-top">
-                    <NavLink to="/addtocart">
-                      <img src={product.image} alt={product.name} />
-                      <div class="overlay">
-                        {cart[product.id] ? (
-                          <NavLink
-                            className="text-decoration-none"
-                            to={"/products"}
-                          >
-                            <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
-                              <button
-                                className="btn product-quantity-btn btn-light btn-sm"
-                                onClick={() => decrementQuantity(product.id)}
-                              >
-                                -
-                              </button>
-                              <span
-                                className="bg-light px-2"
-                                style={{ color: "#EC7229" }}
-                              >
-                                {cart[product.id].quantity}
-                              </span>
-                              <button
-                                className="btn btn-light product-quantity-btn btn-sm"
-                                onClick={() => incrementQuantity(product.id)}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </NavLink>
-                        ) : (
-                          <NavLink
-                            className="text-decoration-none"
-                            to={"/products"}
-                          >
+                    {/* <NavLink to={`/productDetails/${product.id}`}> */}
+                    <div  onClick={() =>
+                        navigate(`/productDetails/${product.id}`, {
+                          state: { product },
+                        })
+                      }>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      // onClick={() =>
+                      //   navigate(`/productDetails/${product.id}`, {
+                      //     state: { product },
+                      //   })
+                      // }
+                    />
+                    <div class="overlay">
+                      {cart[product.id] ? (
+                        <NavLink
+                          className="text-decoration-none"
+                          to={"/products"}
+                        >
+                          <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
                             <button
-                              className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                              onClick={() => addToCart(product)}
+                              className="btn product-quantity-btn btn-light btn-sm"
+                              onClick={() => decrementQuantity(product.id)}
+                            >
+                              -
+                            </button>
+                            <span
+                              className="bg-light px-2"
+                              style={{ color: "#EC7229" }}
+                            >
+                              {cart[product.id].quantity}
+                            </span>
+                            <button
+                              className="btn btn-light product-quantity-btn btn-sm"
+                              onClick={() => incrementQuantity(product.id)}
                             >
                               +
                             </button>
-                          </NavLink>
-                        )}
-                      </div>
-                    </NavLink>
+                          </div>
+                        </NavLink>
+                      ) : (
+                        <NavLink
+                          className="text-decoration-none"
+                          to={"/products"}
+                        >
+                          <button
+                            className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
+                            onClick={() => handleAddToCart(product)}
+                          >
+                            +
+                          </button>
+                        </NavLink>
+                      )}
+                    </div>
+                    </div>
+                    {/* </NavLink> */}
                   </div>
                   <div className="card-body d-flex flex-column justify-content-center">
                     <p className="products-card-text text-center mb-2">
