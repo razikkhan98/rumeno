@@ -1,24 +1,11 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image1 from "../../assets/img/curvecard/science.svg";
 import Image2 from "../../assets/img/curvecard/network.svg";
 import Image3 from "../../assets/img/curvecard/review.svg";
-import Cow from "../../assets/img/species/cow.svg";
-import Goat from "../../assets/img/species/goat.svg";
-import Sheep from "../../assets/img/species/sheep.svg";
-import Buffalo from "../../assets/img/species/buffalo.svg";
-import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
 
-const speciesData = [
-  { name: "Cow", img: Cow },
-  { name: "Goat", img: Goat },
-  { name: "Sheep", img: Sheep },
-  { name: "Buffalo", img: Buffalo },
-];
 
 const Trust = () => {
   // const [activeIndex, setActiveIndex] = useState(0);
