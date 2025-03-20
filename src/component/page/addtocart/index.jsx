@@ -268,10 +268,11 @@ const Addtocart = () => {
                     <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button  ${openIndex === index
-                            ? "addtocart-colapse color-707070"
-                            : "collapsed "
-                            }`}
+                          className={`accordion-button  ${
+                            openIndex === index
+                              ? "addtocart-colapse color-707070"
+                              : "collapsed "
+                          }`}
                           type="button"
                           // data-bs-toggle="collapse"
                           // data-bs-target={`#collapse${index}`}
@@ -306,8 +307,9 @@ const Addtocart = () => {
                       </h2>
                       <div
                         id={`collapse${index}`}
-                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
-                          }`}
+                        className={`accordion-collapse collapse ${
+                          openIndex === index ? "show" : ""
+                        }`}
                         data-bs-parent="#faqAccordion"
                       >
                         <div className="accordion-body text-gray-color">

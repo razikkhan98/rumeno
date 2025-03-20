@@ -15,7 +15,6 @@ import { CartContext } from "../../common/Context";
 import { toast } from "react-toastify";
 import Header from "../../common/Header/header";
 
-
 const faqs = [
   {
     question: "1. What are Veterinary Products?",
@@ -160,7 +159,6 @@ const petProducts = [
   },
 ];
 
-
 const Products = () => {
   const { cart, addToCart } =
     useContext(CartContext);
@@ -219,7 +217,12 @@ const Products = () => {
       <Navbar />
       <div className="products">
         <div className="mt-lg-4">
-        <Header  title="Products" subtitle="Goat Supplement" products={"27 Products"} showSortFilter/>
+          <Header
+            title="Products"
+            subtitle="Goat Supplement"
+            products={"27 Products"}
+            showSortFilter
+          />
         </div>
         <div className="container pt-5">
           <div className="row pt-lg-3">
@@ -399,24 +402,37 @@ const Products = () => {
               PRODUCT CATEGORIES
             </p>
             <div className="row text-center mt-3">
-      {petProducts.map((product, index) => (
-        <div key={index} className="col-lg-3 col-md-6 mb-4">
-          <div className="p-3">
-            <img src={product.icon} size={44} className="mb-3" alt={product.title} />
-            <p
-              style={{ fontSize: "14px", fontWeight: "400", color: "#707070" }}
-            >
-              {product.title}
-            </p>
-            <p
-              style={{ fontSize: "14px", fontWeight: "400", color: "#373737" }}
-            >
-              {product.description}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+              {petProducts.map((product, index) => (
+                <div key={index} className="col-lg-3 col-md-6 mb-4">
+                  <div className="p-3">
+                    <img
+                      src={product.icon}
+                      size={44}
+                      className="mb-3"
+                      alt={product.title}
+                    />
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "400",
+                        color: "#707070",
+                      }}
+                    >
+                      {product.title}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "400",
+                        color: "#373737",
+                      }}
+                    >
+                      {product.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="row pt-lg-4 pb-lg-5 px-2">
