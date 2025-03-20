@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+
 * {
   padding: 0px;
   margin: 0px;
@@ -78,6 +81,48 @@ body {
   color: var(--chinese-black-color) !important;
 }
 
+/* 
+ ========================== 
+
+ Font Family
+
+ ==========================
+*/
+
+/* Josefin Sans: CSS class for a variable style */
+
+.josefin-sans-font-family-600 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.josefin-sans-font-family-500 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Inter: CSS class for a variable style */
+
+.inter-font-family-400 {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-font-family-500 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inter-font-family-600 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
 /* Common Font css */
 
 .font-10-400{
@@ -125,6 +170,10 @@ body {
   font-size: 20px !important;
   font-weight: 400 !important;
 }
+.font-20-500{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
 .font-24-400 {
   font-size: 24px !important;
   font-weight: 400 !important;
@@ -166,6 +215,7 @@ body {
   font-size: 14px;
   color: var(--gray-color) !important;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -176,12 +226,14 @@ body {
 
 .nav-link.active {
   color: var(--orange-color) !important;
-  border-bottom: 2px solid var(--orange-color);
-  /* font-weight: 600;  */
+  border-bottom: 1px solid var(--orange-color);
+  font-weight: 600; 
   line-height: 4px;
   margin-top: 9px;
 }
-
+.cursor{
+  cursor: pointer;
+}
 .farm-btn button {
   font-size: 16px;
   font-weight: 600;
@@ -224,6 +276,8 @@ body {
 }
 
 .products-list li {
+  padding: 6px 0px;
+  line-height: 20px !important;
   font-size: 14px;
   font-weight: 300;
   line-height: 34px;
@@ -250,7 +304,7 @@ body {
 
 @media (max-width: 820px) {
   .nav-link.active {
-    /* width: 50%; */
+    width: 40%;
     margin: auto;
     color: var(--orange-color) !important;
     border-bottom: 2px solid var(--orange-color);
@@ -403,7 +457,7 @@ body {
 
 .label-title {
   display: inline-block;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 35px;
   /* border-radius: 6.1875rem; */
   color: #013220;
@@ -412,18 +466,26 @@ body {
 .shadow-2 {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.section-header {
+  font-size: 24px !important;
+  font-weight: 600;
+}
 
 @media (max-width: 580px) {
   .label-title {
     display: inline-block;
-    font-weight: 500;
-    font-size: 25px;
+    font-weight: 600;
+    font-size: 16px;
     /* border-radius: 6.1875rem; */
     color: #013220;
     font-family: Poppins !important;
   }
+  .section-header {
+    text-align: center;
+    font-size: 16px !important;
+    font-weight: 500;
+  }
 }
-
 /* <-------- Trust Card --------> */
 .about-label-title {
   display: inline-block;
@@ -581,6 +643,15 @@ body {
 
   .slider-btn-right {
     right: 0px;
+  }
+  .about-line-large {
+    width: 54px;
+    height: 2px;
+  }
+  
+  .about-line-small {
+    width: 40px;
+    height: 2px;
   }
 }
 
@@ -1289,7 +1360,7 @@ body {
 
 .nutrition-cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .bg-lightblue {
@@ -1425,8 +1496,7 @@ body {
 
 .products-card {
   border: none;
-  /* width: 294px !important; */
-  width: 100%;
+  width: 294px !important;
   height: 407px !important;
 }
 
@@ -1521,11 +1591,15 @@ body {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  font-family: poppins;
+  color: var(--muted-gray-color);
 }
 
 .products-card-price {
   font-size: 18px;
   font-weight: 500;
+  font-family: poppins;
+  color: var(--chinese-black-color);
 }
 
 .page-item {
@@ -1581,7 +1655,7 @@ body {
 
 .product-star-content {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--muted-gray-color);
 }
 
@@ -1689,6 +1763,7 @@ body {
 }
 
 .addtocart-btn {
+  width: 150px;
   height: 45px !important;
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
@@ -1700,6 +1775,9 @@ body {
 }
 
 .product-kg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   background-color: rgba(235, 235, 235, 0.2) !important;
   border-start-end-radius: 4px !important;
   border-end-end-radius: 4px !important;
@@ -1721,6 +1799,15 @@ body {
   height: 360px;
 }
 
+.addtocart-review{
+  width: 540px;
+  height: 399px;
+}
+.cart-review-btn{
+  width: 348px;
+  height: 56px;
+}
+
 @media (max-width: 1024px) {
   .addtocart-img {
     width: 100%;
@@ -1729,6 +1816,14 @@ body {
   .addtocart-img img {
     width: 100%;
     height: 100%;
+  }
+  .addtocart-review{
+    width: 100%;
+    height: auto;
+  }
+  .cart-review-btn{
+    width: 70%;
+    height: 56px;
   }
 }
 @media (max-width: 992px) {
@@ -1746,6 +1841,25 @@ body {
 
 /* <--------- Cart ---------> */
 
+.cart-container{
+  width: 1104px;
+  height: 549px;
+}
+.cart-img{
+  width: 90px;
+  height: 90px;
+}
+.cart-img img{
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .cart-container{
+    width: 100%;
+    height: auto;
+  }
+}
 /* <--------- Cart End ---------> */
 
 /* <-------- Slick --------> */
@@ -1837,15 +1951,54 @@ body {
   font-size: 14px !important;
   font-weight: 300 !important;
 }
+.form-control{
+  color: rgba(112, 112, 112, 0.6) !important;
+}
 
 .form-control-detail {
-  border: 1px solid var(--gray-color);
   border-radius: 8px;
   padding: 10px;
-  color: var(--gray-color) !important;
+  color: var(--chinese-black-color) !important;
   font-size: 14px;
   font-weight: 400;
 }
+
+.form-control:focus{
+  border: 1px solid var(--gray-color) !important;
+  box-shadow: none;
+}
+
+/* Radio Button Css */
+.custom-radio {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid orange;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.custom-radio:checked {
+  background-color: white;
+}
+
+.custom-radio:checked::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background-color: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 /* <-----Parent & Child Card-----> */
 .card-header {
@@ -2014,7 +2167,6 @@ body {
 
 .footer-heading {
   font-size: 22px;
-  font-weight: 500;
   color: var(--white-color);
   line-height: 28px;
 }
@@ -2306,4 +2458,3 @@ input[type='radio'] {
     margin-top: 0px;
    }
 }
-

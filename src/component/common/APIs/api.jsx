@@ -9,6 +9,13 @@
 //     "Content-Type": "application/json",
 //     },
 //   });
+// const axiosInstance = axios.create({
+//     baseURL: "  https://8afb-106-222-214-181.ngrok-free.app",
+//     headers: {
+//       "ngrok-skip-browser-warning": "69420",
+//     "Content-Type": "application/json",
+//     },
+//   });
 
 // //  ---------- Login & Register API --------------------------------
 // export const LoginAPI = async (payload) => {
@@ -49,64 +56,6 @@
 //     }
 //   };
 
-
-
-// import axios from "axios";
-
-// const API_BASE_URL = "http://localhost:8000/rumeno"; // Replace with your actual base URL
-
-// // Axios Instance (For global configs like auth headers)
-// const api = axios.create({
-//   baseURL: API_BASE_URL,
-//   headers: {
-//     "Content-Type": "application/json",
-//     // "Authorization": `Bearer ${yourAuthToken}`, // Uncomment if using auth
-//   },
-// });
-
-// // 🔹 GET: Fetch data from a dynamic endpoint
-// export const getData = async (endpoint) => {
-//   try {
-//     const response = await api.get(`/${endpoint}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error("GET Error:", error);
-//     throw error.response?.data || error.message;
-//   }
-// };
-
-// // 🔹 POST: Send data to a dynamic endpoint
-// export const postData = async (endpoint, data) => {
-//   try {
-//     const response = await api.post(`/${endpoint}`, data);
-//     return response.data; // ✅ Consistent with other methods
-//   } catch (error) {
-//     console.error("POST Error:", error);
-//     throw error.response?.data || error.message;
-//   }
-// };
-
-// // 🔹 PUT: Update data on a dynamic endpoint
-// export const updateData = async (endpoint, id, data) => {
-//   try {
-//     const response = await api.put(`/${endpoint}/${id}`, data);
-//     return response.data;
-//   } catch (error) {
-//     console.error("PUT Error:", error);
-//     throw error.response?.data || error.message;
-//   }
-// };
-
-// // 🔹 DELETE: Remove data from a dynamic endpoint
-// export const deleteData = async (endpoint, id) => {
-//   try {
-//     const response = await api.delete(`/${endpoint}/${id}`);
-//     return response.data;
-//   } catch (error) {
-//     console.error("DELETE Error:", error);
-//     throw error.response?.data || error.message;
-//   }
-// };
 
 
 import axios from "axios";

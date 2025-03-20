@@ -35,7 +35,7 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-      // style={{ backgroundColor: "#DDF0F8" }}
+    // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
         <a className="navbar-brand" href="/#">
@@ -88,7 +88,7 @@ const Mainnav = () => {
                   isProductsOpen ? "show" : ""
                 }`}
               >
-                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
+                <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
                     <p className="products-title text-start">
                       VETERINARY PRODUCTS
@@ -182,12 +182,12 @@ const Mainnav = () => {
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>Why Choose US?</li>
+                      <li className="cursor">Why Choose US?</li>
                       <NavLink to="/service" className="text-decoration-none">
-                        <li>Our Consulting team members</li>
+                        <li className="cursor">Our Consulting team members</li>
                       </NavLink>
-                      <li>Business Startup Support </li>
-                      <li>Query Form</li>
+                      <li className="cursor">Business Startup Support </li>
+                      <li className="cursor">Query Form</li>
                       {/* <li>Poultry Supplements</li> */}
                     </ul>
                   </div>
@@ -202,7 +202,7 @@ const Mainnav = () => {
                       >
                         <li>About</li>
                       </NavLink>
-                      <li>FAQs</li>
+                      <li className="cursor">FAQs</li>
                     </ul>
                   </div>
                   <div>
@@ -225,7 +225,7 @@ const Mainnav = () => {
             <li className="nav-item">
               <a
                 className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
-                href=""
+
                 onClick={() => handleLinkClick("Blogs")}
               >
                 Blogs
@@ -261,7 +261,7 @@ const Mainnav = () => {
             )}
 
             <div
-              className="search-icon bg-light rounded-circle text-center m-auto my-3 d-flex align-items-center justify-content-center"
+              className="cursor search-icon bg-light rounded-circle text-center m-auto my-3 d-flex align-items-center justify-content-center"
               style={{ height: "40px", width: "40px" }}
             >
               <IoSearch

@@ -10,6 +10,7 @@ import { CartContext } from "../../common/Context";
 import axios from "axios";
 import { postData } from "../../common/APIs/api";
 import { Bounce, toast } from "react-toastify";
+import Header from "../../common/Header/header";
 
 const CartFaq = [
   {
@@ -44,7 +45,7 @@ const Payment = () => {
     (total, item) => total + item.quantity * item.price,
     0
   );
-  const tax = totalAmount * 0.05; // Example: 5% tax
+  const tax = totalAmount * 0.05; // Example: 15% tax
   const gst = totalAmount * 0.18; // Example: 18% GST
   const amountToPay = totalAmount + tax + gst;
 
@@ -116,6 +117,9 @@ const Payment = () => {
     <>
       <Navbar />
       <div className="payment py-5">
+        <div className="pt-5">
+          <Header title="Minromix.." subtitle="Cart" />
+        </div>
         <div className="container pt-lg-5">
           <div className="row pt-lg-5">
             <div className="text-center">
@@ -232,7 +236,7 @@ const Payment = () => {
                             </div>
                           </div>
                           <div className="col-lg-6">
-                            <p className="mb-0 text-gray-color font-12-500">
+                            <p className="mb-1 text-gray-color font-12-500">
                               Pay Via UPI
                             </p>
                             <div className="payment-radio-btn">

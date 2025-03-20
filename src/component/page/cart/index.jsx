@@ -185,6 +185,7 @@ import Faq from "../faq";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { CartContext } from "../../common/Context";
+import Header from "../../common/Header/header";
 
 const CartFaq = [
   {
@@ -200,16 +201,22 @@ const CartFaq = [
 const Cart = () => {
   const { cart, incrementQuantity, decrementQuantity } = useContext(CartContext);
 
-  // Calculate total amount
-  const totalAmount = Object.values(cart).reduce((total, item) => total + item.quantity * item.price, 0);
-  const tax = 15;
-  const gst = 85;
-  const amountToPay = totalAmount + tax + gst;
+// Calculate total amount correctly
+const totalAmount = cart?.reduce(
+  (total, item) => total + item.quantity * item.price,
+  0
+);
+const tax = totalAmount * 0.05; // Example: 15% tax
+const gst = totalAmount * 0.18; // Example: 18% GST
+const amountToPay = totalAmount + tax + gst;
 
   return (
     <>
       <Navbar />
       <div className="cart pt-5">
+      <div className="pt-5">
+      <Header title="Minromix.." subtitle="Cart" />
+      </div>
         <div className="container pt-md-3 pt-lg-5">
           <div className="row pt-5">
             <div className="col-lg-12 text-center mb-3 mb-md-4">
@@ -343,7 +350,7 @@ const Cart = () => {
             <Flipcard />
           </div>
         </div>
-      </div>
+      </div> 
       <Footer />
     </>
   );

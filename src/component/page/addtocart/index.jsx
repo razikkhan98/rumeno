@@ -8,6 +8,8 @@ import { FiRefreshCw } from "react-icons/fi";
 import Footer from "../../common/footer";
 import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../../common/Context";
+import { CiStar } from "react-icons/ci";
+import Header from "../../common/Header/header";
 
 const faqs = [
   {
@@ -45,6 +47,9 @@ const Addtocart = () => {
     <>
       <Navbar />
       <div className="addtocart pt-5">
+        <div className="pt-5">
+          <Header title="Goat Suppliment" subtitle="Minromix.." />
+        </div>
         <div className="container pt-lg-5">
           <div className="row pt-lg-3">
            
@@ -263,11 +268,10 @@ const Addtocart = () => {
                     <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button  ${
-                            openIndex === index
-                              ? "addtocart-colapse color-707070"
-                              : "collapsed "
-                          }`}
+                          className={`accordion-button  ${openIndex === index
+                            ? "addtocart-colapse color-707070"
+                            : "collapsed "
+                            }`}
                           type="button"
                           // data-bs-toggle="collapse"
                           // data-bs-target={`#collapse${index}`}
@@ -302,9 +306,8 @@ const Addtocart = () => {
                       </h2>
                       <div
                         id={`collapse${index}`}
-                        className={`accordion-collapse collapse ${
-                          openIndex === index ? "show" : ""
-                        }`}
+                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                          }`}
                         data-bs-parent="#faqAccordion"
                       >
                         <div className="accordion-body text-gray-color">
@@ -325,7 +328,11 @@ const Addtocart = () => {
                     Write a review
                   </p>
                   <p className="font-14-400 text-chinese-black-color">Rating</p>
-                  <p className="fs-3">☆☆☆☆☆</p>
+                  <p className="fs-3">
+                    {[...Array(5)].map((_, index) => (
+                      <CiStar key={index} />
+                    ))}
+                  </p>
                   <label className="text-gray-color font-12-400">
                     Review Title
                   </label>
@@ -355,7 +362,7 @@ const Addtocart = () => {
                     className="form-control mb-5 text-gray-color font-14-400"
                   />
 
-                  <p className="font-10-400 text-muted-gray-color text-start mb-5">
+                  <p className="font-10-400 color373737 text-start mb-5">
                     How we use your data: We’ll only contact you about the
                     review you left, and only if necessary. By submitting your
                     review, you agree to our terms and conditions and privacy
@@ -376,15 +383,21 @@ const Addtocart = () => {
                 </div>
               ) : (
                 // Default Review Card
-                <div className="addtocart-review bg-skyblue border-radius-12 text-center py-5">
-                  <p className="mb-5 font-24-400">Customer reviews</p>
-                  <p className="fs-3 mb-0 text-chinese-black-color">☆☆☆☆☆</p>
+                <div className="addtocart-review m-auto bg-skyblue border-radius-12 text-center py-5">
+                  <p className="mb-5 font-24-400 text-chinese-black-color">
+                    Customer reviews
+                  </p>
+                  <p className="fs-3 mb-0 text-chinese-black-color">
+                    {[...Array(5)].map((_, index) => (
+                      <CiStar key={index} />
+                    ))}
+                  </p>
                   <p className="text-gray-color font-14-400">
                     Be the first to write a review
                   </p>
-                  <div className="cart-review-btn w-100 mt-lg-5">
+                  <div className="cart-review-btn m-auto mt-lg-5">
                     <button
-                      className="py-2 w-50 bg-gradient-color text-white-color border-0 border-radius-8"
+                      className="py-2 w-100 h-100 bg-gradient-color text-white-color border-0 border-radius-8"
                       onClick={() => setShowReviewForm(true)}
                     >
                       Write a Review
