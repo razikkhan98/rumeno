@@ -4,7 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is loaded
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Ensure Bootstrap JS is loaded
 
 import { IoSearch } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+
+
+
 
 const Navbar = () => {
 
@@ -12,6 +15,11 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
+
+ 
+
+  const location = useLocation();
+  const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
 
   return (
     <>
@@ -23,7 +31,7 @@ const Navbar = () => {
                 <nav className="navbar navbar-expand-lg px-3 px-md-5">
                   <div className="container-fluid">
                     {/* Logo Section */}
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand" href="#/">
                       <img src={Logo} alt="Logo" style={{ width: "66px", height: "68px" }} />
                     </a>
 
@@ -71,7 +79,7 @@ const Navbar = () => {
                               "linear-gradient(to right, #60A5FA, #EC4899)",
                           }}
                         >
-                          <span className="me-1">+</span> Add Goat
+                          <span className="me-1">+</span>{`Add ${selectedAnimal}`}
                         </button>
                         </NavLink>
                       </div>
@@ -82,7 +90,20 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
+        <div style={{ background: "#F4FAFD" }}>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-12 px-5">
+                <nav aria-label="breadcrumb" className="py-2 px-3">
+                  <ol className="breadcrumb mb-0">
+                    <li className="breadcrumb-item">Farm Data</li>
+                    <li className="breadcrumb-item active">{selectedAnimal}</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

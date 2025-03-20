@@ -1918,9 +1918,9 @@ body {
 
 /* <------- Siderbar -------> */
 .sidebar {
-  height: 83vh;
+  height: 100vh;
   /* width: 100%; */
-  /* position: fixed; */
+  position: fixed;
 }
 
 .sidebar-img {

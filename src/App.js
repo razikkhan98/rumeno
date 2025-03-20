@@ -26,7 +26,10 @@ import Formdatapage from "./component/page/formdatapage";
 // import Sidebar from "./component/common/page/sidebar";
 import Basic from "./component/page/basicdetail/index";
 // import Detail from "./component/common/page/detail/index";
-import Parentcard from "./component/page/parentcard";
+import Parentcard from "./component/page/formdatapage/parentCard/index";
+import Dashboard from "./component/page/formdatapage/Home/index";
+import Parent from "./component/page/formdatapage/parentCard/index";
+import Child from "./component/page/formdatapage/childCard/index";
 import Record from "./component/page/record";
 import Products from "./component/page/products";
 import Addtocart from "./component/page/addtocart";
@@ -51,13 +54,10 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/farmdata" element={<Formdatapage />} />
-          <Route path="/parentcard" element={<Parentcard />} />
-          <Route path="/parentform" element={<Basic />} />
-          <Route path="/record" element={<Record />} />
+
           <Route path="/products" element={<Products />} />
           <Route path="/training" element={<Training />} />
-          <Route path="/addtocart" element={<Addtocart />} />
+          <Route path="/productDetails/:id" element={<Addtocart />} />
           <Route path="/service" element={<VeterinaryService />} />
           <Route path="/dairyconsultant" element={<DairyConsultantService />} />
           <Route path="/goatfarming" element={<GoatFarmingService />} />
@@ -66,9 +66,17 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/error" element={<ErrorPage />} />
-
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
+
+          {/* FarmData */}
+          <Route path="/farmdata" element={<Formdatapage />} />
+          <Route path="/farmdata/home" element={<Parentcard />} />
+          <Route path="/farmdata/dashboard" element={<Dashboard />} />
+          <Route path="/farmdata/parent" element={<Parent />} />
+          <Route path="/farmdata/child" element={<Child />} />
+          <Route path="/parentform" element={<Basic />} />
+          <Route path="/record" element={<Record />} />
         </Routes>
       </CartProvider>
     </>
