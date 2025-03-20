@@ -48,7 +48,7 @@ const Addtocart = () => {
       <Navbar />
       <div className="addtocart pt-5">
         <div className="pt-5">
-          <Header title="Goat Suppliment" subtitle="Minromix.." />
+          <Header title="Goat Suppliment" subtitle={product.name} />
         </div>
         <div className="container pt-lg-5">
           <div className="row pt-lg-3">

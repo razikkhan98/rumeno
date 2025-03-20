@@ -162,7 +162,7 @@ const petProducts = [
 
 
 const Products = () => {
-  const { cart, addToCart, incrementQuantity, decrementQuantity } =
+  const { cart, addToCart } =
     useContext(CartContext);
 
   const navigate = useNavigate();
@@ -211,7 +211,7 @@ const Products = () => {
       toast.warning("Please login to add items!", { autoClose: 3000 });
       return;
     }
-    addToCart(product);
+    // addToCart(product);
   };
 
   return (
@@ -243,7 +243,7 @@ const Products = () => {
                       // }
                     />
                     <div class="overlay">
-                      {cart[product.id] ? (
+                      {/* {cart[product.id] ? (
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -269,7 +269,7 @@ const Products = () => {
                             </button>
                           </div>
                         </NavLink>
-                      ) : (
+                      ) : ( */}
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -281,7 +281,7 @@ const Products = () => {
                             +
                           </button>
                         </NavLink>
-                      )}
+                      {/* )} */}
                     </div>
                     </div>
                     {/* </NavLink> */}
