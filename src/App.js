@@ -27,7 +27,7 @@ import Formdatapage from "./component/page/formdatapage";
 import Basic from "./component/page/basicdetail/index";
 // import Detail from "./component/common/page/detail/index";
 import Parentcard from "./component/page/formdatapage/parentCard/index";
-import Dashboard from "./component/page/formdatapage/Home/index";
+import Dashboard from "./component/page/formdatapage/dashboard/index";
 import Parent from "./component/page/formdatapage/parentCard/index";
 import Child from "./component/page/formdatapage/childCard/index";
 import Record from "./component/page/record";

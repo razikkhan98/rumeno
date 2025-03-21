@@ -84,16 +84,16 @@ import Cow from "../../assets/formdata/cow.png";
 import Buffalo from "../../assets/formdata/buffalo.png";
 
 const animals = [
-  { name: "Goat", image: Goat, route: "/farmdata/home" },
-  { name: "Sheep", image: Sheep, route: "/farmdata/home" },
-  { name: "Cow", image: Cow, route: "/farmdata/home" },
-  { name: "Buffalo", image: Buffalo, route: "/farmdata/home" },
+  { name: "Goat", image: Goat, route: "/farmdata/dashboard" },
+  { name: "Sheep", image: Sheep, route: "/farmdata/dashboard" },
+  { name: "Cow", image: Cow, route: "/farmdata/dashboard" },
+  { name: "Buffalo", image: Buffalo, route: "/farmdata/dashboard" },
 ];
 
 const   Formdata = () => {
-  // const handleAnimalClick = (animalName) => {
-  //   sessionStorage.setItem("animalName", animalName); // Store selected animal name in session storage
-  // };
+  const handleAnimalClick = (animalName) => {
+    sessionStorage.setItem("animalName", animalName); // Store selected animal name in session storage
+  };
 
   return (
     <div className="form-data">
@@ -110,10 +110,10 @@ const   Formdata = () => {
                     className="text-decoration-none"
                     key={index}
                     state={{ animal: animal.name }} // Pass animal name
-                    // onClick={() => handleAnimalClick(animal.name)}
+                    onClick={() => handleAnimalClick(animal.name)}
                   >
                     <div className="form-data-img">
-                      <img src={animal.image} alt={animal.name} />
+                      <img src={animal.image} alt={animal.name} className="img-fluid"/>
                     </div>
                     <h3 className="text-dark">{animal.name}</h3>
                   </NavLink>

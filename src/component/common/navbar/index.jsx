@@ -18,9 +18,11 @@ const Navbar = () => {
 
  
 
-  const location = useLocation();
-  const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
-
+  // const location = useLocation();
+  // const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
+  
+  const user = sessionStorage?.getItem("animalName");
+  const selectedAnimal = user ? user : "Goat";
   return (
     <>
       <div>
