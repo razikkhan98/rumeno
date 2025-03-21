@@ -6,10 +6,11 @@ import productImage from "../../assets/img/addtocart/addproduct.png";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
 import Footer from "../../common/footer";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 import { CiStar } from "react-icons/ci";
 import Header from "../../common/Header/header";
+import { toast } from "react-toastify";
 
 const faqs = [
   {
@@ -25,10 +26,13 @@ const faqs = [
 ];
 
 const Addtocart = () => {
-  const { cart, incrementQuantity, decrementQuantity } =
+  const { cart, incrementQuantity, decrementQuantity,addToCart } =
     useContext(CartContext);
   const location = useLocation();
   // console.log('cart: ', cart);
+
+    const navigate = useNavigate();
+    const isAuthenticated = !!sessionStorage.getItem("token");
 
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -41,17 +45,35 @@ const Addtocart = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
 
   const product = location.state?.product;
-  console.log("product: ", product);
 
-  const cartItem = cart?.find((item) => item.id === product.id);
+  const cartItem = cart?.find((item) => item.id === product?.id);
+  console.log('cart: ', cart);
 
   const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0 );
+  
   // console.log('setSelectedWeight: ', setSelectedWeight);
 
   const setWeight = (size) => {
     setSelectedWeight(size);
-
+    console.log('size: ', size);
   }
+  const decrease = (id) => {
+    decrementQuantity()
+  }
+
+    // Handle Add to Cart
+    const handleAddToCart = (product) => {
+      if (!isAuthenticated) {
+        console.log("Redirecting to login...");
+        setTimeout(() => {
+          navigate("/login");
+        }, 100);
+        toast.warning("Please login to add items!", { autoClose: 3000 });
+        return;
+      }
+      addToCart(product);
+    };
+  
 
   
 
@@ -193,17 +215,18 @@ const Addtocart = () => {
                       }}
                     >
                       <Button
+                        onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
-                        onClick={() => decrementQuantity(product.id)}
-                      >
+                        >
                         -
                       </Button>
                       <span className="mx-3 fs-4">
                         {cartItem?.quantity || 0}
                       </span>
                       <Button
-                        onClick={() => incrementQuantity(product.id)}
+                        // onClick={() => incrementQuantity(product.id)}
+                        onClick={() => handleAddToCart(product)}
                         className="fs-3 border-0 rounded-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
                       >
@@ -213,6 +236,7 @@ const Addtocart = () => {
                     <NavLink to="/cart">
                       <Button
                         className="mx-3 border-0"
+                        onClick={() => handleAddToCart(product)}
                         style={{
                           background: "#EC7229",
                           width: "200px",

@@ -1842,7 +1842,7 @@ body {
 
 .cart-container{
   width: 1104px;
-  height: 549px;
+  height: auto;
 }
 .cart-img{
   width: 90px;
