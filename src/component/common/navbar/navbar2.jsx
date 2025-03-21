@@ -2,7 +2,6 @@ import React from "react";
 import Logo from "../../assets/img/logo/logorumneo.svg";
 import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import { HiUserCircle } from "react-icons/hi2";
 import User from "../../assets/img/user/loginuser.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
@@ -43,7 +42,7 @@ const Navbar2 = () => {
                         className="rounded-circle gap-2 text-center d-flex align-items-center justify-content-center"
                         style={{ height: "40px", width: "70px" }}
                       >
-                        <img src={User} alt="" />
+                        <img src={User} alt="Loading" />
                         <MdOutlineKeyboardArrowDown />
                       </div>
                       

@@ -1,69 +1,98 @@
-import React from "react";
+import React, { useContext } from "react";
 
 // Import Third Party Components
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
 
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-import { LoginAPI } from "../../APIs/api";
+import { postData } from "../../APIs/api";
 
 // Images
 import LoginImg from "../../../assets/img/Login/login-img.png";
+import { CartContext } from "../../Context";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
+  const { setuid } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  // API endpoint
+
+  const endpoint = "/user/login";
+
+  // Handle form submission
   const onSubmit = async (data) => {
-
-    console.log('data: ', data);
     try {
-      const payload = {
-        mobile: data?.mobile,
-        password: data?.password,
-      };
-      const response = await LoginAPI(payload);
-      console.log('response: ', response);
+      const response = await postData(endpoint, data);
+      if (response?.data?.user?.uid) {
+        setuid(response?.data?.user?.uid);
+        // local storage data setItem
+        sessionStorage.setItem("uid", response?.data?.user?.uid);
+      }
 
-      reset();
-      if (response?.success) {
-        toast.success(response?.message);
-        // console.log("Login Successful:", response.data);
-      } else{
-      toast.error(response?.data?.message);
-     }
+      if (response?.data?.token) {
+        sessionStorage.setItem("token", response?.data?.token);
+      }
 
+      // store data in session for  later use
+      toast.success(response.data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      setTimeout(() => navigate("/"), 1000);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
-
+      toast.error(error?.message || "Login failed!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
   return (
     <>
       {/* Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
 
       {/* Main Section */}
-      <div className="container py-5">
+      <div className="container py-1">
         <div className="">
-          <div className="row g-0 login-bg">
+          <div className="row g-0 my-0 login-bg">
             {/* Left Section */}
             <div className="col-md-6 text-white  position-relative">
               <img src={LoginImg} className="login-img" alt="Loading" />
               <div className="overlay-text position-absolute bottom-0 start-0 p-5">
-                <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
+                <p className="font-size-32 font-md-size-20 text-uppercase">
+                  Welcome to Rumeno
+                </p>
                 <p className="font-size-18 font-md-size-12">
-                  Rumeno Farmotech is a nutrition and feed supplement technologies company offering a wide range of products,
-                  including Probiotics, milk replacers, Macro & Micro Minerals, Multi Vitamins, Enzymes, Amino Acids, feed additives,
-                  premixes, concentrates, and specialty products for livestock, poultry, and aquaculture.
+                  Rumeno Farmotech is a nutrition and feed supplement
+                  technologies company offering a wide range of products,
+                  including Probiotics, milk replacers, Macro & Micro Minerals,
+                  Multi Vitamins, Enzymes, Amino Acids, feed additives,
+                  premixes, concentrates, and specialty products for livestock,
+                  poultry, and aquaculture.
                 </p>
               </div>
             </div>
@@ -72,11 +101,16 @@ const Login = () => {
             <div className="col-md-6 p-lg-5 p-3 d-flex justify-content-center">
               <div className="form container px-lg-5 p-x-2">
                 <div className="text-center">
-                  <span className="text-uppercase font-size-24 font-md-size-20">Login</span>
-                  <p className="font-size-16 font-md-size-12">Login to your account to continue</p>
-                  <NavLink to={"/register"} className="text-decoration-none" >
-                    <p className="text-color-orange font-size-16 font-md-size-12">Don’t have an account? Create an account</p>
-
+                  <span className="text-uppercase font-size-24 font-md-size-20">
+                    Login
+                  </span>
+                  <p className="font-size-16 font-md-size-12">
+                    Login to your account to continue
+                  </p>
+                  <NavLink to={"/register"} className="text-decoration-none">
+                    <p className="text-color-orange font-size-16 font-md-size-12">
+                      Don’t have an account? Create an account
+                    </p>
                   </NavLink>
                 </div>
 
@@ -128,7 +162,9 @@ const Login = () => {
 
                   {/* Forgot Password */}
                   <NavLink to={"/forgot"} className="text-decoration-none">
-                    <p className="text-end font-size-12 text-color-orange mt-2">Forgot Password?</p>
+                    <p className="text-end font-size-12 text-color-orange mt-2">
+                      Forgot Password?
+                    </p>
                   </NavLink>
 
                   {/* Submit Button */}
@@ -145,7 +181,7 @@ const Login = () => {
         </div>
       </div>
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
