@@ -76,7 +76,6 @@ export const getData = async (endpoint) => {
 export const postData = async (endpoint, data) => {
   try {
     const response = await axios.post(`${API_BASE_URL}${endpoint}`, data);
-    console.log('response:2 ', response);
 
     return response;
   } catch (error) {
