@@ -202,10 +202,9 @@ const Products = () => {
   // Handle Add to Cart
   const handleAddToCart = (product) => {
     if (!isAuthenticated) {
-      console.log("Redirecting to login...");
       setTimeout(() => {
         navigate("/login");
-      }, 100);
+      }, 1000);
       toast.warning("Please login to add items!", { autoClose: 3000 });
       return;
     }
