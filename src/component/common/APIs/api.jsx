@@ -60,12 +60,18 @@
 
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/rumeno"; // Replace with your actual base URL
+const API_BASE_URL = "https://b100-106-222-215-1.ngrok-free.app/rumeno"; // Replace with your actual base URL
+
 
 // 🔹 GET: Fetch data from a dynamic endpoint
 export const getData = async (endpoint) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${endpoint}`);
+    const response = await axios.get(`${API_BASE_URL}/${endpoint}`,{
+      headers: {
+        "ngrok-skip-browser-warning": "true", // Required for ngrok
+        "Content-Type": "application/json", // Adjust as needed
+        },
+    });
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;
@@ -75,7 +81,12 @@ export const getData = async (endpoint) => {
 // 🔹 POST: Send data to a dynamic endpoint
 export const postData = async (endpoint, data) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}${endpoint}`, data);
+    const response = await axios.post(`${API_BASE_URL}${endpoint}`, data, {
+      headers: {
+        "ngrok-skip-browser-warning": "true", // Required for ngrok
+        "Content-Type": "application/json", // Adjust as needed
+        },
+    });
 
     return response;
   } catch (error) {

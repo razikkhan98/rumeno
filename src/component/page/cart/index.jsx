@@ -264,6 +264,12 @@ const amountToPay = totalAmount + tax + gst;
                           <div>
                             <p className="mb-0 font-16-300 text-muted-gray-color">{item.name}</p>
                             <p className="mb-0 font-16-500 text-muted-gray-color">₹ {item.price} /-</p>
+                            <p className="mb-0">
+                           <span className="text-color-orange font-12-300">
+                             Size:{" "}
+                           </span>
+                           <span className="font-16-300 text-muted-gray-color">{item.productUnit}</span>
+                         </p>
                           </div>
                         </div>
                       </div>

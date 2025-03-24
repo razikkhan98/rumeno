@@ -2,10 +2,13 @@ import React from 'react'
 
 // Import third Party Components
 import { useForm } from "react-hook-form";
+import { Bounce, toast } from "react-toastify";
 
 // Common Components
 import Navbar from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer/index";
+import { postData } from "../../common/APIs/api";
+
 
 // Import React Icons
 import { AiFillInstagram } from 'react-icons/ai';
@@ -24,9 +27,41 @@ const ContactUs = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+     // API endpoint
+
+  const endpoint = "/user/contactus";
+
+    const onSubmit = async (data) => {
         console.log("Data:", data);
-    };
+    try {
+          const response = await postData(endpoint, data);
+        
+          // store data in session for  later use
+          toast.success(response.data.message, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+        } catch (error) {
+          toast.error(error?.message , {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+        }
+      };
     return (
         <>
         {/* Navbar */}
@@ -72,10 +107,10 @@ const ContactUs = () => {
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="mb-3 d-flex flex-column col-lg-12">
                                         <label className="form-label font-size-12">Name</label>
-                                        <input type="text" className="service-form-input font-size-14" placeholder="Full name"
-                                            {...register("fullName", { required: "Full name is required" })}
+                                        <input type="text" className="service-form-input font-size-14" placeholder="Full Name"
+                                            {...register("name", { required: "Name is required" })}
                                         />
-                                        {errors.fullName && <p className="text-danger">{errors.fullName.message}</p>}
+                                        {errors.name && <p className="text-danger">{errors.name.message}</p>}
                                     </div>
                                     <div className="mb-3 d-flex flex-column col-lg-12">
                                         <label className="form-label font-size-12">E-mail</label>
@@ -86,11 +121,11 @@ const ContactUs = () => {
                                     </div>
 
                                     <div className="mb-4 d-flex flex-column col-lg-12">
-                                        <label className="form-label font-size-12">Address</label>
-                                        <input type="text" className="service-form-input font-size-14" placeholder="Your Address"
-                                            {...register("address" , {required: "Address is required" })}
+                                        <label className="form-label font-size-12">Message</label>
+                                        <input type="text" className="service-form-input font-size-14" placeholder="Enter Message"
+                                            {...register("message" , {required: "Message is required" })}
                                         />
-                                        {errors.address && <p className="text-danger">{errors.address.message}</p>}
+                                        {errors.message && <p className="text-danger">{errors.message.message}</p>}
                                     </div>
 
 
