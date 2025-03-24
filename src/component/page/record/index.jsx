@@ -517,221 +517,221 @@
 //   };
 
 //   const fieldConfigs = {
-  //   postWean: [
-  //     {
-  //       name: "weightKg",
-  //       label: "Kid Weight (Kg)",
-  //       type: "text",
-  //       placeholder: "Enter Weight kg",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "weightGm",
-  //       label: "Kid Weight (Gm)",
-  //       type: "text",
-  //       placeholder: "Enter Weight gm",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "bodyScore",
-  //       label: "Wean Body Score",
-  //       type: "select",
-  //       options: ["1", "2"],
-  //       required: true,
-  //     },
-  //     { name: "weanDate", label: "Wean Date", type: "date", required: true },
-  //     {
-  //       name: "weanComment",
-  //       label: "Comments (if any)",
-  //       type: "textarea",
-  //       placeholder: "Enter comment",
-  //     },
-  //   ],
-  //   milk: [
-  //     {
-  //       name: "milkvolume",
-  //       label: "Milk Volume",
-  //       type: "text",
-  //       placeholder: "Enter Milk Volume",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "numberKids",
-  //       label: "Number of Kids",
-  //       type: "Number",
-  //       placeholder: "Enter Number of Kids",
-  //       required: true,
-  //     },
-  //     { name: "milkDate", label: "Milk Date", type: "date", required: true },
-  //   ],
-  //   vaccine: [
-  //     {
-  //       name: "vaccineName",
-  //       label: "Vaccine Name",
-  //       type: "text",
-  //       placeholder: "Enter Vaccine Name",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "vaccineDate",
-  //       label: "Vaccine Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //   ],
-  //   deworm: [
-  //     {
-  //       name: "report",
-  //       label: "Worms Examination Report",
-  //       type: "text",
-  //       placeholder: "Enter Worms Examination Report",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "date",
-  //       label: "Deworm Date",
-  //       type: "date",
-  //       placeholder: "Enter Deworm Date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "endoName",
-  //       label: "Deworm Name (Endo Parasite) ",
-  //       type: "text",
-  //       placeholder: "Enter Deworm Name",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "ectoName",
-  //       label: "Deworm Name (Ecto Parasite) ",
-  //       type: "text",
-  //       placeholder: "Enter Deworm Name ",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "endoDate",
-  //       label: "Endo Date",
-  //       type: "date",
-  //       placeholder: "Endo Date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "ectoDate",
-  //       label: "Ecto Date",
-  //       type: "date",
-  //       placeholder: "Ecto Date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "endoType",
-  //       label: "Endo Type",
-  //       type: "select",
-  //       options: [
-  //         "Open this and select endo type",
-  //         "1. Tablet",
-  //         "2. Liquid",
-  //         "3. Injection",
-  //       ],
-  //       required: true,
-  //     },
-  //     {
-  //       name: "ectoType",
-  //       label: "Ecto Type",
-  //       type: "select",
-  //       options: [
-  //         "Open this and select ecto type",
-  //         "1.Oral",
-  //         "2. Backline",
-  //         "3. Injection",
-  //         "4.Rubbing on skin",
-  //       ],
-  //       required: true,
-  //     },
-  //     {
-  //       name: "animalDate",
-  //       label: "Animal Bath Ectoparasite Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //   ],
-  //   estrusHeat: [
-  //     {
-  //       name: "heat",
-  //       label: "Heat Number",
-  //       type: "select",
-  //       options: [
-  //         "Open this and select heat number",
-  //         "heat 1",
-  //         "heat 2",
-  //         "heat 3",
-  //         "heat 4",
-  //         "heat 5",
-  //       ],
-  //       required: true,
-  //     },
-  //     {
-  //       name: "heatDate",
-  //       label: "Heat Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "heatResult",
-  //       label: "heat Result",
-  //       type: "select",
-  //       options: [
-  //         "Open this and select heat result",
-  //         "Meet",
-  //         "Left for Next cycle",
-  //       ],
-  //       required: true,
-  //     },
-  //     {
-  //       name: "breederName",
-  //       label: "Breeder Name",
-  //       type: "text",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "breedDate",
-  //       label: "Date of Breed",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "dueDate",
-  //       label: "Birth Due Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //   ],
-  //   farmSanitation: [
-  //     {
-  //       name: "soilDate",
-  //       label: "Soil Change Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "limesprinkleDate",
-  //       label: "Lime Sprinkle Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "insecticideDate",
-  //       label: "Insecticide Date",
-  //       type: "date",
-  //       required: true,
-  //     },
-  //     {
-  //       name: "insecticide",
-  //       label: "Insecticide Name",
-  //       type: "text",
-  //       required: true,
-  //     },
-  //   ],
-  // };
+//   postWean: [
+//     {
+//       name: "weightKg",
+//       label: "Kid Weight (Kg)",
+//       type: "text",
+//       placeholder: "Enter Weight kg",
+//       required: true,
+//     },
+//     {
+//       name: "weightGm",
+//       label: "Kid Weight (Gm)",
+//       type: "text",
+//       placeholder: "Enter Weight gm",
+//       required: true,
+//     },
+//     {
+//       name: "bodyScore",
+//       label: "Wean Body Score",
+//       type: "select",
+//       options: ["1", "2"],
+//       required: true,
+//     },
+//     { name: "weanDate", label: "Wean Date", type: "date", required: true },
+//     {
+//       name: "weanComment",
+//       label: "Comments (if any)",
+//       type: "textarea",
+//       placeholder: "Enter comment",
+//     },
+//   ],
+//   milk: [
+//     {
+//       name: "milkvolume",
+//       label: "Milk Volume",
+//       type: "text",
+//       placeholder: "Enter Milk Volume",
+//       required: true,
+//     },
+//     {
+//       name: "numberKids",
+//       label: "Number of Kids",
+//       type: "Number",
+//       placeholder: "Enter Number of Kids",
+//       required: true,
+//     },
+//     { name: "milkDate", label: "Milk Date", type: "date", required: true },
+//   ],
+//   vaccine: [
+//     {
+//       name: "vaccineName",
+//       label: "Vaccine Name",
+//       type: "text",
+//       placeholder: "Enter Vaccine Name",
+//       required: true,
+//     },
+//     {
+//       name: "vaccineDate",
+//       label: "Vaccine Date",
+//       type: "date",
+//       required: true,
+//     },
+//   ],
+//   deworm: [
+//     {
+//       name: "report",
+//       label: "Worms Examination Report",
+//       type: "text",
+//       placeholder: "Enter Worms Examination Report",
+//       required: true,
+//     },
+//     {
+//       name: "date",
+//       label: "Deworm Date",
+//       type: "date",
+//       placeholder: "Enter Deworm Date",
+//       required: true,
+//     },
+//     {
+//       name: "endoName",
+//       label: "Deworm Name (Endo Parasite) ",
+//       type: "text",
+//       placeholder: "Enter Deworm Name",
+//       required: true,
+//     },
+//     {
+//       name: "ectoName",
+//       label: "Deworm Name (Ecto Parasite) ",
+//       type: "text",
+//       placeholder: "Enter Deworm Name ",
+//       required: true,
+//     },
+//     {
+//       name: "endoDate",
+//       label: "Endo Date",
+//       type: "date",
+//       placeholder: "Endo Date",
+//       required: true,
+//     },
+//     {
+//       name: "ectoDate",
+//       label: "Ecto Date",
+//       type: "date",
+//       placeholder: "Ecto Date",
+//       required: true,
+//     },
+//     {
+//       name: "endoType",
+//       label: "Endo Type",
+//       type: "select",
+//       options: [
+//         "Open this and select endo type",
+//         "1. Tablet",
+//         "2. Liquid",
+//         "3. Injection",
+//       ],
+//       required: true,
+//     },
+//     {
+//       name: "ectoType",
+//       label: "Ecto Type",
+//       type: "select",
+//       options: [
+//         "Open this and select ecto type",
+//         "1.Oral",
+//         "2. Backline",
+//         "3. Injection",
+//         "4.Rubbing on skin",
+//       ],
+//       required: true,
+//     },
+//     {
+//       name: "animalDate",
+//       label: "Animal Bath Ectoparasite Date",
+//       type: "date",
+//       required: true,
+//     },
+//   ],
+//   estrusHeat: [
+//     {
+//       name: "heat",
+//       label: "Heat Number",
+//       type: "select",
+//       options: [
+//         "Open this and select heat number",
+//         "heat 1",
+//         "heat 2",
+//         "heat 3",
+//         "heat 4",
+//         "heat 5",
+//       ],
+//       required: true,
+//     },
+//     {
+//       name: "heatDate",
+//       label: "Heat Date",
+//       type: "date",
+//       required: true,
+//     },
+//     {
+//       name: "heatResult",
+//       label: "heat Result",
+//       type: "select",
+//       options: [
+//         "Open this and select heat result",
+//         "Meet",
+//         "Left for Next cycle",
+//       ],
+//       required: true,
+//     },
+//     {
+//       name: "breederName",
+//       label: "Breeder Name",
+//       type: "text",
+//       required: true,
+//     },
+//     {
+//       name: "breedDate",
+//       label: "Date of Breed",
+//       type: "date",
+//       required: true,
+//     },
+//     {
+//       name: "dueDate",
+//       label: "Birth Due Date",
+//       type: "date",
+//       required: true,
+//     },
+//   ],
+//   farmSanitation: [
+//     {
+//       name: "soilDate",
+//       label: "Soil Change Date",
+//       type: "date",
+//       required: true,
+//     },
+//     {
+//       name: "limesprinkleDate",
+//       label: "Lime Sprinkle Date",
+//       type: "date",
+//       required: true,
+//     },
+//     {
+//       name: "insecticideDate",
+//       label: "Insecticide Date",
+//       type: "date",
+//       required: true,
+//     },
+//     {
+//       name: "insecticide",
+//       label: "Insecticide Name",
+//       type: "text",
+//       required: true,
+//     },
+//   ],
+// };
 
 //   const [activeTab, setActiveTab] = useState("postWean");
 //   const [animals, setAnimals] = useState([]);
@@ -1175,7 +1175,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Form, Button, Card, Tab, Tabs } from "react-bootstrap";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
@@ -1192,6 +1192,7 @@ const Record = () => {
     deworm: "/user/animal/dewormdata/add",
     estrusHeat: "/user/animal/estrusdata/add",
     farmSanitation: "/user/animal/sanitationdata/add",
+    child: "user/animal/childdata/add",
   };
 
   const fieldConfigs = {
@@ -1409,7 +1410,65 @@ const Record = () => {
         required: true,
       },
     ],
-  
+    child: [
+      {
+        name: "age",
+        label: "kids Age Year",
+        type: "number",
+        placeholder: "Enter Age",
+        required: true,
+      },
+      {
+        name: "age",
+        label: "kids Age Month",
+        type: "number",
+        placeholder: "Enter Age",
+        required: true,
+      },
+      {
+        name: "height",
+        label: "kids Height",
+        type: "number",
+        placeholder: "Enter Height",
+        required: true,
+      },
+      {
+        name: "gender",
+        label: "Gender",
+        type: "radio",
+        options: ["Male", "Female", "Other"],
+        required: true,
+      },
+      {
+        name: "weightKg",
+        label: "Kid Weight (Kg)",
+        type: "text",
+        placeholder: "Enter Weight kg",
+        required: true,
+      },
+      {
+        name: "weightGm",
+        label: "Kid Weight (Gm)",
+        type: "text",
+        placeholder: "Enter Weight gm",
+        required: true,
+      },
+      {
+        name: "bodyScore",
+        label: "Wean Body Score",
+        type: "select",
+        options: ["1", "2"],
+        required: true,
+      },
+      { name: "weanDate", label: "Wean Date", type: "date", required: true },
+      {
+        name: "weanComment",
+        label: "Comments (if any)",
+        type: "textarea",
+        placeholder: "Enter comment",
+      },
+    ],
+
   };
 
   const [activeTab, setActiveTab] = useState("postWean");
@@ -1420,7 +1479,7 @@ const Record = () => {
   console.log('isActive: ', isActive);
 
   const navigate = useNavigate();
-  const { register, handleSubmit,  formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const location = useLocation();
   const parentId = location.state?.name;
   const uniqueId = location.state?.uniqueId;
@@ -1483,7 +1542,7 @@ const Record = () => {
                 {Object.keys(API_ENDPOINTS).map((tab) => (
                   <Tab key={tab} eventKey={tab} title={tab.replace(/([A-Z])/g, " $1")} />
                 ))}
-                <Tab eventKey="child" title="Child" />
+                {/* <Tab eventKey="child" title="Child" /> */}
               </Tabs>
 
               {activeTab === "child" && (
@@ -1501,28 +1560,60 @@ const Record = () => {
 
                   {isActive ? (
                     <>
-                  <p className="record-para mb-4">Fill {activeTab} details below</p>
-                  <Form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="row mb-4">
-                      <div className="col-lg-3 pb-3">
-                        <Form.Group>
-                          <Form.Label>Unique ID</Form.Label>
-                          <Form.Control type="text" value={parentId} readOnly />
-                        </Form.Group>
-                      </div>
-                      {fieldConfigs[activeTab]?.map((field, index) => (
-                        <div key={index} className="col-lg-3 pb-3">
-                          <Form.Group>
-                            <Form.Label>{field.label}</Form.Label>
-                            <Form.Control type={field.type} {...register(field.name, { required: field.required })} />
-                            {errors[field.name] && <span className="text-danger">This field is required</span>}
-                          </Form.Group>
+                      <p className="record-para mb-4">Fill {activeTab} details below</p>
+                      <Form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="row mb-4">
+                          <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Unique ID</Form.Label>
+                              <Form.Control type="text" value={parentId} readOnly />
+                            </Form.Group>
+                          </div>
+                          {fieldConfigs[activeTab]?.map((field, index) => (
+                            <div key={index} className="col-lg-3 pb-3">
+                              <Form.Group>
+                                <Form.Label>{field.label}</Form.Label>
+
+                                {field.type === "radio" ? (
+                                  // Radio buttons
+                                  <div className="d-flex gap-3">
+                                    {field.options.map((option, idx) => (
+                                      <Form.Check
+                                        key={idx}
+                                        type="radio"
+                                        label={option}
+                                        value={option}
+                                        {...register(field.name, { required: field.required })}
+                                        name={field.name} // Radio ke liye name zaroori hai
+                                      />
+                                    ))}
+                                  </div>
+                                ) : field.type === "select" ? (
+                                  // ✅ Corrected Select Field
+                                  <Form.Select {...register(field.name, { required: field.required })}>
+                                    <option value="">Select an option</option> {/* Placeholder */}
+                                    {field.options.map((option, idx) => (
+                                      <option key={idx} value={option}>
+                                        {option}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                ) : (
+                                  // Normal input fields
+                                  <Form.Control
+                                    type={field.type}
+                                    {...register(field.name, { required: field.required })}
+                                  />
+                                )}
+
+                                {errors[field.name] && <span className="text-danger">This field is required</span>}
+                              </Form.Group>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                    <Button type="submit" className="record-btn">Submit</Button>
-                  </Form>
-                </>
+                        <Button type="submit" className="record-btn">Submit</Button>
+                      </Form>
+                    </>
                   ) : (
                     <>
                       {loading ? (
