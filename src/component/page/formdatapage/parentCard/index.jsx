@@ -205,7 +205,7 @@ console.log("Hello")
               padding: "20px",
             }}
           >
-            <h4>Parent - {selectedAnimal}</h4>
+            <h4>Parent</h4>
 
             {loading ? (
               <p>Loading...</p>

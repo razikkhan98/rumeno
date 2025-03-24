@@ -63,8 +63,8 @@ const Child = () => {
   }, []); // Fetch only once on mount
 
   // Filter animals based on selectedAnimal
-  const filteredAnimals = animals.filter(
-    (animal) => animal.animalName === selectedAnimal
+  const filteredAnimals = animals?.filter(
+    (animal) => animal?.animalName === selectedAnimal
   );
   console.log("filteredAnimals: ", filteredAnimals);
 
@@ -121,11 +121,11 @@ const Child = () => {
               padding: "20px",
             }}
           >
-            <h4>Parent - {selectedAnimal}</h4>
+            <h4>Child</h4>
 
             {loading ? (
               <p>Loading...</p>
-            ) : animals.length > 0 ? (
+            ) : animals?.length > 0 ? (
               <div className="row">
                 {animals.map((animal, index) => (
                   <div key={index} className="col-lg-3 px-3 pt-4">

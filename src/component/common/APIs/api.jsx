@@ -81,7 +81,12 @@ export const getData = async (endpoint) => {
 // 🔹 POST: Send data to a dynamic endpoint
 export const postData = async (endpoint, data) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}${endpoint}`, data);
+    const response = await axios.post(`${API_BASE_URL}${endpoint}`, data, {
+      headers: {
+        "ngrok-skip-browser-warning": "true", // Required for ngrok
+        "Content-Type": "application/json", // Adjust as needed
+        },
+    });
 
     return response;
   } catch (error) {
