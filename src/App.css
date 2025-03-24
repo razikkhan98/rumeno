@@ -2000,6 +2000,9 @@ body {
 
 
 /* <-----Parent & Child Card-----> */
+.parent-card-modal{
+  background-color: #89C9E61A;
+}
 .card-header {
   font-size: 19px;
   font-weight: 500;

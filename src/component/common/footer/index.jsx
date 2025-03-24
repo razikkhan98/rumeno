@@ -30,7 +30,9 @@ const Footer = () => {
             </div>
             <div className="col-lg-4">
               <div className="footer-link ">
-                <p className="footer-heading josefin-sans-font-family-500">Pages</p>
+                <p className="footer-heading josefin-sans-font-family-500">
+                  Pages
+                </p>
                 <ul className="list-unstyled footer-ul">
                   <li className="py-1 inter-font-family-400">
                     <NavLink to="/" className="text-light text-decoration-none">
@@ -74,7 +76,9 @@ const Footer = () => {
             </div>
             <div className="col-lg-4">
               <div className="footer-contact">
-                <p className="footer-heading-contact josefin-sans-font-family-500">Contact Us</p>
+                <p className="footer-heading-contact josefin-sans-font-family-500">
+                  Contact Us
+                </p>
                 <div className="text-light d-flex align-items-center mb-4">
                   <MdLocationOn
                     className=" rounded-circle p-1 me-3"
@@ -133,12 +137,13 @@ const Footer = () => {
                 </p>
 
                 {/* Social Icons */}
-                <div
-                  className="social-icons"
-                  style={{ color: "#DAA51E" }}
-                >
+                <div className="social-icons" style={{ color: "#DAA51E" }}>
                   <li className="list-unstyled text-decoration-none">
-                    <a href="https://www.facebook.com/RumenoFarmotech/" rel="noreferrer" target="_blank">
+                    <a
+                      href="https://www.facebook.com/RumenoFarmotech/"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <IoLogoFacebook
                         className="me-4 text-decoration-none"
                         size={28}
@@ -147,7 +152,11 @@ const Footer = () => {
                     </a>
                   </li>
                   <li className="list-unstyled text-decoration-none">
-                    <a href="https://www.instagram.com/rumenofarmotech/" rel="noreferrer" target="_blank">
+                    <a
+                      href="https://www.instagram.com/rumenofarmotech/"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <AiFillInstagram
                         className="me-4 text-decoration-none"
                         style={{ color: "#DAA51E" }}
@@ -157,7 +166,11 @@ const Footer = () => {
                   </li>
 
                   <li className="list-unstyled text-decoration-none">
-                    <a href="https://www.youtube.com/@RumenoFarmotech-bg5y" rel="noreferrer" target="_blank">
+                    <a
+                      href="https://www.youtube.com/@RumenoFarmotech-bg5y"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <FaYoutube
                         className="me-4 text-decoration-none"
                         style={{ color: "#DAA51E" }}
@@ -167,11 +180,11 @@ const Footer = () => {
                   </li>
 
                   <li className="list-unstyled text-decoration-none">
-                  <ReactWhatsapp
-                    className="bg-transparent border-0"
-                    number="+91 7355043892"
-                    message="Hello World"
-                  >
+                    <ReactWhatsapp
+                      className="bg-transparent border-0"
+                      number="+91 7355043892"
+                      message="Hello World"
+                    >
                       <FaWhatsapp
                         className="me-4 text-decoration-none"
                         style={{ color: "#DAA51E" }}
@@ -268,9 +281,7 @@ m846 -144 c8 -20 8 -948 0 -968 -5 -14 -30 -16 -175 -16 l-169 0 0 500 0 500
                     </a>
                   </li>
                 </div>
-                <p
-                  className="text-light mb-1 inter-font-family-400 font-12-400"
-                >
+                <p className="text-light mb-1 inter-font-family-400 font-12-400">
                   Powered By <br />
                   <span className="inter-font-family-500 font-14-500">
                     Intelligence Fusion Technologies

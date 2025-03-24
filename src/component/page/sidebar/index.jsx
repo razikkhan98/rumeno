@@ -253,8 +253,10 @@ const animalImages = {
 };
 
 const Sidebar = () => {
-  const location = useLocation();
-  const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
+  // const location = useLocation();
+  // const selectedAnimal = location.state?.animal; // Default: Goat
+  const user = sessionStorage?.getItem("animalName");
+  const selectedAnimal = user ? user : "Goat";
 
   return (
     <div className="side">
@@ -285,7 +287,7 @@ const Sidebar = () => {
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Home
+                Dashboard
               </NavLink>
 
               <NavLink

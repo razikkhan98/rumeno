@@ -67,9 +67,9 @@ const GoatDetailForm = () => {
             <Sidebar />
           </div>
           <div className="col-lg-10 px-4 py-3">
-            <p className="detail-head mb-1">Basic Details</p>
+            <p className="detail-head mb-1">Add Child Details</p>
             <p className="detail-para mb-0">
-              Fill basic details to add a parent
+              Fill basic details to add a child
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -160,6 +160,15 @@ const GoatDetailForm = () => {
                     className="form-control form-control-detail"
                     placeholder="Enter Weight"
                     {...register("weightKg")}
+                  />
+                </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Weight (kg)</label>
+                  <input
+                    type="number"
+                    className="form-control form-control-detail"
+                    placeholder="Enter Weight"
+                    {...register("weightGm")}
                   />
                 </div>
 

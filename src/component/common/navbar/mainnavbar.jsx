@@ -35,7 +35,7 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-    // style={{ backgroundColor: "#DDF0F8" }}
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
         <a className="navbar-brand" href="/#">
@@ -225,7 +225,6 @@ const Mainnav = () => {
             <li className="nav-item">
               <a
                 className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
-
                 onClick={() => handleLinkClick("Blogs")}
               >
                 Blogs
@@ -248,13 +247,31 @@ const Mainnav = () => {
           {/* Action Buttons */}
 
           <div className="d-lg-flex align-items-center gap-4">
-          
-
-            {isLoggedIn && (
+            {/* {isLoggedIn && (
               <div className="text-center farm-btn">
                 <NavLink to="/farmdata">
                   <button className="btn rounded-pill text-white p-0">
                     Smart Livestock Manager
+                  </button>
+                </NavLink>
+              </div>
+            )} */}
+            {isLoggedIn ? (
+              <>
+                {" "}
+                <div className="text-center farm-btn">
+                  <NavLink to="/farmdata">
+                    <button className="btn rounded-pill text-white p-0">
+                      Smart Livestock Manager
+                    </button>
+                  </NavLink>
+                </div>
+              </>
+            ) : (
+              <div className="text-center farm-btn px-3">
+                <NavLink to="/login">
+                  <button className="btn rounded-pill text-white">
+                    Login
                   </button>
                 </NavLink>
               </div>
