@@ -1771,7 +1771,7 @@ body {
 
 .addtocart-btn:hover {
   border-radius: 4px !important;
-  border: 1px solid var(--chinese-black-color) !important;
+  /* border: 1px solid var(--chinese-black-color) !important; */
 }
 
 .product-kg {
@@ -1785,8 +1785,7 @@ body {
   border-bottom-left-radius: 0px !important;
   border-left: 2px dotted rgba(48, 45, 45, 0.2) !important;
 }
-
-.addtocart-btn .product-kg:hover {
+ .product-kg2 {
   background-color: var(--light-blue-color) !important;
   border-left: 2px dotted var(--chinese-black-color) !important;
 }
@@ -1843,7 +1842,7 @@ body {
 
 .cart-container{
   width: 1104px;
-  height: 549px;
+  height: auto;
 }
 .cart-img{
   width: 90px;

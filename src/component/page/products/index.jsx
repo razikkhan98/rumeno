@@ -45,6 +45,7 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
   },
   {
     id: 2,
@@ -52,6 +53,8 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 3,
@@ -59,13 +62,17 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 4,
     name: "Neonato Veterinary products for Goat, Cow, and Buf...",
     image: Image2,
-    price: 180.0,
+    price: 190.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 5,
@@ -278,7 +285,7 @@ const Products = () => {
                         >
                           <button
                             className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                            onClick={() => handleAddToCart(product)}
+                            // onClick={() => handleAddToCart(product)}
                           >
                             +
                           </button>

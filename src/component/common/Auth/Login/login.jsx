@@ -73,12 +73,12 @@ const Login = () => {
   return (
     <>
       {/* Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
 
       {/* Main Section */}
-      <div className="container py-5">
+      <div className="container py-1">
         <div className="">
-          <div className="row g-0 login-bg">
+          <div className="row g-0 my-0 login-bg">
             {/* Left Section */}
             <div className="col-md-6 text-white  position-relative">
               <img src={LoginImg} className="login-img" alt="Loading" />
@@ -181,7 +181,7 @@ const Login = () => {
         </div>
       </div>
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
