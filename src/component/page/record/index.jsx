@@ -12,17 +12,17 @@ import AnimalCard from "../../common/animalCard";
 
 const Record = () => {
   const API_ENDPOINTS = {
-    postWean: "/user/animal/postweandata/add",
-    milk: "/user/animal/milkdata/add",
-    vaccine: "/user/animal/vaccinedata/add",
-    deworm: "/user/animal/dewormdata/add",
-    estrusHeat: "/user/animal/estrusdata/add",
-    farmSanitation: "/user/animal/sanitationdata/add",
-    child: "/user/animaldata/child",
+    PostWean: "/user/animal/postweandata/add",
+    Milk: "/user/animal/milkdata/add",
+    Vaccine: "/user/animal/vaccinedata/add",
+    Deworm: "/user/animal/dewormdata/add",
+    EstrusHeat: "/user/animal/estrusdata/add",
+    FarmSanitation: "/user/animal/sanitationdata/add",
+    Child: "/user/animaldata/child",
   };
 
   const fieldConfigs = {
-    postWean: [
+    PostWean: [
       {
         name: "weightKg",
         label: "Kid Weight (Kg)",
@@ -49,7 +49,7 @@ const Record = () => {
         placeholder: "Enter comment",
       },
     ],
-    milk: [
+    Milk: [
       {
         name: "milkvolume",
         label: "Milk Volume",
@@ -64,7 +64,7 @@ const Record = () => {
       },
       { name: "milkDate", label: "Milk Date", type: "date", required: true },
     ],
-    vaccine: [
+    Vaccine: [
       {
         name: "vaccineName",
         label: "Vaccine Name",
@@ -77,7 +77,7 @@ const Record = () => {
         type: "date",
       },
     ],
-    deworm: [
+    Deworm: [
       {
         name: "report",
         label: "Worms Examination Report",
@@ -143,7 +143,7 @@ const Record = () => {
         type: "date",
       },
     ],
-    estrusHeat: [
+    EstrusHeat: [
       {
         name: "heat",
         label: "Heat Number",
@@ -188,7 +188,7 @@ const Record = () => {
         type: "date",
       },
     ],
-    farmSanitation: [
+    FarmSanitation: [
       {
         name: "soilDate",
         label: "Soil Change Date",
@@ -210,7 +210,7 @@ const Record = () => {
         type: "text",
       },
     ],
-    child: [
+    Child: [
       {
         name: "ageyear",
         label: "Kid Age",
@@ -252,13 +252,14 @@ const Record = () => {
       {
         name: "kidcode",
         label: "Kid code",
-        type: "select",
-        options: [1, 2],
+        type: "text",
+
       },
       {
         name: "kidscore",
         label: "Kid Score",
         type: "select",
+        options: [1, 2],
       },
       {
         name: "dobtype",
@@ -296,29 +297,34 @@ const Record = () => {
     ],
   };
 
-  const [activeTab, setActiveTab] = useState("postWean");
+  const [activeTab, setActiveTab] = useState("PostWean");
   const [animals, setAnimals] = useState([]);
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
-
+  const [InputPreFillData, setInputPreFillData] = useState(null);
+  const [editActive, setEditActive] = useState(false);
 
 
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
+    formState: { isDirty } ,
   } = useForm();
   const location = useLocation();
   const parentId = location.state?.name;
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId
+  console.log('kidId: ', kidId);
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
+  console.log('uid: ', uid);
 
 
-  
+
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
@@ -350,43 +356,75 @@ const Record = () => {
     (child) => child?.parentId === parentId
   );
 
-  const onSubmit = async (data) => {
-    const apiUrl = API_ENDPOINTS[activeTab];
+  // const onSubmit = async (data) => {
+  //   const apiUrl = API_ENDPOINTS[activeTab];
 
-    let formData = {}; // Declare once
-      
-    if (kidId === undefined) {
-        // Parent
-        formData = { ...data, parentUniqueId: uniqueId, parentId , uid};
-    } else {
-        // Child
-        formData = { ...data, childUniqueId: uniqueId, parentId, uid };
-        console.log('formData: ', formData);
-        console.log(parentId,"parentId");
+  //   let formData = {}; // Declare once
+
+  //   if (kidId === undefined) {
+  //     // Parent
+  //     formData = { ...data, parentUniqueId: uniqueId, parentId, uid };
+
+
+  //   } else {
+  //     // Child
+  //     formData = { ...data, childUniqueId: uniqueId, parentId, uid };
+  //     console.log('formData: ', formData);
+  //     console.log(parentId, "parentId");
+  //   }
+
+
+
+  //   try {
+  //     const response = await postData(apiUrl, formData);
+  //     if (response.status === 200 || response.status === 201) {
+  //       toast.success(response.data.message, {
+  //         autoClose: 3000,
+  //         transition: Bounce,
+  //       });
+  //       if (kidId === undefined) {
+  //         setTimeout(() => navigate("/farmdata/parent"), 1000);
+  //       }
+  //       else {
+
+  //         setTimeout(() => navigate(`/farmdata/child`), 1000);
+  //       }
+  //     } else {
+  //       throw new Error(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     toast.error(error?.message || "Submission failed.");
+  //   }
+  // };
+
+
+  // ====================================================
+
+  useEffect(() => {
+    // Load data from localStorage when the component mounts
+    const data = localStorage.getItem('PostWean');
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setInputPreFillData(parsedData);
+      reset(parsedData); // Pre-fill the form
     }
+  }, [reset]);
+
+  const onSubmit = (data) => {
+    localStorage.setItem('PostWean', JSON.stringify(data));
+    setInputPreFillData(data);
+    setEditActive(false);
+  };
+
+  const handleEdit = () => {
+    setEditActive(true);
+  };
  
-   
-
-    try {
-      const response = await postData(apiUrl, formData);
-      if (response.status === 200 || response.status === 201) {
-        toast.success(response.data.message, {
-          autoClose: 3000,
-          transition: Bounce,
-        });
-        if(kidId === undefined) {
-          setTimeout(() => navigate("/farmdata/parent"), 1000);
-        } 
-        else {
-
-          setTimeout(() => navigate(`/farmdata/child`), 1000);
-        }
-      } else {
-        throw new Error(response.data.message);
-      }
-    } catch (error) {
-      toast.error(error?.message || "Submission failed.");
-    }
+  const handleDelete = () => {
+    localStorage.removeItem('userForm');
+    setInputPreFillData(null);
+    reset();
+    setEditActive(false);
   };
 
   return (
@@ -414,7 +452,7 @@ const Record = () => {
                 {/* <Tab eventKey="child" title="Child" /> */}
               </Tabs>
 
-              {activeTab === "child" && (
+              {activeTab === "Child" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
                     <h4>{activeTab?.replace(/([A-Z])/g, " $1")}</h4>
@@ -437,18 +475,14 @@ const Record = () => {
                       </p>
                       <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row mb-4">
-                          
-                            <div className="col-lg-3 pb-3">
-                              <Form.Group>
-                                <Form.Label>Unique ID</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  value={parentId}
-                                  readOnly
-                                />
-                              </Form.Group>
-                            </div>
-                        
+
+                          <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Unique ID</Form.Label>
+                              <Form.Control type="text" value={kidId === undefined ? parentId : kidId} readOnly />
+                            </Form.Group>
+                          </div>
+
                           {fieldConfigs[activeTab]?.map((field, index) => (
                             <div key={index} className="col-lg-3 pb-3">
                               <Form.Group>
@@ -507,6 +541,12 @@ const Record = () => {
                         <Button type="submit" className="record-btn">
                           Submit
                         </Button>
+                        <Button type="submit" className="btn-success px-4 mx-2">
+                          Edit
+                        </Button>
+                        <Button type="submit" className="btn-danger px-4">
+                          Delet
+                        </Button>
                       </Form>
                     </>
                   ) : (
@@ -529,17 +569,28 @@ const Record = () => {
                 </>
               )}
 
-              {activeTab !== "child" && (
+              {activeTab !== "Child" && (
                 <>
-                  <p className="record-para mb-4">
-                    Fill {activeTab} details below
-                  </p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p className="record-para mb-4">
+                      Fill {activeTab} details below
+                    </p>
+
+                    <button
+                      className="btn text-white px-4 border rounded-pill me-5"
+                      style={{
+                        background:
+                          "linear-gradient(to right, #60A5FA, #EC4899)",
+                      }}
+                    > <span className="me-1">+</span> {activeTab}</button>
+                  </div>
+
                   <Form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row mb-4">
                       <div className="col-lg-3 pb-3">
                         <Form.Group>
                           <Form.Label>Unique ID</Form.Label>
-                          <Form.Control type="text" value={parentId} readOnly />
+                          <Form.Control type="text" value={kidId === undefined ? parentId : kidId} readOnly />
                         </Form.Group>
                       </div>
                       {fieldConfigs[activeTab]?.map((field, index) => (
@@ -551,6 +602,7 @@ const Record = () => {
                               {...register(field.name, {
                                 required: field.required,
                               })}
+                              disabled={!editActive && InputPreFillData}
                             />
                             {errors[field.name] && (
                               <span className="text-danger">
@@ -561,8 +613,14 @@ const Record = () => {
                         </div>
                       ))}
                     </div>
-                    <Button type="submit" className="record-btn">
+                    <Button type="submit" className="record-btn" disabled={editActive ? !isDirty : !!InputPreFillData}>
                       Submit
+                    </Button>
+                    <Button type="submit" className="btn-success px-4 mx-2" onClick={handleEdit} disabled={!InputPreFillData || editActive}>
+                      Edit
+                    </Button>
+                    <Button type="submit" className="btn-danger px-4" onClick={handleDelete} disabled={!InputPreFillData}> 
+                      Delet
                     </Button>
                   </Form>
                 </>
