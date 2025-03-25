@@ -68,6 +68,12 @@ const Child = () => {
   );
   console.log("filteredAnimals: ", filteredAnimals);
 
+  const handleDeleteAnimal = (uniqueId) => {
+    console.log("Deleting animal with ID:", uniqueId);
+    // Perform delete operation (e.g., API call, update state)
+    setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+  };
+
   return (
     // <div className="parent">
     //   <Navbar />
@@ -138,6 +144,8 @@ const Child = () => {
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
                       kidId={animal.kidId}
+                      
+                      onDelete={() => handleDeleteAnimal(animal.uniqueId)}
                     />
                   </div>
                 ))}

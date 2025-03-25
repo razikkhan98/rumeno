@@ -268,7 +268,7 @@ const amountToPay = totalAmount + tax + gst;
                            <span className="text-color-orange font-12-300">
                              Size:{" "}
                            </span>
-                           <span className="font-16-300 text-muted-gray-color">{item.productUnit}</span>
+                           <span className="font-16-300 text-muted-gray-color">{item.selectedWeight}</span>
                          </p>
                           </div>
                         </div>

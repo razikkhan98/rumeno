@@ -50,8 +50,8 @@ const Addtocart = () => {
   console.log('cart: ', cart);
 
   const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0 );
+  console.log('selectedWeight: ', selectedWeight);
   
-  // console.log('setSelectedWeight: ', setSelectedWeight);
 
   const setWeight = (size) => {
     setSelectedWeight(size);
@@ -62,7 +62,7 @@ const Addtocart = () => {
   }
 
     // Handle Add to Cart
-    const handleAddToCart = (product) => {
+    const handleAddToCart = (product, selectedWeight) => {
       if (!isAuthenticated) {
         console.log("Redirecting to login...");
         setTimeout(() => {
@@ -71,7 +71,7 @@ const Addtocart = () => {
         toast.warning("Please login to add items!", { autoClose: 3000 });
         return;
       }
-      addToCart(product);
+      addToCart(product, selectedWeight);
     };
   
 
@@ -226,7 +226,7 @@ const Addtocart = () => {
                       </span>
                       <Button
                         // onClick={() => incrementQuantity(product.id)}
-                        onClick={() => handleAddToCart(product)}
+                        onClick={() => handleAddToCart(product, selectedWeight)}
                         className="fs-3 border-0 rounded-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
                       >
@@ -236,7 +236,7 @@ const Addtocart = () => {
                     <NavLink to="/cart">
                       <Button
                         className="mx-3 border-0"
-                        onClick={() => handleAddToCart(product)}
+                        // onClick={() => handleAddToCart(product)}
                         style={{
                           background: "#EC7229",
                           width: "200px",
