@@ -14,7 +14,7 @@ const GoatDetailForm = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const { setparentId } = useContext(CartContext);
+  // const { setparentId } = useContext(CartContext);
 
   const endpoint = "/user/animaldata/parent";
   const navigate = useNavigate();
@@ -34,13 +34,9 @@ const GoatDetailForm = () => {
       const response = await postData(endpoint, formData);
 
       if (response.data.message === "success") {
-        const parentIds = response.data.data.parentId; // Expecting an array or a single ID
+      //   const parentIds = response.data.data.parentId; // Expecting an array or a single ID
 
-      if (Array.isArray(parentIds)) {
-        setparentId(parentIds); // Store multiple parent IDs
-      } else {
-        setparentId((prev) => [...prev, parentIds]); // Append single ID
-      }
+    
         toast.success("Parent animal added successfully", {
           position: "top-right",
           autoClose: 3000, // Closes the toast after 3 seconds
