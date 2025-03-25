@@ -350,13 +350,13 @@ const amountToPay = totalAmount + tax + gst;
         </div>
       </div>
 
-      <div className="addtocartfooter">
+      {/* <div className="addtocartfooter">
         <div className="container">
           <div className="row">
             <Flipcard />
           </div>
         </div>
-      </div> 
+      </div>  */}
       <Footer />
     </>
   );

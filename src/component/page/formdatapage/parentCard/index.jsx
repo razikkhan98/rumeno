@@ -157,8 +157,9 @@ import { toast } from "react-toastify";
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
   const [loading, setLoading] = useState(true);
-
+console.log("Hello")
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
+  console.log('selectedAnimal: ', selectedAnimal);
 
   const endpoint = "/user/animaldata/parent/getAll";
 
@@ -166,6 +167,7 @@ const Parent = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
+        console.log('response: ', response);
         setAnimals(response.data);
       } catch (error) {
         toast.error(error.message || "Error fetching animal data. Please try again.");
@@ -178,7 +180,14 @@ const Parent = () => {
 
   // Filter animals based on selectedAnimal
   const filteredAnimals = animals?.filter(animal => animal?.animalName === selectedAnimal);
+  console.log('filteredAnimals: ', filteredAnimals);
 
+  // Delete Animal Card 
+  const handleDeleteAnimal = (uniqueId) => {
+    console.log("Deleting animal with ID:", uniqueId);
+    // Perform delete operation (e.g., API call, update state)
+    setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+  };
 
   return (
     <div className="parent">
@@ -202,7 +211,7 @@ const Parent = () => {
               <p>Loading...</p>
             ) : filteredAnimals?.length > 0 ? (
               <div className="row">
-                {filteredAnimals.map((animal, index) => (
+                {filteredAnimals?.map((animal, index) => (
                   <div key={index} className="col-lg-3 px-4 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
@@ -210,8 +219,11 @@ const Parent = () => {
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
+                      ageMonth={animal.ageMonth}
+                      bodyScore={animal.bodyScore}
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
+                      onDelete={() => handleDeleteAnimal(animal.uniqueId)}
                     />
                   </div>
                 ))}

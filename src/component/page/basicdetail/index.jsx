@@ -158,15 +158,6 @@ const GoatDetailForm = () => {
                     {...register("weightKg")}
                   />
                 </div>
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Weight (kg)</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Weight"
-                    {...register("weightGm")}
-                  />
-                </div>
 
                 <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">
