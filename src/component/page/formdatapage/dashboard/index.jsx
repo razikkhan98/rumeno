@@ -112,7 +112,7 @@ const Dashboard = () => (
           <h4>Dashboard</h4>
           <div className="row">
             {cardData.map((card, index) => (
-              <div key={index} className="col-lg-3 px-4 pt-4">
+              <div key={index} className="col-lg-4 px-4 pt-4">
                 <Card
                   className="mb-3 card-hover"
                   style={{

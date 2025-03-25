@@ -25,6 +25,7 @@ const AnimalCard = ({
   kidId,
   onDelete,
 }) => {
+  console.log("AnimalCard",kidId)
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -72,9 +73,9 @@ const AnimalCard = ({
       >
         {kidId ? (
           <div>
-            {/* <div style={{ fontSize: "18px" }} className="pb-2">
+            <div style={{ fontSize: "18px" }} className="pb-2">
               Parent: {name}
-            </div> */}
+            </div>
             <div style={{ fontSize: "15px" }}>Child: {kidId}</div>
           </div>
         ) : (
@@ -290,7 +291,7 @@ const AnimalCard = ({
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${kidId}/${uniqueId}`, {
-                  state: { name, uniqueId },
+                  state: { kidId, uniqueId },
                 })
               }
             >

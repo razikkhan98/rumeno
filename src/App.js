@@ -60,6 +60,8 @@ const App = () => {
           <Route path="/farmdata/child" element={<Child />} />
           <Route path="/parentform" element={<Basic />} />
           <Route path="/record/:name/:uniqueId" element={<Record />} />
+          <Route path="/record/:name/:kidId/:uniqueId" element={<Record />} />
+
         </Routes>
       </CartProvider>
     </>
