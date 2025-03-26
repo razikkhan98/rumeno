@@ -15,7 +15,6 @@ import { CartContext } from "../../common/Context";
 import { toast } from "react-toastify";
 import Header from "../../common/Header/header";
 
-
 const faqs = [
   {
     question: "1. What are Veterinary Products?",
@@ -46,6 +45,7 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
   },
   {
     id: 2,
@@ -53,6 +53,8 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 3,
@@ -60,13 +62,17 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 4,
     name: "Neonato Veterinary products for Goat, Cow, and Buf...",
     image: Image2,
-    price: 180.0,
+    price: 190.0,
     inStock: true,
+    productUnit: ["1kg", "5kg" ,"25kg" ],
+
   },
   {
     id: 5,
@@ -160,9 +166,8 @@ const petProducts = [
   },
 ];
 
-
 const Products = () => {
-  const { cart, addToCart, incrementQuantity, decrementQuantity } =
+  const { cart, addToCart } =
     useContext(CartContext);
 
   const navigate = useNavigate();
@@ -210,7 +215,7 @@ const Products = () => {
       toast.warning("Please login to add items!", { autoClose: 3000 });
       return;
     }
-    addToCart(product);
+    // addToCart(product);
   };
 
   return (
@@ -218,7 +223,12 @@ const Products = () => {
       <Navbar />
       <div className="products">
         <div className="mt-lg-4">
-        <Header  title="Products" subtitle="Goat Supplement" products={"27 Products"} showSortFilter/>
+          <Header
+            title="Products"
+            subtitle="Goat Supplement"
+            products={"27 Products"}
+            showSortFilter
+          />
         </div>
         <div className="container pt-5">
           <div className="row pt-lg-3">
@@ -242,7 +252,7 @@ const Products = () => {
                       // }
                     />
                     <div class="overlay">
-                      {cart[product.id] ? (
+                      {/* {cart[product.id] ? (
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -268,19 +278,19 @@ const Products = () => {
                             </button>
                           </div>
                         </NavLink>
-                      ) : (
+                      ) : ( */}
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
                         >
                           <button
                             className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                            onClick={() => handleAddToCart(product)}
+                            // onClick={() => handleAddToCart(product)}
                           >
                             +
                           </button>
                         </NavLink>
-                      )}
+                      {/* )} */}
                     </div>
                     </div>
                     {/* </NavLink> */}
@@ -398,24 +408,37 @@ const Products = () => {
               PRODUCT CATEGORIES
             </p>
             <div className="row text-center mt-3">
-      {petProducts.map((product, index) => (
-        <div key={index} className="col-lg-3 col-md-6 mb-4">
-          <div className="p-3">
-            <img src={product.icon} size={44} className="mb-3" alt={product.title} />
-            <p
-              style={{ fontSize: "14px", fontWeight: "400", color: "#707070" }}
-            >
-              {product.title}
-            </p>
-            <p
-              style={{ fontSize: "14px", fontWeight: "400", color: "#373737" }}
-            >
-              {product.description}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+              {petProducts.map((product, index) => (
+                <div key={index} className="col-lg-3 col-md-6 mb-4">
+                  <div className="p-3">
+                    <img
+                      src={product.icon}
+                      size={44}
+                      className="mb-3"
+                      alt={product.title}
+                    />
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "400",
+                        color: "#707070",
+                      }}
+                    >
+                      {product.title}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "400",
+                        color: "#373737",
+                      }}
+                    >
+                      {product.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="row pt-lg-4 pb-lg-5 px-2">
