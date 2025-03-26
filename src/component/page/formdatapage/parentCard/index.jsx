@@ -182,6 +182,7 @@ const Parent = () => {
   );
   console.log("filteredAnimals: ", filteredAnimals);
 
+
   // Delete Animal Card
   const handleDeleteAnimal = async (uniqueId) => {
     setAnimals((prevAnimals) =>
@@ -194,9 +195,7 @@ const Parent = () => {
         uniqueId
       );
       console.log("response:------deleteData ", response);
-    } catch (error) {
-     
-    }
+    } catch (error) {}
   };
 
   return (
@@ -225,7 +224,7 @@ const Parent = () => {
                   <div key={index} className="col-lg-3 px-4 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
-                      name={animal.parentId}
+                      parentId={animal.parentId}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
@@ -233,8 +232,8 @@ const Parent = () => {
                       bodyScore={animal.bodyScore}
                       pregnancyDetails={animal.pregnancyDetails}
                       maleDetail={animal.maleDetail}
-                      weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
+                      children={animal.children?.length > 0 ? animal.children.length : "No Children"}
                       onDelete={() => handleDeleteAnimal(animal.uniqueId)}
                     />
                   </div>

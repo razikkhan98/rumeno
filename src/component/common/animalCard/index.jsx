@@ -13,7 +13,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
 const AnimalCard = ({
-  name,
+  parentId,
   height,
   gender,
   age,
@@ -26,8 +26,10 @@ const AnimalCard = ({
   uniqueId,
   kidId,
   onDelete,
+  children,
 }) => {
   console.log("AnimalCard", kidId);
+  console.log("AnimalCard", parentId);
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -47,6 +49,8 @@ const AnimalCard = ({
       value: pregnancyDetails,
       icon: <RiRulerFill />,
     },
+    { label: "children", value: children, icon: <GiWeightScale /> },
+
     { label: "Male Detail", value: maleDetail, icon: <GiWeightScale /> },
     { label: "Post Wean", value: maleDetail, icon: <GiWeightScale /> },
     { label: "Milk", value: maleDetail, icon: <GiWeightScale /> },
@@ -91,7 +95,7 @@ const AnimalCard = ({
               style={{ fontSize: "16px" }}
               className="pb-2 text-chinese-black-color"
             >
-              Parent: {name}
+              Parent: {parentId}
             </div>
             <div
               className="text-chinese-black-color"
@@ -101,7 +105,7 @@ const AnimalCard = ({
             </div>
           </div>
         ) : (
-          <div className="text-chinese-black-color">{name}</div>
+          <div className="text-chinese-black-color">{parentId}</div>
         )}
 
         {/* Button to open modal */}
@@ -121,7 +125,7 @@ const AnimalCard = ({
                 <SlArrowLeft className="fs-6 m-auto" />
               </button>
               <p className="mx-2 mb-0 font-16-500 color111111 text-center">
-                {name}
+                {parentId}
               </p>
             </div>
           </Modal.Header>
@@ -263,8 +267,8 @@ const AnimalCard = ({
               className="rounded-pill py-2 px-3 border-0"
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
-                navigate(`/record/${name}/${uniqueId}`, {
-                  state: { name, uniqueId },
+                navigate(`/record/${parentId}/${uniqueId}`, {
+                  state: { parentId, uniqueId },
                 })
               }
             >

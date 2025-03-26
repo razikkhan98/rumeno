@@ -324,7 +324,7 @@ const Record = () => {
     formState: { errors },
   } = useForm();
   const location = useLocation();
-  const parentId = location.state?.name;
+  const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId
 
@@ -370,7 +370,7 @@ const Record = () => {
       
     if (kidId === undefined) {
         // Parent
-        formData = { ...data, parentUniqueId: uniqueId, parentId , uid};
+        formData = { ...data, parentUniqueId: uniqueId, childUniqueId: null, parentId , uid};
     } else {
         // Child
         formData = { ...data, childUniqueId: uniqueId, parentId, uid };

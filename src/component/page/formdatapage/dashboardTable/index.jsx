@@ -1,6 +1,8 @@
 import React from "react";
 
 const DashboardTable = ({ data }) => {
+  console.log("data: ", data);
+
   return (
     <div className="dashboard-table">
       <div className="container">
@@ -9,23 +11,54 @@ const DashboardTable = ({ data }) => {
             <table className="table">
               <thead>
                 <tr className="heads">
-                  <th scope="col" className="text-chinese-black-color">#</th>
-                  <th scope="col" className="text-chinese-black-color">Uid</th>
-                  <th scope="col" className="text-chinese-black-color">Parent</th>
-                  <th scope="col" className="text-chinese-black-color">Handle</th>
-                  <th scope="col" className="text-chinese-black-color">Action</th>
+                  <th scope="col" className="text-chinese-black-color">
+                    #
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Uid
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Parent
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Handle
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, index) => (
+                <h6>Parents:</h6>
+                {data?.parents?.map((parent, index) => (
                   <tr
                     key={index}
-                    className={`row-border row-shadow ${index % 2 === 0 ? "table-info" : "table-secondary"}`}
+                    className={`row-border row-shadow ${
+                      index % 2 === 0 ? "table-info" : "table-secondary"
+                    }`}
                   >
                     <th scope="row">{index + 1}</th>
-                    <td>{item.uid}</td>
-                    <td>{item.parent}</td>
-                    <td>{item.handle}</td>
+                    <td>{parent.uniqueId}</td>
+                    <td>{parent.parentId}</td>
+                    {/* <td>{parent.handle}</td> */}
+                    <td>
+                      <button className="dashboard-table-btn">Add</button>
+                    </td>
+                  </tr>
+                ))}
+
+                <h6>Children:</h6>
+                {data?.children?.map((child, index) => (
+                  <tr
+                    key={index}
+                    className={`row-border row-shadow ${
+                      index % 2 === 0 ? "table-info" : "table-secondary"
+                    }`}
+                  >
+                    <th scope="row">{index + 1}</th>
+                    <td>{child.uniqueId}</td>
+                    <td>{child.parentId}</td>
+                    <td>{child.kidId}</td>
                     <td>
                       <button className="dashboard-table-btn">Add</button>
                     </td>
