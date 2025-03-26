@@ -256,9 +256,10 @@ const Record = () => {
         options: [1, 2],
       },
       {
-        name: "kidscore",
-        label: "Kid Score",
+        name: "bodyscore",
+        label: "Body Score",
         type: "select",
+        option:["1: Very slim body", "2: Skinnde body", "3: Slim body", "4: Mild fat body", "5: Fatty bulky body"],
       },
       {
         name: "dobtype",
@@ -271,6 +272,18 @@ const Record = () => {
         label: "Birth Weight",
         type: "select",
         options: ["Natural", "Castration", "Other"],
+      },
+      {
+        name: "pregnancydetail",
+        label: "Female Pregnancy Details",
+        type: "select",
+        options: ["1 Month", "2 Month", "3 Month"],
+      },
+      {
+        name: "maledetail",
+        label: "Male Details",
+        type: "select",
+        options: ["Wether", "Breeder"],
       },
       {
         name: "weanweight",

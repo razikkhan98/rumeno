@@ -55,18 +55,17 @@ const Navbar = () => {
                     >
                       <div className="d-flex flex-column flex-lg-row align-items-lg-center ms-auto">
                         {/* Search Input */}
-                        <div className="position-relative my-3 my-lg-0 me-lg-4">
+                        <div className="position-relative navbar-searchbar my-3 my-lg-0 me-lg-4">
                           <IoSearch
                             className="position-absolute"
-                            style={{ left: "12px", top: "10px", color: "#999" }}
+                            style={{ left: "12px", top: "18px", color: "#999" }}
                           />
                           <input
                             type="search"
-                            className="form-control ps-5"
+                            className="form-control h-100 ps-5"
                             placeholder="Search by unique ID"
                             style={{
-                              width: "100%",
-                              maxWidth: "300px",
+                              maxWidth: "310px",
                               borderRadius: "8px",
                             }}
                           />
@@ -75,10 +74,10 @@ const Navbar = () => {
                         {/* Add Goat Button */}
                         <NavLink to="/parentform">
                         <button
-                          className="btn text-white px-4 border rounded-pill"
+                          className="btn add-animal-btn text-white px-4 border rounded-pill"
                           style={{
                             background:
-                              "linear-gradient(to right, #60A5FA, #EC4899)",
+                              "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
                           }}
                         >
                           <span className="me-1">+</span>{`Add ${selectedAnimal}`}

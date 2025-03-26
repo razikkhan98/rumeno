@@ -68,8 +68,6 @@
 // import { getData } from "../../../common/APIs/api";
 // import { toast } from "react-toastify";
 
-
-
 // const Parent = () => {
 //   const [animals, setAnimals] = useState([]);
 //   console.log('animals: ', animals);
@@ -77,7 +75,6 @@
 
 //   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 //   console.log('selectedAnimal: ', selectedAnimal);
- 
 
 //   const endpoint = "/user/animaldata/parent/getAll";
 
@@ -97,7 +94,7 @@
 //   }, [selectedAnimal]);  // Re-fetch if animal type changes
 
 //   return (
-  
+
 //     <div className="parent">
 //       <Navbar />
 //       <div className="row">
@@ -146,20 +143,19 @@
 
 // export default Parent;
 
-
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../common/navbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
-import { getData } from "../../../common/APIs/api";
+import { deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
   const [loading, setLoading] = useState(true);
-console.log("Hello")
+  console.log("Hello");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
-  console.log('selectedAnimal: ', selectedAnimal);
+  console.log("selectedAnimal: ", selectedAnimal);
 
   const endpoint = "/user/animaldata/parent/getAll";
 
@@ -167,10 +163,12 @@ console.log("Hello")
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        console.log('response: ', response);
+        console.log("response: ", response);
         setAnimals(response.data);
       } catch (error) {
-        toast.error(error.message || "Error fetching animal data. Please try again.");
+        toast.error(
+          error.message || "Error fetching animal data. Please try again."
+        );
       } finally {
         setLoading(false);
       }
@@ -179,24 +177,36 @@ console.log("Hello")
   }, []); // Fetch only once on mount
 
   // Filter animals based on selectedAnimal
-  const filteredAnimals = animals?.filter(animal => animal?.animalName === selectedAnimal);
-  console.log('filteredAnimals: ', filteredAnimals);
+  const filteredAnimals = animals?.filter(
+    (animal) => animal?.animalName === selectedAnimal
+  );
+  console.log("filteredAnimals: ", filteredAnimals);
 
-  // Delete Animal Card 
-  const handleDeleteAnimal = (uniqueId) => {
-    console.log("Deleting animal with ID:", uniqueId);
-    // Perform delete operation (e.g., API call, update state)
-    setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+  // Delete Animal Card
+  const handleDeleteAnimal = async (uniqueId) => {
+    setAnimals((prevAnimals) =>
+      prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
+    );
+
+    try {
+      const response = await deleteData(
+        "/user/animaldata/parent/delete",
+        uniqueId
+      );
+      console.log("response:------deleteData ", response);
+    } catch (error) {
+     
+    }
   };
 
   return (
     <div className="parent">
       <Navbar />
       <div className="row">
-        <div className="col-lg-2">
+        <div className="col-lg-2 col-md-3">
           <Sidebar />
         </div>
-        <div className="col-lg-10 py-3">
+        <div className="col-lg-10 col-md-9 py-3">
           <div
             className="content-container flex-grow-1"
             style={{
@@ -221,6 +231,8 @@ console.log("Hello")
                       age={animal.ageYear}
                       ageMonth={animal.ageMonth}
                       bodyScore={animal.bodyScore}
+                      pregnancyDetails={animal.pregnancyDetails}
+                      maleDetail={animal.maleDetail}
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
                       onDelete={() => handleDeleteAnimal(animal.uniqueId)}

@@ -3,7 +3,7 @@ import Navbar from "../../../common/navbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index"; // Import AnimalCard
 import { toast } from "react-toastify";
-import { getData } from "../../../common/APIs/api";
+import { deleteData, getData } from "../../../common/APIs/api";
 
 // Define child animals with their respective details
 const childAnimals = [
@@ -67,11 +67,24 @@ const Child = () => {
     (animal) => animal?.animalName === selectedAnimal
   );
   console.log("filteredAnimals: ", filteredAnimals);
-
-  const handleDeleteAnimal = (uniqueId) => {
-    console.log("Deleting animal with ID:", uniqueId);
+  // const endpoint = "/user/animaldata/parent";
+  const handleDeleteAnimal = async (uniqueId) => {
+    console.log("uniqueId: ", uniqueId);
+    // console.log("Deleting animal with ID:", uniqueId);
     // Perform delete operation (e.g., API call, update state)
-    setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+    setAnimals((prevAnimals) =>
+      prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
+    );
+
+    try {
+      const response = await deleteData(
+        "/user/animaldata/child/delete",
+        uniqueId
+      );
+      console.log("response:------deleteData ", response);
+    } catch (error) {
+      
+    }
   };
 
   return (
@@ -115,10 +128,10 @@ const Child = () => {
     <div className="parent">
       <Navbar />
       <div className="row">
-        <div className="col-lg-2">
+        <div className="col-lg-2 col-md-3">
           <Sidebar />
         </div>
-        <div className="col-lg-10 py-3">
+        <div className="col-lg-10 col-md-9 py-3">
           <div
             className="content-container flex-grow-1"
             style={{
@@ -127,24 +140,25 @@ const Child = () => {
               padding: "20px",
             }}
           >
-            <h4>Child</h4>
+            <h4 className="text-chinese-black-color">Child</h4>
 
             {loading ? (
               <p>Loading...</p>
             ) : animals?.length > 0 ? (
               <div className="row">
                 {animals.map((animal, index) => (
-                  <div key={index} className="col-lg-3 px-3 pt-4">
+                  <div key={index} className="col-lg-3 col-md-6 px-3 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       name={animal.parentId}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
+                      ageMonth={animal.ageMonth}
+                      bodyScore={animal.bodyScore}
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
                       kidId={animal.kidId}
-                      
                       onDelete={() => handleDeleteAnimal(animal.uniqueId)}
                     />
                   </div>

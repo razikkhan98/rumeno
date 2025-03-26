@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
-
 * {
   padding: 0px;
   margin: 0px;
@@ -17,16 +16,16 @@ body {
   overflow-x: hidden;
 }
 
-:root{
-  --orange-color: #EC7229;
+:root {
+  --orange-color: #ec7229;
   --light-orange-color: rgba(253, 199, 158, 0.2);
-  --sky-blue-color: #DDF0F8;
-  --light-sky-blue-color: #F4FAFD;
+  --sky-blue-color: #ddf0f8;
+  --light-sky-blue-color: #f4fafd;
   --chinese-black-color: #111111;
   --muted-gray-color: #373737;
   --gray-color: #707070;
-  --light-blue-color:rgba(137, 201, 230, 0.1);
-  --white-color: #FFFFFF;
+  --light-blue-color: rgba(137, 201, 230, 0.1);
+  --white-color: #ffffff;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -43,20 +42,20 @@ body {
   background-color: var(--orange-color);
 }
 
-.bg-sky-blue-color{
+.bg-sky-blue-color {
   background-color: var(--sky-blue-color);
 }
 
-.bg-light-orange-color{
+.bg-light-orange-color {
   background-color: var(--light-orange-color);
 }
-.bg-light-sky-blue-color{
+.bg-light-sky-blue-color {
   background-color: var(--light-sky-blue-color);
 }
 .bg-skyblue {
   background-color: #f3fafc !important;
 }
-.bg-white{
+.bg-white {
   background-color: var(--white-color) !important;
 }
 
@@ -125,7 +124,7 @@ body {
 
 /* Common Font css */
 
-.font-10-400{
+.font-10-400 {
   font-size: 10px !important;
   font-weight: 400 !important;
 }
@@ -170,7 +169,7 @@ body {
   font-size: 20px !important;
   font-weight: 400 !important;
 }
-.font-20-500{
+.font-20-500 {
   font-size: 20px !important;
   font-weight: 500 !important;
 }
@@ -189,7 +188,6 @@ body {
   border: 1px solid var(--orange-color);
 }
 
-
 .border-radius-8 {
   border-radius: 8px !important;
 }
@@ -203,8 +201,6 @@ body {
 .border-radius-20 {
   border-radius: 20px;
 }
-
-
 
 /* <------- Main Navbar ---------> */
 .navbar {
@@ -227,11 +223,11 @@ body {
 .nav-link.active {
   color: var(--orange-color) !important;
   border-bottom: 1px solid var(--orange-color);
-  font-weight: 600; 
+  font-weight: 600;
   line-height: 4px;
   margin-top: 9px;
 }
-.cursor{
+.cursor {
   cursor: pointer;
 }
 .farm-btn button {
@@ -410,6 +406,17 @@ body {
   }
 }
 
+.add-animal-btn{
+  width: 196px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.navbar-searchbar{
+  width: 310px;
+  height: 52px;
+}
+
 /* <--------- Home ---------> */
 
 .home {
@@ -451,7 +458,6 @@ body {
     color: white !important;
   }
 }
-
 
 /* <--------- Animals --------> */
 
@@ -648,7 +654,7 @@ body {
     width: 54px;
     height: 2px;
   }
-  
+
   .about-line-small {
     width: 40px;
     height: 2px;
@@ -1785,7 +1791,7 @@ body {
   border-bottom-left-radius: 0px !important;
   border-left: 2px dotted rgba(48, 45, 45, 0.2) !important;
 }
- .product-kg2 {
+.product-kg2 {
   background-color: var(--light-blue-color) !important;
   border-left: 2px dotted var(--chinese-black-color) !important;
 }
@@ -1798,11 +1804,11 @@ body {
   height: 360px;
 }
 
-.addtocart-review{
+.addtocart-review {
   width: 540px;
   height: 399px;
 }
-.cart-review-btn{
+.cart-review-btn {
   width: 348px;
   height: 56px;
 }
@@ -1816,11 +1822,11 @@ body {
     width: 100%;
     height: 100%;
   }
-  .addtocart-review{
+  .addtocart-review {
     width: 100%;
     height: auto;
   }
-  .cart-review-btn{
+  .cart-review-btn {
     width: 70%;
     height: 56px;
   }
@@ -1840,21 +1846,21 @@ body {
 
 /* <--------- Cart ---------> */
 
-.cart-container{
+.cart-container {
   width: 1104px;
   height: auto;
 }
-.cart-img{
+.cart-img {
   width: 90px;
   height: 90px;
 }
-.cart-img img{
+.cart-img img {
   width: 100%;
   height: 100%;
 }
 
 @media (max-width: 1024px) {
-  .cart-container{
+  .cart-container {
     width: 100%;
     height: auto;
   }
@@ -1917,9 +1923,9 @@ body {
 
 /* <------- Siderbar -------> */
 .sidebar {
-  height: 100vh;
-  /* width: 100%; */
-  position: fixed;
+  /* height: 100vh; */
+  width: 100%;
+  /* position: fixed; */
 }
 
 .sidebar-img {
@@ -1950,7 +1956,7 @@ body {
   font-size: 14px !important;
   font-weight: 300 !important;
 }
-.form-control{
+.form-control {
   color: rgba(112, 112, 112, 0.6) !important;
 }
 
@@ -1962,7 +1968,7 @@ body {
   font-weight: 400;
 }
 
-.form-control:focus{
+.form-control:focus {
   border: 1px solid var(--gray-color) !important;
   box-shadow: none;
 }
@@ -1998,10 +2004,9 @@ body {
   transform: translate(-50%, -50%);
 }
 
-
 /* <-----Parent & Child Card-----> */
-.parent-card-modal{
-  background-color: #89C9E61A;
+.parent-card-modal {
+  background-color: #89c9e61a;
 }
 .card-header {
   font-size: 19px;
@@ -2150,6 +2155,45 @@ body {
   padding: 10px 20px;
 }
 
+/*  <--------- Dashboard Table ----------> */
+
+.row-border th:first-child,
+.row-border td:first-child {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.row-border th:last-child,
+.row-border td:last-child {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+.row-border th,
+.row-border td {
+  text-align: center;
+}
+
+.row-shadow {
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+.heads {
+  text-align: center;
+}
+.dashboard-table-btn {
+  border-radius: 5px;
+  border: 0.5px solid;
+  padding: 0px 10px;
+  background: linear-gradient(to right, rgb(96, 165, 250), rgb(236, 72, 153));
+  color: #ffffff;
+  border: none;
+}
+
 /*  <------ Footer ------> */
 
 .footer {
@@ -2196,7 +2240,7 @@ body {
   color: var(--white-color) !important;
 }
 
-.social-icons{
+.social-icons {
   display: flex;
 }
 
@@ -2230,7 +2274,7 @@ body {
     line-height: 28px;
     margin-top: 20px;
   }
-  .social-icons{
+  .social-icons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -2273,7 +2317,7 @@ body {
   width: 650px;
   height: 555px;
 }
-.team-img{
+.team-img {
   margin-top: -170px;
 }
 
@@ -2358,7 +2402,7 @@ body {
   width: 100%;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   accent-color: var(--orange-color) !important;
   background-color: var(--white-color);
 }
@@ -2402,7 +2446,7 @@ input[type='radio'] {
 }
 
 /* ------------------- Error Page Css -------------------- */
-.error-img{
+.error-img {
   width: 426px;
   height: 388px;
 }
@@ -2455,8 +2499,8 @@ input[type='radio'] {
   .error-cow {
     width: 90px;
     height: 90px;
-   }
-   .team-img{
+  }
+  .team-img {
     margin-top: 0px;
-   }
+  }
 }

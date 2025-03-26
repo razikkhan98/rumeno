@@ -89,7 +89,7 @@
 //                         <button
 //                           className="btn py-1 font-24-500 text-chinese-black-color"
 //                           type="button"
-                          
+
 //                         >
 //                           −
 //                         </button>
@@ -99,7 +99,7 @@
 //                         <button
 //                           className="btn py-1 font-24-500 text-chinese-black-color"
 //                           type="button"
-                          
+
 //                         >
 //                           +
 //                         </button>
@@ -175,9 +175,6 @@
 
 // export default Cart;
 
-
-
-
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "../../common/navbar/mainnavbar";
@@ -199,24 +196,25 @@ const CartFaq = [
 ];
 
 const Cart = () => {
-  const { cart, incrementQuantity, decrementQuantity } = useContext(CartContext);
+  const { cart, incrementQuantity, decrementQuantity } =
+    useContext(CartContext);
 
-// Calculate total amount correctly
-const totalAmount = cart?.reduce(
-  (total, item) => total + item.quantity * item.price,
-  0
-);
-const tax = totalAmount * 0.05; // Example: 15% tax
-const gst = totalAmount * 0.18; // Example: 18% GST
-const amountToPay = totalAmount + tax + gst;
+  // Calculate total amount correctly
+  const totalAmount = cart?.reduce(
+    (total, item) => total + item.quantity * item.price,
+    0
+  );
+  const tax = totalAmount * 0.05; // Example: 15% tax
+  const gst = totalAmount * 0.18; // Example: 18% GST
+  const amountToPay = totalAmount + tax + gst;
 
   return (
     <>
       <Navbar />
       <div className="cart pt-5">
-      <div className="pt-5">
-      <Header title="Minromix.." subtitle="Cart" />
-      </div>
+        <div className="pt-5">
+          <Header title="Minromix.." subtitle="Cart" />
+        </div>
         <div className="container pt-md-3 pt-lg-5">
           <div className="row pt-5">
             <div className="col-lg-12 text-center mb-3 mb-md-4">
@@ -259,17 +257,27 @@ const amountToPay = totalAmount + tax + gst;
                             src={item.image}
                             alt={item.name}
                             className="me-3"
-                            style={{ width: "60px", height: "60px", objectFit: "cover" }}
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              objectFit: "cover",
+                            }}
                           />
                           <div>
-                            <p className="mb-0 font-16-300 text-muted-gray-color">{item.name}</p>
-                            <p className="mb-0 font-16-500 text-muted-gray-color">₹ {item.price} /-</p>
+                            <p className="mb-0 font-16-300 text-muted-gray-color">
+                              {item.name}
+                            </p>
+                            <p className="mb-0 font-16-500 text-muted-gray-color">
+                              ₹ {item.price} /-
+                            </p>
                             <p className="mb-0">
-                           <span className="text-color-orange font-12-300">
-                             Size:{" "}
-                           </span>
-                           <span className="font-16-300 text-muted-gray-color">{item.selectedWeight}</span>
-                         </p>
+                              <span className="text-color-orange font-12-300">
+                                Size:{" "}
+                              </span>
+                              <span className="font-16-300 text-muted-gray-color">
+                                {item.selectedWeight}
+                              </span>
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -277,7 +285,8 @@ const amountToPay = totalAmount + tax + gst;
                       {/* Quantity Controls */}
                       <div className="col-6 col-sm-3">
                         <div className="d-flex justify-content-end">
-                          <div className="input-group border bg-white shadow rounded-3">
+                          <div className="d-flex border bg-white shadow rounded-3">
+                            {/* Decrement Button */}
                             <button
                               className="btn py-1 font-24-500 text-chinese-black-color"
                               type="button"
@@ -286,10 +295,13 @@ const amountToPay = totalAmount + tax + gst;
                             >
                               -
                             </button>
+
+                            {/* Quantity Display */}
                             <span className="mx-3 font-24-500 text-color-orange d-flex align-items-center">
                               {item.quantity}
                             </span>
-                            
+
+                            {/* Increment Button */}
                             <button
                               className="btn py-1 font-24-500 text-chinese-black-color"
                               type="button"
@@ -303,7 +315,9 @@ const amountToPay = totalAmount + tax + gst;
 
                       {/* Total Price for Item */}
                       <div className="col-6 col-sm-3 text-end">
-                        <p className="mb-0 font-24-500 text-muted-gray-color">₹ {item.quantity * item.price} /-</p>
+                        <p className="mb-0 font-24-500 text-muted-gray-color">
+                          ₹ {item.quantity * item.price} /-
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -311,20 +325,31 @@ const amountToPay = totalAmount + tax + gst;
                   {/* Summary Section */}
                   <div className="row justify-content-end mb-2">
                     <div className="col-6 col-md-3 text-end">
-                      <span className="font-16-400 text-gray-color me-3">TAX:</span> ₹ {tax} /-
+                      <span className="font-16-400 text-gray-color me-3">
+                        TAX:
+                      </span>{" "}
+                      ₹ {tax} /-
                     </div>
                   </div>
 
                   <div className="row justify-content-end pb-3 border-bottom">
                     <div className="col-6 col-md-3 text-end">
-                      <span className="font-16-400 text-gray-color me-3">GST:</span> ₹ {gst} /-
+                      <span className="font-16-400 text-gray-color me-3">
+                        GST:
+                      </span>{" "}
+                      ₹ {gst} /-
                     </div>
                   </div>
 
                   <div className="row justify-content-end mb-2 mt-3">
                     <div className="col-6 col-md-3 text-end">
-                      <span className="font-16-400 text-gray-color me-3">AMOUNT TO PAY:</span>
-                      <span className="font-24-500 text-muted-gray-color"> ₹ {amountToPay} /-</span>
+                      <span className="font-16-400 text-gray-color me-3">
+                        AMOUNT TO PAY:
+                      </span>
+                      <span className="font-20-500 text-muted-gray-color">
+                        {" "}
+                        ₹ {amountToPay} /-
+                      </span>
                     </div>
                   </div>
 

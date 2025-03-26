@@ -20,12 +20,14 @@ const AnimalCard = ({
   ageMonth,
   weight,
   bodyScore,
+  pregnancyDetails,
+  maleDetail,
   selectedAnimal,
   uniqueId,
   kidId,
   onDelete,
 }) => {
-  console.log("AnimalCard",kidId)
+  console.log("AnimalCard", kidId);
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -40,6 +42,18 @@ const AnimalCard = ({
     { label: "Month", value: ageMonth, icon: <PiCalendarBlankFill /> },
     { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
     { label: "Body Score", value: bodyScore, icon: <RiRulerFill /> },
+    {
+      label: "Pregnancy Details",
+      value: pregnancyDetails,
+      icon: <RiRulerFill />,
+    },
+    { label: "Male Detail", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Post Wean", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Milk", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Vaccine", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Deworm", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Estrus Heat", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Farm Sanitation", value: maleDetail, icon: <GiWeightScale /> },
   ];
 
   const navigate = useNavigate();
@@ -73,13 +87,21 @@ const AnimalCard = ({
       >
         {kidId ? (
           <div>
-            <div style={{ fontSize: "18px" }} className="pb-2">
+            <div
+              style={{ fontSize: "16px" }}
+              className="pb-2 text-chinese-black-color"
+            >
               Parent: {name}
             </div>
-            <div style={{ fontSize: "15px" }}>Child: {kidId}</div>
+            <div
+              className="text-chinese-black-color"
+              style={{ fontSize: "15px" }}
+            >
+              Child: {kidId}
+            </div>
           </div>
         ) : (
-          <div>{name}</div>
+          <div className="text-chinese-black-color">{name}</div>
         )}
 
         {/* Button to open modal */}
@@ -108,10 +130,9 @@ const AnimalCard = ({
               <div className="row">
                 <div className="col-lg-12 p-0">
                   {modalDetails.map((item, idx) =>
-                    idx % 2 === 0 ? ( 
+                    idx % 2 === 0 ? (
                       <div className="row" key={idx}>
-                        
-                        <div className="col-lg-6 py-2 pe-0">
+                        <div className="col-lg-6 col-md-6 py-2 pe-0">
                           <div
                             className="py-2 border-bottom d-flex justify-content-between align-items-center px-3"
                             style={{ color: "#707070" }}
@@ -130,13 +151,13 @@ const AnimalCard = ({
                               </div>
                             </div>
                             <div>
-                              <strong>{modalDetails[idx].value}</strong>
+                              <strong>{modalDetails[idx].value || "-"}</strong>
                             </div>
                           </div>
                         </div>
 
                         {modalDetails[idx + 1] && (
-                          <div className="col-lg-6 border-start py-2 ps-0">
+                          <div className="col-lg-6 col-md-6 border-start py-2 ps-0">
                             <div
                               className="py-2 border-bottom d-flex justify-content-between align-items-center px-3"
                               style={{ color: "#707070" }}
@@ -155,7 +176,9 @@ const AnimalCard = ({
                                 </div>
                               </div>
                               <div>
-                                <strong>{modalDetails[idx + 1].value}</strong>
+                                <strong>
+                                  {modalDetails[idx + 1].value || "-"}
+                                </strong>
                               </div>
                             </div>
                           </div>
@@ -167,43 +190,6 @@ const AnimalCard = ({
               </div>
             </div>
           </Modal.Body>
-
-          {/* <Modal.Body className="p-0">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-12 p-0 border-end">
-                  {modalDetails.map((item, idx) => (
-                    <React.Fragment key={idx}>
-                      <div
-                        className="py-2 d-flex justify-content-between align-items-center px-2"
-                        style={{ color: "#707070" }}
-                      >
-                        <div className="d-flex align-items-center">
-                          <div
-                            className="rounded-2 p-1 d-flex"
-                            style={{
-                              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-                            }}
-                          >
-                            {item.icon}
-                          </div>
-                          <div className="card-content ms-2">{item.label}:</div>
-                        </div>
-                        <div>
-                          <strong> {item.value}</strong>
-                        </div>
-                      </div>
-                      {idx !== modalDetails.length - 1 && (
-                        <div className="py-2">
-                          <div className="border border-1"></div>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Modal.Body> */}
         </Modal>
       </Card.Header>
       <Card.Body>
@@ -235,13 +221,15 @@ const AnimalCard = ({
         ))}
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
-        <Button
-          variant="light"
-          className="border px-2 py-1"
-          style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
-        >
-          <PiPencilSimple className="fs-3 text-primary" />
-        </Button>
+        <NavLink to="/parentform" >
+          <Button
+            variant="light"
+            className="border px-2 py-1"
+            style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+          >
+            <PiPencilSimple className="fs-3 text-primary" />
+          </Button>
+        </NavLink>
 
         <Button
           variant="light"

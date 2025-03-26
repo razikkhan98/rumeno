@@ -240,7 +240,7 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
 // Sample animal data (imported or stored)
-import Goat from "../../assets/formdata/goat.png";
+import Goat from "../../assets/img/sidebarimg/goatsidebar.png";
 import Sheep from "../../assets/formdata/sheep.png";
 import Cow from "../../assets/formdata/cow.png";
 import Buffalo from "../../assets/formdata/buffalo.png";
@@ -267,10 +267,10 @@ const Sidebar = () => {
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
                 <img src={animalImages[selectedAnimal]} alt="Animal" />
               </div>
-              <p className="mb-1" style={{ fontSize: "20px", fontWeight: "500" }}>
+              <p className="mb-1 text-chinese-black-color" style={{ fontSize: "20px", fontWeight: "500" }}>
                 {selectedAnimal}
               </p>
-              <p className="text-muted mb-0" style={{ fontSize: "12px", fontWeight: "500" }}>
+              <p className="text-muted-gray-color mb-0" style={{ fontSize: "12px", fontWeight: "500" }}>
                 8 {selectedAnimal}s • 3 Babies
               </p>
             </div>
@@ -281,7 +281,7 @@ const Sidebar = () => {
             <div className="nav flex-column gap-3">
               <NavLink
                 to="/farmdata/dashboard"
-                className="rounded-3 border-0 py-2 text-decoration-none text-dark text-center"
+                className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
@@ -292,7 +292,7 @@ const Sidebar = () => {
 
               <NavLink
                 to="/farmdata/parent"
-                className="rounded-3 border-0 py-2 text-decoration-none text-dark text-center"
+                className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
@@ -303,7 +303,7 @@ const Sidebar = () => {
 
               <NavLink
                 to="/farmdata/child"
-                className="rounded-3 border-0 py-2 text-decoration-none text-dark text-center"
+                className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
