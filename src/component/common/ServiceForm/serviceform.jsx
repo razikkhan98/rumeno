@@ -1,11 +1,47 @@
 import React from 'react'
+
+// Import Third Party Components
 import { useForm } from 'react-hook-form';
+import { Bounce, toast } from "react-toastify";
+
+// Common Components
+import { postData } from "../../common/APIs/api";
 
 const ServiceForm = () => {
     const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data) => {
+    const endpoint = "/user/service";
+
+    const onSubmit = async (data) => {
         console.log(data);
+        try {
+            const response = await postData(endpoint, data);
+
+            // store data in session for  later use
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        } catch (error) {
+            toast.error(error?.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
     };
 
     return (
@@ -20,11 +56,11 @@ const ServiceForm = () => {
                         </div>
                     </div>
                     <div className='col-lg-6 container d-flex align-items-center'>
-                        <form className='row px-5' onSubmit={handleSubmit(onSubmit)}>
+                        <form className='row px-lg-5 px-2 py-lg-0 py-3' onSubmit={handleSubmit(onSubmit)}>
                             <div className="mb-3 d-flex flex-column col-lg-12">
                                 <label className="form-label">Full Name</label>
                                 <input type="text" className="service-form-input" placeholder="Full name"
-                                    {...register("fullName")}
+                                    {...register("name")}
                                 />
                             </div>
                             <div className="mb-3 d-flex flex-column col-lg-12">
@@ -35,14 +71,14 @@ const ServiceForm = () => {
                             </div>
                             <div className="mb-4 d-flex flex-column col-lg-6">
                                 <label className="form-label">When can we call you</label>
-                                <input type="text" className="service-form-input" placeholder="Select Time"
-                                    {...register("callTime")}
+                                <input type="time" className="service-form-input" placeholder="Select Time"
+                                    {...register("bestTime")}
                                 />
                             </div>
                             <div className="mb-4 d-flex flex-column col-lg-6">
                                 <label className="form-label">Contact No</label>
-                                <input type="text" className="service-form-input" placeholder="Your Mobile No"
-                                    {...register("contactNo")}
+                                <input type="tel" className="service-form-input" placeholder="Your Mobile No"
+                                    {...register("phone")}
                                 />
                             </div>
                             <div className="mb-4 d-flex flex-column col-lg-6">
@@ -51,6 +87,9 @@ const ServiceForm = () => {
                                     {...register("experience")}
                                 >
                                     <option>Select Experience</option>
+                                    <option>Experience 1</option>
+                                    <option>Experience 2</option>
+                                    <option>Experience 3</option>
                                 </select>
                             </div>
                             <div className="mb-4 d-flex flex-column col-lg-6">
@@ -59,6 +98,9 @@ const ServiceForm = () => {
                                     {...register("numAnimals")}
                                 >
                                     <option>Select no of animals</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
                                 </select>
                             </div>
                             <div className="mb-3 d-flex flex-column col-lg-12">
@@ -76,7 +118,7 @@ const ServiceForm = () => {
                             </div>
                             <div className="mb-4 d-flex flex-column col-lg-12">
                                 {/* <label className="form-label">Full Name</label> */}
-                                <input type="text" className="service-form-input" placeholder="Size of land"
+                                <input type="number" className="service-form-input" placeholder="Size of land"
                                     {...register("landSize")}
                                 />
                             </div>
@@ -84,11 +126,11 @@ const ServiceForm = () => {
                             <div className="mb-4 d-flex flex-column col-lg-12">
                                 <label className="form-label">How can we help?</label>
                                 <input type="text" className="service-form-input" placeholder="Tell us more about"
-                                    {...register("helpDetails")}
+                                    {...register("need")}
                                 />
                             </div>
 
-                            <button type='submit' className="btn py-3 mt-3 text-white w-100 bg-orange-color">Submit</button>
+                            <button type='submit' className="rounded-3 border-0 py-3 mt-3 text-white w-100 bg-orange-color">Submit</button>
                         </form>
                     </div>
                 </div>

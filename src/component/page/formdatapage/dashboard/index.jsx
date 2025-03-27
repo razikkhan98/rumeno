@@ -81,9 +81,9 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
-    TotalAnimals: 0,
-    TotalParents: 0,
-    TotalChildren: 0,
+    totalAnimals: 0,
+    totalParents: 0,
+    totalChildren: 0,
     VaccineCount: 0,
     PostWeanCount: 0,
     MilkCount: 0,
@@ -126,9 +126,9 @@ const Dashboard = () => {
   }, []);
 
   const cardData = [
-    { title: "Total Animals", value: stats.TotalAnimals },
-    { title: "Total Parents", value: stats.TotalParents },
-    { title: "Total Children", value: stats.TotalChildren },
+    { title: "Total Animals", value: stats.totalAnimals },
+    { title: "Total Parents", value: stats.totalParents },
+    { title: "Total Children", value: stats.totalChildren },
     {
       title: "Vaccines",
       value: stats.VaccineCount,

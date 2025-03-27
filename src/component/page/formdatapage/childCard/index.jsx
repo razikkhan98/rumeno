@@ -37,19 +37,35 @@ const Child = () => {
     (animal) => animal?.animalName === selectedAnimal
   );
   console.log("filteredAnimals: ", filteredAnimals);
-  const handleDeleteAnimal = async (uniqueId) => {
-    setAnimals((prevAnimals) =>
-      prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
-    );
+  // const handleDeleteAnimal = async (uniqueId) => {
+  //   setAnimals((prevAnimals) =>
+  //     prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
+  //   );
 
-    try {
-      const response = await deleteData(
-        "/user/animaldata/child/delete",
-        uniqueId
-      );
-      console.log("response:------deleteData ", response);
-    } catch (error) {}
-  };
+  //   try {
+  //     const response = await deleteData(
+  //       "/user/animaldata/child/delete",
+  //       uniqueId
+  //     );
+  //     console.log("response:------deleteData ", response);
+  //   } catch (error) {}
+  // };
+
+    const handleDeleteAnimal = async (uniqueId, childrenCount) => {
+      if (childrenCount > 0) {
+        toast.error("Cannot delete parent. It has child records associated.");
+        return;
+      }
+  
+      setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+  
+      try {
+        await deleteData("/user/animaldata/parent/delete", uniqueId);
+        toast.success("Animal deleted successfully.");
+      } catch (error) {
+        toast.error(error.message || "Error deleting animal. Please try again.");
+      }
+    };
 
   return (
     <div className="parent">
@@ -78,6 +94,7 @@ const Child = () => {
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
+                      _id={animal._id}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
@@ -86,7 +103,15 @@ const Child = () => {
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
                       kidId={animal.kidId}
-                      onDelete={() => handleDeleteAnimal(animal.uniqueId)}
+                      postweight={animal.postWeight?.length > 0 ? animal.postWeight?.length : "No Post Weight"}
+                      milk={animal.milk?.length > 0 ? animal.milk?.length : "No Milk"}
+                      vaccine={animal.vaccine?.length > 0 ? animal.vaccine?.length : "No Vaccine"}
+                      deworm={animal.deworm?.length > 0 ? animal.deworm?.length : "No Deworm"}
+                      estrusHeat={animal.estrusHeat?.length > 0 ? animal.estrusHeat.length : "No Estrus Heat"}
+                      farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length :"No Farm Sanitation"}
+                      // onDelete={() => handleDeleteAnimal(animal.uniqueId)}
+                      // onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
+
                     />
                   </div>
                 ))}

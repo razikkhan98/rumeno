@@ -47,7 +47,6 @@ const Addtocart = () => {
   const product = location.state?.product;
 
   const cartItem = cart?.find((item) => item.id === product?.id);
-  console.log('cart: ', cart);
 
   const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0 );
   console.log('selectedWeight: ', selectedWeight);

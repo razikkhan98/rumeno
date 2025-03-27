@@ -2504,3 +2504,27 @@ input[type="radio"] {
     margin-top: 0px;
   }
 }
+
+.custom-dropdown-toggle {
+  background: #FB9038 !important;
+  color: white !important;
+  border: none;
+}
+.custom-dropdown-toggle:focus,
+.custom-dropdown-toggle:active,
+.custom-dropdown-toggle.show {
+  background: #FB9038 !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.promot-parent{
+  border-color: #FB9038;
+  background-color: #ffffff;
+  color: #FB9038;
+}
+.promot-parent:hover{
+  border-color: #FB9038;
+  background-color: #FB9038 !important;
+  color: #ffffff !important;
+}
