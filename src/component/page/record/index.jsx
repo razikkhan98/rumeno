@@ -314,7 +314,6 @@ const Record = () => {
   };
 
   const [activeTab, setActiveTab] = useState("PostWean");
-  const [animals, setAnimals] = useState([]);
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
@@ -340,7 +339,7 @@ const Record = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData("/user/animaldata/parent/getAll");
-        setAnimals(response.data || []);
+        console.log('response: ', response);
       } catch (error) {
         toast.error("Error fetching animal data.");
       }

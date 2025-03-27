@@ -3,7 +3,7 @@ import Navbar from "../../../common/navbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index"; // Import AnimalCard
 import { toast } from "react-toastify";
-import { deleteData, getData } from "../../../common/APIs/api";
+import { getData } from "../../../common/APIs/api";
 
 // Define child animals with their respective details
 
@@ -51,21 +51,21 @@ const Child = () => {
   //   } catch (error) {}
   // };
 
-    const handleDeleteAnimal = async (uniqueId, childrenCount) => {
-      if (childrenCount > 0) {
-        toast.error("Cannot delete parent. It has child records associated.");
-        return;
-      }
+    // const handleDeleteAnimal = async (uniqueId, childrenCount) => {
+    //   if (childrenCount > 0) {
+    //     toast.error("Cannot delete parent. It has child records associated.");
+    //     return;
+    //   }
   
-      setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+    //   setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
   
-      try {
-        await deleteData("/user/animaldata/parent/delete", uniqueId);
-        toast.success("Animal deleted successfully.");
-      } catch (error) {
-        toast.error(error.message || "Error deleting animal. Please try again.");
-      }
-    };
+    //   try {
+    //     await deleteData("/user/animaldata/parent/delete", uniqueId);
+    //     toast.success("Animal deleted successfully.");
+    //   } catch (error) {
+    //     toast.error(error.message || "Error deleting animal. Please try again.");
+    //   }
+    // };
 
   return (
     <div className="parent">

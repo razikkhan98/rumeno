@@ -7,7 +7,6 @@ import Faq from "../faq/index";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { CartContext } from "../../common/Context";
-import axios from "axios";
 import { postData } from "../../common/APIs/api";
 import { Bounce, toast } from "react-toastify";
 import Header from "../../common/Header/header";
