@@ -119,6 +119,8 @@ const Parent = () => {
                       estrusHeat={animal.estrusHeat?.length > 0 ? animal.estrusHeat.length : "No Estrus Heat"}
                       farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length :"No Farm Sanitation"}
                       onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
+                      currentIndex={index}
+
                     />
                   </div>
                 ))}

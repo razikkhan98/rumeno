@@ -38,6 +38,7 @@ const AnimalCard = ({
   deworm,
   estrusHeat,
   farmSanitation,
+  currentIndex,
 }) => {
   console.log('_id: ', _id);
   console.log("AnimalCard", kidId);
@@ -85,6 +86,13 @@ const AnimalCard = ({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const handleShowDelete = () => setShowDeleteModal(true);
   const handleCloseDelete = () => setShowDeleteModal(false);
+
+  
+  const editForm = () => {
+    localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
+  }
+
 
   const handleConfirmDelete = () => {
     if (kidId) {
@@ -302,11 +310,12 @@ const AnimalCard = ({
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
         {kidId === undefined ? (
           <>
-            <NavLink to="/parentform">
+            <NavLink to={`/parentform?type=edit`}>
               <Button
                 variant="light"
                 className="border px-2 py-1"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+                onClick={() => editForm()}
               >
                 <PiPencilSimple className="fs-3 text-primary" />
               </Button>

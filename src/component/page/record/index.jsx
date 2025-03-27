@@ -401,23 +401,7 @@ const Record = () => {
     }
   };
 
-  // ====================================================
 
-  // useEffect(() => {
-  //   // Load data from localStorage when the component mounts
-  //   const data = localStorage.getItem('PostWean');
-  //   if (data) {
-  //     const parsedData = JSON.parse(data);
-  //     setInputPreFillData(parsedData);
-  //     reset(parsedData); // Pre-fill the form
-  //   }
-  // }, [reset]);
-
-  // const onSubmit = (data) => {
-  //   localStorage.setItem('PostWean', JSON.stringify(data));
-  //   setInputPreFillData(data);
-  //   setEditActive(false);
-  // };
 
   const handleEdit = () => {
     setEditActive(true);
@@ -560,12 +544,7 @@ const Record = () => {
                         <Button type="submit" className="record-btn">
                           Submit
                         </Button>
-                        {/* <Button type="submit" className="btn-success px-4 mx-2">
-                          Edit
-                        </Button>
-                        <Button type="submit" className="btn-danger px-4">
-                          Delet
-                        </Button> */}
+                       
                       </Form>
                     </>
                   ) : (

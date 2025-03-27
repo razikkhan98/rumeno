@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
-import { postData } from "../../common/APIs/api";
+import { getData, postData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 
 const GoatDetailForm = () => {
@@ -12,13 +12,17 @@ const GoatDetailForm = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   // const { setparentId } = useContext(CartContext);
 
-  const endpoint = "/user/animaldata/parent";
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const type = queryParams.get("type");
 
+  const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
@@ -31,17 +35,28 @@ const GoatDetailForm = () => {
         animalName, // Add animalName to the form data
       };
 
-      const response = await postData(endpoint, formData);
+       // Determine API endpoint dynamically based on type
+       const endpoint =
+       type === "edit"
+         ? `/user/animaldata/parent/update` // Edit API
+         : "/user/animaldata/parent"; // Add API
 
-      if (response.data.message === "success") {
-      //   const parentIds = response.data.data.parentId; // Expecting an array or a single ID
+     // Call the appropriate API method
+     const response = await (type === "edit"
+       ? updateData(endpoint,data?.uniqueName, formData)
+       : postData(endpoint, formData));
 
-    
-        toast.success("Parent animal added successfully", {
-          position: "top-right",
-          autoClose: 3000, // Closes the toast after 3 seconds
-        });
-        setTimeout(() => navigate("/farmdata/parent"),100);
+
+       if (response.data.message === "success") {
+        toast.success(
+          `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
+          {
+            position: "top-right",
+            autoClose: 3000,
+          }
+        );
+
+        setTimeout(() => navigate("/farmdata/parent"), 100);
       }
 
       reset(); // Reset form after successful submission
@@ -53,6 +68,41 @@ const GoatDetailForm = () => {
       });
     }
   };
+
+  const endpoint = "/user/animaldata/parent/getAll";
+
+
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await getData(endpoint);
+        console.log("response cvbn: ", response);
+        if (response.data && response.data.length > 0) {
+          const animalData = response.data[storedIndex];
+          console.log("animalData: ", animalData);
+          localStorage.removeItem("currentIndex");
+          setValue("uniqueName", animalData.uniqueId || "");
+          setValue("ageYear", animalData.ageYear || "");
+          setValue("ageMonth", animalData.ageMonth || "");
+          setValue("height", animalData.height || "");
+          setValue("purchaseDate", animalData.purchaseDate || "");
+          setValue("gender", animalData.gender || "");
+          setValue("weightKg", animalData.weightKg || "");
+          setValue("pregnancyDetails", animalData.pregnancyDetails || "");
+          setValue("maleDetail", animalData.maleDetail || "");
+          setValue("bodyScore", animalData.bodyScore || "");
+          setValue("comments", animalData.comments || "");
+        }
+      } catch (error) {
+        console.error("Error fetching animals:", error);
+        // toast.error(error.message || "Something went wrong!", {
+        //   position: "top-right",
+        //   autoClose: 3000,
+        // });
+      }
+    };
+    fetchAnimals();
+  }, [setValue]); // Fetch only once on mount
 
   return (
     <>
