@@ -6,36 +6,6 @@ import { toast } from "react-toastify";
 import { getData } from "../../../common/APIs/api";
 
 // Define child animals with their respective details
-const childAnimals = [
-  {
-    name: "Munna",
-    height: "3.5",
-    gender: "Male",
-    age: "1 year",
-    weight: "150kg",
-  },
-  {
-    name: "Chintu",
-    height: "3.8",
-    gender: "Male",
-    age: "1.2 years",
-    weight: "170kg",
-  },
-  {
-    name: "Babloo",
-    height: "4.0",
-    gender: "Male",
-    age: "1.5 years",
-    weight: "190kg",
-  },
-  {
-    name: "Golu",
-    height: "3.7",
-    gender: "Female",
-    age: "1.3 years",
-    weight: "160kg",
-  },
-];
 
 const Child = () => {
   const [animals, setAnimals] = useState([]);
@@ -67,52 +37,44 @@ const Child = () => {
     (animal) => animal?.animalName === selectedAnimal
   );
   console.log("filteredAnimals: ", filteredAnimals);
+  // const handleDeleteAnimal = async (uniqueId) => {
+  //   setAnimals((prevAnimals) =>
+  //     prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
+  //   );
+
+  //   try {
+  //     const response = await deleteData(
+  //       "/user/animaldata/child/delete",
+  //       uniqueId
+  //     );
+  //     console.log("response:------deleteData ", response);
+  //   } catch (error) {}
+  // };
+
+    // const handleDeleteAnimal = async (uniqueId, childrenCount) => {
+    //   if (childrenCount > 0) {
+    //     toast.error("Cannot delete parent. It has child records associated.");
+    //     return;
+    //   }
+  
+    //   setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+  
+    //   try {
+    //     await deleteData("/user/animaldata/parent/delete", uniqueId);
+    //     toast.success("Animal deleted successfully.");
+    //   } catch (error) {
+    //     toast.error(error.message || "Error deleting animal. Please try again.");
+    //   }
+    // };
 
   return (
-    // <div className="parent">
-    //   <Navbar />
-    //   <div className="row">
-    //     <div className="col-lg-2">
-    //       {/* Left Sidebar - Fixed */}
-    //       <div className="sidebar-container">
-    //         <Sidebar />
-    //       </div>
-    //     </div>
-    //     <div className="col-lg-10 py-3">
-    //       {/* Right Content - Scrollable */}
-    //       <div
-    //         className="content-container flex-grow-1"
-    //         style={{
-    //           overflowY: "auto",
-    //           height: "calc(100vh - 200px)", // Adjust based on Navbar height
-    //           padding: "20px",
-    //         }}
-    //       >
-    //         <h4>Child</h4>
-    //         <div className="row">
-    //           {childAnimals.map((child, index) => (
-    //             <div key={index} className="col-lg-3 px-4 pt-4">
-    //               <AnimalCard
-    //                 name={child.name}
-    //                 height={child.height}
-    //                 gender={child.gender}
-    //                 age={child.age}
-    //                 weight={child.weight}
-    //               />
-    //             </div>
-    //           ))}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="parent">
       <Navbar />
       <div className="row">
-        <div className="col-lg-2">
+        <div className="col-lg-2 col-md-3">
           <Sidebar />
         </div>
-        <div className="col-lg-10 py-3">
+        <div className="col-lg-10 col-md-9 py-3">
           <div
             className="content-container flex-grow-1"
             style={{
@@ -121,23 +83,35 @@ const Child = () => {
               padding: "20px",
             }}
           >
-            <h4>Child</h4>
+            <h4 className="text-chinese-black-color">Child</h4>
 
             {loading ? (
               <p>Loading...</p>
-            ) : animals?.length > 0 ? (
+            ) : filteredAnimals?.length > 0 ? (
               <div className="row">
-                {animals.map((animal, index) => (
-                  <div key={index} className="col-lg-3 px-3 pt-4">
+                {filteredAnimals.map((animal, index) => (
+                  <div key={index} className="col-lg-3 col-md-6 px-3 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
-                      name={animal.parentId}
+                      parentId={animal.parentId}
+                      _id={animal._id}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
+                      ageMonth={animal.ageMonth}
+                      bodyScore={animal.bodyScore}
                       weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
                       kidId={animal.kidId}
+                      postweight={animal.postWeight?.length > 0 ? animal.postWeight?.length : "No Post Weight"}
+                      milk={animal.milk?.length > 0 ? animal.milk?.length : "No Milk"}
+                      vaccine={animal.vaccine?.length > 0 ? animal.vaccine?.length : "No Vaccine"}
+                      deworm={animal.deworm?.length > 0 ? animal.deworm?.length : "No Deworm"}
+                      estrusHeat={animal.estrusHeat?.length > 0 ? animal.estrusHeat.length : "No Estrus Heat"}
+                      farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length :"No Farm Sanitation"}
+                      // onDelete={() => handleDeleteAnimal(animal.uniqueId)}
+                      // onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
+
                     />
                   </div>
                 ))}
