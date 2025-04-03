@@ -28,6 +28,7 @@ import { ToastContainer } from "react-toastify";
 import { CartProvider } from "./component/common/Context/index";
 import AddChild from "./component/page/addchild/index"
 import ChildEditBasicDetailForm from "./component/page/ChildEditBasicDetailForm/ChildEditBasicDetailForm"
+import Blogs from "./component/page/Blogs/blogs";
 
 
 const App = () => {
@@ -51,6 +52,8 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/addChild" element={<AddChild />} />
+          <Route path="/blog" element={<Blogs />} />
+
 
 
           {/* FarmData */}

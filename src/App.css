@@ -866,6 +866,9 @@ body {
     font-weight: 400;
     line-height: 21px;
   }
+  .main-blog-img{
+    width: 100% !important;
+  }
 }
 
 /* <--------- About End ---------> */
@@ -878,7 +881,7 @@ body {
 }
 
 .certified-heading {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   color: #000000;
 }
@@ -2337,6 +2340,11 @@ body {
   font-weight: 400;
 }
 
+.font-size-10{
+  font-size: 10px;
+  font-weight: 400;
+
+}
 .font-size-14 {
   font-size: 14px;
   font-weight: 400;
@@ -2527,4 +2535,15 @@ input[type="radio"] {
   border-color: #FB9038;
   background-color: #FB9038 !important;
   color: #ffffff !important;
+}
+
+/* Blogs Css */
+.main-blog-img{
+  width: 543px;
+  height: 463px;
+}
+
+.blog-mini-img{
+  width: 199px;
+  height: 183px;
 }

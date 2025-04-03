@@ -35,7 +35,7 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-      // style={{ backgroundColor: "#DDF0F8" }}
+    // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-5">
         <a className="navbar-brand" href="/#">
@@ -57,9 +57,8 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${
-            isNavbarOpen ? "custom-collapse-show" : ""
-          }`}
+          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
+            }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -75,18 +74,16 @@ const Mainnav = () => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${
-                  activeLink === "Products" ? "active" : ""
-                }`}
+                className={`nav-link ${activeLink === "Products" ? "active" : ""
+                  }`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
                 Products
               </a>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isProductsOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -163,18 +160,16 @@ const Mainnav = () => {
             )} */}
             <li className="nav-item">
               <div
-                className={`nav-link ${
-                  activeLink === "Services" ? "active" : ""
-                }`}
+                className={`nav-link ${activeLink === "Services" ? "active" : ""
+                  }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isServicesOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -222,20 +217,21 @@ const Mainnav = () => {
                 </div>
               </div>
             </li>
-            <li className="nav-item">
-              <a
-                className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
-                onClick={() => handleLinkClick("Blogs")}
-              >
-                Blogs
-              </a>
-            </li>
+            <NavLink to={"/blog"} className={"text-decoration-none"}>
+              <li className="nav-item">
+                <div
+                  className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
+                  onClick={() => handleLinkClick("Blogs")}
+                >
+                  Blogs
+                </div>
+              </li>
+            </NavLink>
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${
-                    activeLink === "Contact Us" ? "active" : ""
-                  }`}
+                  className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
