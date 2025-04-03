@@ -19,6 +19,8 @@ import { FaLinkedin, FaYoutube, FaSquareFacebook } from 'react-icons/fa6';
 import Mail from "../../assets/img/Login/mail.png";
 import Call from "../../assets/img/Login/call.png";
 import Location from "../../assets/img/Login/location.png";
+import { NavLink } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
 const ContactUs = () => {
     const {
@@ -27,44 +29,44 @@ const ContactUs = () => {
         formState: { errors },
     } = useForm();
 
-     // API endpoint
+    // API endpoint
 
-  const endpoint = "/user/contactus";
+    const endpoint = "/user/contactus";
 
     const onSubmit = async (data) => {
         console.log("Data:", data);
-    try {
-          const response = await postData(endpoint, data);
-        
-          // store data in session for  later use
-          toast.success(response.data.message, {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-          });
+        try {
+            const response = await postData(endpoint, data);
+
+            // store data in session for  later use
+            toast.success(response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         } catch (error) {
-          toast.error(error?.message , {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-          });
+            toast.error(error?.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
-      };
+    };
     return (
         <>
-        {/* Navbar */}
+            {/* Navbar */}
             <Navbar />
 
             {/* Main Section */}
@@ -72,10 +74,18 @@ const ContactUs = () => {
                 <div className="contact-us-bg-img p-lg-5 p-4">
                     <div>
                         <div className="social-icons text-color-orange mb-5 mb-lg-0">
-                            <FaSquareFacebook className="me-lg-5 me-4 fs-3" />
-                            <AiFillInstagram className="me-lg-5 me-4 fs-3" />
-                            <FaYoutube className="me-lg-5 me-4 fs-3" />
-                            <FaLinkedin className="me-lg-5 me- fs-3" />
+                            <a href='https://www.facebook.com/RumenoFarmotech/' className='text-color-orange'>
+                                <FaSquareFacebook className="me-lg-5 me-4 fs-3" />
+                            </a>
+                            <a href={"https://www.instagram.com/rumenofarmotech/"} className='text-color-orange'>
+                                <AiFillInstagram className="me-lg-5 me-4 fs-3" />
+                            </a>
+                            <a href='https://www.youtube.com/@RumenoFarmotech-bg5y' className='text-color-orange'>
+                                <FaYoutube className="me-lg-5 me-4 fs-3" />
+                            </a>
+                            <a href='/#' className='text-color-orange'>
+                                <FaLinkedin className="me-lg-5 me- fs-3" />
+                            </a>
                         </div>
                     </div>
                     <div className="row g-2">
@@ -95,7 +105,10 @@ const ContactUs = () => {
                                     <div className='fotn-size-16 pt-1'>598 Lala mahaveer Prasad Rd, Sadar bazar,
                                         Lucknow, Uttar pradesh, 226002</div>
                                 </div>
+                                <NavLink to={'https://www.google.com/maps/place/Rumeno+%7C+Animal+feed+supplement+manufacturer+%26+goat+farming+consultant/@26.827793,80.946912,15z/data=!4m6!3m5!1s0x399bfcf919137107:0xaafc9fdde5fc4bdc!8m2!3d26.8277929!4d80.9469123!16s%2Fg%2F11v0z5t4q1?hl=en&entry=ttu&g_ep=EgoyMDI1MDMzMS4wIKXMDSoASAFQAw%3D%3D'}>
+
                                 <button className='border-0 rounded-3 bg-orange-color py-3 px-5 text-white mt-4 mb-4 mb-lg-0'>View Us On Map</button>
+                                </NavLink>
                             </div>
                         </div>
 
@@ -115,7 +128,7 @@ const ContactUs = () => {
                                     <div className="mb-3 d-flex flex-column col-lg-12">
                                         <label className="form-label font-size-12">E-mail</label>
                                         <input type="email" className="service-form-input font-size-14" placeholder="Your E-mail"
-                                            {...register("email", {required: "Email is required" })}
+                                            {...register("email", { required: "Email is required" })}
                                         />
                                         {errors.email && <p className="text-danger">{errors.email.message}</p>}
                                     </div>
@@ -123,7 +136,7 @@ const ContactUs = () => {
                                     <div className="mb-4 d-flex flex-column col-lg-12">
                                         <label className="form-label font-size-12">Message</label>
                                         <input type="text" className="service-form-input font-size-14" placeholder="Enter Message"
-                                            {...register("message" , {required: "Message is required" })}
+                                            {...register("message", { required: "Message is required" })}
                                         />
                                         {errors.message && <p className="text-danger">{errors.message.message}</p>}
                                     </div>

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
+  console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
   console.log("Hello");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
@@ -22,6 +23,7 @@ const Parent = () => {
         const response = await getData(endpoint);
         console.log("response: ", response);
         setAnimals(response.data);
+        console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
         toast.error(
           error.message || "Error fetching animal data. Please try again."

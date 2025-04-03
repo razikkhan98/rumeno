@@ -48,11 +48,11 @@ const About = () => {
             <div className="col-lg-12">
               <div className="row gap-3">
                 <div className="col-lg-7 py-5">
-                  <div className="about-content py-5">
+                  <div className="about-content py-4">
                     <p className="text-uppercase about-heading">
                       About Rumeno Farmotech
                     </p>
-                    <p className="about-para py-3">
+                    <p className="about-para py-1">
                       Rumeno Farmotech is a nutrition and feed supplement
                       technologies company <br /> Rumeno Farmotech offers a wide
                       range of products, including Probiotics, milk replacer,
@@ -64,15 +64,23 @@ const About = () => {
                       and producers, such as improving growth rates, enhancing
                       immune function, increasing feed efficiency, and reducing
                       environmental impact.
+                      <br />
+                      The company's team of experts includes veterinarians, nutritionists, and other professionals with extensive experience in
+                      animal nutrition and health. They work closely with customers to understand their specific needs and develop customized
+                      solutions that meet their goals and objectives.Rumeno Farmotech also places a strong emphasis on quality and sustainability.
+                      All products are manufactured using the highest quality ingredients and are rigorously tested to ensure safety and efficacy.
+                      The company is committed to minimizing its environmental impact by utilizing sustainable production methods and reducing waste.
+                      Rumeno Farmotech is a trusted partner for farmers and producers seeking high-quality nutrition and feed supplement technologies
+                      to improve animal health, welfare, and productivity.
                     </p>
-                    <div className="about-btn">
+                    {/* <div className="about-btn">
                       <button>Know More</button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-6 m-auto px-0">
                   <div className="about-img m-auto">
-                    <img src={Image1} alt="" />
+                    <img src={Image1} alt="Loading" />
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-6 m-auto px-0">

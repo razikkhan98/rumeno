@@ -163,7 +163,7 @@ const Footer = () => {
                         size={28}
                       />
                     </a>
-                  </li>
+                  </li   >
 
                   <li className="list-unstyled text-decoration-none">
                     <a
