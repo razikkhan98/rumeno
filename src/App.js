@@ -27,6 +27,7 @@ import ErrorPage from "./component/page/Error/error";
 import { ToastContainer } from "react-toastify";
 import { CartProvider } from "./component/common/Context/index";
 import AddChild from "./component/page/addchild/index"
+import ChildEditBasicDetailForm from "./component/page/ChildEditBasicDetailForm/ChildEditBasicDetailForm"
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/parentform" element={<Basic />} />
           <Route path="/record/:name/:uniqueId" element={<Record />} />
           <Route path="/record/:name/:kidId/:uniqueId" element={<Record />} />
+          <Route path="/childform/:uniqueId/:kidId/:parentId" element={<ChildEditBasicDetailForm />} />
 
         </Routes>
       </CartProvider>
