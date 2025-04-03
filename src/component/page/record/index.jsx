@@ -3,7 +3,12 @@ import { useForm } from "react-hook-form";
 import { Form, Button, Card, Tab, Tabs } from "react-bootstrap";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
-import { getData, postData } from "../../common/APIs/api";
+import {
+  getData,
+  postData,
+  deleteData,
+  updateData,
+} from "../../common/APIs/api";
 import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnimalCard from "../../common/animalCard";
@@ -16,6 +21,26 @@ const Record = () => {
     Deworm: "/user/animal/dewormdata/add",
     EstrusHeat: "/user/animal/estrusdata/add",
     FarmSanitation: "/user/animal/sanitationdata/add",
+    Child: "/user/animaldata/child",
+  };
+
+  const API_UPDATEENDPOINTS = {
+    PostWean: "/user/animal/postweandata/update",
+    Milk: "/user/animal/milkdata/update",
+    Vaccine: "/user/animal/vaccinedata/update",
+    Deworm: "/user/animal/dewormdata/update",
+    EstrusHeat: "/user/animal/estrusdata/update",
+    FarmSanitation: "/user/animal/sanitationdata/update",
+    Child: "/user/animaldata/child",
+  };
+
+  const API_DELETEENDPOINTS = {
+    PostWean: "/user/animal/postweandata/delete",
+    Milk: "/user/animal/milkdata/delete",
+    Vaccine: "/user/animal/vaccinedata/delete",
+    Deworm: "/user/animal/dewormdata/delete",
+    EstrusHeat: "/user/animal/estrusdata/delete",
+    FarmSanitation: "/user/animal/sanitationdata/delete",
     Child: "/user/animaldata/child",
   };
 
@@ -314,11 +339,17 @@ const Record = () => {
   };
 
   const [activeTab, setActiveTab] = useState("PostWean");
+  const [animals, setAnimals] = useState([]);
+  // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const [InputPreFillData, setInputPreFillData] = useState(null);
   const [editActive, setEditActive] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [submittedData, setSubmittedData] = useState([]); // To store submitted data
+  // console.log("submittedData: ", submittedData);
+  // const [editIndex, setEditIndex] = useState(null);
 
   const navigate = useNavigate();
   const {
@@ -335,31 +366,57 @@ const Record = () => {
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
 
+  const fetchAnimals = async () => {
+    try {
+      const response = await getData("/user/animaldata/parent/getAll");
+      setAnimals(response.data || []);
+      // setPostWean(response.data || []);
+    } catch (error) {
+      toast.error("Error fetching animal data.");
+    }
+  };
+
+  // child
+  const fetchChildren = async () => {
+    try {
+      const response = await getData("/user/animaldata/child/getAll");
+      setChildren(response.data || []);
+    } catch (error) {
+      toast.error("Error fetching child data.");
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchAnimals = async () => {
-      try {
-        const response = await getData("/user/animaldata/parent/getAll");
-        console.log('response: ', response);
-      } catch (error) {
-        toast.error("Error fetching animal data.");
-      }
-    };
-
-    // child
-    const fetchChildren = async () => {
-      try {
-        const response = await getData("/user/animaldata/child/getAll");
-        setChildren(response.data || []);
-      } catch (error) {
-        toast.error("Error fetching child data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchAnimals();
     fetchChildren();
   }, []);
+
+  // const filteredPostWean = Array.isArray(animals)
+  //   ? animals.postWean.filter((postWean) => postWean.uniqueId === uniqueId)
+  //   : [];
+
+  //   console.log(filteredPostWean,"postWean")
+
+  // // Map through filtered data
+  // const postWeanData = filteredPostWean?.map((postWean) => ({
+  //   id: postWean.uniqueId,
+  //   weight: postWean.weightKg,
+  //   bodyScore: postWean.bodyScore,
+  //   weanDate: postWean.weanDate,
+  //   comment: postWean.weanComment,
+  // }));
+
+  // console.log("postWeanData: ", postWeanData.id);
+
+  useEffect(() => {
+    const weanData = animals.flatMap((i) =>
+      activeTab == "PostWean" ? i.postWean : i.milk
+    );
+    console.log("weanData: ", weanData);
+
+    setSubmittedData(weanData);
+  }, [animals, activeTab]);
 
   const filteredChildren = children.filter(
     (child) => child?.parentId === parentId
@@ -398,19 +455,65 @@ const Record = () => {
     } catch (error) {
       toast.error(error?.message || "Submission failed.");
     }
+
+    setSubmittedData(formData);
+    setShowForm(false);
+    fetchAnimals();
   };
 
+  // ====================================================
 
 
-  const handleEdit = () => {
-    setEditActive(true);
+  //  APi Edit Form Data Function
+  const handleUpdateApi = async (index) => {
+    // setEditIndex(index);
+    // reset(submittedData[index]); // Set form data for editing
+    console.log("submittedData[index]: ", submittedData[index]);
+    // setIsActive(true);
+
+    // Call Update Api
+    const apiUrl = API_UPDATEENDPOINTS[activeTab];
+    try {
+      const response = await updateData(
+        apiUrl,
+        submittedData[index].postWeanId,
+        submittedData[index]
+      );
+      if (response.status === 200 || response.status === 201) {
+        toast.success(response.data.message, {
+          autoClose: 3000,
+          transition: Bounce,
+        });
+      } else {
+        throw new Error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.message || "Submission failed.");
+    }
   };
 
-  const handleDelete = () => {
-    localStorage.removeItem("userForm");
-    setInputPreFillData(null);
-    reset();
-    setEditActive(false);
+  //  APi Delete Form Data Function
+
+  const handleDeleteApi = async (index) => {
+    // Call Delete Api
+    const apiUrl = API_DELETEENDPOINTS[activeTab];
+    try {
+      const response = await deleteData(
+        apiUrl,
+        submittedData[index].postWeanId
+      );
+      console.log("responseupdate: ", response);
+      if (response.status === 200 || response.status === 201) {
+        toast.success(response.data.message, {
+          autoClose: 3000,
+          transition: Bounce,
+        });
+      } else {
+        throw new Error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error?.message || "Submission failed.");
+    }
   };
 
   return (
@@ -428,16 +531,6 @@ const Record = () => {
                 onSelect={(k) => setActiveTab(k)}
                 className="mb-4"
               >
-                {/* {Object?.keys(API_ENDPOINTS).map((tab) => (
-                  <Tab
-                    key={tab}
-                    eventKey={tab}
-                    title={tab?.replace(/([A-Z])/g, " $1")}
-                  />
-                ))} */}
-
-                
-
                 {Object.keys(API_ENDPOINTS).map((tab) =>
                   kidId !== undefined && tab === "Child" ? null : (
                     <Tab
@@ -447,8 +540,6 @@ const Record = () => {
                     />
                   )
                 )}
-
-                {/* <Tab eventKey="child" title="Child" /> */}
               </Tabs>
 
               {kidId === undefined && activeTab === "Child" && (
@@ -502,6 +593,9 @@ const Record = () => {
                                         {...register(field.name, {
                                           required: field.required,
                                         })}
+                                        disabled={
+                                          !editActive && InputPreFillData
+                                        }
                                         name={field.name} // Radio ke liye name zaroori hai
                                       />
                                     ))}
@@ -512,6 +606,7 @@ const Record = () => {
                                     {...register(field.name, {
                                       required: field.required,
                                     })}
+                                    disabled={!editActive && InputPreFillData}
                                   >
                                     <option value="">Select an option</option>{" "}
                                     {/* Placeholder */}
@@ -528,6 +623,7 @@ const Record = () => {
                                     {...register(field.name, {
                                       required: field.required,
                                     })}
+                                    disabled={!editActive && InputPreFillData}
                                   />
                                 )}
 
@@ -540,10 +636,29 @@ const Record = () => {
                             </div>
                           ))}
                         </div>
-                        <Button type="submit" className="record-btn">
+                        <Button
+                          type="submit"
+                          className="record-btn"
+                          disabled={editActive ? !isDirty : !!InputPreFillData}
+                        >
                           Submit
                         </Button>
-                       
+                        <Button
+                          type="submit"
+                          className="btn-success px-4 mx-2"
+                          onClick={handleUpdateApi}
+                          disabled={!InputPreFillData || editActive}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          type="submit"
+                          className="btn-danger px-4"
+                          onClick={handleDeleteApi}
+                          disabled={!InputPreFillData}
+                        >
+                          Delet
+                        </Button>
                       </Form>
                     </>
                   ) : (
@@ -574,10 +689,14 @@ const Record = () => {
                     </p>
 
                     <button
-                      className="btn text-white px-4 border rounded-pill me-5"
+                      className="btn text-white px-4 border rounded-pill me-5 mb-2"
                       style={{
                         background:
                           "linear-gradient(to right, #60A5FA, #EC4899)",
+                      }}
+                      onClick={() => {
+                        setShowForm(!showForm);
+                        reset();
                       }}
                     >
                       {" "}
@@ -585,7 +704,10 @@ const Record = () => {
                     </button>
                   </div>
 
-                  <Form onSubmit={handleSubmit(onSubmit)}>
+                  <Form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className={showForm ? "d-block" : "d-none"}
+                  >
                     <div className="row mb-4">
                       <div className="col-lg-3 pb-3">
                         <Form.Group>
@@ -627,7 +749,7 @@ const Record = () => {
                     <Button
                       type="submit"
                       className="btn-success px-4 mx-2"
-                      onClick={handleEdit}
+                      onClick={handleUpdateApi}
                       disabled={!InputPreFillData || editActive}
                     >
                       Edit
@@ -635,12 +757,89 @@ const Record = () => {
                     <Button
                       type="submit"
                       className="btn-danger px-4"
-                      onClick={handleDelete}
+                      onClick={handleDeleteApi}
                       disabled={!InputPreFillData}
                     >
-                      Delet
+                      Delete
                     </Button>
                   </Form>
+
+                  {/* ============================= */}
+                  <div className="mt-4">
+                    {submittedData.length > 0 ? (
+                      submittedData.map((data, index) => (
+                        <div>
+                          <h4>Submitted Data</h4>
+                          <Form key={index} className="my-3">
+                            {/* Existing Form Structure for Showing Data */}
+                            <div className="row mb-4">
+                              <div className="col-lg-3 pb-3">
+                                <Form.Group>
+                                  <Form.Label>Unique ID</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    value={
+                                      kidId === undefined ? parentId : kidId
+                                    }
+                                    readOnly
+                                  />
+                                </Form.Group>
+                              </div>
+                              {fieldConfigs[activeTab]?.map(
+                                (field, fieldIndex) => (
+                                  <div
+                                    key={fieldIndex}
+                                    className="col-lg-3 pb-3"
+                                  >
+                                    <Form.Group>
+                                      <Form.Label>{field.label}</Form.Label>
+                                      <Form.Control
+                                        type={field.type}
+                                        defaultValue={data[field.name]} // Pre-fill the input with existing data
+                                        onChange={(e) => {
+                                          const newValue = e.target.value;
+                                          console.log(
+                                            `Field: ${field.name}, New Value: ${newValue}`
+                                          );
+
+                                          // Optional: You can also update the submittedData here if needed.
+                                          const updatedData = [
+                                            ...submittedData,
+                                          ];
+                                          updatedData[index] = {
+                                            ...data,
+                                            [field.name]: newValue,
+                                          };
+                                          setSubmittedData(updatedData); // Uncomment if you want to keep track of input changes
+                                        }}
+                                      />
+                                    </Form.Group>
+                                  </div>
+                                )
+                              )}
+                            </div>
+                            <Button
+                              type="button"
+                              className="btn-success px-4"
+                              onClick={() => handleUpdateApi(index)}
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              type="button"
+                              className="btn-danger mx-2"
+                              onClick={() => handleDeleteApi(index)}
+                            >
+                              Delete
+                            </Button>
+                            {/* <Button type="button" variant="success" onClick={() => handleUpdateButtonClick(index)}>Update</Button> */}
+                          </Form>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No Data Found .....</p>
+                    )}
+                  </div>
                 </>
               )}
             </Card.Body>

@@ -81,9 +81,9 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
-    totalAnimals: 0,
-    totalParents: 0,
-    totalChildren: 0,
+    TotalAnimals: 0,
+    TotalParents: 0,
+    TotalChildren: 0,
     VaccineCount: 0,
     PostWeanCount: 0,
     MilkCount: 0,
@@ -91,9 +91,12 @@ const Dashboard = () => {
     DewormCount: 0,
     SanitationCount: 0,
   });
+
+  
   const [selectedCard, setSelectedCard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [data, setdata] = useState([]);
 
   useEffect(() => {
     // Get UID and animalName from sessionStorage
@@ -115,6 +118,8 @@ const Dashboard = () => {
           }
         );
         setStats(response.data);
+        setdata(response.data)
+
       } catch (err) {
         setError("Error fetching data");
       } finally {
@@ -126,9 +131,9 @@ const Dashboard = () => {
   }, []);
 
   const cardData = [
-    { title: "Total Animals", value: stats.totalAnimals },
-    { title: "Total Parents", value: stats.totalParents },
-    { title: "Total Children", value: stats.totalChildren },
+    { title: "Total Animals", value: stats.TotalAnimals },
+    { title: "Total Parents", value: stats.TotalParents },
+    { title: "Total Children", value: stats.TotalChildren },
     {
       title: "Vaccines",
       value: stats.VaccineCount,
@@ -152,6 +157,10 @@ const Dashboard = () => {
       details: stats.SanitationData,
     },
   ];
+
+
+console.log(cardData)
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;

@@ -15,13 +15,13 @@ const DashboardTable = ({ data }) => {
                     #
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    Uid
+                    UniqueId
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Parent
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    Handle
+                    Status
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Action
@@ -29,8 +29,7 @@ const DashboardTable = ({ data }) => {
                 </tr>
               </thead>
               <tbody>
-                <h6>Parents:</h6>
-                {data?.parents?.map((parent, index) => (
+                {data?.map((parent, index) => (
                   <tr
                     key={index}
                     className={`row-border row-shadow ${
@@ -40,27 +39,35 @@ const DashboardTable = ({ data }) => {
                     <th scope="row">{index + 1}</th>
                     <td>{parent.uniqueId}</td>
                     <td>{parent.parentId}</td>
-                    {/* <td>{parent.handle}</td> */}
                     <td>
-                      <button className="dashboard-table-btn">Add</button>
+                      <span
+                        style={{
+                          backgroundColor:
+                            parent.status.toLowerCase() === "completed"
+                              ? "lightgreen"
+                              : parent.status.toLowerCase() === "pending"
+                              ? "lightcoral"
+                              : "lightgray",
+                          color: "white", // Ensures text is visible on all backgrounds
+                          textAlign: "center", // Centers the text
+                          borderRadius: "8px", // Optional: Adds rounded corners
+                          padding: "5px 10px", // Adjusts spacing inside the cell
+                        }}
+                      >
+                        {parent.status}
+                      </span>
                     </td>
-                  </tr>
-                ))}
 
-                <h6>Children:</h6>
-                {data?.children?.map((child, index) => (
-                  <tr
-                    key={index}
-                    className={`row-border row-shadow ${
-                      index % 2 === 0 ? "table-info" : "table-secondary"
-                    }`}
-                  >
-                    <th scope="row">{index + 1}</th>
-                    <td>{child.uniqueId}</td>
-                    <td>{child.parentId}</td>
-                    <td>{child.kidId}</td>
                     <td>
-                      <button className="dashboard-table-btn">Add</button>
+                      <button
+                        className="dashboard-table-btn"
+                        disabled={
+                          // Enable the button only if status is 'completed'
+                          parent.status.toLowerCase() !== "completed"
+                        }
+                      >
+                        Add
+                      </button>
                     </td>
                   </tr>
                 ))}

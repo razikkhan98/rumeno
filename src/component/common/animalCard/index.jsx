@@ -146,8 +146,7 @@ const AnimalCard = ({
     try {
       const response = await postData(`/user/animaldata/child/${_id}`); // No need to send kidId in body
   
-      console.log("response: ", response.data);
-      if (response?.data?.success) {
+      if (response?.data?.success ===  200) {
         toast.success("Child Converted To Parent Successfully.");
       }
     } catch (error) {
