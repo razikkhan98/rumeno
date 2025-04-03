@@ -809,7 +809,7 @@ body {
 }
 
 .about-para {
-  width: 520px;
+  /* width: 520px; */
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -2386,7 +2386,7 @@ input[type='radio'] {
   margin: 5px;
   /* border: 1px solid #ced4da; */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 /* ----------------------- Conatact Us Css ---------------------- */
