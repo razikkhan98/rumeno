@@ -24,6 +24,7 @@ const cards = [
       "lorem More than half of Nifty 50 stocks in the green. 7 Nifty sectors ended in the bank and financial service gaining the most",
   },
   {
+    to: "/blog",
     title: "Blogs",
     content:
       "Ever heard about Mutual Rescue? It's an innovative concept that proves when we extend our hearts to rescue animals, they rescue us right back! It's deeply rooted in the symbiotic relationship between humans and animals—a relationship that is incredibly heartwarming...",
