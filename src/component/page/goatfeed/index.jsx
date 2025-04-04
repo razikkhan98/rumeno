@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Goat from "../../assets/img/goatfeed/goatfeed.png";
-import Sheep from "../../assets/img/goatfeed/sheepimg.png";
-import Dog from "../../assets/img/goatfeed/dog2.jpg";
+import Cattle from "../../assets/img/goatfeed/cattle-imgg.jpg";
+import Dog from "../../assets/img/goatfeed/dog.jpg";
 import Cow from "../../assets/img/goatfeed/cowimg.png";
 import Fish from "../../assets/img/goatfeed/FISH1.webp";
-import Pigeon from "../../assets/img/goatfeed/pigeon1.jpg";
+import Pigeon from "../../assets/img/goatfeed/pigeon.jpg";
 const feeddata = [
   {
     // id: "#1",
@@ -38,7 +38,7 @@ const feeddata = [
   },
 ];
 
-const images = [Goat, Sheep, Dog, Cow, Fish, Pigeon];
+const images = [Goat, Cattle, Dog, Cow, Fish, Pigeon];
 
 const Goatfeed = () => {
   const [activeIndex, setActiveIndex] = useState(0);

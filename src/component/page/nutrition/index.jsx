@@ -167,22 +167,22 @@ const Nutrition = () => {
       img: Image1,
     },
     {
-      para: "Chart a may still have nutritional gaps even with the best feeding procedures. By supplying vital vitamins, minerals, amino acids, and other elements that may be absent from their regular diet, feed supplements fill up these nutritional gaps.",
+      para: "Animal growth and development depend heavily on appropriate nutrition. Particular nutrients are needed by young animals in particular to develop healthy bones, muscles, and immune systems. Supplements guarantee that kids get the essential building blocks for development that is healthy.",
       title: "Growth And Development",
       img: Image2,
     },
     {
-      para: "Energy may still have nutritional gaps even with the best feeding procedures. By supplying vital vitamins, minerals, amino acids, and other elements that may be absent from their regular diet, feed supplements fill up these nutritional gaps.",
+      para: "The health of livestock has a direct impact on their output. Animals that are fed well yield more milk, lay more eggs, produce more meat, and produce wool of higher quality. The use of supplements is essential to reaching peak productivity.",
       title: "Increasing Output",
       img: Image3,
     },
     {
-      para: "Secures may still have nutritional gaps even with the best feeding procedures. By supplying vital vitamins, minerals, amino acids, and other elements that may be absent from their regular diet, feed supplements fill up these nutritional gaps.",
+      para: "Being resistant to disease requires a strong immune system. Probiotics and immune boosters are two examples of feed supplements that improve immunity and lower infection risk.",
       title: "Health And Immunity",
       img: Image4,
     },
     {
-      para: "Flowers may still have nutritional gaps even with the best feeding procedures. By supplying vital vitamins, minerals, amino acids, and other elements that may be absent from their regular diet, feed supplements fill up these nutritional gaps.",
+      para: "A variety of factors, including as shifting environmental conditions, travel, and reproduction, can cause stress in animals. Their general health may be impacted by stress. Antioxidants and adaptogens found in supplements support wellbeing and stress management.",
       title: "Stress Management",
       img: Image5,
     },

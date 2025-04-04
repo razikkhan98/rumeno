@@ -26,9 +26,10 @@ import ContactUs from "./component/page/ContactUs/contactus";
 import ErrorPage from "./component/page/Error/error";
 import { ToastContainer } from "react-toastify";
 import { CartProvider } from "./component/common/Context/index";
-import AddChild from "./component/page/addchild/index"
-import ChildEditBasicDetailForm from "./component/page/ChildEditBasicDetailForm/ChildEditBasicDetailForm"
+import AddChild from "./component/page/addchild/index";
+import ChildEditBasicDetailForm from "./component/page/ChildEditBasicDetailForm/ChildEditBasicDetailForm";
 import Blogs from "./component/page/Blogs/blogs";
+import ProTraining from "./component/page/goattraining/proTraining";
 
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/products" element={<Products />} />
           <Route path="/training" element={<Training />} />
+          <Route path="/protraining" element={<ProTraining />} />
           <Route path="/productDetails/:id" element={<Addtocart />} />
           <Route path="/service" element={<VeterinaryService />} />
           <Route path="/dairyconsultant" element={<DairyConsultantService />} />
