@@ -43,12 +43,12 @@ const Home = () => {
                 className="col-lg-10 px-2 py-5 text-center video-content position-absolute top-50 start-50 translate-middle"
                 data-aos="fade-right"
               >
-                <h1 className="">
-                  <span className="text-white">
+                <p>
+                  <span className="text-white home-heading font-size-48">
                     SMART SOLUTIONS FOR SUSTAINABLE FARMING
                   </span>
-                </h1>
-                <p className=" h4 text-white">We Solve All Animals Problems</p>
+                </p>
+                <p className=" h4 text-white home-title">We Solve All Animals Problems</p>
               </div>
             </div>
             <Carousel

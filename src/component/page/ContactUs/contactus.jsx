@@ -12,7 +12,7 @@ import { postData } from "../../common/APIs/api";
 
 // Import React Icons
 import { AiFillInstagram } from 'react-icons/ai';
-import { FaLinkedin, FaYoutube, FaSquareFacebook } from 'react-icons/fa6';
+import { FaYoutube, FaSquareFacebook, FaWhatsapp } from 'react-icons/fa6';
 
 // images
 // import LoginImg from "../../../assets/img/Login/login-img.png";
@@ -21,6 +21,7 @@ import Call from "../../assets/img/Login/call.png";
 import Location from "../../assets/img/Login/location.png";
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
+import ReactWhatsapp from "react-whatsapp";
 
 const ContactUs = () => {
     const {
@@ -74,18 +75,33 @@ const ContactUs = () => {
                 <div className="contact-us-bg-img p-lg-5 p-4">
                     <div>
                         <div className="social-icons text-color-orange mb-5 mb-lg-0">
-                            <a href='https://www.facebook.com/RumenoFarmotech/' className='text-color-orange'>
+                            <a href='https://www.facebook.com/RumenoFarmotech/'
+                                rel="noreferrer"
+                                target="_blank"
+                                className='text-color-orange'>
                                 <FaSquareFacebook className="me-lg-5 me-4 fs-3" />
                             </a>
-                            <a href={"https://www.instagram.com/rumenofarmotech/"} className='text-color-orange'>
+                            <a href="https://www.instagram.com/rumenofarmotech/"
+                                rel="noreferrer"
+                                target="_blank"
+                                className='text-color-orange'>
                                 <AiFillInstagram className="me-lg-5 me-4 fs-3" />
                             </a>
-                            <a href='https://www.youtube.com/@RumenoFarmotech-bg5y' className='text-color-orange'>
+                            <a href='https://www.youtube.com/@RumenoFarmotech-bg5y'
+                                rel="noreferrer"
+                                target="_blank"
+                                className='text-color-orange'>
                                 <FaYoutube className="me-lg-5 me-4 fs-3" />
                             </a>
-                            <a href='/#' className='text-color-orange'>
-                                <FaLinkedin className="me-lg-5 me- fs-3" />
-                            </a>
+                            {/* <a href='/#' className='text-color-orange'> */}
+                            <ReactWhatsapp
+                                className="bg-transparent border-0 text-color-orange"
+                                number="+91 7355043892"
+                                message="Hello World"
+                            >
+                                <FaWhatsapp className="me-lg-5 me- fs-3" />
+                            </ReactWhatsapp>
+                            {/* </a> */}
                         </div>
                     </div>
                     <div className="row g-2">
@@ -100,15 +116,20 @@ const ContactUs = () => {
                                     <img src={Mail} className='contact-icon' alt="Loading" />
                                     <p className='fotn-size-16 pt-1'>rumeno.farmotech@gmail.com</p>
                                 </div>
-                                <div className='d-flex align-items-center font-md-size-12'>
+                                <div className='d-flex align-items-center font-md-size-12 mb-4'>
                                     <img src={Location} className='contact-icon' alt="Loading" />
                                     <div className='fotn-size-16 pt-1'>598 Lala mahaveer Prasad Rd, Sadar bazar,
                                         Lucknow, Uttar pradesh, 226002</div>
                                 </div>
-                                <NavLink to={'https://www.google.com/maps/place/Rumeno+%7C+Animal+feed+supplement+manufacturer+%26+goat+farming+consultant/@26.827793,80.946912,15z/data=!4m6!3m5!1s0x399bfcf919137107:0xaafc9fdde5fc4bdc!8m2!3d26.8277929!4d80.9469123!16s%2Fg%2F11v0z5t4q1?hl=en&entry=ttu&g_ep=EgoyMDI1MDMzMS4wIKXMDSoASAFQAw%3D%3D'}>
-
-                                <button className='border-0 rounded-3 bg-orange-color py-3 px-5 text-white mt-4 mb-4 mb-lg-0'>View Us On Map</button>
-                                </NavLink>
+                                <div>
+                                    <a href='https://www.google.com/maps/place/Rumeno+%7C+Animal+feed+supplement+manufacturer+%26+goat+farming+consultant/@26.827793,80.946912,15z/data=!4m6!3m5!1s0x399bfcf919137107:0xaafc9fdde5fc4bdc!8m2!3d26.8277929!4d80.9469123!16s%2Fg%2F11v0z5t4q1?hl=en&entry=ttu&g_ep=EgoyMDI1MDMzMS4wIKXMDSoASAFQAw%3D%3D'
+                                        rel="noreferrer"
+                                        target="_blank"
+                                        className='border-0 rounded-3 bg-orange-color text-decoration-none py-3 px-5 text-white mt-5 mb-4 mb-lg-0'
+                                    >
+                                        View Us On Map
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

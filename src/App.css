@@ -696,7 +696,7 @@ body {
 } */
 
 .trust-heading {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 500;
   color: var(--muted-gray-color);
 }
@@ -769,7 +769,7 @@ body {
 
 .trust-card-heading {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 24px;
   color: #000000;
 }
@@ -949,7 +949,7 @@ body {
 
 .goatfeet-head {
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--muted-gray-color);
 }
 
@@ -1516,8 +1516,8 @@ body {
 }
 
 .products-img-top img {
-  width: 100%;
-  height: 100%;
+  width: 294px;
+  height: 327px;
 }
 
 .product-counter {
@@ -2364,6 +2364,10 @@ body {
   font-size: 32px;
   font-weight: 500;
 }
+.font-size-48{
+  font-size: 48px;
+  font-weight: 600;
+}
 
 .business {
   background-color: var(--light-sky-blue-color);
@@ -2511,6 +2515,14 @@ input[type="radio"] {
   .team-img {
     margin-top: 0px;
   }
+  .home-heading{
+    font-size: 20px;
+    font-weight: 500;
+  }
+.home-title{
+  font-size: 16px;
+  font-weight: 400;
+}
 }
 
 .custom-dropdown-toggle {
