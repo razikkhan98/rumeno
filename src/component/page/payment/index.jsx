@@ -7,7 +7,6 @@ import Faq from "../faq/index";
 import Footer from "../../common/footer/index";
 import Flipcard from "../../common/footerFlipCard/footerCard";
 import { CartContext } from "../../common/Context";
-import axios from "axios";
 import { postData } from "../../common/APIs/api";
 import { Bounce, toast } from "react-toastify";
 import Header from "../../common/Header/header";
@@ -61,7 +60,6 @@ const Payment = () => {
       items: cart,
       uid: uid,
     };
-    console.log("Order Details:", orderDetails); // Debugging
 
     try {
       // const response = await axios.post("/api/orders", orderDetails);
@@ -93,7 +91,6 @@ const Payment = () => {
         });
       }
     } catch (error) {
-      console.error("Order error:", error);
 
       // Extract error message safely
       const errorMessage =
@@ -316,37 +313,3 @@ const Payment = () => {
 
 export default Payment;
 
-// import React from "react";
-// import { useForm } from "react-hook-form";
-
-// const MyForm = () => {
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm();
-
-//   const onSubmit = (data) => {
-//     console.log(data);
-//   };
-
-//   return (
-//     <div className="payment-form">
-//       <div className="container pt-lg-5">
-//         <div className="text-center">
-//           <p className="form-heading">Fill in Your Details</p>
-//           <p className="heading-description">
-//             Please provide accurate information to proceed with your request.
-//           </p>
-//         </div>
-//         <div className="row my-5 g-0 bg-white form-border">
-//           <div className="col-lg-5 p-4">
-
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MyForm;

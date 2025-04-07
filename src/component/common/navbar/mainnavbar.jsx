@@ -123,44 +123,7 @@ const Mainnav = () => {
                 </div>
               </div>
             </li>
-            {/* {isProductsOpen && (
-              <div
-                className="products-collapse shadow p-3 mt-2 w-100 rounded-bottom-5"
-                style={{ background: "#F4FAFD" }}
-              >
-                <div className="d-flex gap-5 ms-lg-5">
-                  <div>
-                    <p className="products-title text-start">
-                      VETERINARY PRODUCTS
-                    </p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>All Animal Supplements</li>
-                      <li>Goat Supplements</li>
-                      <li>Dog Supplements</li>
-                      <li>Buffalo Supplements</li>
-                      <li>Cattle Supplements</li>
-                      <li>Poultry Supplements</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="products-title text-start">
-                      OTHER CATEGORIES
-                    </p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>Farmhouse Equipments</li>
-                      <li>Human Consumable</li>
-                      <li>Crop Seeds</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="products-title">GOAT FOR SELL</p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>Lorem Ipsum</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )} */}
+
             <li className="nav-item">
               <div
                 className={`nav-link ${
@@ -247,15 +210,6 @@ const Mainnav = () => {
           {/* Action Buttons */}
 
           <div className="d-lg-flex align-items-center gap-4">
-            {/* {isLoggedIn && (
-              <div className="text-center farm-btn">
-                <NavLink to="/farmdata">
-                  <button className="btn rounded-pill text-white p-0">
-                    Smart Livestock Manager
-                  </button>
-                </NavLink>
-              </div>
-            )} */}
             {isLoggedIn ? (
               <>
                 {" "}
@@ -270,9 +224,7 @@ const Mainnav = () => {
             ) : (
               <div className="text-center farm-btn px-3">
                 <NavLink to="/login">
-                  <button className="btn rounded-pill text-white">
-                    Login
-                  </button>
+                  <button className="btn rounded-pill text-white">Login</button>
                 </NavLink>
               </div>
             )}
@@ -286,16 +238,6 @@ const Mainnav = () => {
                 style={{ height: "24px", width: "24px", color: "#FB9038" }}
               />
             </div>
-
-            {/* <div
-              className="cart-icon bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
-              style={{ height: "40px", width: "40px" }}
-            >
-              <PiShoppingCartSimpleFill
-                className="fs-5"
-                style={{ height: "24px", width: "24px", color: "#FB9038" }}
-              />
-            </div> */}
 
             <NavLink to="/cart">
               <div className="position-relative">

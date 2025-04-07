@@ -165,6 +165,10 @@ body {
   font-size: 16px !important;
   font-weight: 500 !important;
 }
+.font-18-500 {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
 .font-20-400 {
   font-size: 20px !important;
   font-weight: 400 !important;
@@ -179,6 +183,11 @@ body {
 }
 .font-24-500 {
   font-size: 24px !important;
+  font-weight: 500 !important;
+}
+
+.font-32-500 {
+  font-size: 32px !important;
   font-weight: 500 !important;
 }
 

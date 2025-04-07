@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
-import { postData } from "../../common/APIs/api";
+import { postData, getData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 
 const GoatDetailForm = () => {
@@ -12,47 +12,89 @@ const GoatDetailForm = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   // const { setparentId } = useContext(CartContext);
 
   const endpoint = "/user/animaldata/parent";
+
   const navigate = useNavigate();
+  const params = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const type = queryParams.get("type");
+  // const [currentIndex, setCurrentIndex] = useState(null);
+
+  const storedIndex = localStorage.getItem("currentIndex");
 
   const onSubmit = async (data) => {
     try {
-      const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
-      const animalName = sessionStorage.getItem("animalName"); // Retrieve animalName from sessionStorage
-      // Convert gender value to lowercase
+      const uid = sessionStorage.getItem("uid");
+      const animalName = sessionStorage.getItem("animalName");
 
-      const formData = {
-        ...data,
-        uid, // Add UID to the form data
-        animalName, // Add animalName to the form data
-      };
+      const formData = { ...data, uid, animalName };
 
-      const response = await postData(endpoint, formData);
+      // Determine API endpoint dynamically based on type
+      const endpoint =
+        type === "edit"
+          ? `/user/animaldata/parent/update` // Edit API
+          : "/user/animaldata/parent"; // Add API
+
+      // Call the appropriate API method
+      const response = await (type === "edit"
+        ? updateData(endpoint, data?.uniqueName, formData)
+        : postData(endpoint, formData));
 
       if (response.data.message === "success") {
-      //   const parentIds = response.data.data.parentId; // Expecting an array or a single ID
+        toast.success(
+          `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
+          {
+            position: "top-right",
+            autoClose: 3000,
+          }
+        );
 
-    
-        toast.success("Parent animal added successfully", {
-          position: "top-right",
-          autoClose: 3000, // Closes the toast after 3 seconds
-        });
-        setTimeout(() => navigate("/farmdata/parent"),100);
+        setTimeout(() => navigate("/farmdata/parent"), 100);
       }
 
-      reset(); // Reset form after successful submission
+      reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
       toast.error(error.message || "Something went wrong!", {
         position: "top-right",
         autoClose: 3000,
       });
     }
   };
+
+  const getAllendpoint = "/user/animaldata/parent/getAll";
+
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await getData(getAllendpoint);
+        if (response.data && response.data.length > 0) {
+          const animalData = response.data[storedIndex];
+          localStorage.removeItem("currentIndex");
+
+          setValue("uniqueName", animalData.uniqueId || "");
+          setValue("ageYear", animalData.ageYear || "");
+          setValue("ageMonth", animalData.ageMonth || "");
+          setValue("height", animalData.height || "");
+          setValue("purchaseDate", animalData.purchaseDate || "");
+          setValue("gender", animalData.gender || "");
+          setValue("weightKg", animalData.weightKg || "");
+          setValue("pregnancyDetails", animalData.pregnancyDetails || "");
+          setValue("maleDetail", animalData.maleDetail || "");
+          setValue("bodyScore", animalData.bodyScore || "");
+          setValue("comments", animalData.comments || "");
+        }
+      } catch (error) {
+        toast.error("Error fetching animal data. Please try again.");
+      }
+    };
+    fetchAnimals();
+  }, [setValue]); // Fetch only once on mount
 
   return (
     <>
@@ -63,7 +105,9 @@ const GoatDetailForm = () => {
             <Sidebar />
           </div>
           <div className="col-lg-10 px-4 py-3">
-            <p className="detail-head text-chinese-black-color mb-1">Basic Details</p>
+            <p className="detail-head text-chinese-black-color mb-1">
+              Basic Details
+            </p>
             <p className="detail-para mb-0">
               Fill basic details to add a parent
             </p>
@@ -136,7 +180,6 @@ const GoatDetailForm = () => {
                           className="form-check-input"
                           type="radio"
                           value={type}
-                         
                           {...register("gender", {
                             required: "Gender is required",
                           })}
@@ -226,7 +269,7 @@ const GoatDetailForm = () => {
                     fontWeight: "600",
                   }}
                 >
-                  Add Parent
+                  {type === "edit" ? "Edit Parent" : "Add Parent"}
                 </button>
               </div>
             </form>

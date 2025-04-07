@@ -45,7 +45,7 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 2,
@@ -53,8 +53,7 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 3,
@@ -62,8 +61,7 @@ const productItem = [
     image: Image1,
     price: 180.0,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 4,
@@ -71,8 +69,7 @@ const productItem = [
     image: Image2,
     price: 190.0,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 5,
@@ -167,8 +164,7 @@ const petProducts = [
 ];
 
 const Products = () => {
-  const { cart, addToCart } =
-    useContext(CartContext);
+  const { cart, addToCart } = useContext(CartContext);
 
   const navigate = useNavigate();
   const isAuthenticated = !!sessionStorage.getItem("token");
@@ -237,61 +233,24 @@ const Products = () => {
                 <div className="products-card">
                   <div className="products-img-top">
                     {/* <NavLink to={`/productDetails/${product.id}`}> */}
-                    <div  onClick={() =>
+                    <div
+                      onClick={() =>
                         navigate(`/productDetails/${product.id}`, {
                           state: { product },
                         })
-                      }>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      // onClick={() =>
-                      //   navigate(`/productDetails/${product.id}`, {
-                      //     state: { product },
-                      //   })
-                      // }
-                    />
-                    <div class="overlay">
-                      {/* {cart[product.id] ? (
+                      }
+                    >
+                      <img src={product.image} alt={product.name} />
+                      <div class="overlay">
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
                         >
-                          <div className="product-counter bg-light rounded d-flex align-items-center justify-content-between me-3 mb-3">
-                            <button
-                              className="btn product-quantity-btn btn-light btn-sm"
-                              onClick={() => decrementQuantity(product.id)}
-                            >
-                              -
-                            </button>
-                            <span
-                              className="bg-light px-2"
-                              style={{ color: "#EC7229" }}
-                            >
-                              {cart[product.id].quantity}
-                            </span>
-                            <button
-                              className="btn btn-light product-quantity-btn btn-sm"
-                              onClick={() => incrementQuantity(product.id)}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </NavLink>
-                      ) : ( */}
-                        <NavLink
-                          className="text-decoration-none"
-                          to={"/products"}
-                        >
-                          <button
-                            className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold"
-                            // onClick={() => handleAddToCart(product)}
-                          >
+                          <button className="product-add-btn btn-sm btn btn-light me-3 mb-3 fw-bold">
                             +
                           </button>
                         </NavLink>
-                      {/* )} */}
-                    </div>
+                      </div>
                     </div>
                     {/* </NavLink> */}
                   </div>
@@ -555,10 +514,6 @@ const Products = () => {
         <div className="container py-lg-5">
           <div className="row">
             <div className="col-lg-12">
-              {/* <p className="faq-heading text-center">
-                Frequently Asked Questions
-              </p>
-              <p className="faqsub-heading text-center">FAQ’s</p> */}
               <div className="accordion pt-lg-3" id="faqAccordion">
                 {faqs.map((faq, index) => (
                   <div className="accordion-item" key={index}>

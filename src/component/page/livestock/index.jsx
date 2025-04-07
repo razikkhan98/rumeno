@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Image1 from "../../assets/img/livestock/livestockimg.png";
 import { NavLink } from "react-router-dom";
 
 const Livestock = () => {
-  // const [selected, setSelected] = useState("goat");
-
   return (
     <>
       <div className="livestock-training py-5">
@@ -61,11 +59,10 @@ const Livestock = () => {
                       pm to 9:00 pm for your convenience so that you do not need
                       to loose your daily work. A practical program will be held
                       for 1 full working day from 10:00 am to... <br />
-                      <NavLink
-                        to="/training"
-                        className="text-decoration-none"
-                      >
-                        <button className="livestock-btn mt-2 px-2 py-1 bg-orange-color text-white-color border-0 rounded-2">Read more</button>
+                      <NavLink to="/training" className="text-decoration-none">
+                        <button className="livestock-btn mt-2 px-2 py-1 bg-orange-color text-white-color border-0 rounded-2">
+                          Read more
+                        </button>
                       </NavLink>
                     </p>
                   </div>

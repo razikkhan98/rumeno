@@ -9,18 +9,30 @@ const DashboardTable = ({ data }) => {
             <table className="table">
               <thead>
                 <tr className="heads">
-                  <th scope="col" className="text-chinese-black-color">#</th>
-                  <th scope="col" className="text-chinese-black-color">Uid</th>
-                  <th scope="col" className="text-chinese-black-color">Parent</th>
-                  <th scope="col" className="text-chinese-black-color">Handle</th>
-                  <th scope="col" className="text-chinese-black-color">Action</th>
+                  <th scope="col" className="text-chinese-black-color">
+                    #
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Uid
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Parent
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Handle
+                  </th>
+                  <th scope="col" className="text-chinese-black-color">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((item, index) => (
                   <tr
                     key={index}
-                    className={`row-border row-shadow ${index % 2 === 0 ? "table-info" : "table-secondary"}`}
+                    className={`row-border row-shadow ${
+                      index % 2 === 0 ? "table-info" : "table-secondary"
+                    }`}
                   >
                     <th scope="row">{index + 1}</th>
                     <td>{item.uid}</td>

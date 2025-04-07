@@ -26,8 +26,8 @@ const AnimalCard = ({
   uniqueId,
   kidId,
   onDelete,
+  currentIndex,
 }) => {
-  console.log("AnimalCard", kidId);
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -70,6 +70,10 @@ const AnimalCard = ({
     handleCloseDelete();
   };
 
+  const editForm = () => {
+    localStorage.setItem("currentIndex", currentIndex);
+  };
+
   return (
     <Card
       className="mb-3"
@@ -105,7 +109,10 @@ const AnimalCard = ({
         )}
 
         {/* Button to open modal */}
-        <div className="bg-light py-0 px-1 rounded-circle d-flex align-items-center">
+        <div
+          className="bg-light pb-1 rounded-circle d-flex align-items-center d-flex align-items-center justify-content-center"
+          style={{ width: "24px", height: "24px" }}
+        >
           <button onClick={handleShow} className="border-0 bg-transparent">
             <SlArrowRight
               className="fs-6 m-auto"
@@ -221,11 +228,12 @@ const AnimalCard = ({
         ))}
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
-        <NavLink to="/parentform" >
+        <NavLink to={`/parentform?type=edit`}>
           <Button
             variant="light"
             className="border px-2 py-1"
             style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+            onClick={() => editForm()}
           >
             <PiPencilSimple className="fs-3 text-primary" />
           </Button>

@@ -23,7 +23,6 @@ const Forgot = () => {
   const [isOtpVerified, setIsOtpVerified] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("Forgot Password Data:", data);
     if (!isOtpVerified) {
       // OTP Verification
       if (data.otp.length === 5) {
@@ -31,7 +30,6 @@ const Forgot = () => {
       }
     } else {
       // Password Change
-      console.log("New Password Set:", data);
       toast("Password changed successfully!");
     }
   };

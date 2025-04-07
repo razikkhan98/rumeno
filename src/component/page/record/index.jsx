@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Card, Tab, Tabs } from "react-bootstrap";
@@ -259,7 +257,13 @@ const Record = () => {
         name: "bodyscore",
         label: "Body Score",
         type: "select",
-        option:["1: Very slim body", "2: Skinnde body", "3: Slim body", "4: Mild fat body", "5: Fatty bulky body"],
+        option: [
+          "1: Very slim body",
+          "2: Skinnde body",
+          "3: Slim body",
+          "4: Mild fat body",
+          "5: Fatty bulky body",
+        ],
       },
       {
         name: "dobtype",
@@ -311,11 +315,10 @@ const Record = () => {
 
   const [activeTab, setActiveTab] = useState("postWean");
   const [animals, setAnimals] = useState([]);
+  console.log('animals: ', animals);
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isActive, setIsActive] = useState(false);
-
-
 
   const navigate = useNavigate();
   const {
@@ -326,12 +329,10 @@ const Record = () => {
   const location = useLocation();
   const parentId = location.state?.name;
   const uniqueId = location.state?.uniqueId;
-  const kidId = location.state?.kidId
+  const kidId = location.state?.kidId;
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
 
-
-  
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
@@ -341,7 +342,6 @@ const Record = () => {
         toast.error("Error fetching animal data.");
       }
     };
-
 
     // child
     const fetchChildren = async () => {
@@ -367,18 +367,14 @@ const Record = () => {
     const apiUrl = API_ENDPOINTS[activeTab];
 
     let formData = {}; // Declare once
-      
+
     if (kidId === undefined) {
-        // Parent
-        formData = { ...data, parentUniqueId: uniqueId, parentId , uid};
+      // Parent
+      formData = { ...data, parentUniqueId: uniqueId, parentId, uid };
     } else {
-        // Child
-        formData = { ...data, childUniqueId: uniqueId, parentId, uid };
-        console.log('formData: ', formData);
-        console.log(parentId,"parentId");
+      // Child
+      formData = { ...data, childUniqueId: uniqueId, parentId, uid };
     }
- 
-   
 
     try {
       const response = await postData(apiUrl, formData);
@@ -387,11 +383,9 @@ const Record = () => {
           autoClose: 3000,
           transition: Bounce,
         });
-        if(kidId === undefined) {
+        if (kidId === undefined) {
           setTimeout(() => navigate("/farmdata/parent"), 1000);
-        } 
-        else {
-
+        } else {
           setTimeout(() => navigate(`/farmdata/child`), 1000);
         }
       } else {
@@ -450,18 +444,17 @@ const Record = () => {
                       </p>
                       <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row mb-4">
-                          
-                            <div className="col-lg-3 pb-3">
-                              <Form.Group>
-                                <Form.Label>Unique ID</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  value={parentId}
-                                  readOnly
-                                />
-                              </Form.Group>
-                            </div>
-                        
+                          <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Unique ID</Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={parentId}
+                                readOnly
+                              />
+                            </Form.Group>
+                          </div>
+
                           {fieldConfigs[activeTab]?.map((field, index) => (
                             <div key={index} className="col-lg-3 pb-3">
                               <Form.Group>

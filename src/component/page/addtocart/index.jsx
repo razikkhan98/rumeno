@@ -26,13 +26,12 @@ const faqs = [
 ];
 
 const Addtocart = () => {
-  const { cart, incrementQuantity, decrementQuantity,addToCart } =
+  const { cart, incrementQuantity, decrementQuantity, addToCart } =
     useContext(CartContext);
   const location = useLocation();
-  // console.log('cart: ', cart);
 
-    const navigate = useNavigate();
-    const isAuthenticated = !!sessionStorage.getItem("token");
+  const navigate = useNavigate();
+  const isAuthenticated = !!sessionStorage.getItem("token");
 
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -47,35 +46,29 @@ const Addtocart = () => {
   const product = location.state?.product;
 
   const cartItem = cart?.find((item) => item.id === product?.id);
-  console.log('cart: ', cart);
 
-  const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0 );
-  console.log('selectedWeight: ', selectedWeight);
-  
+  const [selectedWeight, setSelectedWeight] = useState(
+    product?.productUnit?.[0] || 0
+  );
 
   const setWeight = (size) => {
     setSelectedWeight(size);
-    console.log('size: ', size);
-  }
+  };
   const decrease = (id) => {
-    decrementQuantity()
-  }
+    decrementQuantity();
+  };
 
-    // Handle Add to Cart
-    const handleAddToCart = (product, selectedWeight) => {
-      if (!isAuthenticated) {
-        console.log("Redirecting to login...");
-        setTimeout(() => {
-          navigate("/login");
-        }, 100);
-        toast.warning("Please login to add items!", { autoClose: 3000 });
-        return;
-      }
-      addToCart(product, selectedWeight);
-    };
-  
-
-  
+  // Handle Add to Cart
+  const handleAddToCart = (product, selectedWeight) => {
+    if (!isAuthenticated) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 100);
+      toast.warning("Please login to add items!", { autoClose: 3000 });
+      return;
+    }
+    addToCart(product, selectedWeight);
+  };
 
   return (
     <>
@@ -133,18 +126,16 @@ const Addtocart = () => {
                   <div className="d-flex flex-wrap gap-3 pb-4 border-bottom">
                     {product?.productUnit?.map((size) => (
                       <button
-                      key={size}
-                      className="addtocart-btn d-flex border rounded-3"
-                      style={{
-                        background:
-                        selectedWeight === size ? "#E32C2B" : "#ffffff",
-                        color:
-                        selectedWeight === size ? "#ffffff" : "#111111",
-                      }}
-                      onClick={() => setWeight(size)}
-                      
+                        key={size}
+                        className="addtocart-btn d-flex border rounded-3"
+                        style={{
+                          background:
+                            selectedWeight === size ? "#E32C2B" : "#ffffff",
+                          color:
+                            selectedWeight === size ? "#ffffff" : "#111111",
+                        }}
+                        onClick={() => setWeight(size)}
                       >
-                        
                         <div
                           className="input-group-text border-0"
                           style={{
@@ -218,7 +209,7 @@ const Addtocart = () => {
                         onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
-                        >
+                      >
                         -
                       </Button>
                       <span className="mx-3 fs-4">
