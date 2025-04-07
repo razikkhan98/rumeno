@@ -11,12 +11,17 @@ import {
 import { GiWeightScale } from "react-icons/gi";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { deleteData, postData } from "../APIs/api";
+import Dropdown from "react-bootstrap/Dropdown";
+import { FilePlus, Pencil, Trash } from "react-bootstrap-icons"; // Import icons
 
 const AnimalCard = ({
-  name,
+  parentId,
   height,
   gender,
   age,
+  _id,
   ageMonth,
   weight,
   bodyScore,
@@ -26,8 +31,16 @@ const AnimalCard = ({
   uniqueId,
   kidId,
   onDelete,
+  children,
+  postweight,
+  milk,
+  vaccine,
+  deworm,
+  estrusHeat,
+  farmSanitation,
   currentIndex,
 }) => {
+  console.log("AnimalCard", kidId);
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -47,13 +60,19 @@ const AnimalCard = ({
       value: pregnancyDetails,
       icon: <RiRulerFill />,
     },
+    { label: "children", value: children, icon: <GiWeightScale /> },
+
     { label: "Male Detail", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Post Wean", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Milk", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Vaccine", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Deworm", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Estrus Heat", value: maleDetail, icon: <GiWeightScale /> },
-    { label: "Farm Sanitation", value: maleDetail, icon: <GiWeightScale /> },
+    { label: "Post Wean", value: postweight, icon: <GiWeightScale /> },
+    { label: "Milk", value: milk, icon: <GiWeightScale /> },
+    { label: "Vaccine", value: vaccine, icon: <GiWeightScale /> },
+    { label: "Deworm", value: deworm, icon: <GiWeightScale /> },
+    { label: "Estrus Heat", value: estrusHeat, icon: <GiWeightScale /> },
+    {
+      label: "Farm Sanitation",
+      value: farmSanitation,
+      icon: <GiWeightScale />,
+    },
   ];
 
   const navigate = useNavigate();
@@ -65,9 +84,73 @@ const AnimalCard = ({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const handleShowDelete = () => setShowDeleteModal(true);
   const handleCloseDelete = () => setShowDeleteModal(false);
+
+  
+  const editForm = () => {
+    localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
+  }
+
+
   const handleConfirmDelete = () => {
-    onDelete();
-    handleCloseDelete();
+    if (kidId) {
+      handleConfirmDeleteChild();
+    } else {
+      handleConfirmDeleteParent();
+    }
+  };
+
+  const handleConfirmDeleteChild = async () => {
+    if (children?.length > 0) {
+      toast.error("Cannot delete parent. It has child records associated.");
+      return;
+    }
+
+    // setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+
+    try {
+      await deleteData("/user/animaldata/child/delete", uniqueId);
+      toast.success("Child deleted successfully.");
+      handleCloseDelete();
+      setTimeout(() => navigate("/farmdata/dashboard"), 100);
+    } catch (error) {
+      toast.error(error.message || "Error deleting animal. Please try again.");
+      handleCloseDelete();
+    }
+  };
+
+  const handleConfirmDeleteParent = async () => {
+    // if (children?.length > 0) {
+    //   toast.error("Cannot delete parent. It has child records associated.");
+    //   return;
+    // }
+
+    // setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
+
+    try {
+      await deleteData("user/animaldata/parent/delete", uniqueId);
+      toast.success("Parent deleted successfully.");
+      handleCloseDelete();
+      setTimeout(() => navigate("/farmdata/dashboard"), 100);
+    } catch (error) {
+      toast.error(error.message || "Error deleting animal. Please try again.");
+      handleCloseDelete();
+    }
+  };
+
+
+  const handleConvertParent = async () => {
+    // const apiUrl = /user/animaldata/child/; // Append kidId to the URL
+    try {
+      const response = await postData(`/user/animaldata/child/${_id}`); // No need to send kidId in body
+  
+      if (response?.data?.success ===  200) {
+        toast.success("Child Converted To Parent Successfully.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(error.message || "Child does not convert. Please try again.");
+    }
   };
 
   const editForm = () => {
@@ -95,7 +178,7 @@ const AnimalCard = ({
               style={{ fontSize: "16px" }}
               className="pb-2 text-chinese-black-color"
             >
-              Parent: {name}
+              Parent: {parentId}
             </div>
             <div
               className="text-chinese-black-color"
@@ -105,7 +188,7 @@ const AnimalCard = ({
             </div>
           </div>
         ) : (
-          <div className="text-chinese-black-color">{name}</div>
+          <div className="text-chinese-black-color">{parentId}</div>
         )}
 
         {/* Button to open modal */}
@@ -128,7 +211,7 @@ const AnimalCard = ({
                 <SlArrowLeft className="fs-6 m-auto" />
               </button>
               <p className="mx-2 mb-0 font-16-500 color111111 text-center">
-                {name}
+                {parentId}
               </p>
             </div>
           </Modal.Header>
@@ -227,26 +310,38 @@ const AnimalCard = ({
           </React.Fragment>
         ))}
       </Card.Body>
+
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
-        <NavLink to={`/parentform?type=edit`}>
+        <NavLink to="/parentform" >
           <Button
             variant="light"
             className="border px-2 py-1"
             style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
-            onClick={() => editForm()}
           >
             <PiPencilSimple className="fs-3 text-primary" />
           </Button>
         </NavLink>
 
-        <Button
-          variant="light"
-          className="border px-2 py-1"
-          style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
-          onClick={handleShowDelete}
-        >
-          <PiTrashSimple className="fs-3 text-danger" />
-        </Button>
+            <Button
+              variant="light"
+              className="border px-2 py-1"
+              style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+              onClick={handleShowDelete}
+            >
+              <PiTrashSimple className="fs-3 text-danger" />
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              className="promot-parent rounded-pill px-2 py-1"
+              onClick={handleConvertParent}
+            >
+              Convert to parent
+            </Button>
+          </>
+        )}
+
         <Modal show={showDeleteModal} onHide={handleCloseDelete} centered>
           <Modal.Header closeButton>
             <Modal.Title>Confirm Deletion</Modal.Title>
@@ -271,8 +366,8 @@ const AnimalCard = ({
               className="rounded-pill py-2 px-3 border-0"
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
-                navigate(`/record/${name}/${uniqueId}`, {
-                  state: { name, uniqueId },
+                navigate(`/record/${parentId}/${uniqueId}`, {
+                  state: { parentId, uniqueId },
                 })
               }
             >
@@ -281,7 +376,7 @@ const AnimalCard = ({
           </>
         ) : (
           <>
-            <Button
+            {/* <Button
               size="sm"
               className="rounded-pill py-2 px-3 border-0"
               style={{ background: "#FB9038", color: "white" }}
@@ -291,8 +386,45 @@ const AnimalCard = ({
                 })
               }
             >
-              Add Details
-            </Button>
+              More
+            </Button> */}
+
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                className="rounded-pill py-2 px-3 border-0 d-flex align-items-center gap-2"
+                style={{ background: "#FB9038", color: "white" }}
+              >
+                More
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  onClick={() => navigate("/parentform")}
+                  className="d-flex align-items-center gap-3 py-2"
+                >
+                  <FilePlus size={16} /> Add Details
+                </Dropdown.Item>
+                <Dropdown.Item
+                  // onClick={() => console.log("Edit Clicked")}
+                  onClick={() =>
+                    navigate(`/record/${kidId}/${uniqueId}`, {
+                      state: { kidId, uniqueId },
+                    })
+                  }
+                  className="d-flex align-items-center gap-3 py-2"
+                >
+                  <Pencil size={16} /> Edit
+                </Dropdown.Item>
+                <Dropdown.Item
+                  // onClick={() => console.log("Delete Clicked")}
+                  onClick={handleShowDelete}
+                  className="d-flex align-items-center gap-3 text-danger py-2"
+                >
+                  <Trash size={16} /> Delete
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </>
         )}
       </Card.Footer>

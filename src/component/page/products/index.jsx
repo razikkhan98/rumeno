@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image1 from "../../assets/img/products/productimage.png";
 import Image2 from "../../assets/img/products/productimage2.png";
@@ -11,8 +11,7 @@ import Navbar from "../../common/navbar/mainnavbar";
 
 import Footer from "../../common/footer";
 import { NavLink, useNavigate } from "react-router-dom";
-import { CartContext } from "../../common/Context";
-import { toast } from "react-toastify";
+
 import Header from "../../common/Header/header";
 
 const faqs = [
@@ -164,10 +163,9 @@ const petProducts = [
 ];
 
 const Products = () => {
-  const { cart, addToCart } = useContext(CartContext);
+ 
 
   const navigate = useNavigate();
-  const isAuthenticated = !!sessionStorage.getItem("token");
   // const uid = sessionStorage.getItem("uid");
 
   // Pagination state
@@ -202,17 +200,7 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Handle Add to Cart
-  const handleAddToCart = (product) => {
-    if (!isAuthenticated) {
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
-      toast.warning("Please login to add items!", { autoClose: 3000 });
-      return;
-    }
-    // addToCart(product);
-  };
+ 
 
   return (
     <>

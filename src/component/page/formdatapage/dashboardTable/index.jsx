@@ -1,6 +1,8 @@
 import React from "react";
 
 const DashboardTable = ({ data }) => {
+  console.log("data: ", data);
+
   return (
     <div className="dashboard-table">
       <div className="container">
@@ -13,13 +15,13 @@ const DashboardTable = ({ data }) => {
                     #
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    Uid
+                    UniqueId
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Parent
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    Handle
+                    Status
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Action
@@ -27,7 +29,7 @@ const DashboardTable = ({ data }) => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, index) => (
+                {data?.map((parent, index) => (
                   <tr
                     key={index}
                     className={`row-border row-shadow ${
@@ -35,11 +37,37 @@ const DashboardTable = ({ data }) => {
                     }`}
                   >
                     <th scope="row">{index + 1}</th>
-                    <td>{item.uid}</td>
-                    <td>{item.parent}</td>
-                    <td>{item.handle}</td>
+                    <td>{parent.uniqueId}</td>
+                    <td>{parent.parentId}</td>
                     <td>
-                      <button className="dashboard-table-btn">Add</button>
+                      <span
+                        style={{
+                          backgroundColor:
+                            parent.status.toLowerCase() === "completed"
+                              ? "lightgreen"
+                              : parent.status.toLowerCase() === "pending"
+                              ? "lightcoral"
+                              : "lightgray",
+                          color: "white", // Ensures text is visible on all backgrounds
+                          textAlign: "center", // Centers the text
+                          borderRadius: "8px", // Optional: Adds rounded corners
+                          padding: "5px 10px", // Adjusts spacing inside the cell
+                        }}
+                      >
+                        {parent.status}
+                      </span>
+                    </td>
+
+                    <td>
+                      <button
+                        className="dashboard-table-btn"
+                        disabled={
+                          // Enable the button only if status is 'completed'
+                          parent.status.toLowerCase() !== "completed"
+                        }
+                      >
+                        Add
+                      </button>
                     </td>
                   </tr>
                 ))}

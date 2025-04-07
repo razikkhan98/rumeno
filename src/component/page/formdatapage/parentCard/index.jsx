@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../common/navbar";
 import Sidebar from "../../sidebar/index";
@@ -33,19 +35,41 @@ const Parent = () => {
     (animal) => animal?.animalName === selectedAnimal
   );
 
-  // Delete Animal Card
-  const handleDeleteAnimal = async (uniqueId) => {
-    setAnimals((prevAnimals) =>
-      prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
-    );
+
+  // // Delete Animal Card
+  // const handleDeleteAnimal = async (uniqueId) => {
+  //   setAnimals((prevAnimals) =>
+  //     prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
+  //   );
+
+  //   try {
+  //     const response = await deleteData(
+  //       "/user/animaldata/parent/delete",
+  //       uniqueId
+  //     );
+  //     toast.success("Animal deleted successfully.");
+  //     console.log("response:------deleteData ", response);
+  //   } catch (error) {
+  //     toast.error(
+  //       error.message || "Error deleting animal. Please try again."
+  //     );
+  //   }
+  // };
+
+   // Delete  Animal Card
+   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
+    if (childrenCount > 0) {
+      toast.error("Cannot delete parent. It has child records associated.");
+      return;
+    }
+
+    setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      const response = await deleteData(
-        "/user/animaldata/parent/delete",
-        uniqueId
-      );
+      await deleteData("/user/animaldata/parent/delete", uniqueId);
+      toast.success("Animal deleted successfully.");
     } catch (error) {
-      
+      toast.error(error.message || "Error deleting animal. Please try again.");
     }
   };
 
@@ -75,7 +99,7 @@ const Parent = () => {
                   <div key={index} className="col-lg-3 px-4 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
-                      name={animal.parentId}
+                      parentId={animal.parentId}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
@@ -83,10 +107,17 @@ const Parent = () => {
                       bodyScore={animal.bodyScore}
                       pregnancyDetails={animal.pregnancyDetails}
                       maleDetail={animal.maleDetail}
-                      weight={animal.weightKg}
                       uniqueId={animal.uniqueId}
-                      onDelete={() => handleDeleteAnimal(animal.uniqueId)}
+                      children={animal.children?.length > 0 ? animal.children?.length : "No Children"}
+                      postweight={animal.postWeight?.length > 0 ? animal.postWeight?.length : "No Post Weight"}
+                      milk={animal.milk?.length > 0 ? animal.milk?.length : "No Milk"}
+                      vaccine={animal.vaccine?.length > 0 ? animal.vaccine?.length : "No Vaccine"}
+                      deworm={animal.deworm?.length > 0 ? animal.deworm?.length : "No Deworm"}
+                      estrusHeat={animal.estrusHeat?.length > 0 ? animal.estrusHeat.length : "No Estrus Heat"}
+                      farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length :"No Farm Sanitation"}
+                      onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
                       currentIndex={index}
+
                     />
                   </div>
                 ))}

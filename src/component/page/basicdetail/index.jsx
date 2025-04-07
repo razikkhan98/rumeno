@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
-import { postData, getData, updateData } from "../../common/APIs/api";
+import { getData, postData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 
 const GoatDetailForm = () => {
@@ -17,36 +17,37 @@ const GoatDetailForm = () => {
   } = useForm();
   // const { setparentId } = useContext(CartContext);
 
-  const endpoint = "/user/animaldata/parent";
-
   const navigate = useNavigate();
-  const params = useParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-  // const [currentIndex, setCurrentIndex] = useState(null);
 
   const storedIndex = localStorage.getItem("currentIndex");
-
   const onSubmit = async (data) => {
     try {
-      const uid = sessionStorage.getItem("uid");
-      const animalName = sessionStorage.getItem("animalName");
+      const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
+      const animalName = sessionStorage.getItem("animalName"); // Retrieve animalName from sessionStorage
+      // Convert gender value to lowercase
 
-      const formData = { ...data, uid, animalName };
+      const formData = {
+        ...data,
+        uid, // Add UID to the form data
+        animalName, // Add animalName to the form data
+      };
 
-      // Determine API endpoint dynamically based on type
-      const endpoint =
-        type === "edit"
-          ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/parent"; // Add API
+       // Determine API endpoint dynamically based on type
+       const endpoint =
+       type === "edit"
+         ? `/user/animaldata/parent/update` // Edit API
+         : "/user/animaldata/parent"; // Add API
 
-      // Call the appropriate API method
-      const response = await (type === "edit"
-        ? updateData(endpoint, data?.uniqueName, formData)
-        : postData(endpoint, formData));
+     // Call the appropriate API method
+     const response = await (type === "edit"
+       ? updateData(endpoint,data?.uniqueName, formData)
+       : postData(endpoint, formData));
 
-      if (response.data.message === "success") {
+
+       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
           {
@@ -67,16 +68,18 @@ const GoatDetailForm = () => {
     }
   };
 
-  const getAllendpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/parent/getAll";
+
 
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
-        const response = await getData(getAllendpoint);
+        const response = await getData(endpoint);
+        console.log("response cvbn: ", response);
         if (response.data && response.data.length > 0) {
           const animalData = response.data[storedIndex];
+          console.log("animalData: ", animalData);
           localStorage.removeItem("currentIndex");
-
           setValue("uniqueName", animalData.uniqueId || "");
           setValue("ageYear", animalData.ageYear || "");
           setValue("ageMonth", animalData.ageMonth || "");
@@ -90,7 +93,11 @@ const GoatDetailForm = () => {
           setValue("comments", animalData.comments || "");
         }
       } catch (error) {
-        toast.error("Error fetching animal data. Please try again.");
+        console.error("Error fetching animals:", error);
+        // toast.error(error.message || "Something went wrong!", {
+        //   position: "top-right",
+        //   autoClose: 3000,
+        // });
       }
     };
     fetchAnimals();
