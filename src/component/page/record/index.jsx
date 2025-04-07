@@ -85,7 +85,12 @@ const Record = () => {
         type: "Number",
         placeholder: "Enter Number of Kids",
       },
-      { name: "milkDate", label: "Milk Date", type: "date", required: true },
+      {
+        name: "milkDate",
+        label: "Milk Date",
+        type: "date",
+        required: true
+      },
     ],
     Vaccine: [
       {
@@ -517,6 +522,7 @@ const Record = () => {
   };
 
   return (
+
     <>
       <Navbar />
       <div className="row">
@@ -681,6 +687,8 @@ const Record = () => {
                 </>
               )}
 
+
+
               {activeTab !== "Child" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
@@ -688,6 +696,7 @@ const Record = () => {
                       Fill {activeTab} details below
                     </p>
 
+                    {/* Show blank form  through  add buttons */}
                     <button
                       className="btn text-white px-4 border rounded-pill me-5 mb-2"
                       style={{

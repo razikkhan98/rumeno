@@ -1,11 +1,13 @@
 import React from "react";
 import "./footerCard.css"; // Custom styles
+import { NavLink } from "react-router-dom";
 
 const cards = [
   {
-    title: "News",
+    to: "/service",
+    title: "Services",
     content:
-      "More than half of Nifty 50 stocks in the green. 7 Nifty sectors ended in the bank and financial service gaining the most.",
+      "In the dynamic world of animal husbandry, ensuring the well-being and productivity of our beloved creatures is of utmost importance. Proper nutrition and specialized care play pivotal roles in achieving these goals. Enter Rumeno Farmotech, a name synonymous with excellence in animal feed supplements and veterinary services.",
   },
   {
     title: "How to Make Money in Stocks",
@@ -22,9 +24,10 @@ const cards = [
       "lorem More than half of Nifty 50 stocks in the green. 7 Nifty sectors ended in the bank and financial service gaining the most",
   },
   {
-    title: "Word of the Day",
+    to: "/blog",
+    title: "Blogs",
     content:
-      "Additional Surveillance Measur More than half of Nifty 50 stocks in the green. 7 Nifty sectors ended in the bank and financial service gaining the moste",
+      "Ever heard about Mutual Rescue? It's an innovative concept that proves when we extend our hearts to rescue animals, they rescue us right back! It's deeply rooted in the symbiotic relationship between humans and animals—a relationship that is incredibly heartwarming...",
   },
 ];
 
@@ -33,6 +36,7 @@ const CollapsingCards = () => {
     <div className=" card-container">
       {cards?.map((card, index) => (
         <div key={index} className="card custom-card mx-0">
+          <NavLink to={card.to} className={"text-decoration-none text-dark"}>
           {card?.iframe ? (
             <iframe
             //   width="560"
@@ -50,6 +54,7 @@ const CollapsingCards = () => {
               <p className="card-text">{card?.content}</p>
             </div>
           )}
+          </NavLink>
         </div>
       ))}
     </div>

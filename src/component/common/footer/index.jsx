@@ -105,7 +105,10 @@ const Footer = () => {
                   />{" "}
                   +91-7355043892
                 </p>
-                <p className="text-light  inter-font-family-400">
+                <a
+                  href="mailto:rumeno.farmotech@gmail.com"
+                  className="text-light text-decoration-none inter-font-family-400"
+                >
                   <PiEnvelopeSimpleFill
                     className="me-2 rounded-circle p-1"
                     style={{
@@ -113,9 +116,9 @@ const Footer = () => {
                       height: "24px",
                       width: "24px",
                     }}
-                  />{" "}
+                  />
                   rumeno.farmotech@gmail.com
-                </p>
+                </a>
               </div>
             </div>
             <div className="col-lg-12 m-auto pt-4">
@@ -163,7 +166,7 @@ const Footer = () => {
                         size={28}
                       />
                     </a>
-                  </li>
+                  </li   >
 
                   <li className="list-unstyled text-decoration-none">
                     <a
