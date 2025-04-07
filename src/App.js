@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
@@ -30,9 +30,19 @@ import AddChild from "./component/page/addchild/index";
 import ChildEditBasicDetailForm from "./component/page/ChildEditBasicDetailForm/ChildEditBasicDetailForm";
 import Blogs from "./component/page/Blogs/blogs";
 import ProTraining from "./component/page/goattraining/proTraining";
+import PrivacyPolicy from "./component/page/PrivacyPolicy/policy";
+import { useLocation } from "react-router-dom";
 
 
 const App = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  // return null;
+
   return (
     <>
       <CartProvider>
@@ -55,6 +65,8 @@ const App = () => {
           <Route path="/payment" element={<Payment />} />
           <Route path="/addChild" element={<AddChild />} />
           <Route path="/blog" element={<Blogs />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+
 
 
 
