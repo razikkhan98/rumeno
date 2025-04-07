@@ -15,7 +15,7 @@ const Header = ({ title, subtitle, products, showSortFilter = false }) => {
                     <div className='font-16-500 text-color-orange'>{products}</div>
                     {showSortFilter && (
                         <div className='d-flex align-items-center text-muted-gray-color justify-content-center'>
-                            <div className='me-4 font-16-400'>Sort <PiSlidersHorizontalBold className='fs-4' /></div>
+                            {/* <div className='me-4 font-16-400'>Sort <PiSlidersHorizontalBold className='fs-4' /></div> */}
                             <div className='font-16-400'>Filter <PiFunnelBold className='fs-4' /></div>
                         </div>
                     )}

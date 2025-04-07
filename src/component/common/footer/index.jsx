@@ -57,20 +57,20 @@ const Footer = () => {
                   </li>
                   <li className="py-1 inter-font-family-400">
                     <NavLink
-                      to="/privacy-policy"
+                      to="/privacypolicy"
                       className="text-light text-decoration-none"
                     >
                       Privacy Policy
                     </NavLink>
                   </li>
-                  <li className="py-1 inter-font-family-400">
+                  {/* <li className="py-1 inter-font-family-400">
                     <NavLink
                       to="/terms-conditions"
                       className="text-light text-decoration-none"
                     >
                       Terms & Conditions
                     </NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
