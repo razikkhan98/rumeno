@@ -33,7 +33,13 @@ const Blogs = () => {
                             <div className='row d-felx justify-content-center align-items-center'>
                                 <div className='col-lg-4 col-md-4'>
                                     <img src={Blog2} className='blog-mini-img rounded-3' alt="Loading" />
-                                    <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
+                                    <a className='text-dark' href="https://www.animalhearted.com/blogs/animal-blog/89545350-cute-overload-24-hour-kitten-nursery#google_vignette"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+
+                                        <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
+                                    </a>
                                     <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
                                 </div>
