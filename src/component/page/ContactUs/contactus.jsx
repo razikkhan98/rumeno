@@ -77,7 +77,7 @@ const ContactUs = () => {
                                 rel="noreferrer"
                                 target="_blank"
                                 className='text-color-orange'>
-                                <FaSquareFacebook className="me-lg-5 me-4 fs-3" />
+                                <FaSquareFacebook className="me-lg-5 me-4 fs-3 shadow" />
                             </a>
                             <a href="https://www.instagram.com/rumenofarmotech/"
                                 rel="noreferrer"
@@ -132,7 +132,7 @@ const ContactUs = () => {
                         </div>
 
                         {/* Right Section (Forgot Password Form) */}
-                        <div className="col-lg-5 col-md-6">
+                        <div className="col-lg-5 col-md-6 pt-5 pt-lg-0">
                             <div className="bg-white p-lg-5 p-3 border-radius-16">
 
                                 {/* Form */}

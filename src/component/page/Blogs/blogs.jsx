@@ -7,6 +7,9 @@ import Footer from '../../common/footer'
 
 // Import Images
 import Blog1 from "../../assets/img/goatfeed/slide2.png"
+import Blog2 from "../../assets/img/goatfeed/buffaloimg.png";
+import Blog3 from "../../assets/img/goatfeed/dog.jpg"
+import Blog4 from "../../assets/img/goatfeed/cattle-imgg.jpg";
 
 const Blogs = () => {
     return (
@@ -26,22 +29,28 @@ const Blogs = () => {
                                 our hearts to rescue animals, they rescue us right back! It's deeply
                                 rooted in the symbiotic relationship between humans and animals—a relationship that is incredibly heartwarming...</p>
                         </div>
-                        <div className='col-lg-6'>
-                            <div className='row justify-content-center'>
+                        <div className='col-lg-6 d-felx justify-content-center align-items-center'>
+                            <div className='row d-felx justify-content-center align-items-center'>
                                 <div className='col-lg-4 col-md-4'>
-                                    <img src={Blog1} className='blog-mini-img rounded-3' alt="Loading" />
+                                    <img src={Blog2} className='blog-mini-img rounded-3' alt="Loading" />
+                                    <a className='text-dark' href="https://www.animalhearted.com/blogs/animal-blog/89545350-cute-overload-24-hour-kitten-nursery#google_vignette"
+                                        rel="noreferrer"
+                                        target="_blank"
+                                    >
+
+                                        <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
+                                    </a>
+                                    <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
+                                        and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
+                                </div>
+                                <div className='col-lg-4 col-md-4'>
+                                    <img src={Blog3} className='blog-mini-img rounded-3' alt="Loading" />
                                     <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
                                     <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
                                 </div>
                                 <div className='col-lg-4 col-md-4'>
-                                    <img src={Blog1} className='blog-mini-img rounded-3' alt="Loading" />
-                                    <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
-                                    <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
-                                        and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
-                                </div>
-                                <div className='col-lg-4 col-md-4'>
-                                    <img src={Blog1} className='blog-mini-img rounded-3' alt="Loading" />
+                                    <img src={Blog4} className='blog-mini-img rounded-3' alt="Loading" />
                                     <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
                                     <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8000/rumeno"; 
+const API_BASE_URL = "https://ab72-106-222-216-148.ngrok-free.app/rumeno"; 
 
 
 // 🔹 GET: Fetch data from a dynamic endpoint

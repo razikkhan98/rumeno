@@ -47,9 +47,9 @@ const Addtocart = () => {
 
   const cartItem = cart?.find((item) => item.id === product?.id);
 
-  const [selectedWeight, setSelectedWeight] = useState(
-    product?.productUnit?.[0] || 0
-  );
+  const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0);
+  console.log('selectedWeight: ', selectedWeight);
+
 
   const setWeight = (size) => {
     setSelectedWeight(size);
@@ -61,6 +61,7 @@ const Addtocart = () => {
   // Handle Add to Cart
   const handleAddToCart = (product, selectedWeight) => {
     if (!isAuthenticated) {
+      console.log("Redirecting to login...");
       setTimeout(() => {
         navigate("/login");
       }, 100);
@@ -69,6 +70,9 @@ const Addtocart = () => {
     }
     addToCart(product, selectedWeight);
   };
+
+
+
 
   return (
     <>
@@ -135,7 +139,9 @@ const Addtocart = () => {
                             selectedWeight === size ? "#ffffff" : "#111111",
                         }}
                         onClick={() => setWeight(size)}
+
                       >
+
                         <div
                           className="input-group-text border-0"
                           style={{
@@ -250,11 +256,10 @@ const Addtocart = () => {
                     <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button  ${
-                            openIndex === index
+                          className={`accordion-button  ${openIndex === index
                               ? "addtocart-colapse color-707070"
                               : "collapsed "
-                          }`}
+                            }`}
                           type="button"
                           // data-bs-toggle="collapse"
                           // data-bs-target={`#collapse${index}`}
@@ -289,9 +294,8 @@ const Addtocart = () => {
                       </h2>
                       <div
                         id={`collapse${index}`}
-                        className={`accordion-collapse collapse ${
-                          openIndex === index ? "show" : ""
-                        }`}
+                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                          }`}
                         data-bs-parent="#faqAccordion"
                       >
                         <div className="accordion-body text-gray-color">
@@ -323,27 +327,27 @@ const Addtocart = () => {
                   <input
                     type="text"
                     placeholder="Give your review a title"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className="form-control mb-5 border-0 font-14-400 py-2"
                   />
                   <label className="text-gray-color font-12-400">Review</label>
                   <textarea
                     placeholder="Write your review"
-                    className="form-control mb-5 border border-bottom  text-gray-color font-14-400"
+                    className="form-control mb-5 border-0 py-2 font-14-400"  rows="5"
                   ></textarea>
-                  <p className="border border-white"></p>
+                  <p className="border border-white bg-white"></p>
                   <label className="text-gray-color font-12-400">
                     Your Name
                   </label>
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className="form-control mb-5 py-2 border-0 font-14-400"
                   />
                   <label className="text-gray-color font-12-400">E-Mail</label>
                   <input
                     type="email"
                     placeholder="Enter Your E-mail"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className="form-control mb-5 border-0 py-2 font-14-400"
                   />
 
                   <p className="font-10-400 color373737 text-start mb-5">
@@ -355,12 +359,12 @@ const Addtocart = () => {
 
                   <div className="d-flex justify-content-center gap-3">
                     <button
-                      className="btn border-orange text-color-orange font-14-500 py-2"
+                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 py-2"
                       onClick={() => setShowReviewForm(false)}
                     >
                       Cancel Review
                     </button>
-                    <button className="btn bg-orange-color text-white-color font-14-500 py-2">
+                    <button className="rounded-3  border-orange px-3 bg-orange-color text-white-color font-14-500 py-2" type="submit">
                       Submit Review
                     </button>
                   </div>

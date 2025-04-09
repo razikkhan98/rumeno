@@ -228,14 +228,14 @@ const Products = () => {
           <Header
             title="Products"
             subtitle="Goat Supplement"
-            products={"13 Products"}
+            // products={"13 Products"}
             showSortFilter
           />
         </div>
         <div className="container pt-5">
           <div className="row pt-lg-3">
             {currentProducts.map((product) => (
-              <div key={product.id} className="col-lg-3 col-md-6  mb-lg-4">
+              <div key={product.id} className="col-lg-3 col-md-6 mb-lg-4">
                 <div className="products-card">
                   <div className="products-img-top">
                     {/* <NavLink to={`/productDetails/${product.id}`}> */}
@@ -379,7 +379,7 @@ const Products = () => {
           >
             <p
               className=" text-center mb-4"
-              style={{ color: "#111111", fontSize: "24px", fontWeight: "400" }}
+              style={{ color: "#111111", fontSize: "24px", fontWeight: "500" }}
             >
               PRODUCT CATEGORIES
             </p>
@@ -395,8 +395,8 @@ const Products = () => {
                     />
                     <p
                       style={{
-                        fontSize: "14px",
-                        fontWeight: "400",
+                        fontSize: "16px",
+                        fontWeight: "600",
                         color: "#707070",
                       }}
                     >
