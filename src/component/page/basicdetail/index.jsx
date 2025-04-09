@@ -59,9 +59,8 @@ const GoatDetailForm = () => {
         setTimeout(() => navigate("/farmdata/parent"), 100);
       }
 
-      reset(); // Reset form after successful submission
+      reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
       toast.error(error.message || "Something went wrong!", {
         position: "top-right",
         autoClose: 3000,
@@ -113,7 +112,9 @@ const GoatDetailForm = () => {
             <Sidebar />
           </div>
           <div className="col-lg-10 px-4 py-3">
-            <p className="detail-head text-chinese-black-color mb-1">Basic Details</p>
+            <p className="detail-head text-chinese-black-color mb-1">
+              Basic Details
+            </p>
             <p className="detail-para mb-0">
               Fill basic details to add a parent
             </p>
@@ -186,7 +187,6 @@ const GoatDetailForm = () => {
                           className="form-check-input"
                           type="radio"
                           value={type}
-                         
                           {...register("gender", {
                             required: "Gender is required",
                           })}
@@ -276,7 +276,7 @@ const GoatDetailForm = () => {
                     fontWeight: "600",
                   }}
                 >
-                  Add Parent
+                  {type === "edit" ? "Edit Parent" : "Add Parent"}
                 </button>
               </div>
             </form>

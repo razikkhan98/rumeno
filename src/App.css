@@ -165,6 +165,10 @@ body {
   font-size: 16px !important;
   font-weight: 500 !important;
 }
+.font-18-500 {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
 .font-20-400 {
   font-size: 20px !important;
   font-weight: 400 !important;
@@ -179,6 +183,11 @@ body {
 }
 .font-24-500 {
   font-size: 24px !important;
+  font-weight: 500 !important;
+}
+
+.font-32-500 {
+  font-size: 32px !important;
   font-weight: 500 !important;
 }
 
@@ -287,6 +296,11 @@ body {
   color: var(--orange-color);
 }
 
+.cart-navbar{
+  width: 40px;
+  height: 40px;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .products-collapse {
@@ -325,6 +339,27 @@ body {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
+  }
+
+  .farm-btn button {
+    font-size: 14px;
+    font-weight: 500;
+    background: linear-gradient(to right, #89c9e6, #dd3675, #ec7229);
+    /* width: 160px; */
+    padding: 0px 18px !important;
+    height: 35px;
+    border: 0px;
+  }
+  .cart-navbar{
+    width: 35px !important;
+    height: 35px !important;
+  }
+  .user-icon-img{
+    width: 35px;
+    height: 35px;
+  }
+  .user-icon img {
+    margin-left: 10px;
   }
 }
 
@@ -815,7 +850,7 @@ body {
 }
 
 .about-para {
-  /* width: 520px; */
+  width: 520px;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
@@ -866,9 +901,6 @@ body {
     font-weight: 400;
     line-height: 21px;
   }
-  .main-blog-img{
-    width: 100% !important;
-  }
 }
 
 /* <--------- About End ---------> */
@@ -913,6 +945,16 @@ body {
 /* <--------- Certified End ---------> */
 
 /* <--------- Goat Feed ---------> */
+
+.is-sticky {
+  position: fixed;
+  top: 13%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
 
 .goat-feed {
   background-image: url(../src/component/assets/img/goatfeed/goatfeedbkgrd.png);
@@ -1406,7 +1448,7 @@ body {
 
   .nutrition-card:nth-child(1) {
     position: relative;
-    bottom: 10px;
+    bottom: 0px;
   }
 }
 
@@ -2341,11 +2383,6 @@ body {
   font-weight: 400;
 }
 
-.font-size-10{
-  font-size: 10px;
-  font-weight: 400;
-
-}
 .font-size-14 {
   font-size: 14px;
   font-weight: 400;
@@ -2365,11 +2402,11 @@ body {
   font-size: 32px;
   font-weight: 500;
 }
+
 .font-size-48{
   font-size: 48px;
   font-weight: 600;
 }
-
 .business {
   background-color: var(--light-sky-blue-color);
 }
@@ -2446,7 +2483,7 @@ input[type="radio"] {
   margin: 5px;
   /* border: 1px solid #ced4da; */
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 /* ----------------------- Conatact Us Css ---------------------- */

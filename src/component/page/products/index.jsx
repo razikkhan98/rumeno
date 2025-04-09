@@ -62,7 +62,7 @@ const productItem = [
     image: Neonato,
     price:245,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 2,
@@ -70,8 +70,7 @@ const productItem = [
     image: Tanav,
     price: 700,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 3,
@@ -79,8 +78,7 @@ const productItem = [
     image: Energico,
     price: 235,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 4,
@@ -88,8 +86,7 @@ const productItem = [
     image: Rumenvita,
     price: 3250,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 5,
@@ -242,7 +239,8 @@ const Products = () => {
                 <div className="products-card">
                   <div className="products-img-top">
                     {/* <NavLink to={`/productDetails/${product.id}`}> */}
-                    <div  onClick={() =>
+                    <div
+                      onClick={() =>
                         navigate(`/productDetails/${product.id}`, {
                           state: { product },
                         })
@@ -269,8 +267,7 @@ const Products = () => {
                             +
                           </button> */}
                         </NavLink>
-                      {/* )} */}
-                    </div>
+                      </div>
                     </div>
                     {/* </NavLink> */}
                   </div>
@@ -534,10 +531,6 @@ const Products = () => {
         <div className="container py-lg-5">
           <div className="row">
             <div className="col-lg-12">
-              {/* <p className="faq-heading text-center">
-                Frequently Asked Questions
-              </p>
-              <p className="faqsub-heading text-center">FAQ’s</p> */}
               <div className="accordion pt-lg-3" id="faqAccordion">
                 {faqs.map((faq, index) => (
                   <div className="accordion-item" key={index}>

@@ -36,21 +36,20 @@ const GoatDetailForm = () => {
       if (response.data.message === "success") {
         const parentIds = response.data.data.parentId; // Expecting an array or a single ID
 
-      if (Array.isArray(parentIds)) {
-        setparentId(parentIds); // Store multiple parent IDs
-      } else {
-        setparentId((prev) => [...prev, parentIds]); // Append single ID
-      }
+        if (Array.isArray(parentIds)) {
+          setparentId(parentIds); // Store multiple parent IDs
+        } else {
+          setparentId((prev) => [...prev, parentIds]); // Append single ID
+        }
         toast.success("Parent animal added successfully", {
           position: "top-right",
           autoClose: 3000, // Closes the toast after 3 seconds
         });
-        setTimeout(() => navigate("/farmdata/parent"),100);
+        setTimeout(() => navigate("/farmdata/parent"), 100);
       }
 
       reset(); // Reset form after successful submission
     } catch (error) {
-      console.error("Error submitting form:", error);
       toast.error(error.message || "Something went wrong!", {
         position: "top-right",
         autoClose: 3000,
@@ -140,7 +139,6 @@ const GoatDetailForm = () => {
                           className="form-check-input"
                           type="radio"
                           value={type}
-                         
                           {...register("gender", {
                             required: "Gender is required",
                           })}

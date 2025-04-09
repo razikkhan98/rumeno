@@ -5,7 +5,6 @@ import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import User from "../../assets/img/user/loginuser.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-
 const Navbar2 = () => {
   return (
     <>
@@ -45,7 +44,6 @@ const Navbar2 = () => {
                         <img src={User} alt="Loading" />
                         <MdOutlineKeyboardArrowDown />
                       </div>
-                      
                     </div>
                   </div>
                 </header>
@@ -53,20 +51,6 @@ const Navbar2 = () => {
             </div>
           </div>
         </div>
-        {/* <div style={{ background: "#F4FAFD" }}>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12 px-5">
-                <nav aria-label="breadcrumb" className="py-2 px-3">
-                  <ol className="breadcrumb mb-0">
-                    <li className="breadcrumb-item">Home</li>
-                    <li className="breadcrumb-item active">Farm Data</li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

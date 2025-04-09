@@ -8,7 +8,7 @@ import { Bounce, toast } from "react-toastify";
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-import { postData, RegisterAPI } from "../../APIs/api";
+import { postData } from "../../APIs/api";
 
 // Images
 import Google from "../../../assets/img/Login/devicon_google.png";
@@ -32,7 +32,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const response = await postData(endpoint, data);
-      console.log('response: ', response);
       toast.success(response.data.message, {
         position: "top-right",
         autoClose: 5000,

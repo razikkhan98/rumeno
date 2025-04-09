@@ -6,21 +6,19 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Ensure Bootstrap JS is lo
 import { IoSearch } from "react-icons/io5";
 import { NavLink, useLocation } from "react-router-dom";
 
-
-
-
 const Navbar = () => {
-
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
- 
+  const addGoat = () => {
+    localStorage.removeItem("currentIndex");
+  };
 
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
-  
+
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
   return (
@@ -34,7 +32,11 @@ const Navbar = () => {
                   <div className="container-fluid">
                     {/* Logo Section */}
                     <a className="navbar-brand" href="#/">
-                      <img src={Logo} alt="Logo" style={{ width: "66px", height: "68px" }} />
+                      <img
+                        src={Logo}
+                        alt="Logo"
+                        style={{ width: "66px", height: "68px" }}
+                      />
                     </a>
 
                     {/* Navbar Toggler for Mobile */}
@@ -50,7 +52,9 @@ const Navbar = () => {
 
                     {/* Collapsible Navbar Content */}
                     <div
-                      className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""}`}
+                      className={`navbar-collapse custom-collapse ${
+                        isNavbarOpen ? "custom-collapse-show" : ""
+                      }`}
                       id="navbarContent"
                     >
                       <div className="d-flex flex-column flex-lg-row align-items-lg-center ms-auto">
@@ -73,15 +77,17 @@ const Navbar = () => {
 
                         {/* Add Goat Button */}
                         <NavLink to="/parentform">
-                        <button
-                          className="btn add-animal-btn text-white px-4 border rounded-pill"
-                          style={{
-                            background:
-                              "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
-                          }}
-                        >
-                          <span className="me-1">+</span>{`Add ${selectedAnimal}`}
-                        </button>
+                          <button
+                            className="btn add-animal-btn text-white px-4 border rounded-pill"
+                            style={{
+                              background:
+                                "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
+                            }}
+                            onClick={() => addGoat()}
+                          >
+                            <span className="me-1">+</span>
+                            {`Add ${selectedAnimal}`}
+                          </button>
                         </NavLink>
                       </div>
                     </div>

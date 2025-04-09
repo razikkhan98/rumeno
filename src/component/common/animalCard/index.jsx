@@ -40,9 +40,7 @@ const AnimalCard = ({
   farmSanitation,
   currentIndex,
 }) => {
-  console.log('_id: ', _id);
   console.log("AnimalCard", kidId);
-  console.log("AnimalCard", children);
   const details = [
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -87,12 +85,10 @@ const AnimalCard = ({
   const handleShowDelete = () => setShowDeleteModal(true);
   const handleCloseDelete = () => setShowDeleteModal(false);
 
-  
-  const editForm = () => {
-    localStorage.setItem("currentIndex", currentIndex);
-    console.log('currentIndex: ', currentIndex);
-  }
-
+  // const editForm = () => {
+  //   localStorage.setItem("currentIndex", currentIndex);
+  //   console.log('currentIndex: ', currentIndex);
+  // }
 
   const handleConfirmDelete = () => {
     if (kidId) {
@@ -140,13 +136,12 @@ const AnimalCard = ({
     }
   };
 
-
   const handleConvertParent = async () => {
     // const apiUrl = /user/animaldata/child/; // Append kidId to the URL
     try {
       const response = await postData(`/user/animaldata/child/${_id}`); // No need to send kidId in body
-  
-      if (response?.data?.success ===  200) {
+
+      if (response?.data?.success === 200) {
         toast.success("Child Converted To Parent Successfully.");
       }
     } catch (error) {
@@ -154,6 +149,10 @@ const AnimalCard = ({
       toast.error(error.message || "Child does not convert. Please try again.");
     }
   };
+
+  // const editForm = () => {
+  //   localStorage.setItem("currentIndex", currentIndex);
+  // };
 
   return (
     <Card
@@ -190,7 +189,10 @@ const AnimalCard = ({
         )}
 
         {/* Button to open modal */}
-        <div className="bg-light py-0 px-1 rounded-circle d-flex align-items-center">
+        <div
+          className="bg-light pb-1 rounded-circle d-flex align-items-center d-flex align-items-center justify-content-center"
+          style={{ width: "24px", height: "24px" }}
+        >
           <button onClick={handleShow} className="border-0 bg-transparent">
             <SlArrowRight
               className="fs-6 m-auto"
@@ -309,12 +311,11 @@ const AnimalCard = ({
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
         {kidId === undefined ? (
           <>
-            <NavLink to={`/parentform?type=edit`}>
+            <NavLink to="/parentform">
               <Button
                 variant="light"
                 className="border px-2 py-1"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
-                onClick={() => editForm()}
               >
                 <PiPencilSimple className="fs-3 text-primary" />
               </Button>
@@ -339,7 +340,6 @@ const AnimalCard = ({
             </Button>
           </>
         )}
-
         <Modal show={showDeleteModal} onHide={handleCloseDelete} centered>
           <Modal.Header closeButton>
             <Modal.Title>Confirm Deletion</Modal.Title>
@@ -356,7 +356,6 @@ const AnimalCard = ({
             </Button>
           </Modal.Footer>
         </Modal>
-
         {kidId === undefined ? (
           <>
             <Button
