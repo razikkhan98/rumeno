@@ -23,11 +23,11 @@ const BusinessFqa = [
   },
   {
     question: "2. What Does Veterinary Services Mean?",
-    answer: "...................",
+    answer: "Veterinary services refer to professional medical care provided to animals by licensed veterinarians. These services encompass a wide range of activities, including diagnosing and treating illnesses, performing surgeries, administering vaccinations, conducting health check-ups, and offering preventive care. Veterinarians play a crucial role in maintaining the health and well-being of pets, livestock, and other animals.",
   },
   {
     question: "3. What Are Veterinary Services?",
-    answer: "...................",
+    answer: "Veterinary services encompass various aspects related to animal health and care. Some common veterinary services include: Medical Consultations: Veterinarians diagnose and treat illnesses, injuries, and health conditions in animals. Surgical Procedures: Veterinarians perform surgeries, such as spaying/neutering, tumor removal, and orthopedic procedures. Vaccinations: Administering vaccines to prevent diseases in animals. Dental Care: Cleaning teeth, treating dental issues, and promoting oral health. Parasite Control: Preventing and treating parasites like fleas, ticks, and worms. Nutritional Guidance: Advising on proper diets and nutrition for different species. Emergency Care: Providing urgent medical attention in critical situations. Wellness Exams: Regular check-ups to monitor overall health. Laboratory Testing: Conducting diagnostic tests (bloodwork, X-rays, etc.). Animal Behavior Consultations: Addressing behavioral issues in pets. Farm Animal Services: Caring for livestock, poultry, and other farm animals.",
   },
 ];
 const VeterinaryService = () => {

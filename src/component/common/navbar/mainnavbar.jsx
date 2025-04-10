@@ -37,7 +37,7 @@ const Mainnav = () => {
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
       // style={{ backgroundColor: "#DDF0F8" }}
     >
-      <div className="container-fluid px-lg-lg-5 d-flex">
+      <div className="container-fluid px-lg-5 d-flex">
         <a className="navbar-brand me-lg-2 me-0" href="/#">
           <img
             src={Logo}

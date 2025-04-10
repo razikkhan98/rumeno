@@ -17,7 +17,7 @@ const cards = [
     // iframe:
     //   "https://www.theindustryoutlook.com/startups/vendor/rumeno-farmotech-elevating-livestock-health-with-innovative-nutrition-solutions--cid-9975.html#google_vignette",
     content:
-    "Rumeno Farmotech: Elevating Livestock Health With Innovative Nutrition Solutions",
+    "Rumeno Farmotech: Elevating Livestock Health With Innovative Nutrition Solutions Starting Rumeno Farmotech was like following a personal journey from my small goat farm in rural India.",
   },
   {
     to:"https://www.youtube.com/watch?v=MgA56V6PdBI",
@@ -36,7 +36,7 @@ const cards = [
 
 const CollapsingCards = () => {
   return (
-    <div className=" card-container">
+    <div className="card-container">
       {cards?.map((card, index) => (
         <div key={index} className="card custom-card mx-0">
           <NavLink to={card.to} target="_blank" className={"text-decoration-none text-dark"}>
@@ -55,7 +55,7 @@ const CollapsingCards = () => {
               <div className="card-body mx-0 ">
                 <h5 className="card-title">{card?.title}</h5>
                 <p className="card-text mb-0">{card?.content}</p>
-                <img className=" w-100 h-100" src={card?.icon} />
+                <img src={card?.icon} className=" w-100 h-100" alt="Loading" />
               </div>
             )}
           </NavLink>

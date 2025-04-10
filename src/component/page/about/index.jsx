@@ -47,12 +47,12 @@ const About = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="row gap-3">
-                <div className="col-lg-7 py-5">
-                  <div className="about-content py-4">
+                <div className="col-lg-7">
+                  <div className="about-content py-3">
                     <p className="text-uppercase about-heading">
                       About Rumeno Farmotech
                     </p>
-                    <p className="about-para py-1">
+                    <p className="about-para">
                       Rumeno Farmotech is a nutrition and feed supplement
                       technologies company <br /> Rumeno Farmotech offers a wide
                       range of products, including Probiotics, milk replacer,

@@ -28,7 +28,7 @@ const Footer = () => {
                 <img src={Image1} alt="Loading" />
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-5">
               <div className="footer-link px-2">
                 <p className="footer-heading josefin-sans-font-family-500">
                   Pages
@@ -74,7 +74,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-7">
               <div className="footer-contact px-2">
                 <p className="footer-heading-contact josefin-sans-font-family-500">
                   Contact Us
