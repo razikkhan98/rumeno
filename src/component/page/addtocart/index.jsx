@@ -29,7 +29,6 @@ const Addtocart = () => {
   const { cart, incrementQuantity, decrementQuantity, addToCart } =
     useContext(CartContext);
   const location = useLocation();
-  // console.log('cart: ', cart);
 
   const navigate = useNavigate();
   const isAuthenticated = !!sessionStorage.getItem("token");
@@ -54,11 +53,10 @@ const Addtocart = () => {
 
   const setWeight = (size) => {
     setSelectedWeight(size);
-    console.log('size: ', size);
-  }
+  };
   const decrease = (id) => {
-    decrementQuantity()
-  }
+    decrementQuantity();
+  };
 
   // Handle Add to Cart
   const handleAddToCart = (product, selectedWeight) => {

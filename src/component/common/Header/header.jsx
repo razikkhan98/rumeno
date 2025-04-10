@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 // Import React Icons
 import { PiSlidersHorizontalBold, PiFunnelBold } from "react-icons/pi";

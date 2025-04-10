@@ -98,7 +98,10 @@ const Goatfeed = () => {
                 <img src={images[activeIndex]} alt="Feed Supplement" />
               </div>
             </div>
-            <div className="col-lg-6 col-md-12 scroll-container" ref={scrollContainerRef}>
+            <div
+              className="col-lg-6 col-md-12 scroll-container"
+              ref={scrollContainerRef}
+            >
               {feeddata.map((item, index) => (
                 <div className="goatfeed-content my-auto" key={index}>
                   <p className="goatfeet-head">{item.title}</p>

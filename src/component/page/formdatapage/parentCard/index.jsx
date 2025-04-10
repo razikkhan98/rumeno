@@ -11,9 +11,7 @@ const Parent = () => {
   const [animals, setAnimals] = useState([]);
   console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
-  console.log("Hello");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
-  console.log("selectedAnimal: ", selectedAnimal);
 
   const endpoint = "/user/animaldata/parent/getAll";
 
@@ -21,7 +19,6 @@ const Parent = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        console.log("response: ", response);
         setAnimals(response.data);
         console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
@@ -94,7 +91,7 @@ const Parent = () => {
               padding: "20px",
             }}
           >
-            <h4>Parent</h4>
+            <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
 
             {loading ? (
               <p>Loading...</p>

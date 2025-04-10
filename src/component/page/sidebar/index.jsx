@@ -31,10 +31,16 @@ const Sidebar = () => {
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
                 <img src={animalImages[selectedAnimal]} alt="Animal" />
               </div>
-              <p className="mb-1 text-chinese-black-color" style={{ fontSize: "20px", fontWeight: "500" }}>
+              <p
+                className="mb-1 text-chinese-black-color"
+                style={{ fontSize: "20px", fontWeight: "500" }}
+              >
                 {selectedAnimal}
               </p>
-              <p className="text-muted-gray-color mb-0" style={{ fontSize: "12px", fontWeight: "500" }}>
+              <p
+                className="text-muted-gray-color mb-0"
+                style={{ fontSize: "12px", fontWeight: "500" }}
+              >
                 8 {selectedAnimal}s • 3 Babies
               </p>
             </div>

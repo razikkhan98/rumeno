@@ -35,10 +35,10 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-    // style={{ backgroundColor: "#DDF0F8" }}
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
-      <div className="container-fluid px-lg-5">
-        <a className="navbar-brand" href="/#">
+      <div className="container-fluid px-lg-5 d-flex">
+        <a className="navbar-brand me-lg-2 me-0" href="/#">
           <img
             src={Logo}
             alt="Logo"
@@ -46,8 +46,70 @@ const Mainnav = () => {
           />
         </a>
 
+        {/* Action Buttons */}
+        <div className="d-lg-none d-flex justify-content-end align-items-center gap-1">
+          {isLoggedIn ? (
+            <>
+              {" "}
+              <div className="text-center farm-btn">
+                <NavLink to="/farmdata">
+                  <button className="btn rounded-pill text-white p-0">
+                    Smart Livestock Manager
+                  </button>
+                </NavLink>
+              </div>
+            </>
+          ) : (
+            <div className="text-center farm-btn pe-3">
+              <NavLink to="/login">
+                <button className="btn rounded-pill text-white">Login</button>
+              </NavLink>
+            </div>
+          )}
+
+          <NavLink to="/cart">
+            <div className="position-relative">
+              <div
+                className="cart-navbar bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
+                
+              >
+                <PiShoppingCartSimpleFill
+                  className="fs-5 cart-icon-nav"
+                  style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                />
+              </div>
+              {cart && Object.keys(cart).length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{
+                    fontSize: "12px",
+                    minWidth: "20px",
+                    height: "20px",
+                  }}
+                >
+                  {Object.values(cart).reduce(
+                    (total, item) => total + item.quantity,
+                    0
+                  )}
+                </span>
+              )}
+            </div>
+          </NavLink>
+          <div
+            className="user-icon my-3 d-flex align-items-center justify-content-center"
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={User}
+              alt="User"
+              className="rounded-circle user-icon-img"
+            />
+            <MdOutlineKeyboardArrowDown />
+          </div>
+        </div>
+
         <button
-          className="navbar-toggler"
+          className="navbar-toggler px-1"
           type="button"
           onClick={toggleNavbar}
           aria-expanded={isNavbarOpen}
@@ -57,8 +119,9 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
-            }`}
+          className={`navbar-collapse custom-collapse ${
+            isNavbarOpen ? "custom-collapse-show" : ""
+          }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -74,16 +137,18 @@ const Mainnav = () => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${activeLink === "Products" ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  activeLink === "Products" ? "active" : ""
+                }`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
                 Products
               </a>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
-                  }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isProductsOpen ? "show" : ""
+                }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -120,56 +185,21 @@ const Mainnav = () => {
                 </div>
               </div>
             </li>
-            {/* {isProductsOpen && (
-              <div
-                className="products-collapse shadow p-3 mt-2 w-100 rounded-bottom-5"
-                style={{ background: "#F4FAFD" }}
-              >
-                <div className="d-flex gap-5 ms-lg-5">
-                  <div>
-                    <p className="products-title text-start">
-                      VETERINARY PRODUCTS
-                    </p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>All Animal Supplements</li>
-                      <li>Goat Supplements</li>
-                      <li>Dog Supplements</li>
-                      <li>Buffalo Supplements</li>
-                      <li>Cattle Supplements</li>
-                      <li>Poultry Supplements</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="products-title text-start">
-                      OTHER CATEGORIES
-                    </p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>Farmhouse Equipments</li>
-                      <li>Human Consumable</li>
-                      <li>Crop Seeds</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="products-title">GOAT FOR SELL</p>
-                    <ul className="list-unstyled products-list text-start">
-                      <li>Lorem Ipsum</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )} */}
+
             <li className="nav-item">
               <div
-                className={`nav-link ${activeLink === "Services" ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  activeLink === "Services" ? "active" : ""
+                }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
-                  }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isServicesOpen ? "show" : ""
+                }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -220,7 +250,9 @@ const Mainnav = () => {
             <NavLink to={"/blog"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${activeLink === "Blogs" ? "active" : ""}`}
+                  className={`nav-link ${
+                    activeLink === "Blogs" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Blogs")}
                 >
                   Blogs
@@ -230,8 +262,9 @@ const Mainnav = () => {
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${activeLink === "Contact Us" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    activeLink === "Contact Us" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
@@ -239,11 +272,12 @@ const Mainnav = () => {
               </li>
             </NavLink>
           </ul>
-
-          {/* Action Buttons */}
-
-          <div className="d-lg-flex align-items-center gap-4">
-            {/* {isLoggedIn && (
+        </div>
+        {/* Action Buttons */}
+        <div className="d-none d-lg-flex justify-content-center align-items-center gap-lg-4">
+          {isLoggedIn ? (
+            <>
+              {" "}
               <div className="text-center farm-btn">
                 <NavLink to="/farmdata">
                   <button className="btn rounded-pill text-white p-0">
@@ -251,88 +285,53 @@ const Mainnav = () => {
                   </button>
                 </NavLink>
               </div>
-            )} */}
-            {isLoggedIn ? (
-              <>
-                {" "}
-                <div className="text-center farm-btn">
-                  <NavLink to="/farmdata">
-                    <button className="btn rounded-pill text-white p-0">
-                      Smart Livestock Manager
-                    </button>
-                  </NavLink>
-                </div>
-              </>
-            ) : (
-              <div className="text-center farm-btn px-3">
-                <NavLink to="/login">
-                  <button className="btn rounded-pill text-white">
-                    Login
-                  </button>
-                </NavLink>
-              </div>
-            )}
-
-            <div
-              className="cursor search-icon bg-light rounded-circle text-center m-auto my-3 d-flex align-items-center justify-content-center"
-              style={{ height: "40px", width: "40px" }}
-            >
-              <IoSearch
-                className="fs-5"
-                style={{ height: "24px", width: "24px", color: "#FB9038" }}
-              />
+            </>
+          ) : (
+            <div className="text-center farm-btn px-3">
+              <NavLink to="/login">
+                <button className="btn rounded-pill text-white">Login</button>
+              </NavLink>
             </div>
+          )}
 
-            {/* <div
-              className="cart-icon bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
-              style={{ height: "40px", width: "40px" }}
-            >
-              <PiShoppingCartSimpleFill
-                className="fs-5"
-                style={{ height: "24px", width: "24px", color: "#FB9038" }}
-              />
-            </div> */}
-
-            <NavLink to="/cart">
-              <div className="position-relative">
-                <div
-                  className="cart-icon bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
-                  style={{ height: "40px", width: "40px" }}
-                >
-                  <PiShoppingCartSimpleFill
-                    className="fs-5"
-                    style={{ height: "24px", width: "24px", color: "#FB9038" }}
-                  />
-                </div>
-                {cart && Object.keys(cart).length > 0 && (
-                  <span
-                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    style={{
-                      fontSize: "12px",
-                      minWidth: "20px",
-                      height: "20px",
-                    }}
-                  >
-                    {Object.values(cart).reduce(
-                      (total, item) => total + item.quantity,
-                      0
-                    )}
-                  </span>
-                )}
-              </div>
-            </NavLink>
-            <div
-              className="user-icon my-3 d-flex align-items-center justify-content-center gap-2"
-              style={{ cursor: "pointer" }}
-            >
-              <img
-                src={User}
-                alt="User"
-                className="rounded-circle"
+          <NavLink to="/cart">
+            <div className="position-relative">
+              <div
+                className="cart-navbar bg-light rounded-circle text-center m-auto d-flex align-items-center justify-content-center"
                 style={{ height: "40px", width: "40px" }}
-              />
-              <MdOutlineKeyboardArrowDown />
+              >
+                <PiShoppingCartSimpleFill
+                  className="fs-5 cart-icon-nav"
+                  style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                />
+              </div>
+              {cart && Object.keys(cart).length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{
+                    fontSize: "12px",
+                    minWidth: "20px",
+                    height: "20px",
+                  }}
+                >
+                  {Object.values(cart).reduce(
+                    (total, item) => total + item.quantity,
+                    0
+                  )}
+                </span>
+              )}
             </div>
+          </NavLink>
+          <div
+            className="user-icon my-3 ms-lg-3 d-flex align-items-center justify-content-center gap-lg-2"
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={User}
+              alt="User"
+              className="rounded-circle"
+            />
+            <MdOutlineKeyboardArrowDown />
           </div>
         </div>
       </div>

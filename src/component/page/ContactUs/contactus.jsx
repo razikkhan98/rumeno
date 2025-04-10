@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 // Import third Party Components
 import { useForm } from "react-hook-form";
@@ -9,13 +9,11 @@ import Navbar from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer/index";
 import { postData } from "../../common/APIs/api";
 
-
 // Import React Icons
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaYoutube, FaSquareFacebook, FaWhatsapp } from 'react-icons/fa6';
 
 // images
-// import LoginImg from "../../../assets/img/Login/login-img.png";
 import Mail from "../../assets/img/Login/mail.png";
 import Call from "../../assets/img/Login/call.png";
 import Location from "../../assets/img/Login/location.png";
@@ -24,11 +22,11 @@ import { Nav } from 'react-bootstrap';
 import ReactWhatsapp from "react-whatsapp";
 
 const ContactUs = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
     // API endpoint
 
@@ -163,20 +161,23 @@ const ContactUs = () => {
                                     </div>
 
 
-                                    {/* Submit Button */}
-                                    <button type="submit" className="bg-gradient-color border-0 btn text-white w-100 mt-5 py-3">
-                                        Send
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="bg-gradient-color border-0 btn text-white w-100 mt-5 py-3"
+                  >
+                    Send
+                  </button>
+                </form>
+              </div>
             </div>
-            {/* Footer */}
-            <Footer />
-        </>
-    )
-}
+          </div>
+        </div>
+      </div>
+      {/* Footer */}
+      <Footer />
+    </>
+  );
+};
 
-export default ContactUs
+export default ContactUs;
