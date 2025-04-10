@@ -127,7 +127,7 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
-                      {...register("mobileNumber", {
+                      {...register("mobile", {
                         required: "Mobile number is required",
                         pattern: {
                           value: /^\d{10}$/,

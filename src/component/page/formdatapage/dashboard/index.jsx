@@ -73,7 +73,7 @@
 // export default Dashboard;
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../common/navbar";
+import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import { Card } from "react-bootstrap";
 import DashboardTable from "../dashboardTable";
