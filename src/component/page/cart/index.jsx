@@ -9,11 +9,11 @@ import Header from "../../common/Header/header";
 const CartFaq = [
   {
     question: "1. How long will it take to get my orders?",
-    answer: "Delivery times vary based on location...",
+    answer: "Veterinary Services for Pet Animals: These services, which include medical treatment for pets, are not taxable under the Goods and Services Tax (GST). They fall under the nil rate Category1.Veterinary Services for Livestock: Similar to pet animals, services related to livestock health care are also not taxable and fall under the nil rate Category2. Other Veterinary Services (Not Elsewhere Classified): Services beyond pet animals and livestock, such as specialized treatments or laboratory testing, are subject to an 18% GST rate.",
   },
   {
     question: "2. How to Sell Veterinary Products?",
-    answer: "...................",
+    answer: "With Rumeno Affiliate program you can sell our veterinary products and get commission on them",
   },
 ];
 

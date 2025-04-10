@@ -20,26 +20,26 @@
   }
   
   .custom-card:nth-child(1) {
-    left: 18%;
+    left: 13%;
     z-index: 1;
     transform: rotate(340deg);
     background-color: #FDC79E;
   }
   .custom-card:nth-child(2) {
-    left: 33%;
+    left: 25%;
     z-index: 2;
     transform: rotate(9deg);
     background-color: #baf2ed;
   }
   .custom-card:nth-child(3) {
-    left: 50%;
+    left: 43%;
     z-index: 4;
     transform: rotate(0deg);
     background-color: rgb(244 162 162);
     color: #ffffff !important;
   }
   .custom-card:nth-child(4) {
-    left: 68%;
+    left: 63%;
     z-index: 3;
     transform: rotate(10deg);
     background-color: #BFE3F1;

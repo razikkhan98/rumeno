@@ -244,8 +244,8 @@ body {
   font-weight: 600;
   background: linear-gradient(to right, #89c9e6, #dd3675, #ec7229);
   /* width: 160px; */
-  padding: 0px 20px !important;
-  height: 52px;
+  padding: 8px 20px !important;
+  /* height: 52px; */
   border: 0px;
 }
 
@@ -299,6 +299,13 @@ body {
 .cart-navbar{
   width: 40px;
   height: 40px;
+}
+.cart-icon-nav{
+  color: #FB9038;
+}
+.dropdown-menu.show{
+  position: absolute;
+  right: -50%;
 }
 
 /* Responsive Design */
@@ -1814,7 +1821,7 @@ body {
 }
 
 .addtocart-btn {
-  width: 150px;
+  /* width: 150px; */
   height: 45px !important;
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
