@@ -300,6 +300,10 @@ body {
   width: 40px;
   height: 40px;
 }
+.dropdown-menu.show{
+  position: absolute;
+  right: -50%;
+}
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -1814,7 +1818,7 @@ body {
 }
 
 .addtocart-btn {
-  width: 150px;
+  /* width: 150px; */
   height: 45px !important;
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
