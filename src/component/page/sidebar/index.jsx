@@ -68,7 +68,7 @@ const Sidebar = () => {
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Parent
+               {selectedAnimal}
               </NavLink>
 
               <NavLink

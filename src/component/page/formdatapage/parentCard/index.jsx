@@ -6,6 +6,7 @@ import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
 import { deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
+import { NavLink } from "react-router-dom";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
@@ -37,6 +38,11 @@ const Parent = () => {
     (animal) => animal?.animalName === selectedAnimal
   );
 
+  // Add Goat 
+  const addGoat = () => {
+    localStorage.removeItem("currentIndex");
+  };
+
 
   // // Delete Animal Card
   // const handleDeleteAnimal = async (uniqueId) => {
@@ -58,8 +64,8 @@ const Parent = () => {
   //   }
   // };
 
-   // Delete  Animal Card
-   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
+  // Delete  Animal Card
+  const handleDeleteAnimal = async (uniqueId, childrenCount) => {
     if (childrenCount > 0) {
       toast.error("Cannot delete parent. It has child records associated.");
       return;
@@ -91,7 +97,23 @@ const Parent = () => {
               padding: "20px",
             }}
           >
-            <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
+              {/* Add Goat Button */}
+              <NavLink to="/parentform">
+                <button
+                  className="btn add-animal-btn text-white px-4 border rounded-pill"
+                  style={{
+                    background:
+                      "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
+                  }}
+                  onClick={() => addGoat()}
+                >
+                  <span className="me-1">+</span>
+                  {`Add ${selectedAnimal}`}
+                </button>
+              </NavLink>
+            </div>
 
             {loading ? (
               <p>Loading...</p>
@@ -116,7 +138,7 @@ const Parent = () => {
                       vaccine={animal.vaccine?.length > 0 ? animal.vaccine?.length : "No Vaccine"}
                       deworm={animal.deworm?.length > 0 ? animal.deworm?.length : "No Deworm"}
                       estrusHeat={animal.estrusHeat?.length > 0 ? animal.estrusHeat.length : "No Estrus Heat"}
-                      farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length :"No Farm Sanitation"}
+                      farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length : "No Farm Sanitation"}
                       onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
                       currentIndex={index}
 

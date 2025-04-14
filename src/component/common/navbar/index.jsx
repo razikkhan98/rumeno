@@ -12,9 +12,9 @@ const Navbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
-  const addGoat = () => {
-    localStorage.removeItem("currentIndex");
-  };
+  // const addGoat = () => {
+  //   localStorage.removeItem("currentIndex");
+  // };
 
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
@@ -76,7 +76,7 @@ const Navbar = () => {
                         </div>
 
                         {/* Add Goat Button */}
-                        <NavLink to="/parentform">
+                        {/* <NavLink to="/parentform">
                           <button
                             className="btn add-animal-btn text-white px-4 border rounded-pill"
                             style={{
@@ -88,7 +88,7 @@ const Navbar = () => {
                             <span className="me-1">+</span>
                             {`Add ${selectedAnimal}`}
                           </button>
-                        </NavLink>
+                        </NavLink> */}
                       </div>
                     </div>
                   </div>
