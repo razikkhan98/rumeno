@@ -13,18 +13,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import Images
 import Neonato from "../../assets/img/products/neonatobottle.png";
-import Tanav from "../../assets/img/products/Tanaav.jpg";
+// import Milkbooster from "../../assets/img/products/cattle-milk-booster.png";
+// import Tanav from "../../assets/img/products/Tanaav.jpg";
 import Energico from "../../assets/img/products/Energico-Animal.jpg";
-import Rumenvita from "../../assets/img/products/Rumenovita.jpg";
+// import Rumenvita from "../../assets/img/products/Rumenovita.jpg";
 import Liverofine from "../../assets/img/products/Liverofine.jpg";
-import Digesto from "../../assets/img/products/Digesto-Plus.jpg";
-import DCox from "../../assets/img/products/D-Cox.jpg";
+import Florovita from "../../assets/img/products/florovita-12.png";
+import Poultryfine from "../../assets/img/products/Poultryfine.png";
+import Minro from "../../assets/img/products/minromix.jpg";
 import MicroFlora from "../../assets/img/products/microfloratane.jpg";
-import Selennium from "../../assets/img/products/Selennium-GC.png";
-import Bull from "../../assets/img/products/Bull-Goat.png";
-import ProLac from "../../assets/img/products/pro-lack-calf-powder7.png";
+import Pupmilk from "../../assets/img/products/Lacto-Pup-Milk-Replacer.jpg";
 import Slatted from "../../assets/img/products/farm-floor.jpg";
-import Nipple from "../../assets/img/products/goat-Sheep-Nipple.png"
 import Virus from "../../assets/img/products/antivirus.svg";
 import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
@@ -66,100 +65,29 @@ const productItem = [
   },
   {
     id: 2,
-    name: "Tanav Mukti Anti Stress Animal Feed Supplement | Stress relief supplements for animals",
-    image: Tanav,
-    price: 700,
-    inStock: true,
+    name: "Micro Floratone Digestive supplements for dogs",
+    image: MicroFlora,
+    price: 245.0,
+    inStock: false,
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 3,
-    name: "Energico | Electrolytes for Cattle, Goat, Poultry, Horses, Pigs, Sheep, Pigeons",
-    image: Energico,
-    price: 235,
-    inStock: true,
+    name: "Minromix | Mineral mixture for cattle, goat ,poultry,dog,and cat",
+    image: Minro,
+    price: 285.0,
+    inStock: false,
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 4,
-    name: "Rumenovita | Growth booster for animals | Animal feed supplement",
-    image: Rumenvita,
-    price: 3250,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 5,
-    name: "Liverofine | veterinary liver tonic",
-    image: Liverofine,
-    price: 125.0,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 6,
-    name: "Digesto Plus | digestive supplements for animals",
-    image: Digesto,
-    price: 190.0,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 7,
-    name: "D-Cox | Weaning goat supplement",
-    image: DCox,
-    price: 250,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 8,
-    name: "Rumeno Micro Flora | Pre + Probiotic Supplement for animals",
-    image: MicroFlora,
-    price: 90.0,
+    name: "Lacto-Pup Milk Replacer | Milk Replacer for Puppies",
+    image: Pupmilk,
+    price: 600.0,
     inStock: false,
     productUnit: ["1kg", "5kg", "25kg"],
   },
-  {
-    id: 9,
-    name: "Selennium-GC | Selenium supplement for cattle and goats | Animal feed supplement",
-    image: Selennium,
-    price: 190.0,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 10,
-    name: "Bull Goat | Goat weight gain supplement",
-    image: Bull,
-    price: 1175.0,
-    inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 11,
-    name: "Pro-lac power goat milk replacer",
-    image: ProLac,
-    price: 600,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 12,
-    name: "Slatted Floor",
-    image: Slatted,
-    price: 135,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 13,
-    name: "Pet nipple | Goat and sheep nipples",
-    image: Nipple,
-    price: 55,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
+  
 ];
 
 const petProducts = [
@@ -236,7 +164,7 @@ const Products = () => {
         <div className="mt-lg-4">
           <Header
             title="Products"
-            subtitle="Goat Supplement"
+            subtitle="Dog Supplement"
             // products={"13 Products"}
             showSortFilter
           />

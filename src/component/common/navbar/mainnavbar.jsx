@@ -18,8 +18,6 @@ const Mainnav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
 
-
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -33,14 +31,12 @@ const Mainnav = () => {
     };
   }, []);
 
-
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
   };
 
-  const location = useLocation()
-  console.log('location: ', location);
-
+  const location = useLocation();
+  console.log("location: ", location);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -64,7 +60,6 @@ const Mainnav = () => {
     setOpen((prev) => !prev);
   };
 
-
   const handleLogout = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
@@ -74,7 +69,7 @@ const Mainnav = () => {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-    // style={{ backgroundColor: "#DDF0F8" }}
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-lg-5 px-3 d-flex">
         <a className="navbar-brand me-lg-2 me-0" href="/#">
@@ -92,7 +87,7 @@ const Mainnav = () => {
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
-                // style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                  // style={{ height: "24px", width: "24px", color: "#FB9038" }}
                 />
               </div>
               {cart && Object.keys(cart).length > 0 && (
@@ -148,13 +143,19 @@ const Mainnav = () => {
                 <div className="d-flex justify-content-center">
                   {isLoggedIn ? (
                     <div className="farm-btn my-3">
-                      <button onClick={handleLogout} className="btn rounded-pill text-white"> <RiLogoutBoxRLine className="me-2" /> Logout</button>
-
+                      <button
+                        onClick={handleLogout}
+                        className="btn rounded-pill text-white"
+                      >
+                        {" "}
+                        <RiLogoutBoxRLine className="me-2" /> Logout
+                      </button>
                     </div>
                   ) : (
                     <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">Login</button>
-
+                      <button className="btn rounded-pill text-white">
+                        Login
+                      </button>
                     </NavLink>
                   )}
                 </div>
@@ -174,8 +175,9 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
-            }`}
+          className={`navbar-collapse custom-collapse ${
+            isNavbarOpen ? "custom-collapse-show" : ""
+          }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -183,8 +185,9 @@ const Mainnav = () => {
             <NavLink to={"/"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <a
-                  className={`nav-link ${String(location?.pathname) === "/" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Home")}
                 >
                   Home
@@ -194,16 +197,18 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <a
-                className={`nav-link ${String(location?.pathname) === "/products" ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  String(location?.pathname) === "/products" ? "active" : ""
+                }`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
                 Products
               </a>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
-                  }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isProductsOpen ? "show" : ""
+                }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -212,12 +217,30 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <li>All Animal Supplements</li>
-                      <NavLink to="/products" className="text-decoration-none">
+                      <NavLink
+                        to="/goatproducts"
+                        className="text-decoration-none"
+                      >
                         <li>Goat Supplements</li>
                       </NavLink>
-                      <li>Sheep Supplements</li>
-                      <li>Buffalo Supplements</li>
-                      <li>Cow Supplements</li>
+                      <NavLink
+                        to="/cattleproduct"
+                        className="text-decoration-none"
+                      >
+                        <li>Cattle Supplements</li>
+                      </NavLink>
+                      <NavLink
+                        to="/poultryproduct"
+                        className="text-decoration-none"
+                      >
+                        <li>Poultry Supplements</li>
+                      </NavLink>
+                      <NavLink
+                        to="/dogproduct"
+                        className="text-decoration-none"
+                      >
+                        <li>Dog Supplements</li>
+                      </NavLink>
                       {/* <li>Poultry Supplements</li> */}
                     </ul>
                   </div>
@@ -243,16 +266,18 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <div
-                className={`nav-link ${String(location?.pathname) === "/service" ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  String(location?.pathname) === "/service" ? "active" : ""
+                }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
-                  }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isServicesOpen ? "show" : ""
+                }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -303,8 +328,9 @@ const Mainnav = () => {
             <NavLink to={"/blog"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${String(location?.pathname) === "/blog" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/blog" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Blogs")}
                 >
                   Blogs
@@ -314,8 +340,9 @@ const Mainnav = () => {
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${String(location?.pathname) === "/contactus" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/contactus" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
@@ -419,16 +446,21 @@ const Mainnav = () => {
                 <div className="d-flex justify-content-center">
                   {isLoggedIn ? (
                     <div className="farm-btn my-3">
-                      <button onClick={handleLogout} className="btn rounded-pill text-white"> <RiLogoutBoxRLine className="me-2" /> Logout</button>
-
+                      <button
+                        onClick={handleLogout}
+                        className="btn rounded-pill text-white"
+                      >
+                        {" "}
+                        <RiLogoutBoxRLine className="me-2" /> Logout
+                      </button>
                     </div>
                   ) : (
                     <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">Login</button>
-
+                      <button className="btn rounded-pill text-white">
+                        Login
+                      </button>
                     </NavLink>
                   )}
-
                 </div>
               </div>
             )}
