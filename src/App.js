@@ -12,7 +12,10 @@ import Dashboard from "./component/page/formdatapage/dashboard/index";
 import Parent from "./component/page/formdatapage/parentCard/index";
 import Child from "./component/page/formdatapage/childCard/index";
 import Record from "./component/page/record";
-import Products from "./component/page/products";
+import Products from "./component/page/products/index";
+import Cattleproduct from "./component/page/products/cattle";
+import Poultryproduct from "./component/page/products/poultry";
+import Dogproduct from "./component/page/products/dog";
 import Addtocart from "./component/page/addtocart";
 import DairyConsultantService from "./component/page/service/dairyConsultant";
 import GoatFarmingService from "./component/page/service/goatFarming";
@@ -48,8 +51,11 @@ const App = () => {
       <CartProvider>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/" element={<Main />} />Poultryproduct
+          <Route path="/goatproducts" element={<Products />} />
+          <Route path="/cattleproduct" element={<Cattleproduct />} />
+          <Route path="/poultryproduct" element={<Poultryproduct />} />
+          <Route path="/dogproduct" element={<Dogproduct />} />
           <Route path="/training" element={<Training />} />
           <Route path="/protraining" element={<ProTraining />} />
           <Route path="/productDetails/:id" element={<Addtocart />} />

@@ -88,13 +88,13 @@ const Parent = () => {
         <div className="col-lg-2 col-md-3">
           <Sidebar />
         </div>
-        <div className="col-lg-10 col-md-9 py-3">
+        <div className="col-lg-10 col-md-9 py-0">
           <div
             className="content-container flex-grow-1"
             style={{
               overflowY: "auto",
-              height: "calc(100vh - 200px)",
-              padding: "20px",
+              // height: "calc(100vh - 200px)",
+              padding: "0px 20px",
             }}
           >
             <div className="d-flex justify-content-between align-items-center">
@@ -102,7 +102,7 @@ const Parent = () => {
               {/* Add Goat Button */}
               <NavLink to="/parentform">
                 <button
-                  className="btn add-animal-btn text-white px-4 border rounded-pill"
+                  className="btn add-animal-btn text-white px-2 border rounded-pill"
                   style={{
                     background:
                       "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
@@ -120,7 +120,7 @@ const Parent = () => {
             ) : filteredAnimals?.length > 0 ? (
               <div className="row">
                 {filteredAnimals?.map((animal, index) => (
-                  <div key={index} className="col-lg-3 px-3 pt-4">
+                  <div key={index} className="width-20 px-3 pt-1">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
@@ -141,7 +141,6 @@ const Parent = () => {
                       farmSanitation={animal.farmSanitation?.length > 0 ? animal.farmSanitation.length : "No Farm Sanitation"}
                       onDelete={() => handleDeleteAnimal(animal.uniqueId, animal.children?.length || 0)}
                       currentIndex={index}
-
                     />
                   </div>
                 ))}

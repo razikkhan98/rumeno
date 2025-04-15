@@ -13,18 +13,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import Images
 import Neonato from "../../assets/img/products/neonatobottle.png";
+import Milkbooster from "../../assets/img/products/cattle-milk-booster.png";
 import Tanav from "../../assets/img/products/Tanaav.jpg";
 import Energico from "../../assets/img/products/Energico-Animal.jpg";
 import Rumenvita from "../../assets/img/products/Rumenovita.jpg";
 import Liverofine from "../../assets/img/products/Liverofine.jpg";
 import Digesto from "../../assets/img/products/Digesto-Plus.jpg";
-import DCox from "../../assets/img/products/D-Cox.jpg";
-import MicroFlora from "../../assets/img/products/microfloratane.jpg";
 import Selennium from "../../assets/img/products/Selennium-GC.png";
-import Bull from "../../assets/img/products/Bull-Goat.png";
+import Minro from "../../assets/img/products/minromix.jpg";
 import ProLac from "../../assets/img/products/pro-lack-calf-powder7.png";
 import Slatted from "../../assets/img/products/farm-floor.jpg";
-import Nipple from "../../assets/img/products/goat-Sheep-Nipple.png"
 import Virus from "../../assets/img/products/antivirus.svg";
 import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
@@ -66,6 +64,14 @@ const productItem = [
   },
   {
     id: 2,
+    name: "Doodh Vardhan | Cattle Milk Booster",
+    image: Milkbooster,
+    price: 550,
+    inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
+  },
+  {
+    id: 3,
     name: "Tanav Mukti Anti Stress Animal Feed Supplement | Stress relief supplements for animals",
     image: Tanav,
     price: 700,
@@ -73,7 +79,7 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 3,
+    id: 4,
     name: "Energico | Electrolytes for Cattle, Goat, Poultry, Horses, Pigs, Sheep, Pigeons",
     image: Energico,
     price: 235,
@@ -81,7 +87,7 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 4,
+    id: 5,
     name: "Rumenovita | Growth booster for animals | Animal feed supplement",
     image: Rumenvita,
     price: 3250,
@@ -89,7 +95,7 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 5,
+    id: 6,
     name: "Liverofine | veterinary liver tonic",
     image: Liverofine,
     price: 125.0,
@@ -97,31 +103,16 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 6,
+    id: 7,
     name: "Digesto Plus | digestive supplements for animals",
     image: Digesto,
     price: 190.0,
     inStock: true,
     productUnit: ["1kg", "5kg", "25kg"],
   },
-  {
-    id: 7,
-    name: "D-Cox | Weaning goat supplement",
-    image: DCox,
-    price: 250,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
+  
   {
     id: 8,
-    name: "Rumeno Micro Flora | Pre + Probiotic Supplement for animals",
-    image: MicroFlora,
-    price: 90.0,
-    inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 9,
     name: "Selennium-GC | Selenium supplement for cattle and goats | Animal feed supplement",
     image: Selennium,
     price: 190.0,
@@ -129,15 +120,15 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 10,
-    name: "Bull Goat | Goat weight gain supplement",
-    image: Bull,
-    price: 1175.0,
+    id: 9,
+    name: "Minromix | Mineral mixture for cattle, goat ,poultry,dog,and cat",
+    image: Minro,
+    price: 285.0,
     inStock: false,
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 11,
+    id: 10,
     name: "Pro-lac power goat milk replacer",
     image: ProLac,
     price: 600,
@@ -145,18 +136,10 @@ const productItem = [
     productUnit: ["1kg", "5kg", "25kg"],
   },
   {
-    id: 12,
+    id: 11,
     name: "Slatted Floor",
     image: Slatted,
     price: 135,
-    inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
-  },
-  {
-    id: 13,
-    name: "Pet nipple | Goat and sheep nipples",
-    image: Nipple,
-    price: 55,
     inStock: true,
     productUnit: ["1kg", "5kg", "25kg"],
   },
@@ -236,7 +219,7 @@ const Products = () => {
         <div className="mt-lg-4">
           <Header
             title="Products"
-            subtitle="Goat Supplement"
+            subtitle="Cattle Supplement"
             // products={"13 Products"}
             showSortFilter
           />
