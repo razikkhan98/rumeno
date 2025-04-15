@@ -2636,8 +2636,8 @@ input[type="radio"] {
   "transform 0.3s ease, box-shadow 0.3s ease",
 }
 .dashboard-cards img{
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 .card-pink-border{
   border-left: 5px solid #DD3675;
@@ -2649,8 +2649,15 @@ input[type="radio"] {
   border-left: 5px solid #EC7229;
 }
 .card-img-circle{
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
   /* background-color: #dff3fc; */
   background: linear-gradient(  to right, rgba(137, 201, 230, 0.3), rgba(221, 54, 117, 0.3), rgba(236, 114, 41, 0.3));
+  /* background: rgba(137, 201, 230, 0.7); */
+}
+.card-img-circle img{
+  /* aspect-ratio: 2/2;
+  object-fit: cover; */
+  width: 80% !important;
+  height: 100% !important;
 }

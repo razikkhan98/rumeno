@@ -120,7 +120,7 @@ const Parent = () => {
             ) : filteredAnimals?.length > 0 ? (
               <div className="row">
                 {filteredAnimals?.map((animal, index) => (
-                  <div key={index} className="col-lg-3 px-4 pt-4">
+                  <div key={index} className="col-lg-3 px-3 pt-4">
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
