@@ -121,7 +121,7 @@ const GoatDetailForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
-                <div className="col-lg-3 lh-lg">
+                <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Unique ID</label>
                   <input
                     type="text"
@@ -130,6 +130,21 @@ const GoatDetailForm = () => {
                     {...register("uniqueName", {
                       required: "Unique ID is required",
                     })}
+                  />
+                  {errors.uniqueId && (
+                    <p className="text-danger">{errors.uniqueId.message}</p>
+                  )}
+                </div>
+
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Tag ID</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail"
+                    placeholder="Enter Tag ID"
+                  // {...register("tagId", {
+                  //   required: "Tag ID is required",
+                  // })}
                   />
                   {errors.uniqueId && (
                     <p className="text-danger">{errors.uniqueId.message}</p>
@@ -308,6 +323,9 @@ const GoatDetailForm = () => {
                     <option value="5">5: Fatty bulky body</option>
                   </select>
                 </div>
+              </div>
+
+              <div className="row mt-3">
                 <div className="col-lg-2  
                  lh-lg">
                   <label className="form-lable-detail">
@@ -378,9 +396,21 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
+
               </div>
 
               <div className="row mt-3">
+
+              <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">
+                    Birth Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control form-control-detail"
+                    {...register("birthDate")}
+                  />
+                </div>
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Male Detail</label>
