@@ -42,10 +42,10 @@ const AnimalCard = ({
 }) => {
   console.log("AnimalCard", kidId);
   const details = [
-    { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
+    // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
     { label: "Age", value: age, icon: <PiCalendarBlankFill /> },
-    { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
+    // { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
   ];
 
   const modalDetails = [
@@ -317,7 +317,7 @@ const AnimalCard = ({
                 className="border px-2 py-1"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
               >
-                <PiPencilSimple className="fs-3 text-primary" />
+                <PiPencilSimple className="fs-5 text-primary" />
               </Button>
             </NavLink>
 
@@ -327,7 +327,7 @@ const AnimalCard = ({
               style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
               onClick={handleShowDelete}
             >
-              <PiTrashSimple className="fs-3 text-danger" />
+              <PiTrashSimple className="fs-5 text-danger" />
             </Button>
           </>
         ) : (
@@ -360,7 +360,7 @@ const AnimalCard = ({
           <>
             <Button
               size="sm"
-              className="rounded-pill py-2 px-3 border-0"
+              className="rounded-pill font-12-500 py-2 px-3 border-0"
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${parentId}/${uniqueId}`, {
