@@ -102,7 +102,7 @@ const Parent = () => {
               {/* Add Goat Button */}
               <NavLink to="/parentform">
                 <button
-                  className="btn add-animal-btn text-white px-2 border rounded-pill"
+                  className="btn add-animal-btn text-white px-4 border rounded-pill"
                   style={{
                     background:
                       "linear-gradient(to right, #89C9E6, #DD3675, #EC7229)",
