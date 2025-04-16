@@ -20,23 +20,26 @@
   }
   
   .custom-card:nth-child(1) {
-    left: 18%;
+    left: 13%;
     z-index: 1;
     transform: rotate(340deg);
     background-color: #FDC79E;
   }
   .custom-card:nth-child(2) {
-    left: 33%;
+    left: 25%;
     z-index: 2;
     transform: rotate(9deg);
+    background-color: #baf2ed;
   }
   .custom-card:nth-child(3) {
-    left: 50%;
+    left: 43%;
     z-index: 4;
     transform: rotate(0deg);
+    background-color: rgb(244 162 162);
+    color: #ffffff !important;
   }
   .custom-card:nth-child(4) {
-    left: 68%;
+    left: 63%;
     z-index: 3;
     transform: rotate(10deg);
     background-color: #BFE3F1;
@@ -50,7 +53,7 @@
   
   /*  responsive  */
   
-  @media only screen and (min-width: 320px) and (max-width: 992px) {
+  /* @media only screen and (min-width: 320px) and (max-width: 992px) {
     .card-container {
       position: relative;
       top: 220px;
@@ -91,5 +94,38 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       z-index: 10;
     }
+  }
+   */
+
+
+   @media only screen and (min-width: 320px) and (max-width: 992px) {
+    .card-container {
+      top: 220px;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+    }
+  
+    .custom-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 240px;
+      height: 220px !important;
+      transform: rotate(0deg) !important;
+      margin: 0 8px;
+      position: relative !important;
+      left: 345px !important;
+      z-index: 1 !important;
+    }
+  
+    .custom-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+    
   }
   

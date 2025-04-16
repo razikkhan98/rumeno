@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Blog = () => {
     return(
@@ -11,9 +12,11 @@ const Blog = () => {
                             <p className="text-uppercase blog-heading text-center">Want to  know more about Veterinary Farming Tips & Techniques ?</p>
                         </div>
                         <div className="py-3">
+                            <NavLink to={"/blog"}>
                             <button className="blog-btn">
                                 Read Blogs
                             </button>
+                            </NavLink>
                         </div>
                     </div>
                    

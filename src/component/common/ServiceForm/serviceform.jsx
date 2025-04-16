@@ -8,7 +8,7 @@ import { Bounce, toast } from "react-toastify";
 import { postData } from "../../common/APIs/api";
 
 const ServiceForm = () => {
-    const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
     const endpoint = "/user/service";
 

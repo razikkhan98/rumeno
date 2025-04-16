@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-const Faq = ({faqs,  showHeading = true }) => {
+const Faq = ({ faqs, showHeading = true }) => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -15,14 +14,14 @@ const Faq = ({faqs,  showHeading = true }) => {
         <div className="container py-lg-5">
           <div className="row">
             <div className="col-lg-12">
-            {showHeading && (
-              <>
-                <p className="faq-heading text-center">
-                  Frequently Asked Questions
-                </p>
-                <p className="faqsub-heading text-center">FAQ’s</p>
-              </>
-            )}
+              {showHeading && (
+                <>
+                  <p className="faq-heading text-center">
+                    Frequently Asked Questions
+                  </p>
+                  <p className="faqsub-heading text-center">FAQ’s</p>
+                </>
+              )}
               <div className="accordion pt-lg-3" id="faqAccordion">
                 {faqs?.map((faq, index) => (
                   <div className="accordion-item p-2 " key={index}>

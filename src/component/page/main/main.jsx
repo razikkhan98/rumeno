@@ -11,7 +11,7 @@ import Research from "../research";
 import Manufacture from "../manufacture";
 import Livestock from "../livestock";
 import Faq from "../faq";
-import Blog from "../blog";
+import Blog from "../../common/blog";
 import Mainnav from "../../common/navbar/mainnavbar";
 import Footer from "../../common/footer";
 
