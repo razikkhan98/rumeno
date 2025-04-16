@@ -841,7 +841,7 @@ const Record = () => {
                     </Button>
                     <Button
                       type="submit"
-                      className="btn-success px-4 mx-2"
+                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-success"}`}
                       onClick={handleUpdateApi}
                       disabled={!InputPreFillData || editActive}
                     >
@@ -849,7 +849,7 @@ const Record = () => {
                     </Button>
                     <Button
                       type="submit"
-                      className="btn-danger px-4"
+                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-danger"}`}
                       onClick={handleDeleteApi}
                       disabled={!InputPreFillData}
                     >
@@ -930,7 +930,7 @@ const Record = () => {
                         </div>
                       ))
                     ) : (
-                      <p>No Data Found .....</p>
+                      <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
                     )}
                   </div>
                 </>
