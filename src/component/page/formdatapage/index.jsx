@@ -13,7 +13,7 @@ const animals = [
   { name: "Buffalo", image: Buffalo, route: "/farmdata/dashboard" },
 ];
 
-const   Formdata = () => {
+const Formdata = () => {
   const handleAnimalClick = (animalName) => {
     sessionStorage.setItem("animalName", animalName); // Store selected animal name in session storage
   };
@@ -25,7 +25,9 @@ const   Formdata = () => {
         <div className="row">
           <div className="col-lg-12 py-5">
             <div className="form-data-content text-center pt-lg-5">
-              <h2>Please select an animal to proceed</h2>
+              <p className="text-chinese-black-color font-32-500">
+                Please select an animal to proceed
+              </p>
               <div className="animal-images d-flex justify-content-around pt-lg-5">
                 {animals.map((animal, index) => (
                   <NavLink
@@ -36,9 +38,15 @@ const   Formdata = () => {
                     onClick={() => handleAnimalClick(animal.name)}
                   >
                     <div className="form-data-img">
-                      <img src={animal.image} alt={animal.name} className="img-fluid"/>
+                      <img
+                        src={animal.image}
+                        alt={animal.name}
+                        className="img-fluid"
+                      />
                     </div>
-                    <h3 className="text-dark">{animal.name}</h3>
+                    <h3 className="text-chinese-black-color font-32-500">
+                      {animal.name}
+                    </h3>
                   </NavLink>
                 ))}
               </div>

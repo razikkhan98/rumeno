@@ -11,6 +11,30 @@ import { CartContext } from "../../common/Context";
 import { CiStar } from "react-icons/ci";
 import Header from "../../common/Header/header";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+
+const StarRating = ({ rating, onRatingChange }) => {
+  const handleClick = (index) => {
+    onRatingChange(index + 1);
+  };
+
+  return (
+    <div className="d-flex gap-1 fs-3 justify-content-center">
+      {[...Array(5)].map((_, index) => (
+        <span
+          key={index}
+          onClick={() => handleClick(index)}
+          style={{
+            cursor: "pointer",
+            color: rating > index ? "#EC7229" : "#ccc",
+          }}
+        >
+          <CiStar />
+        </span>
+      ))}
+    </div>
+  );
+};
 
 const faqs = [
   {
@@ -26,13 +50,12 @@ const faqs = [
 ];
 
 const Addtocart = () => {
-  const { cart, incrementQuantity, decrementQuantity,addToCart } =
+  const { cart, incrementQuantity, decrementQuantity, addToCart } =
     useContext(CartContext);
   const location = useLocation();
-  // console.log('cart: ', cart);
 
-    const navigate = useNavigate();
-    const isAuthenticated = !!sessionStorage.getItem("token");
+  const navigate = useNavigate();
+  const isAuthenticated = !!sessionStorage.getItem("token");
 
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -43,38 +66,53 @@ const Addtocart = () => {
   // Review form
 
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewRating, setReviewRating] = useState(0);
 
   const product = location.state?.product;
 
   const cartItem = cart?.find((item) => item.id === product?.id);
 
-  const [selectedWeight, setSelectedWeight] = useState(product?.productUnit?.[0] || 0 );
-  console.log('selectedWeight: ', selectedWeight);
-  
+  const [selectedWeight, setSelectedWeight] = useState(
+    product?.productUnit?.[0] || 0
+  );
+  console.log("selectedWeight: ", selectedWeight);
 
   const setWeight = (size) => {
     setSelectedWeight(size);
-    console.log('size: ', size);
-  }
+  };
   const decrease = (id) => {
-    decrementQuantity()
-  }
+    decrementQuantity();
+  };
 
-    // Handle Add to Cart
-    const handleAddToCart = (product, selectedWeight) => {
-      if (!isAuthenticated) {
-        console.log("Redirecting to login...");
-        setTimeout(() => {
-          navigate("/login");
-        }, 100);
-        toast.warning("Please login to add items!", { autoClose: 3000 });
-        return;
-      }
-      addToCart(product, selectedWeight);
+  // Handle Add to Cart
+  const handleAddToCart = (product, selectedWeight) => {
+    if (!isAuthenticated) {
+      console.log("Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 100);
+      toast.warning("Please login to add items!", { autoClose: 3000 });
+      return;
+    }
+    addToCart(product, selectedWeight);
+  };
+
+
+  
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      reset
+    } = useForm();
+  
+    const onSubmit = (data) => {
+      const formData = { ...data, rating: reviewRating };
+      console.log('Review submitted:', formData);
+      // submit logic here...
+      reset();
+      setShowReviewForm(false);
     };
-  
-
-  
 
   return (
     <>
@@ -129,21 +167,19 @@ const Addtocart = () => {
                     Select Size
                   </p>
 
-                  <div className="d-flex flex-wrap gap-3 pb-4 border-bottom">
+                  <div className="d-flex justify-content-between flex-wrap pb-4 border-bottom">
                     {product?.productUnit?.map((size) => (
                       <button
-                      key={size}
-                      className="addtocart-btn d-flex border rounded-3"
-                      style={{
-                        background:
-                        selectedWeight === size ? "#E32C2B" : "#ffffff",
-                        color:
-                        selectedWeight === size ? "#ffffff" : "#111111",
-                      }}
-                      onClick={() => setWeight(size)}
-                      
+                        key={size}
+                        className="addtocart-btn d-flex border rounded-3 mt-1"
+                        style={{
+                          background:
+                            selectedWeight === size ? "#E32C2B" : "#ffffff",
+                          color:
+                            selectedWeight === size ? "#ffffff" : "#111111",
+                        }}
+                        onClick={() => setWeight(size)}
                       >
-                        
                         <div
                           className="input-group-text border-0"
                           style={{
@@ -217,7 +253,7 @@ const Addtocart = () => {
                         onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
-                        >
+                      >
                         -
                       </Button>
                       <span className="mx-3 fs-4">
@@ -315,46 +351,89 @@ const Addtocart = () => {
             <div className="col-lg-5 py-5">
               {showReviewForm ? (
                 // Review Form
-                <div className="bg-skyblue border-radius-12 text-center py-5 px-5">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="bg-skyblue border-radius-12 text-center py-5 px-5"
+                >
                   <p className="font-24-400 text-chinese-black-color">
                     Write a review
                   </p>
+
                   <p className="font-14-400 text-chinese-black-color">Rating</p>
-                  <p className="fs-3">
-                    {[...Array(5)].map((_, index) => (
-                      <CiStar key={index} />
-                    ))}
-                  </p>
+                  <StarRating
+                    rating={reviewRating}
+                    onRatingChange={setReviewRating}
+                  />
+
                   <label className="text-gray-color font-12-400">
                     Review Title
                   </label>
                   <input
                     type="text"
                     placeholder="Give your review a title"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className={`form-control mb-2 border-0 font-14-400 py-2 ${
+                      errors.title ? "is-invalid" : ""
+                    }`}
+                    {...register("title", { required: "Title is required" })}
                   />
+                  {errors.title && (
+                    <small className="text-danger">
+                      {errors.title.message}
+                    </small>
+                  )}
+
                   <label className="text-gray-color font-12-400">Review</label>
                   <textarea
                     placeholder="Write your review"
-                    className="form-control mb-5 border border-bottom  text-gray-color font-14-400"
+                    className={`form-control mb-2 border-0 py-2 font-14-400 ${
+                      errors.review ? "is-invalid" : ""
+                    }`}
+                    rows="5"
+                    {...register("review", { required: "Review is required" })}
                   ></textarea>
-                  <p className="border border-white"></p>
+                  {errors.review && (
+                    <small className="text-danger">
+                      {errors.review.message}
+                    </small>
+                  )}
+
                   <label className="text-gray-color font-12-400">
                     Your Name
                   </label>
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className={`form-control mb-2 py-2 border-0 font-14-400 ${
+                      errors.name ? "is-invalid" : ""
+                    }`}
+                    {...register("name", { required: "Name is required" })}
                   />
+                  {errors.name && (
+                    <small className="text-danger">{errors.name.message}</small>
+                  )}
+
                   <label className="text-gray-color font-12-400">E-Mail</label>
                   <input
                     type="email"
                     placeholder="Enter Your E-mail"
-                    className="form-control mb-5 text-gray-color font-14-400"
+                    className={`form-control mb-4 border-0 py-2 font-14-400 ${
+                      errors.email ? "is-invalid" : ""
+                    }`}
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+$/i,
+                        message: "Invalid email address",
+                      },
+                    })}
                   />
+                  {errors.email && (
+                    <small className="text-danger">
+                      {errors.email.message}
+                    </small>
+                  )}
 
-                  <p className="font-10-400 color373737 text-start mb-5">
+                  <p className="font-10-400 color373737 text-start mb-4">
                     How we use your data: We’ll only contact you about the
                     review you left, and only if necessary. By submitting your
                     review, you agree to our terms and conditions and privacy
@@ -363,27 +442,32 @@ const Addtocart = () => {
 
                   <div className="d-flex justify-content-center gap-3">
                     <button
-                      className="btn border-orange text-color-orange font-14-500 py-2"
+                      type="button"
+                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 py-2"
                       onClick={() => setShowReviewForm(false)}
                     >
                       Cancel Review
                     </button>
-                    <button className="btn bg-orange-color text-white-color font-14-500 py-2">
+                    <button
+                      type="submit"
+                      className="rounded-3 border-orange px-3 bg-orange-color text-white-color font-14-500 py-2"
+                    >
                       Submit Review
                     </button>
                   </div>
-                </div>
+                </form>
               ) : (
                 // Default Review Card
                 <div className="addtocart-review m-auto bg-skyblue border-radius-12 text-center py-5">
                   <p className="mb-5 font-24-400 text-chinese-black-color">
                     Customer reviews
                   </p>
-                  <p className="fs-3 mb-0 text-chinese-black-color">
+                  <StarRating rating={reviewRating} onRatingChange={() => {}} />
+                  {/* <p className="fs-3 mb-0 text-chinese-black-color">
                     {[...Array(5)].map((_, index) => (
                       <CiStar key={index} />
                     ))}
-                  </p>
+                  </p> */}
                   <p className="text-gray-color font-14-400">
                     Be the first to write a review
                   </p>

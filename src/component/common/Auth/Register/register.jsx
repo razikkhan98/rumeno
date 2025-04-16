@@ -8,11 +8,12 @@ import { Bounce, toast } from "react-toastify";
 // Common Components
 import Navbar from "../../navbar/mainnavbar";
 import Footer from "../../footer/index";
-import { postData, RegisterAPI } from "../../APIs/api";
+import { postData } from "../../APIs/api";
 
 // Images
 import Google from "../../../assets/img/Login/devicon_google.png";
 import RegisterImg from "../../../assets/img/Login/Register-img.png";
+import { FaArrowCircleLeft } from "react-icons/fa";
 
 const Register = () => {
   const {
@@ -32,7 +33,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const response = await postData(endpoint, data);
-      console.log('response: ', response);
       toast.success(response.data.message, {
         position: "top-right",
         autoClose: 5000,
@@ -62,14 +62,21 @@ const Register = () => {
   return (
     <>
       {/* Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
 
       {/* Main Section */}
-      <div className="container py-5">
+      <div className="container py-5 vh-100 d-flex align-items-center justify-content-center">
         <div className="login-bg">
           <div className="row rounded-3">
             {/* Left Section */}
             <div className="col-lg-6 col-md-6 text-white position-relative">
+              {/* Go Back to Home on this button */}
+              <div className="position-absolute top-0 left-0 m-3">
+                <NavLink to={"/"} className={"text-white text-decoration-none"}>
+                  <FaArrowCircleLeft className=" fs-3 text-white" />
+                  <p>Home</p>
+                </NavLink>
+              </div>
               <img src={RegisterImg} className="login-img" alt="Loading" />
               <div className="overlay-text position-absolute bottom-0 start-0 p-5">
                 <p className="font-size-32 font-md-size-20 text-uppercase">
@@ -128,7 +135,7 @@ const Register = () => {
                     </label>
                     <input
                       type="text"
-                      {...register("mobileNumber", {
+                      {...register("mobile", {
                         required: "Mobile number is required",
                         pattern: {
                           value: /^\d{10}$/,
@@ -223,7 +230,7 @@ const Register = () => {
       </div>
 
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

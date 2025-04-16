@@ -94,6 +94,12 @@ const Record = () => {
     ],
     Vaccine: [
       {
+        name: "vaccineId",
+        label: "Vaccine Id",
+        type: "text",
+        placeholder: "Enter Vaccine Id",
+      },
+      {
         name: "vaccineName",
         label: "Vaccine Name",
         type: "text",
@@ -102,6 +108,37 @@ const Record = () => {
       {
         name: "vaccineDate",
         label: "Vaccine Date",
+        type: "date",
+      },
+      {
+        name: "nextDueDate",
+        label: "Next Due Date",
+        type: "date",
+      },
+      {
+        name: "vaccineDose",
+        label: "Vaccine Dose",
+        type: "text",
+      },
+      {
+        name: "modeOfVaccine",
+        label: "Mode Of Vaccine",
+        type: "select",
+        options: ["Internal", "External"],
+      },
+      {
+        name: "vaccineRemark",
+        label: "Vaccine Remark",
+        type: "text",
+      },
+      {
+        name: "booster",
+        label: "Repeat Required (Booster)",
+        type: "text",
+      },
+      {
+        name: "boosterDate",
+        label: "Repeat Date (Booster Date)",
         type: "date",
       },
     ],
@@ -287,7 +324,7 @@ const Record = () => {
         name: "bodyscore",
         label: "Body Score",
         type: "select",
-        option: [
+        options: [
           "1: Very slim body",
           "2: Skinnde body",
           "3: Slim body",
@@ -732,13 +769,60 @@ const Record = () => {
                         <div key={index} className="col-lg-3 pb-3">
                           <Form.Group>
                             <Form.Label>{field.label}</Form.Label>
-                            <Form.Control
+                            {/* <Form.Control
                               type={field.type}
                               {...register(field.name, {
                                 required: field.required,
                               })}
                               disabled={!editActive && InputPreFillData}
-                            />
+                            /> */}
+
+                            {field?.type === "radio" ? (
+                              // Radio buttons
+                              <div className="d-flex gap-3">
+                                {field?.options?.map((option, idx) => (
+                                  <Form.Check
+                                    key={idx}
+                                    type="radio"
+                                    label={option}
+                                    value={option}
+                                    {...register(field.name, {
+                                      required: field.required,
+                                    })}
+                                    disabled={
+                                      !editActive && InputPreFillData
+                                    }
+                                    name={field.name} // Radio ke liye name zaroori hai
+                                  />
+                                ))}
+                              </div>
+                            ) : field?.type === "select" ? (
+                              // ✅ Corrected Select Field
+                              <Form.Select
+                                {...register(field.name, {
+                                  required: field.required,
+                                })}
+                                disabled={!editActive && InputPreFillData}
+                              >
+                                <option value="">Select an option</option>{" "}
+                                {/* Placeholder */}
+                                {field?.options?.map((option, idx) => (
+                                  <option key={idx} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </Form.Select>
+                            ) : (
+                              // Normal input fields
+                              <Form.Control
+                                type={field.type}
+                                {...register(field.name, {
+                                  required: field.required,
+                                })}
+                                disabled={!editActive && InputPreFillData}
+                              />
+                            )}
+
                             {errors[field.name] && (
                               <span className="text-danger">
                                 This field is required
@@ -757,7 +841,7 @@ const Record = () => {
                     </Button>
                     <Button
                       type="submit"
-                      className="btn-success px-4 mx-2"
+                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-success"}`}
                       onClick={handleUpdateApi}
                       disabled={!InputPreFillData || editActive}
                     >
@@ -765,7 +849,7 @@ const Record = () => {
                     </Button>
                     <Button
                       type="submit"
-                      className="btn-danger px-4"
+                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-danger"}`}
                       onClick={handleDeleteApi}
                       disabled={!InputPreFillData}
                     >
@@ -846,7 +930,7 @@ const Record = () => {
                         </div>
                       ))
                     ) : (
-                      <p>No Data Found .....</p>
+                      <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
                     )}
                   </div>
                 </>

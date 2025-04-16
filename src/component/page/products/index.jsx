@@ -62,7 +62,7 @@ const productItem = [
     image: Neonato,
     price:245,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 2,
@@ -70,8 +70,7 @@ const productItem = [
     image: Tanav,
     price: 700,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 3,
@@ -79,8 +78,7 @@ const productItem = [
     image: Energico,
     price: 235,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 4,
@@ -88,8 +86,7 @@ const productItem = [
     image: Rumenvita,
     price: 3250,
     inStock: true,
-    productUnit: ["1kg", "5kg" ,"25kg" ],
-
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 5,
@@ -97,6 +94,7 @@ const productItem = [
     image: Liverofine,
     price: 125.0,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 6,
@@ -104,6 +102,7 @@ const productItem = [
     image: Digesto,
     price: 190.0,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 7,
@@ -111,6 +110,7 @@ const productItem = [
     image: DCox,
     price: 250,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 8,
@@ -118,6 +118,7 @@ const productItem = [
     image: MicroFlora,
     price: 90.0,
     inStock: false,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 9,
@@ -125,6 +126,7 @@ const productItem = [
     image: Selennium,
     price: 190.0,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 10,
@@ -132,6 +134,7 @@ const productItem = [
     image: Bull,
     price: 1175.0,
     inStock: false,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 11,
@@ -139,6 +142,7 @@ const productItem = [
     image: ProLac,
     price: 600,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 12,
@@ -146,6 +150,7 @@ const productItem = [
     image: Slatted,
     price: 135,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
   {
     id: 13,
@@ -153,6 +158,7 @@ const productItem = [
     image: Nipple,
     price: 55,
     inStock: true,
+    productUnit: ["1kg", "5kg", "25kg"],
   },
 ];
 
@@ -231,18 +237,19 @@ const Products = () => {
           <Header
             title="Products"
             subtitle="Goat Supplement"
-            products={"13 Products"}
+            // products={"13 Products"}
             showSortFilter
           />
         </div>
         <div className="container pt-5">
           <div className="row pt-lg-3">
             {currentProducts.map((product) => (
-              <div key={product.id} className="col-lg-3 col-md-6  mb-lg-4">
+              <div key={product.id} className="col-lg-3 col-md-6 mb-lg-4">
                 <div className="products-card">
                   <div className="products-img-top">
                     {/* <NavLink to={`/productDetails/${product.id}`}> */}
-                    <div  onClick={() =>
+                    <div
+                      onClick={() =>
                         navigate(`/productDetails/${product.id}`, {
                           state: { product },
                         })
@@ -269,8 +276,7 @@ const Products = () => {
                             +
                           </button> */}
                         </NavLink>
-                      {/* )} */}
-                    </div>
+                      </div>
                     </div>
                     {/* </NavLink> */}
                   </div>
@@ -382,7 +388,7 @@ const Products = () => {
           >
             <p
               className=" text-center mb-4"
-              style={{ color: "#111111", fontSize: "24px", fontWeight: "400" }}
+              style={{ color: "#111111", fontSize: "24px", fontWeight: "500" }}
             >
               PRODUCT CATEGORIES
             </p>
@@ -398,8 +404,8 @@ const Products = () => {
                     />
                     <p
                       style={{
-                        fontSize: "14px",
-                        fontWeight: "400",
+                        fontSize: "16px",
+                        fontWeight: "600",
                         color: "#707070",
                       }}
                     >
@@ -534,10 +540,6 @@ const Products = () => {
         <div className="container py-lg-5">
           <div className="row">
             <div className="col-lg-12">
-              {/* <p className="faq-heading text-center">
-                Frequently Asked Questions
-              </p>
-              <p className="faqsub-heading text-center">FAQ’s</p> */}
               <div className="accordion pt-lg-3" id="faqAccordion">
                 {faqs.map((faq, index) => (
                   <div className="accordion-item" key={index}>

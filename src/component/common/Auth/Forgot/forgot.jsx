@@ -11,6 +11,10 @@ import { ForgotAPI } from "../../APIs/api";
 import LoginImg from "../../../assets/img/Login/login-img.png";
 import { toast } from "react-toastify";
 
+import { FaArrowCircleLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
+
 const Forgot = () => {
   const {
     register,
@@ -23,7 +27,6 @@ const Forgot = () => {
   const [isOtpVerified, setIsOtpVerified] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("Forgot Password Data:", data);
     if (!isOtpVerified) {
       // OTP Verification
       if (data.otp.length === 5) {
@@ -31,7 +34,6 @@ const Forgot = () => {
       }
     } else {
       // Password Change
-      console.log("New Password Set:", data);
       toast("Password changed successfully!");
     }
   };
@@ -39,13 +41,20 @@ const Forgot = () => {
   return (
     <>
       {/* Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
       {/* Main Section  */}
-      <div className="container py-5">
+      <div className="container py-5 d-flex align-items-center justify-content-center vh-100">
         <div className="login-bg">
           <div className="row g-0">
             {/* Left Section */}
             <div className="col-lg-6 col-md-6 text-white position-relative">
+
+           <div className="position-absolute top-0 left-0 m-3">
+           <NavLink to={"/"} className={"text-white text-decoration-none"}>
+            <FaArrowCircleLeft className=" fs-3 text-white" />
+            <p>Home</p>
+            </NavLink>
+           </div>
               <img src={LoginImg} className="login-img" alt="Loading" />
               <div className="overlay-text position-absolute bottom-0 start-0 p-5">
                 <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
@@ -172,7 +181,7 @@ const Forgot = () => {
         </div>
       </div>
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

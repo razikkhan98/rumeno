@@ -75,9 +75,31 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../common/navbar";
 import Sidebar from "../../sidebar/index";
-import { Card } from "react-bootstrap";
+import { Card, InputGroup } from "react-bootstrap";
 import DashboardTable from "../dashboardTable";
 import axios from "axios";
+
+// Import Images
+// import Animal from "../../../assets/img/dashboard/animals.svg";
+// import Parent from "../../../assets/img/dashboard/parent.svg";
+// import Child from "../../../assets/img/dashboard/animals.svg";
+// import Postwean from "../../../assets/img/dashboard/post wean.svg";
+// import MilkCount from "../../../assets/img/dashboard/milk production.svg";
+// import Heat from "../../../assets/img/dashboard/heat.svg";
+// import Deworm from "../../../assets/img/dashboard/deworming.svg";
+// import Sanitation from "../../../assets/img/dashboard/sanitation.svg";
+// import Vaccine from "../../../assets/img/dashboard/vaccine.svg";
+
+
+import Animal from "../../../assets/img/dashboard/animals1.svg";
+import Parent from "../../../assets/img/dashboard/parent1.svg";
+import Child from "../../../assets/img/dashboard/baby1.svg";
+import Postwean from "../../../assets/img/dashboard/postwean1.svg";
+import MilkCount from "../../../assets/img/dashboard/milk1.svg";
+import Heat from "../../../assets/img/dashboard/heat1.svg";
+import Deworm from "../../../assets/img/dashboard/dewarming1.svg";
+import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
+import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -92,7 +114,6 @@ const Dashboard = () => {
     SanitationCount: 0,
   });
 
-  
   const [selectedCard, setSelectedCard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -112,14 +133,13 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://b321-106-222-213-224.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
         );
         setStats(response.data);
-        setdata(response.data)
-
+        setdata(response.data);
       } catch (err) {
         setError("Error fetching data");
       } finally {
@@ -131,36 +151,70 @@ const Dashboard = () => {
   }, []);
 
   const cardData = [
-    { title: "Total Animals", value: stats.TotalAnimals },
-    { title: "Total Parents", value: stats.TotalParents },
-    { title: "Total Children", value: stats.TotalChildren },
+    {
+      title: "Total Animals",
+      cardborder: "card-orange-border",
+      img: Animal,
+      value: stats.TotalAnimals,
+    },
+
+    {
+      title: "Total Parents",
+      cardborder: "card-blue-border",
+      img: Parent,
+      value: stats.TotalParents,
+    },
+    {
+      title: "Total Children",
+      cardborder: "card-orange-border",
+      img: Child,
+      value: stats.TotalChildren,
+    },
     {
       title: "Vaccines",
+      cardborder: "card-blue-border",
+      img: Vaccine,
       value: stats.VaccineCount,
       details: stats.VaccineData,
     },
     {
       title: "Post Wean",
+      cardborder: "card-orange-border",
+      img: Postwean,
       value: stats.PostWeanCount,
       details: stats.PostWeanData,
     },
     {
       title: "Milk Production",
+      cardborder: "card-blue-border",
+      img: MilkCount,
       value: stats.MilkCount,
       details: stats.MilkData,
     },
-    { title: "Heat", value: stats.HeatCount, details: stats.HeatData },
-    { title: "Deworming", value: stats.DewormCount, details: stats.DewormData },
+    {
+      title: "Astrus Heat",
+      cardborder: "card-orange-border",
+      img: Heat,
+      value: stats.HeatCount,
+      details: stats.HeatData,
+    },
+    {
+      title: "Deworming",
+      cardborder: "card-blue-border",
+      img: Deworm,
+      value: stats.DewormCount,
+      details: stats.DewormData,
+    },
     {
       title: "Sanitation",
+      cardborder: "card-orange-border",
+      img: Sanitation,
       value: stats.SanitationCount,
       details: stats.SanitationData,
     },
   ];
 
-
-console.log(cardData)
-
+  console.log(cardData);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -198,12 +252,11 @@ console.log(cardData)
               {!selectedCard && (
                 <>
                   {cardData?.map((card, index) => (
-                    <div key={index} className="col-lg-4 px-4 pt-4">
-                      <Card
+                    <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
+                      {/* <Card
                         className="mb-3 card-hover"
                         onClick={() => setSelectedCard(card)}
                         style={{
-                          borderRadius: "12px",
                           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
                           cursor: "pointer",
                           transition:
@@ -234,6 +287,25 @@ console.log(cardData)
                             </div>
                           </div>
                         </Card.Body>
+                      </Card> */}
+
+                      <Card
+                        className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
+                        onClick={() => setSelectedCard(card)}
+                      >
+                        <div className="d-flex align-items-center justify-content-between">
+                          <div className="card-img-circle rounded-circle shadow d-flex align-items-center justify-content-center">
+                            <img src={card.img} alt="Loading" />
+                          </div>
+                          <div>
+                            <Card.Title> 20</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">
+                              {" "}
+                              {card.title}
+                            </Card.Subtitle>
+                            {/* <Card.Body>This is some text within a card body.</Card.Body> */}
+                          </div>
+                        </div>
                       </Card>
                     </div>
                   ))}
