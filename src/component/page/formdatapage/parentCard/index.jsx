@@ -124,6 +124,7 @@ const Parent = () => {
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
+                      tagId={animal.tagId}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
