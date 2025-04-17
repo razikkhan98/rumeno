@@ -121,7 +121,7 @@ const Record = () => {
         name: "vaccineName",
         label: "Vaccine Name",
         type: "select",
-        options: ["PPR", "TT", "Booster"],
+        options: ["Deworming", "PPR", "Enterotoxaemia (ET) + (TT)", "Hemorrhagic septicaemia (HS)", "Foot and Mouth Disease (FMD)", "Goat Pox", "Booster (ET) + (TT)", "Booster (HS)", "Booster (FMD)", "Booster Goat Pox" , "Repeat PPR" , "Repeat ET + TT", "Repeat HS" , "Repeat FMD", "Repeat Goat Pox"  ],
       },
       {
         name: "vaccineDate",
@@ -452,7 +452,7 @@ const Record = () => {
 
   const fetchAnimals = async () => {
     try {
-      const response = await getData("/user/animaldata/parent/getAll");
+      const response = await getData("/user/animaldata/newentity/getAll");
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
     } catch (error) {

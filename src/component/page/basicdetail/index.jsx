@@ -167,9 +167,9 @@ const GoatDetailForm = () => {
                     type="text"
                     className="form-control form-control-detail"
                     placeholder="Enter Unique ID"
-                    {...register("uniqueName", {
-                      required: "Unique ID is required",
-                    })}
+                    // {...register("uniqueName", {
+                    //   required: "Unique ID is required",
+                    // })}
                   />
                   {errors.uniqueId && (
                     <p className="text-danger">{errors.uniqueId.message}</p>
@@ -536,7 +536,22 @@ const GoatDetailForm = () => {
                     {...register("weanDate")}
                   />
                 </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Farm Name</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail"
+                    placeholder="Enter Farm Name"
+                    {...register("farmName", {
+                      required: "Farm Name is required",
+                    })}
+                  />
+                  {errors.farmName && (
+                    <p className="text-danger">{errors.farmName.message}</p>
+                  )}
+                </div>
               </div>
+
 
               <div className="col-lg-3 pt-5 pe-5">
                 <button
