@@ -14,7 +14,7 @@ const Parent = () => {
   const [loading, setLoading] = useState(true);
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 
-  const endpoint = "/user/animaldata/newentity/getAll";
+  const endpoint = "/user/animaldata/parent/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
