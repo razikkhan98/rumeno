@@ -17,8 +17,9 @@ const GoatDetailForm = () => {
     formState: { errors },
   } = useForm();
   // const { setparentId } = useContext(CartContext);
+  const selectedAnimal = sessionStorage.getItem("animalName");
 
-  const { purchaseDate, birthDate } = watch();
+  const { purchaseDate, birthDate, isPregnant } = watch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,6 +35,7 @@ const GoatDetailForm = () => {
 
       const formData = {
         ...data,
+        selectedAnimal,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
       };
@@ -76,10 +78,10 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        console.log("response cvbn: ", response);
+
         if (response.data && response.data.length > 0) {
           const animalData = response.data[storedIndex];
-          console.log("animalData: ", animalData);
+
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
           setValue("ageYear", animalData.ageYear || "");
@@ -94,7 +96,6 @@ const GoatDetailForm = () => {
           setValue("comments", animalData.comments || "");
         }
       } catch (error) {
-        console.error("Error fetching animals:", error);
         // toast.error(error.message || "Something went wrong!", {
         //   position: "top-right",
         //   autoClose: 3000,
@@ -105,7 +106,6 @@ const GoatDetailForm = () => {
   }, [setValue]); // Fetch only once on mount
 
   const [gender, setGender] = useState("");
-  console.log("gender: ", gender);
 
   const handleSelect = (e) => {
     setGender(e.target.value);
@@ -434,31 +434,6 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Mother's Date at wean
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control form-control-detail"
-                    {...register("motherDateAtWean")}
-                  />
-                </div> */}
-              </div>
-
-              <div className="row mt-3">
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Male Detail</label>
-                  <select
-                    className="form-select form-control-detail"
-                    {...register("maleDetail")}
-                  >
-                    <option value="">Select if male</option>
-                    <option value="wether">Wether</option>
-                    <option value="breeder">Breeder</option>
-                  </select>
-                </div> */}
-
                 <div className="col-lg-4 lh-lg">
                   <label className="form-lable-detail">Comments (if any)</label>
                   <input
@@ -466,6 +441,98 @@ const GoatDetailForm = () => {
                     className="form-control form-control-detail"
                     placeholder="Enter comment"
                     {...register("comments")}
+                  />
+                </div>
+              </div>
+              {gender === "Female" && (
+                <div className="row mt-3">
+                  <div className="col-lg-2 lh-lg">
+                    <div class="form-check d-flex align-items-center gap-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                        {...register("isPregnant")}
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Pregnant
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {isPregnant && (
+                <div className="row mt-2">
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">Date of Mating</label>
+                    <input
+                      type="date"
+                      className="form-control form-control-detail"
+                      {...register("matingDate")}
+                    />
+                  </div>
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">
+                      Current Pregnency Month
+                    </label>
+                    <select
+                      className="form-select form-control-detail"
+                      {...register("pregnancyDetails")}
+                    >
+                      <option value="">Select Month</option>
+                      <option value="1 Month">1 Month</option>
+                      <option value="2 Month">2 Month</option>
+                      <option value="3 Month">3 Month</option>
+                      <option value="4 Month">4 Month</option>
+                      <option value="5 Month">5 Month</option>
+                    </select>
+                  </div>
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">Failed</label>
+                    <select
+                      className="form-select form-control-detail"
+                      {...register("pregnencyFail")}
+                    >
+                      <option value="">Select Yes Or No</option>
+                      <option value="1">Yes</option>
+                      <option value="2">No</option>
+                    </select>
+                  </div>
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">
+                      Mother Wean Date
+                    </label>
+                    <input
+                      type="date"
+                      className="form-control form-control-detail"
+                      {...register("weanDate")}
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="row mt-2">
+                <p className="detail-para mb-0 lh-lg">Other Vaccine</p>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">
+                    Vaccine Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail"
+                    {...register("weanDate")}
+                  />
+                </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">
+                    Vaccine Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control form-control-detail"
+                    {...register("weanDate")}
                   />
                 </div>
               </div>
