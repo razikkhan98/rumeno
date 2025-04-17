@@ -2700,3 +2700,6 @@ input[type="radio"] {
   width: 80% !important;
   height: 100% !important;
 }
+.farmer-modal{
+background-color: #f1fbff;
+}

@@ -135,7 +135,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://210a-2401-4900-8823-54b1-158e-a488-b50f-176f.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://2da7-2401-4900-8823-2711-bc98-ad88-4fee-cd72.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
@@ -208,7 +208,7 @@ const Dashboard = () => {
       details: stats.DewormData,
     },
     {
-      title: "Sanitation",
+      title: "Farm Sanitation",
       cardborder: "card-orange-border",
       img: Sanitation,
       value: stats.SanitationCount,
@@ -302,11 +302,13 @@ const Dashboard = () => {
                         className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
                         onClick={() => setSelectedCard(card)}
                       >
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div className="card-img-circle rounded-circle shadow d-flex align-items-center justify-content-center">
+                        <div className="row gap-2 align-items-center justify-content-between">
+                         <div className="col-lg-3">
+                         <div className="card-img-circle rounded-circle shadow d-flex align-items-center justify-content-center">
                             <img src={card.img} alt="Loading" />
                           </div>
-                          <div>
+                         </div>
+                          <div className="col-lg-7">
                             <Card.Title> 20</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
                               {" "}

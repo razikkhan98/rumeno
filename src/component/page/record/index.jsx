@@ -930,7 +930,7 @@ const Record = () => {
                                       <Form.Label>{field.label}</Form.Label>
                                       <Form.Control
                                         type={field.type}
-                                        defaultValue={data[field.name]} // Pre-fill the input with existing data
+                                        defaultValue={data[field?.name]} // Pre-fill the input with existing data
                                         onChange={(e) => {
                                           const newValue = e.target.value;
                                           console.log(
