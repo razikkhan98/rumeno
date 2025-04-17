@@ -100,6 +100,7 @@ import Heat from "../../../assets/img/dashboard/heat1.svg";
 import Deworm from "../../../assets/img/dashboard/dewarming1.svg";
 import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
+import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -112,6 +113,7 @@ const Dashboard = () => {
     HeatCount: 0,
     DewormCount: 0,
     SanitationCount: 0,
+    PregnantCount: 0,
   });
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -211,6 +213,13 @@ const Dashboard = () => {
       img: Sanitation,
       value: stats.SanitationCount,
       details: stats.SanitationData,
+    },
+    {
+      title: "Pregnant Goat",
+      cardborder: "card-blue-border",
+      img: Pregnant,
+      value: stats.PregnantCount,
+      details: stats.PregnantData,
     },
   ];
 

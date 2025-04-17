@@ -66,6 +66,17 @@ const Mainnav = () => {
     setOpen(false);
   };
 
+  const isRouteActive = (pathname, routeList = []) => {
+    return routeList.some((route) => pathname.includes(route));
+  };
+  const active = isRouteActive(location.pathname, [
+    "/goatproduct",
+    "/cattleproduct",
+    "/poultryproduct",
+    "/dogproduct",
+  ]);
+  console.log('active: ', active);
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
@@ -197,9 +208,7 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <a
-                className={`nav-link ${
-                  String(location?.pathname) === "/products" ? "active" : ""
-                }`}
+                className={`nav-link ${active ? "active" : ""}`}
                 onClick={() => handleLinkClick("Products")}
                 aria-expanded={isProductsOpen}
               >
@@ -218,7 +227,7 @@ const Mainnav = () => {
                     <ul className="list-unstyled products-list text-start">
                       <li>All Animal Supplements</li>
                       <NavLink
-                        to="/goatproducts"
+                        to="/goatproduct"
                         className="text-decoration-none"
                       >
                         <li>Goat Supplements</li>
@@ -440,7 +449,12 @@ const Mainnav = () => {
                       className="rounded-circle user-icon-img"
                     />
                   </div>
-                  <p className="text-center mb-0">User Name</p>
+                  {/* <p className="text-center mb-0">User Name</p> */}
+                  {isLoggedIn ? (
+                    <p className="text-center mb-0">User Name</p>
+                  ) : (
+                    <p className="text-center d-none mb-0">User Name</p>
+                  )}
                 </div>
 
                 <div className="d-flex justify-content-center">

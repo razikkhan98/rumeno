@@ -52,7 +52,7 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<Main />} />Poultryproduct
-          <Route path="/goatproducts" element={<Products />} />
+          <Route path="/goatproduct" element={<Products />} />
           <Route path="/cattleproduct" element={<Cattleproduct />} />
           <Route path="/poultryproduct" element={<Poultryproduct />} />
           <Route path="/dogproduct" element={<Dogproduct />} />

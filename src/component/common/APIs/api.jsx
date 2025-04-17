@@ -25,6 +25,7 @@ export const postData = async (endpoint, data) => {
       headers: {
         "ngrok-skip-browser-warning": "true", // Required for ngrok
         "Content-Type": "application/json", // Adjust as needed
+         "Access-Control-Allow-Origin": "*",
       },
     });
 
