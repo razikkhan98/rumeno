@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar";
@@ -12,10 +12,13 @@ const GoatDetailForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     setValue,
     formState: { errors },
   } = useForm();
   // const { setparentId } = useContext(CartContext);
+
+  const { purchaseDate, birthDate } = watch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,7 +49,6 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, data?.uniqueName, formData)
         : postData(endpoint, formData));
 
-
       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -69,7 +71,6 @@ const GoatDetailForm = () => {
   };
 
   const endpoint = "/user/animaldata/parent/getAll";
-
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -103,6 +104,14 @@ const GoatDetailForm = () => {
     fetchAnimals();
   }, [setValue]); // Fetch only once on mount
 
+  const [gender, setGender] = useState("");
+  console.log("gender: ", gender);
+
+  const handleSelect = (e) => {
+    setGender(e.target.value);
+    setValue("gender", e.target.value || "");
+  };
+
   return (
     <>
       <div className="goat-form">
@@ -112,12 +121,42 @@ const GoatDetailForm = () => {
             <Sidebar />
           </div>
           <div className="col-lg-10 px-4 py-3">
-            <p className="detail-head text-chinese-black-color mb-1">
-              Basic Details
-            </p>
-            <p className="detail-para mb-0">
-              Fill basic details to add a parent
-            </p>
+            <div className="d-flex justify-content-between">
+              <div>
+                <p className="detail-head text-chinese-black-color mb-1">
+                  Basic Details
+                </p>
+                <p className="detail-para mb-0">Fill basic details</p>
+              </div>
+              <div className="d-flex pe-3">
+                <div class="form-check me-2">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="male"
+                    value="Male"
+                    checked={gender === "Male"}
+                    onChange={handleSelect}
+                  />
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    id="female"
+                    value="Female"
+                    checked={gender === "Female"}
+                    onChange={handleSelect}
+                  />
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Female
+                  </label>
+                </div>
+              </div>
+            </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
@@ -142,9 +181,9 @@ const GoatDetailForm = () => {
                     type="text"
                     className="form-control form-control-detail"
                     placeholder="Enter Tag ID"
-                  // {...register("tagId", {
-                  //   required: "Tag ID is required",
-                  // })}
+                    // {...register("tagId", {
+                    //   required: "Tag ID is required",
+                    // })}
                   />
                   {errors.uniqueId && (
                     <p className="text-danger">{errors.uniqueId.message}</p>
@@ -192,11 +231,8 @@ const GoatDetailForm = () => {
               </div>
 
               <div className="row mt-3">
-
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Mother Tag
-                  </label>
+                  <label className="form-lable-detail">Mother Tag</label>
                   <input
                     type="text"
                     placeholder="Enter Mother tag"
@@ -205,11 +241,8 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Father Tag
-                  </label>
+                  <label className="form-lable-detail">Father Tag</label>
                   <input
                     type="text"
                     placeholder="Enter Father tag"
@@ -228,7 +261,9 @@ const GoatDetailForm = () => {
                   />
                 </div>
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">mother Age (Month)</label>
+                  <label className="form-lable-detail">
+                    mother Age (Month)
+                  </label>
                   <input
                     type="number"
                     className="form-control form-control-detail"
@@ -247,7 +282,9 @@ const GoatDetailForm = () => {
                   />
                 </div>
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Father Age (Month)</label>
+                  <label className="form-lable-detail">
+                    Father Age (Month)
+                  </label>
                   <input
                     type="number"
                     className="form-control form-control-detail"
@@ -255,7 +292,6 @@ const GoatDetailForm = () => {
                     {...register("fatherAgeMonth")}
                   />
                 </div>
-
               </div>
 
               <div className="row mt-3">
@@ -285,14 +321,22 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
+                    disabled={birthDate}
                     className="form-control form-control-detail"
                     {...register("purchaseDate")}
                   />
                 </div>
 
-                <div className="col-lg-3">
+                <div className="col-lg-2 d-flex align-items-center gap-1">
                   <label className="form-lable-detail">Gender</label>
-                  <div className="d-flex gap-4">
+                  <input
+                    type="text"
+                    className="form-control form-control-detail mt-4"
+                    // placeholder="Enter Father Breed"
+                    disabled={gender}
+                    {...register("gender")}
+                  />
+                  {/* <div className="d-flex gap-4">
                     {["Male", "Female", "Other"].map((type) => (
                       <div key={type} className="form-check">
                         <input
@@ -306,10 +350,9 @@ const GoatDetailForm = () => {
                         <label className="form-check-label">{type}</label>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
-
-                <div className="col-lg-2 lh-lg">
+                <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">Body Score</label>
                   <select
                     className="form-select form-control-detail"
@@ -326,12 +369,19 @@ const GoatDetailForm = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-lg-2  
-                 lh-lg">
-                  <label className="form-lable-detail">
-                    Birth Type
-                  </label>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Date</label>
+                  <input
+                    type="date"
+                    disabled={purchaseDate}
+                    className="form-control form-control-detail"
+                    {...register("birthDate")}
+                  />
+                </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Type</label>
                   <select
+                    disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("birthType")}
                   >
@@ -343,10 +393,9 @@ const GoatDetailForm = () => {
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Birth Weight
-                  </label>
+                  <label className="form-lable-detail">Birth Weight</label>
                   <select
+                    disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("birthWeight")}
                   >
@@ -357,7 +406,7 @@ const GoatDetailForm = () => {
                   </select>
                 </div>
 
-                <div className="col-lg-3 lh-lg">
+                {/* <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">
                     Female Pregnancy Details
                   </label>
@@ -372,7 +421,7 @@ const GoatDetailForm = () => {
                     <option value="4 Month">4 Month</option>
                     <option value="5 Month">5 Month</option>
                   </select>
-                </div>
+                </div> */}
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
@@ -385,7 +434,7 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     Mother's Date at wean
                   </label>
@@ -394,25 +443,11 @@ const GoatDetailForm = () => {
                     className="form-control form-control-detail"
                     {...register("motherDateAtWean")}
                   />
-                </div>
-
-
+                </div> */}
               </div>
 
               <div className="row mt-3">
-
-              <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Birth Date
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control form-control-detail"
-                    {...register("birthDate")}
-                  />
-                </div>
-
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Male Detail</label>
                   <select
                     className="form-select form-control-detail"
@@ -422,7 +457,7 @@ const GoatDetailForm = () => {
                     <option value="wether">Wether</option>
                     <option value="breeder">Breeder</option>
                   </select>
-                </div>
+                </div> */}
 
                 <div className="col-lg-4 lh-lg">
                   <label className="form-lable-detail">Comments (if any)</label>

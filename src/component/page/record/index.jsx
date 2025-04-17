@@ -47,6 +47,12 @@ const Record = () => {
   const fieldConfigs = {
     PostWean: [
       {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
+      {
         name: "weightKg",
         label: "Kid Weight (Kg)",
         type: "text",
@@ -74,6 +80,12 @@ const Record = () => {
     ],
     Milk: [
       {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
+      {
         name: "milkvolume",
         label: "Milk Volume",
         type: "text",
@@ -100,10 +112,16 @@ const Record = () => {
         placeholder: "Enter Vaccine Id",
       },
       {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
+      {
         name: "vaccineName",
         label: "Vaccine Name",
-        type: "text",
-        placeholder: "Enter Vaccine Name",
+        type: "select",
+        options: ["PPR", "TT", "Booster"],
       },
       {
         name: "vaccineDate",
@@ -143,6 +161,12 @@ const Record = () => {
       },
     ],
     Deworm: [
+      {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
       {
         name: "report",
         label: "Worms Examination Report",
@@ -210,6 +234,12 @@ const Record = () => {
     ],
     EstrusHeat: [
       {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
+      {
         name: "heat",
         label: "Heat Number",
         type: "select",
@@ -255,6 +285,12 @@ const Record = () => {
     ],
     FarmSanitation: [
       {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
+      {
         name: "soilDate",
         label: "Soil Change Date",
         type: "date",
@@ -277,6 +313,12 @@ const Record = () => {
     ],
 
     Child: [
+      {
+        name: "tagId",
+        label: "Tag Id",
+        type: "text",
+        placeholder: "Enter Tag Id",
+      },
       {
         name: "ageyear",
         label: "Kid Age",
