@@ -328,7 +328,34 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-                <div className="col-lg-2 d-flex align-items-center gap-1">
+                {purchaseDate && ( 
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">
+                      Last Vaccine Date
+                    </label>
+                    <input
+                      type="date"
+                      className="form-control form-control-detail"
+                      {...register("lastVaccineDate")}
+                    />
+                  </div>
+                )}
+                {purchaseDate && (
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">
+                      Last Vaccine Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-control-detail"
+                      {...register("lastVaccineName")}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="row mt-3">
+              <div className="col-lg-2 d-flex align-items-center gap-1">
                   <label className="form-lable-detail">Gender</label>
                   <input
                     type="text"
@@ -337,21 +364,6 @@ const GoatDetailForm = () => {
                     disabled={gender}
                     {...register("gender")}
                   />
-                  {/* <div className="d-flex gap-4">
-                    {["Male", "Female", "Other"].map((type) => (
-                      <div key={type} className="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          value={type}
-                          {...register("gender", {
-                            required: "Gender is required",
-                          })}
-                        />
-                        <label className="form-check-label">{type}</label>
-                      </div>
-                    ))}
-                  </div> */}
                 </div>
                 <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">Body Score</label>

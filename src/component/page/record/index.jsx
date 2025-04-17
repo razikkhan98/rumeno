@@ -46,12 +46,12 @@ const Record = () => {
 
   const fieldConfigs = {
     PostWean: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "weightKg",
         label: "Kid Weight (Kg)",
@@ -79,12 +79,12 @@ const Record = () => {
       },
     ],
     Milk: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "milkvolume",
         label: "Milk Volume",
@@ -111,12 +111,12 @@ const Record = () => {
         type: "text",
         placeholder: "Enter Vaccine Id",
       },
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "vaccineName",
         label: "Vaccine Name",
@@ -161,12 +161,12 @@ const Record = () => {
       },
     ],
     Deworm: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "report",
         label: "Worms Examination Report",
@@ -233,12 +233,12 @@ const Record = () => {
       },
     ],
     EstrusHeat: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "heat",
         label: "Heat Number",
@@ -284,12 +284,12 @@ const Record = () => {
       },
     ],
     FarmSanitation: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "soilDate",
         label: "Soil Change Date",
@@ -313,12 +313,12 @@ const Record = () => {
     ],
 
     Child: [
-      {
-        name: "tagId",
-        label: "Tag Id",
-        type: "text",
-        placeholder: "Enter Tag Id",
-      },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "ageyear",
         label: "Kid Age",
@@ -447,6 +447,8 @@ const Record = () => {
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
+  const tagId = location.state?.tagId;
+
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
 
@@ -513,10 +515,10 @@ const Record = () => {
 
     if (kidId === undefined) {
       // Parent
-      formData = { ...data, parentUniqueId: uniqueId, parentId, uid };
+      formData = { ...data, parentUniqueId: uniqueId, parentId, uid, tagId };
     } else {
       // Child
-      formData = { ...data, childUniqueId: uniqueId, parentId, uid };
+      formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
       console.log("formData: ", formData);
       console.log(parentId, "parentId");
     }
@@ -656,6 +658,17 @@ const Record = () => {
                               <Form.Control
                                 type="text"
                                 value={kidId === undefined ? parentId : kidId}
+                                readOnly
+                              />
+                            </Form.Group>
+                          </div>
+
+                          <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Tag ID</Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={tagId}
                                 readOnly
                               />
                             </Form.Group>
@@ -803,6 +816,16 @@ const Record = () => {
                           <Form.Control
                             type="text"
                             value={kidId === undefined ? parentId : kidId}
+                            readOnly
+                          />
+                        </Form.Group>
+                      </div>
+                      <div className="col-lg-3 pb-3">
+                        <Form.Group>
+                          <Form.Label>Tag ID</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={tagId}
                             readOnly
                           />
                         </Form.Group>

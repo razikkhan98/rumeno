@@ -18,6 +18,7 @@ import { FilePlus, Pencil, Trash } from "react-bootstrap-icons"; // Import icons
 
 const AnimalCard = ({
   parentId,
+  tagId,
   height,
   gender,
   age,
@@ -49,6 +50,7 @@ const AnimalCard = ({
   ];
 
   const modalDetails = [
+    { label: "Tag Id", value: tagId, icon: <RiRulerFill /> },
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
     { label: "Year", value: age, icon: <PiCalendarBlankFill /> },
@@ -185,7 +187,7 @@ const AnimalCard = ({
             </div>
           </div>
         ) : (
-          <div className="text-chinese-black-color">{parentId}</div>
+          <div className="text-chinese-black-color">Tag Id: {tagId}</div>
         )}
 
         {/* Button to open modal */}

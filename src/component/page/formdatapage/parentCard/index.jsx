@@ -14,7 +14,7 @@ const Parent = () => {
   const [loading, setLoading] = useState(true);
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 
-  const endpoint = "/user/animaldata/newentity/getAll";
+  const endpoint = "/user/animaldata/parent/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -124,6 +124,7 @@ const Parent = () => {
                     <AnimalCard
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
+                      tagId={animal.tagId}
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
