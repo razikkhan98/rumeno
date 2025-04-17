@@ -14,7 +14,7 @@ const Parent = () => {
   const [loading, setLoading] = useState(true);
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/newentity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -74,7 +74,7 @@ const Parent = () => {
     setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      await deleteData("/user/animaldata/parent/delete", uniqueId);
+      await deleteData("/user/animaldata/newentity/delete", uniqueId);
       toast.success("Animal deleted successfully.");
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");

@@ -43,8 +43,8 @@ const GoatDetailForm = () => {
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/parent"; // Add API
+          ? `/user/animaldata/newentity/update` // Edit API
+          : "/user/animaldata/newentity"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
@@ -72,7 +72,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/newentity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -84,6 +84,7 @@ const GoatDetailForm = () => {
 
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
+          setValue("tagId", animalData.tagId || "");
           setValue("ageYear", animalData.ageYear || "");
           setValue("ageMonth", animalData.ageMonth || "");
           setValue("height", animalData.height || "");
@@ -181,12 +182,12 @@ const GoatDetailForm = () => {
                     type="text"
                     className="form-control form-control-detail"
                     placeholder="Enter Tag ID"
-                    // {...register("tagId", {
-                    //   required: "Tag ID is required",
-                    // })}
+                    {...register("tagId", {
+                      required: "Tag ID is required",
+                    })}
                   />
-                  {errors.uniqueId && (
-                    <p className="text-danger">{errors.uniqueId.message}</p>
+                  {errors.tagId && (
+                    <p className="text-danger">{errors.tagId.message}</p>
                   )}
                 </div>
 
