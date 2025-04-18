@@ -43,19 +43,21 @@ const Forgot = () => {
       {/* Navbar */}
       {/* <Navbar /> */}
       {/* Main Section  */}
-      <div className="container py-5 d-flex align-items-center justify-content-center vh-100">
-        <div className="login-bg">
-          <div className="row g-0">
+      <div className="d-flex align-items-center justify-content-center min-vh-100">
+        <div className="container">
+          <div className="row g-0 my-0 login-bg">
             {/* Left Section */}
             <div className="col-lg-6 col-md-6 text-white position-relative">
 
-           <div className="position-absolute top-0 left-0 m-3">
-           <NavLink to={"/"} className={"text-white text-decoration-none"}>
-            <FaArrowCircleLeft className=" fs-3 text-white" />
-            <p>Home</p>
-            </NavLink>
-           </div>
-              <img src={LoginImg} className="login-img" alt="Loading" />
+              <div className="position-absolute top-0 left-0 m-3">
+                <NavLink to={"/"} className={"text-white text-decoration-none"}>
+                  <FaArrowCircleLeft className=" fs-3 text-white" />
+                  <p>Home</p>
+                </NavLink>
+              </div>
+              <div className="login-img">
+                <img src={LoginImg} alt="Loading" />
+              </div>
               <div className="overlay-text position-absolute bottom-0 start-0 p-5">
                 <p className="font-size-32 font-md-size-20 text-uppercase">Welcome to Rumeno</p>
                 <p className="font-size-18 font-md-size-12">

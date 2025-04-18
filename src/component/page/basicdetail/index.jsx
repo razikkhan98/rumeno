@@ -43,7 +43,7 @@ const GoatDetailForm = () => {
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/newentity/update` // Edit API
+          ? `/user/animaldata/parent/update` // Edit API
           : "/user/animaldata/newentity"; // Add API
 
       // Call the appropriate API method
@@ -72,7 +72,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/newentity/getAll";
+  const endpoint = "/user/animaldata/parent/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
