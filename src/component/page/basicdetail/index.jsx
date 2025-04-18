@@ -161,7 +161,7 @@ const GoatDetailForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Unique ID</label>
                   <input
                     type="text"
@@ -174,7 +174,7 @@ const GoatDetailForm = () => {
                   {errors.uniqueId && (
                     <p className="text-danger">{errors.uniqueId.message}</p>
                   )}
-                </div>
+                </div> */}
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Tag ID</label>
@@ -227,6 +227,15 @@ const GoatDetailForm = () => {
                     className="form-control form-control-detail"
                     placeholder="Enter Weight"
                     {...register("weightKg")}
+                  />
+                </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Date</label>
+                  <input
+                    type="date"
+                    disabled={purchaseDate}
+                    className="form-control form-control-detail"
+                    {...register("birthDate")}
                   />
                 </div>
               </div>
@@ -382,15 +391,7 @@ const GoatDetailForm = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Birth Date</label>
-                  <input
-                    type="date"
-                    disabled={purchaseDate}
-                    className="form-control form-control-detail"
-                    {...register("birthDate")}
-                  />
-                </div>
+               
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Type</label>
                   <select
@@ -527,7 +528,7 @@ const GoatDetailForm = () => {
               )}
 
               <div className="row mt-2">
-                <p className="detail-para mb-0 lh-lg">Other Vaccine</p>
+                <p className="detail-para mb-0 lh-lg">Last Vaccine</p>
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     Vaccine Name

@@ -366,7 +366,7 @@ const AnimalCard = ({
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${parentId}/${uniqueId}`, {
-                  state: { parentId, uniqueId },
+                  state: { parentId, uniqueId,tagId },
                 })
               }
             >

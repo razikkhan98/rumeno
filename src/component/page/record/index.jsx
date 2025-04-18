@@ -432,7 +432,7 @@ const Record = () => {
   const [editActive, setEditActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
-  // console.log("submittedData: ", submittedData);
+  console.log('submittedData: ', submittedData);
   // const [editIndex, setEditIndex] = useState(null);
 
   const navigate = useNavigate();
@@ -444,6 +444,7 @@ const Record = () => {
     formState: { isDirty },
   } = useForm();
   const location = useLocation();
+  console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
@@ -455,6 +456,7 @@ const Record = () => {
   const fetchAnimals = async () => {
     try {
       const response = await getData("/user/animaldata/parent/getAll");
+      console.log('response: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
     } catch (error) {
@@ -654,17 +656,6 @@ const Record = () => {
                         <div className="row mb-4">
                           <div className="col-lg-3 pb-3">
                             <Form.Group>
-                              <Form.Label>Unique ID</Form.Label>
-                              <Form.Control
-                                type="text"
-                                value={kidId === undefined ? parentId : kidId}
-                                readOnly
-                              />
-                            </Form.Group>
-                          </div>
-
-                          <div className="col-lg-3 pb-3">
-                            <Form.Group>
                               <Form.Label>Tag ID</Form.Label>
                               <Form.Control
                                 type="text"
@@ -673,6 +664,17 @@ const Record = () => {
                               />
                             </Form.Group>
                           </div>
+
+                          {/* <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Tag ID</Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={tagId}
+                                readOnly
+                              />
+                            </Form.Group>
+                          </div> */}
 
                           {fieldConfigs[activeTab]?.map((field, index) => (
                             <div key={index} className="col-lg-3 pb-3">
@@ -812,16 +814,6 @@ const Record = () => {
                     <div className="row mb-4">
                       <div className="col-lg-3 pb-3">
                         <Form.Group>
-                          <Form.Label>Unique ID</Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={kidId === undefined ? parentId : kidId}
-                            readOnly
-                          />
-                        </Form.Group>
-                      </div>
-                      <div className="col-lg-3 pb-3">
-                        <Form.Group>
                           <Form.Label>Tag ID</Form.Label>
                           <Form.Control
                             type="text"
@@ -830,6 +822,16 @@ const Record = () => {
                           />
                         </Form.Group>
                       </div>
+                      {/* <div className="col-lg-3 pb-3">
+                        <Form.Group>
+                          <Form.Label>Tag ID</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={tagId}
+                            readOnly
+                          />
+                        </Form.Group>
+                      </div> */}
                       {fieldConfigs[activeTab]?.map((field, index) => (
                         <div key={index} className="col-lg-3 pb-3">
                           <Form.Group>
@@ -933,11 +935,11 @@ const Record = () => {
                             <div className="row mb-4">
                               <div className="col-lg-3 pb-3">
                                 <Form.Group>
-                                  <Form.Label>Unique ID</Form.Label>
+                                  <Form.Label>Tag ID</Form.Label>
                                   <Form.Control
                                     type="text"
                                     value={
-                                      kidId === undefined ? parentId : kidId
+                                   tagId
                                     }
                                     readOnly
                                   />
@@ -950,14 +952,14 @@ const Record = () => {
                                     className="col-lg-3 pb-3"
                                   >
                                     <Form.Group>
-                                      <Form.Label>{field.label}</Form.Label>
+                                      <Form.Label>{field?.label}</Form.Label>
                                       <Form.Control
-                                        type={field.type}
-                                        defaultValue={data[field?.name]} // Pre-fill the input with existing data
+                                        type={field?.type}
+                                        defaultValue={data?.[field?.name] || ""} // Pre-fill the input with existing data
                                         onChange={(e) => {
                                           const newValue = e.target.value;
                                           console.log(
-                                            `Field: ${field.name}, New Value: ${newValue}`
+                                            `Field: ${field?.name}, New Value: ${newValue}`
                                           );
 
                                           // Optional: You can also update the submittedData here if needed.
