@@ -60,7 +60,7 @@ const productItem = [
     image: Neonato,
     price:245,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ const productItem = [
     image: Energico,
     price: 235,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 3,
@@ -76,7 +76,7 @@ const productItem = [
     image: Liverofine,
     price: 125.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const productItem = [
     image: Minro,
     price: 285.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 5,
@@ -92,7 +92,7 @@ const productItem = [
     image: Seleniume,
     price: 260,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 6,
@@ -100,7 +100,7 @@ const productItem = [
     image: Slatted,
     price: 135,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 7,
@@ -108,7 +108,7 @@ const productItem = [
     image: Poultryfine,
     price: 1600.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 8,
@@ -116,7 +116,7 @@ const productItem = [
     image: Florovita,
     price: 1300.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
 ];
 
