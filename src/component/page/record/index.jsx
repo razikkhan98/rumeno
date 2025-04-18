@@ -743,7 +743,7 @@ const Record = () => {
                         >
                           Submit
                         </Button>
-                        <Button
+                        {/* <Button
                           type="submit"
                           className="btn-success px-4 mx-2"
                           onClick={handleUpdateApi}
@@ -758,7 +758,7 @@ const Record = () => {
                           disabled={!InputPreFillData}
                         >
                           Delet
-                        </Button>
+                        </Button> */}
                       </Form>
                     </>
                   ) : (
@@ -906,7 +906,7 @@ const Record = () => {
                     >
                       Submit
                     </Button>
-                    <Button
+                    {/* <Button
                       type="submit"
                       className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-success"}`}
                       onClick={handleUpdateApi}
@@ -921,7 +921,7 @@ const Record = () => {
                       disabled={!InputPreFillData}
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </Form>
 
                   {/* ============================= */}
