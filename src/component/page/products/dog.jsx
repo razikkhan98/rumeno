@@ -61,7 +61,7 @@ const productItem = [
     image: Neonato,
     price:245,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 2,
@@ -69,7 +69,7 @@ const productItem = [
     image: MicroFlora,
     price: 245.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 3,
@@ -77,7 +77,7 @@ const productItem = [
     image: Minro,
     price: 285.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 4,
@@ -85,7 +85,7 @@ const productItem = [
     image: Pupmilk,
     price: 600.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   
 ];

@@ -73,9 +73,11 @@ const Addtocart = () => {
   const cartItem = cart?.find((item) => item.id === product?.id);
 
   const [selectedWeight, setSelectedWeight] = useState(
-    product?.productUnit?.[0] || 0
+    product?.productUnit?.[0]
   );
   console.log("selectedWeight: ", selectedWeight);
+  const basePrice = product.price;
+  const calculatedPrice = parseFloat(selectedWeight) * basePrice;
 
   const setWeight = (size) => {
     setSelectedWeight(size);
@@ -143,8 +145,8 @@ const Addtocart = () => {
                       3.5 (312 Reviews)
                     </span>
                   </div>
-                  <p className="mt-2 pb-4 border-bottom font-24-500">
-                    ₹ {product.price.toFixed(2)} /-{" "}
+                  <p className="mt-2 pb-4 border-bottom font-24-500 d-flex align-items-center">
+                    ₹ {calculatedPrice.toFixed(2)} /-{" "}
                     <span
                       className="badge ms-2 p-2 font-14-300 colorffffff"
                       style={{
@@ -157,7 +159,7 @@ const Addtocart = () => {
                   </p>
 
                   <p
-                    className="mt-4"
+                    className="mt-4 mb-0"
                     style={{
                       fontSize: "14px",
                       fontWeight: "400",
@@ -171,14 +173,14 @@ const Addtocart = () => {
                     {product?.productUnit?.map((size) => (
                       <button
                         key={size}
-                        className="addtocart-btn d-flex border rounded-3 mt-1"
+                        className="addtocart-btn d-flex border rounded-3 mt-3"
                         style={{
                           background:
                             selectedWeight === size ? "#E32C2B" : "#ffffff",
                           color:
                             selectedWeight === size ? "#ffffff" : "#111111",
                         }}
-                        onClick={() => setWeight(size)}
+                        onClick={() => setSelectedWeight(size)}
                       >
                         <div
                           className="input-group-text border-0"
@@ -190,7 +192,7 @@ const Addtocart = () => {
                               selectedWeight === size ? "#ffffff" : "#707070",
                           }}
                         >
-                          ₹ {product.price.toFixed(2)} /-{" "}
+                          ₹ {basePrice.toFixed(2)} /-{" "}
                         </div>
                         <div
                           className="input-group-text border-0 product-kg"
@@ -201,7 +203,7 @@ const Addtocart = () => {
                             fontWeight: "400",
                           }}
                         >
-                          {size}
+                          {size}kg
                         </div>
                       </button>
                     ))}
@@ -250,6 +252,16 @@ const Addtocart = () => {
                       }}
                     >
                       <Button
+                        onClick={() => handleAddToCart(product)}
+                        className="fs-5 border-0 rounded-3 px-4 py-2 w-100"
+                        style={{
+                          background: "#ffffff",
+                          color: "#EC7229",
+                        }}
+                      >
+                        Buy Now
+                      </Button>
+                      {/* <Button
                         onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"
                         style={{ background: "#ffffff", color: "#EC7229" }}
@@ -266,22 +278,30 @@ const Addtocart = () => {
                         style={{ background: "#ffffff", color: "#EC7229" }}
                       >
                         +
-                      </Button>
+                      </Button> */}
                     </div>
-                    <NavLink to="/cart">
-                      <Button
-                        className="mx-3 border-0"
-                        // onClick={() => handleAddToCart(product)}
-                        style={{
-                          background: "#EC7229",
-                          width: "200px",
-                          height: "56px",
-                          borderRadius: "8px",
-                        }}
-                      >
-                        Add To Cart
-                      </Button>
-                    </NavLink>
+                    <div  
+                      style={{
+                        background: "#EC7229",
+                        width: "200px",
+                        height: "56px",
+                        borderRadius: "8px",
+                      }}>
+                      <NavLink to="/cart">
+                        <Button
+                          className="mx-3 border-0 px-lg-5"
+                          onClick={() => handleAddToCart(product)}
+                          style={{
+                            background: "#EC7229",
+                            width: "100%",
+                            height: "56px",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          Add To Cart
+                        </Button>
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
               </div>

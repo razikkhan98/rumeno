@@ -62,7 +62,7 @@ const productItem = [
     image: Neonato,
     price:245,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 2,
@@ -70,7 +70,7 @@ const productItem = [
     image: Tanav,
     price: 700,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 3,
@@ -78,7 +78,7 @@ const productItem = [
     image: Energico,
     price: 235,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 4,
@@ -86,7 +86,7 @@ const productItem = [
     image: Rumenvita,
     price: 3250,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 5,
@@ -94,7 +94,7 @@ const productItem = [
     image: Liverofine,
     price: 125.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 6,
@@ -102,7 +102,7 @@ const productItem = [
     image: Digesto,
     price: 190.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 7,
@@ -110,7 +110,7 @@ const productItem = [
     image: DCox,
     price: 250,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 8,
@@ -118,7 +118,7 @@ const productItem = [
     image: MicroFlora,
     price: 90.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 9,
@@ -126,7 +126,7 @@ const productItem = [
     image: Selennium,
     price: 190.0,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 10,
@@ -134,7 +134,7 @@ const productItem = [
     image: Bull,
     price: 1175.0,
     inStock: false,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 11,
@@ -142,7 +142,7 @@ const productItem = [
     image: ProLac,
     price: 600,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 12,
@@ -150,7 +150,7 @@ const productItem = [
     image: Slatted,
     price: 135,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
   {
     id: 13,
@@ -158,7 +158,7 @@ const productItem = [
     image: Nipple,
     price: 55,
     inStock: true,
-    productUnit: ["1kg", "5kg", "25kg"],
+    productUnit: ["1", "5", "25"],
   },
 ];
 
