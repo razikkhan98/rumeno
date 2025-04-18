@@ -65,11 +65,11 @@ const Register = () => {
       {/* <Navbar /> */}
 
       {/* Main Section */}
-      <div className="container py-5 vh-100 d-flex align-items-center justify-content-center">
-        <div className="login-bg">
-          <div className="row rounded-3">
+      <div className="min-vh-100 d-flex align-items-center justify-content-center">
+        <div className="container py-1">
+          <div className="row g-0 my-0 login-bg">
             {/* Left Section */}
-            <div className="col-lg-6 col-md-6 text-white position-relative">
+            <div className="col-lg-6 col-md-12 text-white position-relative">
               {/* Go Back to Home on this button */}
               <div className="position-absolute top-0 left-0 m-3">
                 <NavLink to={"/"} className={"text-white text-decoration-none"}>
@@ -77,7 +77,9 @@ const Register = () => {
                   <p>Home</p>
                 </NavLink>
               </div>
-              <img src={RegisterImg} className="login-img" alt="Loading" />
+              <div className="login-img">
+              <img src={RegisterImg}  alt="Loading" />
+              </div>
               <div className="overlay-text position-absolute bottom-0 start-0 p-5">
                 <p className="font-size-32 font-md-size-20 text-uppercase">
                   Welcome to Rumeno
@@ -94,7 +96,7 @@ const Register = () => {
             </div>
 
             {/* Right Section (Register Form) */}
-            <div className="col-lg-6 col-md-6 py-4 px-lg-5">
+            <div className="col-lg-6 col-md-12 py-4 px-lg-5">
               <div className="form container px-lg-5 px-3">
                 <div className="text-center">
                   <span className="text-uppercase font-size-24 font-md-size-20">
@@ -129,7 +131,7 @@ const Register = () => {
                   </div>
 
                   {/* Mobile No. */}
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 col-md-12">
                     <label className="form-label mb-2 font-size-12 text-gray-color">
                       Mobile No.
                     </label>
@@ -149,7 +151,7 @@ const Register = () => {
                   </div>
 
                   {/* Email */}
-                  <div className="col-lg-6">
+                  <div className="col-lg-6 col-md-12">
                     <label className="form-label mb-2 font-size-12 text-gray-color">
                       E-mail
                     </label>

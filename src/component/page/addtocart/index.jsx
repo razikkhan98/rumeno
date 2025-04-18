@@ -111,7 +111,7 @@ const Addtocart = () => {
       console.log('Review submitted:', formData);
       // submit logic here...
       reset();
-      setShowReviewForm(false);
+      // setShowReviewForm(false);
     };
 
   return (
@@ -350,7 +350,7 @@ const Addtocart = () => {
             <div className="col-lg-1"></div>
             <div className="col-lg-5 py-5">
               {showReviewForm ? (
-                // Review Form
+                // Review Form Start here
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   className="bg-skyblue border-radius-12 text-center py-5 px-5"

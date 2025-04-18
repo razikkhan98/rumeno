@@ -48,7 +48,7 @@ const Cart = () => {
           {Object.keys(cart).length === 0 ? (
             <div className="text-center">
               <h4 className="text-muted">Your cart is empty! 🛒</h4>
-              <NavLink to="/products">
+              <NavLink to="/goatproduct">
                 <button className="btn btn-warning mt-3">Go to Shop</button>
               </NavLink>
             </div>

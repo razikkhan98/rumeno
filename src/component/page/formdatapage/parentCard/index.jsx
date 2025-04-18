@@ -74,7 +74,7 @@ const Parent = () => {
     setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      await deleteData("/user/animaldata/newentity/delete", uniqueId);
+      await deleteData("/user/animaldata/parent/delete", uniqueId);
       toast.success("Animal deleted successfully.");
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
