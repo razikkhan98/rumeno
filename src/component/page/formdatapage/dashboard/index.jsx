@@ -154,73 +154,76 @@ const Dashboard = () => {
 
   const cardData = [
     {
-      title: "Total Animals",
+      title: "Total Goat",
       cardborder: "card-orange-border",
+      cardcircle: "card-orange-circle",
       img: Animal,
       value: stats.TotalAnimals,
     },
 
-    {
-      title: "Total Parents",
-      cardborder: "card-blue-border",
-      img: Parent,
-      value: stats.TotalParents,
-    },
-    {
-      title: "Total Children",
-      cardborder: "card-orange-border",
-      img: Child,
-      value: stats.TotalChildren,
-    },
+    // {
+    //   title: "Total Parents",
+    //   cardborder: "card-blue-border",
+    //   img: Parent,
+    //   value: stats.TotalParents,
+    // },
+    // {
+    //   title: "Total Children",
+    //   cardborder: "card-orange-border",
+    //   img: Child,
+    //   value: stats.TotalChildren,
+    // },
     {
       title: "Vaccines",
       cardborder: "card-blue-border",
+      cardcircle: "card-blue-circle",
       img: Vaccine,
       value: stats.VaccineCount,
       details: stats.VaccineData,
     },
-    {
-      title: "Post Wean",
-      cardborder: "card-orange-border",
-      img: Postwean,
-      value: stats.PostWeanCount,
-      details: stats.PostWeanData,
-    },
-    {
-      title: "Milk Production",
-      cardborder: "card-blue-border",
-      img: MilkCount,
-      value: stats.MilkCount,
-      details: stats.MilkData,
-    },
-    {
-      title: "Astrus Heat",
-      cardborder: "card-orange-border",
-      img: Heat,
-      value: stats.HeatCount,
-      details: stats.HeatData,
-    },
+    // {
+    //   title: "Post Wean",
+    //   cardborder: "card-orange-border",
+    //   img: Postwean,
+    //   value: stats.PostWeanCount,
+    //   details: stats.PostWeanData,
+    // },
+    // {
+    //   title: "Milk Production",
+    //   cardborder: "card-blue-border",
+    //   img: MilkCount,
+    //   value: stats.MilkCount,
+    //   details: stats.MilkData,
+    // },
+    // {
+    //   title: "Astrus Heat",
+    //   cardborder: "card-orange-border",
+    //   img: Heat,
+    //   value: stats.HeatCount,
+    //   details: stats.HeatData,
+    // },
     {
       title: "Deworming",
       cardborder: "card-blue-border",
+      cardcircle: "card-blue-circle", 
       img: Deworm,
       value: stats.DewormCount,
       details: stats.DewormData,
     },
-    {
-      title: "Farm Sanitation",
-      cardborder: "card-orange-border",
-      img: Sanitation,
-      value: stats.SanitationCount,
-      details: stats.SanitationData,
-    },
-    {
-      title: "Pregnant Goat",
-      cardborder: "card-blue-border",
-      img: Pregnant,
-      value: stats.PregnantCount,
-      details: stats.PregnantData,
-    },
+    // {
+    //   title: "Farm Sanitation",
+    //   cardborder: "card-orange-border",
+    //   img: Sanitation,
+    //   value: stats.SanitationCount,
+    //   details: stats.SanitationData,
+    // },
+    // {
+    //   title: "Pregnant Goat",
+    //   cardborder: "card-blue-border",
+    //   img: Pregnant,
+    //   value: stats.PregnantCount,
+    //   details: stats.PregnantData,
+    // },
   ];
 
   console.log(cardData);
@@ -304,7 +307,7 @@ const Dashboard = () => {
                       >
                         <div className="row gap-2 align-items-center justify-content-between">
                          <div className="col-lg-3">
-                         <div className="card-img-circle rounded-circle shadow d-flex align-items-center justify-content-center">
+                         <div className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}>
                             <img src={card.img} alt="Loading" />
                           </div>
                          </div>
