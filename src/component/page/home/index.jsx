@@ -169,10 +169,10 @@ const Home = () => {
       <div className="container-fluid py-5">
         <div className="text-center pt-lg-5 px-lg-5">
           <div
-            className="d-flex my-3"
+            className="d-flex my-3 align-items-center"
            
           >
-            <div className="label-title">
+            <div className="label-title mt-3">
               Our Products According To Species
             </div>
             <div>

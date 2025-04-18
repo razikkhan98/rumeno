@@ -77,7 +77,7 @@ const Login = () => {
       {/* <Navbar /> */}
 
       {/* Main Section */}
-      <div className="d-flex align-items-center justify-content-center vh-100">
+      <div className="d-flex align-items-center justify-content-center min-vh-100">
         <div className="container py-1">
           <div className="">
             <div className="row g-0 my-0 login-bg">
@@ -90,7 +90,10 @@ const Login = () => {
                     <p>Home</p>
                   </NavLink>
                 </div>
-                <img src={LoginImg} className="login-img" alt="Loading" />
+                <div className="login-img">
+                  <img src={LoginImg} className="" alt="Loading" />
+
+                </div>
                 <div className="overlay-text position-absolute bottom-0 start-0 p-5">
                   <p className="font-size-32 font-md-size-20 text-uppercase">
                     Welcome to Rumeno
