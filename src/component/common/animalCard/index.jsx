@@ -131,7 +131,7 @@ const AnimalCard = ({
       await deleteData("user/animaldata/parent/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => navigate("/farmdata/dashboard"), 100);
+      setTimeout(() => navigate("/farmdata/parent"), 100);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();

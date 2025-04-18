@@ -214,6 +214,7 @@ const Mainnav = () => {
                 Products
               </a>
               <div
+              //  ref={dropdownRef}
                 className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
                   }`}
               >
