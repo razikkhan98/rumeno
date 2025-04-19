@@ -263,7 +263,55 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
+                <div className="col-lg-2 d-flex align-items-center gap-1">
+                  <label className="form-lable-detail">Gender</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail mt-4"
+                    // placeholder="Enter Father Breed"
+                    disabled={gender}
+                    {...register("gender")}
+                  />
+                </div>
+
                 <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Date</label>
+                  <input
+                    type="date"
+                    // disabled={purchaseDate}
+                    className="form-control form-control-detail"
+                    {...register("birthDate")}
+                  />
+                </div>
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Type</label>
+                  <select
+                    // disabled={purchaseDate}
+                    className="form-select form-control-detail"
+                    {...register("birthType")}
+                  >
+                    <option value="">Select Birth Type</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Castration">Castration</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Birth Weight</label>
+                  <select
+                    // disabled={purchaseDate}
+                    className="form-select form-control-detail"
+                    {...register("birthWeight")}
+                  >
+                    <option value="">Select Birth Weight</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Castration">Castration</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Mother Age (Year)</label>
                   <input
                     type="number"
@@ -271,8 +319,8 @@ const GoatDetailForm = () => {
                     placeholder="Enter Age"
                     {...register("motherAgeYear")}
                   />
-                </div>
-                <div className="col-lg-2 lh-lg">
+                </div> */}
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     mother Age (Month)
                   </label>
@@ -282,9 +330,9 @@ const GoatDetailForm = () => {
                     placeholder="Enter Age"
                     {...register("motherAgeMonth")}
                   />
-                </div>
+                </div> */}
 
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Father Age (Year)</label>
                   <input
                     type="number"
@@ -292,8 +340,8 @@ const GoatDetailForm = () => {
                     placeholder="Enter Age"
                     {...register("fatherAgeYear")}
                   />
-                </div>
-                <div className="col-lg-2 lh-lg">
+                </div> */}
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     Father Age (Month)
                   </label>
@@ -303,11 +351,12 @@ const GoatDetailForm = () => {
                     placeholder="Enter Age"
                     {...register("fatherAgeMonth")}
                   />
-                </div>
+                </div> */}
               </div>
 
               <div className="row mt-3">
-                <div className="col-lg-2 lh-lg">
+
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Father breed</label>
                   <input
                     type="text"
@@ -315,9 +364,9 @@ const GoatDetailForm = () => {
                     placeholder="Enter Father Breed"
                     {...register("fatherBreed")}
                   />
-                </div>
+                </div> */}
 
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Mother breed</label>
                   <input
                     type="text"
@@ -325,8 +374,31 @@ const GoatDetailForm = () => {
                     placeholder="Enter Mother Breed"
                     {...register("motherBreed")}
                   />
+                </div> */}
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">
+                    Mother's wean Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control form-control-detail"
+                    {...register("motherWeanDate")}
+                  />
                 </div>
-
+                <div className="col-lg-3 lh-lg">
+                  <label className="form-lable-detail">Body Score</label>
+                  <select
+                    className="form-select form-control-detail"
+                    {...register("bodyScore")}
+                  >
+                    <option value="">Select body score</option>
+                    <option value="1">1: Very slim body</option>
+                    <option value="2">2: Skinned body</option>
+                    <option value="3">3: Slim body</option>
+                    <option value="4">4: Mild fat body</option>
+                    <option value="5">5: Fatty bulky body</option>
+                  </select>
+                </div>
                 <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">
                     Date of Purchasing
@@ -366,61 +438,12 @@ const GoatDetailForm = () => {
               </div>
 
               <div className="row mt-3">
-              <div className="col-lg-2 d-flex align-items-center gap-1">
-                  <label className="form-lable-detail">Gender</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail mt-4"
-                    // placeholder="Enter Father Breed"
-                    disabled={gender}
-                    {...register("gender")}
-                  />
-                </div>
-                <div className="col-lg-3 lh-lg">
-                  <label className="form-lable-detail">Body Score</label>
-                  <select
-                    className="form-select form-control-detail"
-                    {...register("bodyScore")}
-                  >
-                    <option value="">Select body score</option>
-                    <option value="1">1: Very slim body</option>
-                    <option value="2">2: Skinned body</option>
-                    <option value="3">3: Slim body</option>
-                    <option value="4">4: Mild fat body</option>
-                    <option value="5">5: Fatty bulky body</option>
-                  </select>
-                </div>
+                
+                
               </div>
 
               <div className="row mt-3">
-               
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Birth Type</label>
-                  <select
-                    disabled={purchaseDate}
-                    className="form-select form-control-detail"
-                    {...register("birthType")}
-                  >
-                    <option value="">Select Birth Type</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Castration">Castration</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Birth Weight</label>
-                  <select
-                    disabled={purchaseDate}
-                    className="form-select form-control-detail"
-                    {...register("birthWeight")}
-                  >
-                    <option value="">Select Birth Weight</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Castration">Castration</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                
 
                 {/* <div className="col-lg-3 lh-lg">
                   <label className="form-lable-detail">
@@ -439,16 +462,7 @@ const GoatDetailForm = () => {
                   </select>
                 </div> */}
 
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Mother's wean Date
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control form-control-detail"
-                    {...register("motherWeanDate")}
-                  />
-                </div>
+                
 
                 <div className="col-lg-4 lh-lg">
                   <label className="form-lable-detail">Comments (if any)</label>
@@ -530,7 +544,7 @@ const GoatDetailForm = () => {
               )}
 
               <div className="row mt-2">
-                <p className="detail-para mb-0 lh-lg">Last Vaccine</p>
+                <p className="detail-para mb-0 lh-lg">Other Disease Vaccine</p>
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     Vaccine Name
@@ -578,7 +592,7 @@ const GoatDetailForm = () => {
                     fontWeight: "600",
                   }}
                 >
-                  {type === "edit" ? "Edit Parent" : "Add Parent"}
+                  {type === "edit" ? "Edit" : `Add ${selectedAnimal}`}
                 </button>
               </div>
             </form>
