@@ -22,7 +22,7 @@ const FarmerDetails = () => {
     console.log('data: ', data);
     reset();         // clear the form
     handleClose();   // close the modal
-    navigate('/farmdata');
+    navigate('/farmdata', { state: data });
   }
 
   return (

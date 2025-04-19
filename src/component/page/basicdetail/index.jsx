@@ -25,7 +25,8 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-
+  const farmerData = location.state;
+  console.log('farmerData: ', farmerData);
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
@@ -38,6 +39,7 @@ const GoatDetailForm = () => {
         selectedAnimal,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
+        farmerData,
       };
 
       // Determine API endpoint dynamically based on type
