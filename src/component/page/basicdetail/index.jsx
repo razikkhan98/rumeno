@@ -233,7 +233,7 @@ const GoatDetailForm = () => {
                   <label className="form-lable-detail">Birth Date</label>
                   <input
                     type="date"
-                    disabled={purchaseDate}
+                    // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate")}
                   />
@@ -242,22 +242,22 @@ const GoatDetailForm = () => {
 
               <div className="row mt-3">
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Mother Tag</label>
+                  <label className="form-lable-detail">Mother Unique Id</label>
                   <input
                     type="text"
                     placeholder="Enter Mother tag"
                     className="form-control form-control-detail"
-                    {...register("motherTag")}
+                    {...register("motherUniqueId")}
                   />
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Father Tag</label>
+                  <label className="form-lable-detail">Father Unique Id</label>
                   <input
                     type="text"
                     placeholder="Enter Father tag"
                     className="form-control form-control-detail"
-                    {...register("fatherTag")}
+                    {...register("fatherUniqueId")}
                   />
                 </div>
 
@@ -272,15 +272,15 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Date</label>
                   <input
                     type="date"
-                    // disabled={purchaseDate}
+                    disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate")}
                   />
-                </div>
+                </div> */}
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Type</label>
                   <select
@@ -403,7 +403,7 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
-                    disabled={birthDate}
+                    // disabled={birthDate}
                     className="form-control form-control-detail"
                     {...register("purchaseDate")}
                   />
