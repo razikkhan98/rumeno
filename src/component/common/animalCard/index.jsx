@@ -121,18 +121,12 @@ const AnimalCard = ({
   };
 
   const handleConfirmDeleteParent = async () => {
-    // if (children?.length > 0) {
-    //   toast.error("Cannot delete parent. It has child records associated.");
-    //   return;
-    // }
-
-    // setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
       await deleteData("user/animaldata/parent/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => navigate("/farmdata/parent"), 100);
+      setTimeout(() => {window.location.reload();} , 10);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();
