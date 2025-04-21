@@ -117,6 +117,7 @@ const Dashboard = () => {
   });
 
   const [selectedCard, setSelectedCard] = useState(null);
+  console.log('selectedCard: ', selectedCard);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setdata] = useState([]);
@@ -252,7 +253,7 @@ const Dashboard = () => {
             }}
           >
             <h4 className="text-chinese-black-color">
-              Dashboard
+               <span onClick={() => setSelectedCard(null)} role="button">Dashboard</span>
               {selectedCard && (
                 <>
                   {" > "}

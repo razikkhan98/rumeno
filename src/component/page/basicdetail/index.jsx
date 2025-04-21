@@ -46,7 +46,7 @@ const GoatDetailForm = () => {
       const endpoint =
         type === "edit"
           ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/newentity"; // Add API
+          : "/user/animaldata/parent"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
@@ -237,8 +237,13 @@ const GoatDetailForm = () => {
                     type="date"
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
-                    {...register("birthDate")}
+                    {...register("birthDate", {
+                      required: "Birth Date is required",
+                    })}
                   />
+                  {errors.birthDate && (
+                    <p className="text-danger">{errors.birthDate.message}</p>
+                  )}
                 </div>
               </div>
 
