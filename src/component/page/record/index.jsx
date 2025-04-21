@@ -12,6 +12,10 @@ import {
 import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnimalCard from "../../common/animalCard";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { FaPencil } from "react-icons/fa6";
+
+
 
 const Record = () => {
   const API_ENDPOINTS = {
@@ -46,6 +50,12 @@ const Record = () => {
 
   const fieldConfigs = {
     PostWean: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "weightKg",
         label: "Kid Weight (Kg)",
@@ -73,6 +83,12 @@ const Record = () => {
       },
     ],
     Milk: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "milkvolume",
         label: "Milk Volume",
@@ -99,11 +115,17 @@ const Record = () => {
         type: "text",
         placeholder: "Enter Vaccine Id",
       },
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "vaccineName",
         label: "Vaccine Name",
-        type: "text",
-        placeholder: "Enter Vaccine Name",
+        type: "select",
+        options: ["Deworming", "PPR", "Enterotoxaemia (ET) + (TT)", "Hemorrhagic septicaemia (HS)", "Foot and Mouth Disease (FMD)", "Goat Pox", "Booster (ET) + (TT)", "Booster (HS)", "Booster (FMD)", "Booster Goat Pox", "Repeat PPR", "Repeat ET + TT", "Repeat HS", "Repeat FMD", "Repeat Goat Pox"],
       },
       {
         name: "vaccineDate",
@@ -143,6 +165,12 @@ const Record = () => {
       },
     ],
     Deworm: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "report",
         label: "Worms Examination Report",
@@ -209,6 +237,12 @@ const Record = () => {
       },
     ],
     EstrusHeat: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "heat",
         label: "Heat Number",
@@ -254,6 +288,12 @@ const Record = () => {
       },
     ],
     FarmSanitation: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "soilDate",
         label: "Soil Change Date",
@@ -277,6 +317,12 @@ const Record = () => {
     ],
 
     Child: [
+      // {
+      //   name: "tagId",
+      //   label: "Tag Id",
+      //   type: "text",
+      //   placeholder: "Enter Tag Id",
+      // },
       {
         name: "ageyear",
         label: "Kid Age",
@@ -390,7 +436,7 @@ const Record = () => {
   const [editActive, setEditActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
-  // console.log("submittedData: ", submittedData);
+  console.log('submittedData: ', submittedData);
   // const [editIndex, setEditIndex] = useState(null);
 
   const navigate = useNavigate();
@@ -402,15 +448,19 @@ const Record = () => {
     formState: { isDirty },
   } = useForm();
   const location = useLocation();
+  console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
+  const tagId = location.state?.tagId;
+
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
 
   const fetchAnimals = async () => {
     try {
       const response = await getData("/user/animaldata/parent/getAll");
+      console.log('response: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
     } catch (error) {
@@ -453,7 +503,18 @@ const Record = () => {
 
   useEffect(() => {
     const weanData = animals.flatMap((i) =>
-      activeTab == "PostWean" ? i.postWean : i.milk
+     { 
+     const dataToUse = activeTab == "PostWean" ? i.postWean : i.vaccine;
+    //  return Array.isArray(dataToUse) ? dataToUse : [];
+
+    return Array.isArray(dataToUse)
+    ? dataToUse.map((entry) => ({
+        ...entry,
+        uid: i.uid || uid, // inject UID if not already present
+      }))
+    : [];
+
+     }
     );
     console.log("weanData: ", weanData);
 
@@ -471,10 +532,10 @@ const Record = () => {
 
     if (kidId === undefined) {
       // Parent
-      formData = { ...data, parentUniqueId: uniqueId, parentId, uid };
+      formData = { ...data, parentUniqueId: uniqueId, parentId, uid, tagId };
     } else {
       // Child
-      formData = { ...data, childUniqueId: uniqueId, parentId, uid };
+      formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
       console.log("formData: ", formData);
       console.log(parentId, "parentId");
     }
@@ -610,14 +671,25 @@ const Record = () => {
                         <div className="row mb-4">
                           <div className="col-lg-3 pb-3">
                             <Form.Group>
-                              <Form.Label>Unique ID</Form.Label>
+                              <Form.Label>Tag ID</Form.Label>
                               <Form.Control
                                 type="text"
-                                value={kidId === undefined ? parentId : kidId}
+                                value={tagId}
                                 readOnly
                               />
                             </Form.Group>
                           </div>
+
+                          {/* <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Tag ID</Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={tagId}
+                                readOnly
+                              />
+                            </Form.Group>
+                          </div> */}
 
                           {fieldConfigs[activeTab]?.map((field, index) => (
                             <div key={index} className="col-lg-3 pb-3">
@@ -686,7 +758,7 @@ const Record = () => {
                         >
                           Submit
                         </Button>
-                        <Button
+                        {/* <Button
                           type="submit"
                           className="btn-success px-4 mx-2"
                           onClick={handleUpdateApi}
@@ -701,7 +773,7 @@ const Record = () => {
                           disabled={!InputPreFillData}
                         >
                           Delet
-                        </Button>
+                        </Button> */}
                       </Form>
                     </>
                   ) : (
@@ -757,10 +829,10 @@ const Record = () => {
                     <div className="row mb-4">
                       <div className="col-lg-3 pb-3">
                         <Form.Group>
-                          <Form.Label>Unique ID</Form.Label>
+                          <Form.Label>Tag ID</Form.Label>
                           <Form.Control
                             type="text"
-                            value={kidId === undefined ? parentId : kidId}
+                            value={tagId}
                             readOnly
                           />
                         </Form.Group>
@@ -839,7 +911,7 @@ const Record = () => {
                     >
                       Submit
                     </Button>
-                    <Button
+                    {/* <Button
                       type="submit"
                       className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-success"}`}
                       onClick={handleUpdateApi}
@@ -854,84 +926,129 @@ const Record = () => {
                       disabled={!InputPreFillData}
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </Form>
 
                   {/* ============================= */}
                   <div className="mt-4">
                     {submittedData.length > 0 ? (
-                      submittedData.map((data, index) => (
-                        <div>
-                          <h4>Submitted Data</h4>
-                          <Form key={index} className="my-3">
-                            {/* Existing Form Structure for Showing Data */}
-                            <div className="row mb-4">
-                              <div className="col-lg-3 pb-3">
-                                <Form.Group>
-                                  <Form.Label>Unique ID</Form.Label>
-                                  <Form.Control
-                                    type="text"
-                                    value={
-                                      kidId === undefined ? parentId : kidId
-                                    }
-                                    readOnly
-                                  />
-                                </Form.Group>
-                              </div>
-                              {fieldConfigs[activeTab]?.map(
-                                (field, fieldIndex) => (
-                                  <div
-                                    key={fieldIndex}
-                                    className="col-lg-3 pb-3"
+                      // submittedData.map((data, index) => (
+                      <div className="table-responsive">
+                        <table class="table  text-center align-middle">
+                          <thead >
+                            <tr>
+                              <th scope="col" className="heading">#</th>
+                              <th className="heading">Tag Id</th>
+                              {fieldConfigs[activeTab]?.map((field, i) => (
+                                <th key={i} className="heading">{field.label}</th>
+                              ))}
+                              <th className="heading">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {submittedData.map((data, index) => (
+                              <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{data?.tagId || "-"}</td>
+                                {fieldConfigs[activeTab]?.map((field, i) => (
+                                  <td key={i}>{data?.[field.name] || "-"}</td>
+                                ))}
+                                <td className="d-flex align-items-center justify-content-center">
+                                  {/* <div
+                                    className="me-3"
+                                    onClick={() => handleUpdateApi(index)}
                                   >
-                                    <Form.Group>
-                                      <Form.Label>{field.label}</Form.Label>
-                                      <Form.Control
-                                        type={field.type}
-                                        defaultValue={data[field.name]} // Pre-fill the input with existing data
-                                        onChange={(e) => {
-                                          const newValue = e.target.value;
-                                          console.log(
-                                            `Field: ${field.name}, New Value: ${newValue}`
-                                          );
+                                    <FaPencil className="text-success fs-5" />
 
-                                          // Optional: You can also update the submittedData here if needed.
-                                          const updatedData = [
-                                            ...submittedData,
-                                          ];
-                                          updatedData[index] = {
-                                            ...data,
-                                            [field.name]: newValue,
-                                          };
-                                          setSubmittedData(updatedData); // Uncomment if you want to keep track of input changes
-                                        }}
-                                      />
-                                    </Form.Group>
+                                  </div> */}
+                                  <div
+                                    className=""
+                                    onClick={() => handleDeleteApi(index)}
+                                  >
+                                    <RiDeleteBinFill className="text-danger fs-5" />
+
                                   </div>
-                                )
-                              )}
-                            </div>
-                            <Button
-                              type="button"
-                              className="btn-success px-4"
-                              onClick={() => handleUpdateApi(index)}
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              type="button"
-                              className="btn-danger mx-2"
-                              onClick={() => handleDeleteApi(index)}
-                            >
-                              Delete
-                            </Button>
-                            {/* <Button type="button" variant="success" onClick={() => handleUpdateButtonClick(index)}>Update</Button> */}
-                          </Form>
-                        </div>
-                      ))
+                                </td>
+                              </tr>
+                            ))}
+
+                          </tbody>
+                        </table>
+                      </div>
+                      // <div>
+                      //   <h4>Submitted Data</h4>
+                      //   <Form key={index} className="my-3">
+
+                      //     <div className="row mb-4">
+                      //       <div className="col-lg-3 pb-3">
+                      //         <Form.Group>
+                      //           <Form.Label>Tag ID</Form.Label>
+                      //           <Form.Control
+                      //             type="text"
+                      //             value={
+                      //            tagId
+                      //             }
+                      //             readOnly
+                      //           />
+                      //         </Form.Group>
+                      //       </div>
+                      //       {fieldConfigs[activeTab]?.map(
+                      //         (field, fieldIndex) => (
+                      //           <div
+                      //             key={fieldIndex}
+                      //             className="col-lg-3 pb-3"
+                      //           >
+                      //             <Form.Group>
+                      //               <Form.Label>{field?.label}</Form.Label>
+                      //               <Form.Control
+                      //                 type={field?.type}
+                      //                 defaultValue={data?.[field?.name] || ""} 
+                      //                 onChange={(e) => {
+                      //                   const newValue = e.target.value;
+                      //                   console.log(
+                      //                     `Field: ${field?.name}, New Value: ${newValue}`
+                      //                   );
+
+
+                      //                   const updatedData = [
+                      //                     ...submittedData,
+                      //                   ];
+                      //                   updatedData[index] = {
+                      //                     ...data,
+                      //                     [field.name]: newValue,
+                      //                   };
+                      //                   setSubmittedData(updatedData); 
+                      //                 }}
+                      //               />
+                      //             </Form.Group>
+                      //           </div>
+                      //         )
+                      //       )}
+                      //     </div>
+                      //     <Button
+                      //       type="button"
+                      //       className="btn-success px-4"
+                      //       onClick={() => handleUpdateApi(index)}
+                      //     >
+                      //       Edit
+                      //     </Button>
+                      //     <Button
+                      //       type="button"
+                      //       className="btn-danger mx-2"
+                      //       onClick={() => handleDeleteApi(index)}
+                      //     >
+                      //       Delete
+                      //     </Button>
+                      //   </Form>
+                      // </div>
+
                     ) : (
                       <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
                     )}
+
+
+
+
                   </div>
                 </>
               )}

@@ -18,6 +18,7 @@ import { FilePlus, Pencil, Trash } from "react-bootstrap-icons"; // Import icons
 
 const AnimalCard = ({
   parentId,
+  tagId,
   height,
   gender,
   age,
@@ -49,6 +50,7 @@ const AnimalCard = ({
   ];
 
   const modalDetails = [
+    { label: "Tag Id", value: tagId, icon: <RiRulerFill /> },
     { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
     { label: "Year", value: age, icon: <PiCalendarBlankFill /> },
@@ -129,7 +131,7 @@ const AnimalCard = ({
       await deleteData("user/animaldata/parent/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => navigate("/farmdata/dashboard"), 100);
+      setTimeout(() => navigate("/farmdata/parent"), 100);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();
@@ -185,7 +187,7 @@ const AnimalCard = ({
             </div>
           </div>
         ) : (
-          <div className="text-chinese-black-color">{parentId}</div>
+          <div className="text-chinese-black-color">Tag Id: {tagId}</div>
         )}
 
         {/* Button to open modal */}
@@ -314,20 +316,20 @@ const AnimalCard = ({
             <NavLink to="/parentform">
               <Button
                 variant="light"
-                className="border px-2 py-1"
+                className="border px-1 py-0"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
               >
-                <PiPencilSimple className="fs-5 text-primary" />
+                <PiPencilSimple className="fs-6 text-primary" />
               </Button>
             </NavLink>
 
             <Button
               variant="light"
-              className="border px-2 py-1"
+              className="border px-1 py-0"
               style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
               onClick={handleShowDelete}
             >
-              <PiTrashSimple className="fs-5 text-danger" />
+              <PiTrashSimple className="fs-6 text-danger" />
             </Button>
           </>
         ) : (
@@ -360,15 +362,15 @@ const AnimalCard = ({
           <>
             <Button
               size="sm"
-              className="rounded-pill font-12-500 py-2 px-3 border-0"
+              className="rounded-pill font-12-400 py-1 px-2 border-0"
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${parentId}/${uniqueId}`, {
-                  state: { parentId, uniqueId },
+                  state: { parentId, uniqueId,tagId },
                 })
               }
             >
-              Add Details
+              + Details
             </Button>
           </>
         ) : (
