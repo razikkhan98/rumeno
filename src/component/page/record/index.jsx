@@ -13,7 +13,9 @@ import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnimalCard from "../../common/animalCard";
 import { RiDeleteBinFill } from "react-icons/ri";
-import { FaPencil } from "react-icons/fa6";
+// import { FaPencil } from "react-icons/fa6";
+import { PiTrashSimpleBold } from "react-icons/pi";
+import { GoPencil } from "react-icons/go";
 
 
 
@@ -24,7 +26,7 @@ const Record = () => {
     Vaccine: "/user/animal/vaccinedata/add",
     Deworm: "/user/animal/dewormdata/add",
     EstrusHeat: "/user/animal/estrusdata/add",
-    FarmSanitation: "/user/animal/sanitationdata/add",
+    // FarmSanitation: "/user/animal/sanitationdata/add",
     Child: "/user/animaldata/child",
   };
 
@@ -34,7 +36,7 @@ const Record = () => {
     Vaccine: "/user/animal/vaccinedata/update",
     Deworm: "/user/animal/dewormdata/update",
     EstrusHeat: "/user/animal/estrusdata/update",
-    FarmSanitation: "/user/animal/sanitationdata/update",
+    // FarmSanitation: "/user/animal/sanitationdata/update",
     Child: "/user/animaldata/child",
   };
 
@@ -44,7 +46,7 @@ const Record = () => {
     Vaccine: "/user/animal/vaccinedata/delete",
     Deworm: "/user/animal/dewormdata/delete",
     EstrusHeat: "/user/animal/estrusdata/delete",
-    FarmSanitation: "/user/animal/sanitationdata/delete",
+    // FarmSanitation: "/user/animal/sanitationdata/delete",
     Child: "/user/animaldata/child",
   };
 
@@ -110,57 +112,14 @@ const Record = () => {
     ],
     Vaccine: [
       {
-        name: "vaccineId",
-        label: "Vaccine Id",
-        type: "text",
-        placeholder: "Enter Vaccine Id",
-      },
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
-      {
         name: "vaccineName",
         label: "Vaccine Name",
         type: "select",
-        options: ["Deworming", "PPR", "Enterotoxaemia (ET) + (TT)", "Hemorrhagic septicaemia (HS)", "Foot and Mouth Disease (FMD)", "Goat Pox", "Booster (ET) + (TT)", "Booster (HS)", "Booster (FMD)", "Booster Goat Pox", "Repeat PPR", "Repeat ET + TT", "Repeat HS", "Repeat FMD", "Repeat Goat Pox"],
+        options: ["Deworming (Internal)", "Deworming (External)", "PPR", "Enterotoxaemia (ET) + (TT)", "Hemorrhagic septicaemia (HS)", "Foot and Mouth Disease (FMD)", "Goat Pox", "Booster (ET) + (TT)", "Booster (HS)", "Booster (FMD)", "Booster Goat Pox", "Repeat PPR", "Repeat ET + TT", "Repeat HS", "Repeat FMD", "Repeat Goat Pox"],
       },
       {
         name: "vaccineDate",
         label: "Vaccine Date",
-        type: "date",
-      },
-      {
-        name: "nextDueDate",
-        label: "Next Due Date",
-        type: "date",
-      },
-      {
-        name: "vaccineDose",
-        label: "Vaccine Dose",
-        type: "text",
-      },
-      {
-        name: "modeOfVaccine",
-        label: "Mode Of Vaccine",
-        type: "select",
-        options: ["Internal", "External"],
-      },
-      {
-        name: "vaccineRemark",
-        label: "Vaccine Remark",
-        type: "text",
-      },
-      {
-        name: "booster",
-        label: "Repeat Required (Booster)",
-        type: "text",
-      },
-      {
-        name: "boosterDate",
-        label: "Repeat Date (Booster Date)",
         type: "date",
       },
     ],
@@ -287,35 +246,6 @@ const Record = () => {
         type: "date",
       },
     ],
-    FarmSanitation: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
-      {
-        name: "soilDate",
-        label: "Soil Change Date",
-        type: "date",
-      },
-      {
-        name: "limesprinkleDate",
-        label: "Lime Sprinkle Date",
-        type: "date",
-      },
-      {
-        name: "insecticideDate",
-        label: "Insecticide Date",
-        type: "date",
-      },
-      {
-        name: "insecticide",
-        label: "Insecticide Name",
-        type: "text",
-      },
-    ],
-
     Child: [
       // {
       //   name: "tagId",
@@ -437,7 +367,7 @@ const Record = () => {
   const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
   console.log('submittedData: ', submittedData);
-  // const [editIndex, setEditIndex] = useState(null);
+  const [editIndex, setEditIndex] = useState(null);
 
   const navigate = useNavigate();
   const {
@@ -456,6 +386,7 @@ const Record = () => {
 
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
+  console.log('uid: ', uid);
 
   const fetchAnimals = async () => {
     try {
@@ -502,19 +433,27 @@ const Record = () => {
   // console.log("postWeanData: ", postWeanData.id);
 
   useEffect(() => {
-    const weanData = animals.flatMap((i) =>
-     { 
-     const dataToUse = activeTab == "PostWean" ? i.postWean : i.vaccine;
-    //  return Array.isArray(dataToUse) ? dataToUse : [];
+    const tabMapping = {
+      PostWean: "postWean",
+      Milk: "milk",
+      Vaccine: "vaccine",
+      Deworming: "deworming",
+      Breeding: "breeding",
+      // add more if needed
+    };
 
-    return Array.isArray(dataToUse)
-    ? dataToUse.map((entry) => ({
-        ...entry,
-        uid: i.uid || uid, // inject UID if not already present
-      }))
-    : [];
-
-     }
+    const key = tabMapping[activeTab];
+    const weanData = animals.flatMap((i) => {
+      const dataToUse = i[key];
+      return Array.isArray(dataToUse)
+        ? dataToUse.map((entry) => ({
+          ...entry,
+          uid: entry.uid || i.uid || uid,
+          tagId: entry.tagId || i.tagId || tagId,
+          parentId: entry.parentId || i.parentId || parentId,
+        }))
+        : [];
+    }
     );
     console.log("weanData: ", weanData);
 
@@ -548,7 +487,7 @@ const Record = () => {
           transition: Bounce,
         });
         if (kidId === undefined) {
-          setTimeout(() => navigate("/farmdata/parent"), 1000);
+          setTimeout(() => navigate("/record/:name/:uniqueId"), 1000);
         } else {
           setTimeout(() => navigate(`/farmdata/child`), 1000);
         }
@@ -576,12 +515,20 @@ const Record = () => {
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
+    // Dynamically get the ID key based on the active tab
+    const idKeyMap = {
+      PostWean: "postWeanId",
+      Milk: "milkId",
+      Vaccine: "vaccineId",
+      Deworming: "dewormingId",
+      EstrusHeat: "estrusId",
+    };
+
+    const idKey = idKeyMap[activeTab];
+    const dataToUpdate = submittedData[index];
+
     try {
-      const response = await updateData(
-        apiUrl,
-        submittedData[index].postWeanId,
-        submittedData[index]
-      );
+      const response = await updateData(apiUrl, dataToUpdate[idKey], dataToUpdate)
       if (response.status === 200 || response.status === 201) {
         toast.success(response.data.message, {
           autoClose: 3000,
@@ -596,14 +543,15 @@ const Record = () => {
   };
 
   //  APi Delete Form Data Function
-
   const handleDeleteApi = async (index) => {
     // Call Delete Api
     const apiUrl = API_DELETEENDPOINTS[activeTab];
+    const idKey = activeTab === "PostWean" ? "postWeanId" : "vaccineId";
+    const itemToDelete = submittedData[index];
     try {
       const response = await deleteData(
         apiUrl,
-        submittedData[index].postWeanId
+        itemToDelete[idKey]
       );
       console.log("responseupdate: ", response);
       if (response.status === 200 || response.status === 201) {
@@ -611,6 +559,7 @@ const Record = () => {
           autoClose: 3000,
           transition: Bounce,
         });
+        setSubmittedData((prev) => prev.filter((_, i) => i !== index));
       } else {
         throw new Error(response.data.message);
       }
@@ -618,6 +567,40 @@ const Record = () => {
       toast.error(error?.message || "Submission failed.");
     }
   };
+
+
+  // const handleDeleteApi = async (index) => {
+  //   // Call Delete Api
+  //   const apiUrl = API_DELETEENDPOINTS[activeTab];
+  //   const idField = submittedData?.postWeanId
+  //   ? "postWeanId"
+  //   : submittedData[index].milkId
+  //   ? "milkId"
+  //   : submittedData[index].weaningId
+  //   ? "weaningId"
+  //   : "id"; 
+  //   console.log('submittedData[index].postWeanId: ', submittedData?.postWeanId);
+
+  // const id = submittedData[index][idField];
+  //   try {
+  //     const response = await deleteData(apiUrl, id);
+  //     console.log("responseupdate: ", response);
+  //     if (response.status === 200 || response.status === 201) {
+  //       toast.success(response.data.message, {
+  //         autoClose: 3000,
+  //         transition: Bounce,
+  //       });
+
+  //       await fetchAnimals();
+  //     } else {
+  //       throw new Error(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     toast.error(error?.message || "Submission failed.");
+  //   }
+  // };
+
+
 
   return (
 
@@ -814,6 +797,7 @@ const Record = () => {
                       }}
                       onClick={() => {
                         setShowForm(!showForm);
+                        setEditIndex(null);
                         reset();
                       }}
                     >
@@ -929,12 +913,73 @@ const Record = () => {
                     </Button> */}
                   </Form>
 
+                  {/* Show Prefillled form Data */}
+                  {editIndex !== null && (
+                    <>
+                      <div>
+                        <h4>Submitted Data</h4>
+                        <Form className="my-3">
+                          <div className="row mb-4">
+                            <div className="col-lg-3 pb-3">
+                              <Form.Group>
+                                <Form.Label>Tag ID</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  value={submittedData[editIndex]?.tagId}
+                                  readOnly
+                                />
+                              </Form.Group>
+                            </div>
+
+                            {fieldConfigs[activeTab]?.map((field, fieldIndex) => (
+                              <div key={fieldIndex} className="col-lg-3 pb-3">
+                                <Form.Group>
+                                  <Form.Label>{field?.label}</Form.Label>
+                                  <Form.Control
+                                    type={field?.type}
+                                    value={submittedData[editIndex]?.[field.name] || ""}
+                                    onChange={(e) => {
+                                      const newValue = e.target.value;
+
+                                      const updatedData = [...submittedData];
+                                      updatedData[editIndex] = {
+                                        ...updatedData[editIndex],
+                                        [field.name]: newValue,
+                                      };
+                                      setSubmittedData(updatedData);
+                                    }}
+                                  />
+                                </Form.Group>
+                              </div>
+                            ))}
+                          </div>
+
+                          <Button
+                            type="button"
+                            className="btn-success px-4"
+                            onClick={() => handleUpdateApi(editIndex)}
+                          >
+                            Update
+                          </Button>
+
+                          <Button
+                            type="button"
+                            className="btn-danger mx-2"
+                            onClick={() => handleDeleteApi(editIndex)}
+                          >
+                            Delete
+                          </Button>
+                        </Form>
+                      </div>
+                    </>
+                  )}
+
                   {/* ============================= */}
                   <div className="mt-4">
                     {submittedData.length > 0 ? (
                       // submittedData.map((data, index) => (
                       <div className="table-responsive">
-                        <table class="table  text-center align-middle">
+                        <table class="table table-hover text-center align-middle">
                           <thead >
                             <tr>
                               <th scope="col" className="heading">#</th>
@@ -947,27 +992,25 @@ const Record = () => {
                           </thead>
                           <tbody>
                             {submittedData.map((data, index) => (
-                              <tr key={index}>
+                              <tr onClick={() => {
+                                setEditIndex(index);     // open the form and load data
+                                setShowForm(false);      // hide blank form if open
+                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "table-info" : "table-secondary"
+                                }`}>
                                 <td>{index + 1}</td>
-                                <td>{data?.tagId || "-"}</td>
+                                <td>{data?.tagId}</td>
                                 {fieldConfigs[activeTab]?.map((field, i) => (
                                   <td key={i}>{data?.[field.name] || "-"}</td>
                                 ))}
                                 <td className="d-flex align-items-center justify-content-center">
-                                  {/* <div
+                                  <div
                                     className="me-3"
                                     onClick={() => handleUpdateApi(index)}
                                   >
-                                    <FaPencil className="text-success fs-5" />
-
-                                  </div> */}
-                                  <div
-                                    className=""
-                                    onClick={() => handleDeleteApi(index)}
-                                  >
-                                    <RiDeleteBinFill className="text-danger fs-5" />
+                                    <GoPencil className="text-primary fs-5" />
 
                                   </div>
+
                                 </td>
                               </tr>
                             ))}
@@ -975,79 +1018,10 @@ const Record = () => {
                           </tbody>
                         </table>
                       </div>
-                      // <div>
-                      //   <h4>Submitted Data</h4>
-                      //   <Form key={index} className="my-3">
-
-                      //     <div className="row mb-4">
-                      //       <div className="col-lg-3 pb-3">
-                      //         <Form.Group>
-                      //           <Form.Label>Tag ID</Form.Label>
-                      //           <Form.Control
-                      //             type="text"
-                      //             value={
-                      //            tagId
-                      //             }
-                      //             readOnly
-                      //           />
-                      //         </Form.Group>
-                      //       </div>
-                      //       {fieldConfigs[activeTab]?.map(
-                      //         (field, fieldIndex) => (
-                      //           <div
-                      //             key={fieldIndex}
-                      //             className="col-lg-3 pb-3"
-                      //           >
-                      //             <Form.Group>
-                      //               <Form.Label>{field?.label}</Form.Label>
-                      //               <Form.Control
-                      //                 type={field?.type}
-                      //                 defaultValue={data?.[field?.name] || ""} 
-                      //                 onChange={(e) => {
-                      //                   const newValue = e.target.value;
-                      //                   console.log(
-                      //                     `Field: ${field?.name}, New Value: ${newValue}`
-                      //                   );
-
-
-                      //                   const updatedData = [
-                      //                     ...submittedData,
-                      //                   ];
-                      //                   updatedData[index] = {
-                      //                     ...data,
-                      //                     [field.name]: newValue,
-                      //                   };
-                      //                   setSubmittedData(updatedData); 
-                      //                 }}
-                      //               />
-                      //             </Form.Group>
-                      //           </div>
-                      //         )
-                      //       )}
-                      //     </div>
-                      //     <Button
-                      //       type="button"
-                      //       className="btn-success px-4"
-                      //       onClick={() => handleUpdateApi(index)}
-                      //     >
-                      //       Edit
-                      //     </Button>
-                      //     <Button
-                      //       type="button"
-                      //       className="btn-danger mx-2"
-                      //       onClick={() => handleDeleteApi(index)}
-                      //     >
-                      //       Delete
-                      //     </Button>
-                      //   </Form>
-                      // </div>
 
                     ) : (
                       <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
                     )}
-
-
-
 
                   </div>
                 </>

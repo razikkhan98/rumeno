@@ -41,7 +41,8 @@ const AnimalCard = ({
   farmSanitation,
   currentIndex,
 }) => {
-  console.log("AnimalCard", kidId);
+  // console.log('tagId: ', tagId);
+  console.log("AnimalCard", tagId);
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
