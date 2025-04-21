@@ -22,11 +22,12 @@ import { Nav } from 'react-bootstrap';
 import ReactWhatsapp from "react-whatsapp";
 
 const ContactUs = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm();
 
     // API endpoint
 
@@ -38,7 +39,7 @@ const ContactUs = () => {
             const response = await postData(endpoint, data);
 
             // store data in session for  later use
-            toast.success(response.data.message, {
+            toast.success(response?.data?.message, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -49,8 +50,9 @@ const ContactUs = () => {
                 theme: "light",
                 transition: Bounce,
             });
+            reset(); 
         } catch (error) {
-            toast.error(error?.message, {
+            toast.error(error?.data?.message, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -161,23 +163,23 @@ const ContactUs = () => {
                                     </div>
 
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="bg-gradient-color border-0 btn text-white w-100 mt-5 py-3"
-                  >
-                    Send
-                  </button>
-                </form>
-              </div>
+                                    {/* Submit Button */}
+                                    <button
+                                        type="submit"
+                                        className="bg-gradient-color border-0 btn text-white w-100 mt-5 py-3"
+                                    >
+                                        Send
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      {/* Footer */}
-      <Footer />
-    </>
-  );
+            {/* Footer */}
+            <Footer />
+        </>
+    );
 };
 
 export default ContactUs;

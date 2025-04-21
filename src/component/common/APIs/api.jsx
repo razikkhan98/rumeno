@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://b321-106-222-213-224.ngrok-free.app/rumeno"; 
+const API_BASE_URL = "https://9767-106-222-212-140.ngrok-free.app/rumeno"; 
 
 
 // 🔹 GET: Fetch data from a dynamic endpoint
@@ -25,6 +25,7 @@ export const postData = async (endpoint, data) => {
       headers: {
         "ngrok-skip-browser-warning": "true", // Required for ngrok
         "Content-Type": "application/json", // Adjust as needed
+         "Access-Control-Allow-Origin": "*",
       },
     });
 

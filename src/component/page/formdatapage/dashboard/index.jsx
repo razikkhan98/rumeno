@@ -100,6 +100,7 @@ import Heat from "../../../assets/img/dashboard/heat1.svg";
 import Deworm from "../../../assets/img/dashboard/dewarming1.svg";
 import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
+import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -112,6 +113,7 @@ const Dashboard = () => {
     HeatCount: 0,
     DewormCount: 0,
     SanitationCount: 0,
+    PregnantCount: 0,
   });
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -133,7 +135,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://b321-106-222-213-224.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://9767-106-222-212-140.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
@@ -152,66 +154,76 @@ const Dashboard = () => {
 
   const cardData = [
     {
-      title: "Total Animals",
+      title: "Total Goat",
       cardborder: "card-orange-border",
+      cardcircle: "card-orange-circle",
       img: Animal,
       value: stats.TotalAnimals,
     },
 
-    {
-      title: "Total Parents",
-      cardborder: "card-blue-border",
-      img: Parent,
-      value: stats.TotalParents,
-    },
-    {
-      title: "Total Children",
-      cardborder: "card-orange-border",
-      img: Child,
-      value: stats.TotalChildren,
-    },
+    // {
+    //   title: "Total Parents",
+    //   cardborder: "card-blue-border",
+    //   img: Parent,
+    //   value: stats.TotalParents,
+    // },
+    // {
+    //   title: "Total Children",
+    //   cardborder: "card-orange-border",
+    //   img: Child,
+    //   value: stats.TotalChildren,
+    // },
     {
       title: "Vaccines",
       cardborder: "card-blue-border",
+      cardcircle: "card-blue-circle",
       img: Vaccine,
       value: stats.VaccineCount,
       details: stats.VaccineData,
     },
-    {
-      title: "Post Wean",
-      cardborder: "card-orange-border",
-      img: Postwean,
-      value: stats.PostWeanCount,
-      details: stats.PostWeanData,
-    },
-    {
-      title: "Milk Production",
-      cardborder: "card-blue-border",
-      img: MilkCount,
-      value: stats.MilkCount,
-      details: stats.MilkData,
-    },
-    {
-      title: "Astrus Heat",
-      cardborder: "card-orange-border",
-      img: Heat,
-      value: stats.HeatCount,
-      details: stats.HeatData,
-    },
+    // {
+    //   title: "Post Wean",
+    //   cardborder: "card-orange-border",
+    //   img: Postwean,
+    //   value: stats.PostWeanCount,
+    //   details: stats.PostWeanData,
+    // },
+    // {
+    //   title: "Milk Production",
+    //   cardborder: "card-blue-border",
+    //   img: MilkCount,
+    //   value: stats.MilkCount,
+    //   details: stats.MilkData,
+    // },
+    // {
+    //   title: "Astrus Heat",
+    //   cardborder: "card-orange-border",
+    //   img: Heat,
+    //   value: stats.HeatCount,
+    //   details: stats.HeatData,
+    // },
     {
       title: "Deworming",
       cardborder: "card-blue-border",
+      cardcircle: "card-blue-circle", 
       img: Deworm,
       value: stats.DewormCount,
       details: stats.DewormData,
     },
-    {
-      title: "Sanitation",
-      cardborder: "card-orange-border",
-      img: Sanitation,
-      value: stats.SanitationCount,
-      details: stats.SanitationData,
-    },
+    // {
+    //   title: "Farm Sanitation",
+    //   cardborder: "card-orange-border",
+    //   img: Sanitation,
+    //   value: stats.SanitationCount,
+    //   details: stats.SanitationData,
+    // },
+    // {
+    //   title: "Pregnant Goat",
+    //   cardborder: "card-blue-border",
+    //   img: Pregnant,
+    //   value: stats.PregnantCount,
+    //   details: stats.PregnantData,
+    // },
   ];
 
   console.log(cardData);
@@ -293,11 +305,13 @@ const Dashboard = () => {
                         className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
                         onClick={() => setSelectedCard(card)}
                       >
-                        <div className="d-flex align-items-center justify-content-between">
-                          <div className="card-img-circle rounded-circle shadow d-flex align-items-center justify-content-center">
+                        <div className="row gap-2 align-items-center justify-content-between">
+                         <div className="col-lg-3">
+                         <div className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}>
                             <img src={card.img} alt="Loading" />
                           </div>
-                          <div>
+                         </div>
+                          <div className="col-lg-7">
                             <Card.Title> 20</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
                               {" "}
