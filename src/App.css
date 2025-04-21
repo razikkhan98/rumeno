@@ -2713,3 +2713,8 @@ background-color: #f1fbff;
 .card-blue-circle{
   background-color: rgba(137, 201, 230, 0.1);
 }
+
+ .table .heading{
+  font-size: 15px !important;
+  font-weight: 600;
+}
