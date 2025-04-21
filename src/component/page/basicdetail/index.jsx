@@ -25,7 +25,7 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-  const farmerData = location.state;
+  const farmerData = location.state?.farmName;
   console.log('farmerData: ', farmerData);
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
@@ -52,7 +52,8 @@ const GoatDetailForm = () => {
       const response = await (type === "edit"
         ? updateData(endpoint, data?.uniqueName, formData)
         : postData(endpoint, formData));
-
+        
+        console.log('response cards: ', response);
       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -85,7 +86,7 @@ const GoatDetailForm = () => {
           const animalData = response.data[storedIndex];
 
           localStorage.removeItem("currentIndex");
-          setValue("uniqueName", animalData.uniqueId || "");
+          // setValue("uniqueName", animalData.uniqueId || "");
           setValue("tagId", animalData.tagId || "");
           setValue("ageYear", animalData.ageYear || "");
           setValue("ageMonth", animalData.ageMonth || "");
@@ -278,16 +279,6 @@ const GoatDetailForm = () => {
                     {...register("gender")}
                   />
                 </div>
-
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Birth Date</label>
-                  <input
-                    type="date"
-                    disabled={purchaseDate}
-                    className="form-control form-control-detail"
-                    {...register("birthDate")}
-                  />
-                </div> */}
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Type</label>
                   <select
@@ -315,71 +306,10 @@ const GoatDetailForm = () => {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Mother Age (Year)</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    {...register("motherAgeYear")}
-                  />
-                </div> */}
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    mother Age (Month)
-                  </label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    {...register("motherAgeMonth")}
-                  />
-                </div> */}
-
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Father Age (Year)</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    {...register("fatherAgeYear")}
-                  />
-                </div> */}
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">
-                    Father Age (Month)
-                  </label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    {...register("fatherAgeMonth")}
-                  />
-                </div> */}
               </div>
 
               <div className="row mt-3">
 
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Father breed</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Father Breed"
-                    {...register("fatherBreed")}
-                  />
-                </div> */}
-
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Mother breed</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Mother Breed"
-                    {...register("motherBreed")}
-                  />
-                </div> */}
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">
                     Mother's wean Date
@@ -442,33 +372,10 @@ const GoatDetailForm = () => {
                 )}
               </div>
 
-              <div className="row mt-3">
-                
-                
-              </div>
+              {/* <div className="row mt-3">
+              </div> */}
 
               <div className="row mt-3">
-                
-
-                {/* <div className="col-lg-3 lh-lg">
-                  <label className="form-lable-detail">
-                    Female Pregnancy Details
-                  </label>
-                  <select
-                    className="form-select form-control-detail"
-                    {...register("pregnancyDetails")}
-                  >
-                    <option value="">Select pregnancy detail</option>
-                    <option value="1 Month">1 Month</option>
-                    <option value="2 Month">2 Month</option>
-                    <option value="3 Month">3 Month</option>
-                    <option value="4 Month">4 Month</option>
-                    <option value="5 Month">5 Month</option>
-                  </select>
-                </div> */}
-
-                
-
                 <div className="col-lg-4 lh-lg">
                   <label className="form-lable-detail">Comments (if any)</label>
                   <input

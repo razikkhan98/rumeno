@@ -29,7 +29,10 @@ const Sidebar = () => {
           <div className="sidebar bg-white border-end p-4">
             <div className="text-center mb-3">
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
+                
+                <NavLink to={"/farmdata"}>
                 <img src={animalImages[selectedAnimal]} alt="Animal" />
+                </NavLink>
               </div>
               <p
                 className="mb-1 text-chinese-black-color"
