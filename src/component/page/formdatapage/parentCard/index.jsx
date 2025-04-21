@@ -20,6 +20,7 @@ const Parent = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
+        console.log('response: cardssss', response);
         setAnimals(response.data);
         console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
