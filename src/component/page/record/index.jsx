@@ -1116,7 +1116,7 @@ const Record = () => {
                               <tr onClick={() => {
                                 setEditIndex(index);     // open the form and load data
                                 setShowForm(false);      // hide blank form if open
-                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "table-info" : "table-secondary"
+                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
                                 <td>{index + 1}</td>
                                 <td>{data?.tagId}</td>

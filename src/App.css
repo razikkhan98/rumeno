@@ -2729,6 +2729,9 @@ background-color: #f1fbff;
   font-size: 15px !important;
   font-weight: 600;
 }
-.table-info{
-   background-color: rgb(184, 224, 247) !important;
+tr.bg-light-blue td {
+  background-color: rgb(184, 224, 247) !important;
+}
+tr.bg-light-gray td {
+  background-color: rgb(224, 240, 249)!important;
 }
