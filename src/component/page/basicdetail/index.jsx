@@ -46,9 +46,10 @@ const GoatDetailForm = () => {
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,
-        farmerDetail: farmerDetail.farmName, 
+        farmName: farmerDetail.farmName, 
         
       };
+      console.log('formData: ', formData);
 
       // Determine API endpoint dynamically based on type
       const endpoint =
@@ -83,7 +84,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/newEntity/getAll";
+  const endpoint = "user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
