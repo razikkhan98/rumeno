@@ -464,7 +464,7 @@ const GoatDetailForm = () => {
                   <input
                     type="text"
                     className="form-control form-control-detail"
-                    {...register("weanDate")}
+                    {...register("vaccineName")}
                   />
                 </div>
                 <div className="col-lg-2 lh-lg">
@@ -474,7 +474,7 @@ const GoatDetailForm = () => {
                   <input
                     type="date"
                     className="form-control form-control-detail"
-                    {...register("weanDate")}
+                    {...register("vaccineDate")}
                   />
                 </div>
                 <div className="col-lg-2 lh-lg">
