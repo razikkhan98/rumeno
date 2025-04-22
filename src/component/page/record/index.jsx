@@ -472,7 +472,7 @@ const Record = () => {
 
   const fetchAnimals = async () => {
     try {
-      const response = await getData("/user/animaldata/parent/getAll");
+      const response = await getData("/user/animaldata/newEntity/getAll");
       console.log('response basic: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);

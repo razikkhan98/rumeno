@@ -25,8 +25,11 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-  const farmerDetail = location.state?.farmerDetail;
-  console.log('farmerDetail: ', farmerDetail);
+  // const farmerDetail = location.state?.farmName;
+  // console.log('farmerDetail: ', farmerDetail);
+  const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
+  console.log('farmName: ', farmerDetail.farmName);
+  
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
@@ -39,15 +42,16 @@ const GoatDetailForm = () => {
         selectedAnimal,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
-        farmerDetail,
+        // farmName,
+        farmerDetail: farmerDetail.farmName, 
         
       };
 
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/parent"; // Add API
+          ? `/user/animaldata/newEntity/update` // Edit API
+          : "/user/animaldata/newEntity"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
@@ -76,7 +80,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
