@@ -21,6 +21,7 @@ import { GoPencil } from "react-icons/go";
 
 const Record = () => {
   const API_ENDPOINTS = {
+    BasicDetails: "user/animaldata/parent",
     PostWean: "/user/animal/postweandata/add",
     Milk: "/user/animal/milkdata/add",
     Vaccine: "/user/animal/vaccinedata/add",
@@ -28,6 +29,7 @@ const Record = () => {
     EstrusHeat: "/user/animal/estrusdata/add",
     // FarmSanitation: "/user/animal/sanitationdata/add",
     Child: "/user/animaldata/child",
+
   };
 
   const API_UPDATEENDPOINTS = {
@@ -51,6 +53,81 @@ const Record = () => {
   };
 
   const fieldConfigs = {
+    BasicDetails: [
+      { label: "Tag ID", name: "tagId", type: "text", required: true },
+      { label: "Age Year", name: "age", type: "number" },
+      { label: "Age Month", name: "ageMonth", type: "number" },
+      { label: "Height (in Ft)", name: "height", type: "number" },
+      { label: "Weight (kg)", name: "weightKg", type: "number" },
+      { label: "Birth Date", name: "birthDate", type: "date", required: true },
+      { label: "Mother Unique Id", name: "motherUniqueId", type: "text" },
+      { label: "Father Unique Id", name: "fatherUniqueId", type: "text" },
+      { label: "Gender", name: "gender", type: "text", disabled: true },
+      {
+        label: "Birth Type",
+        name: "birthType",
+        type: "select",
+        options: ["Natural", "Castration", "Other"],
+      },
+      {
+        label: "Birth Weight",
+        name: "birthWeight",
+        type: "select",
+        options: ["Natural", "Castration", "Other"],
+      },
+      { label: "Mother's wean Date", name: "motherWeanDate", type: "date" },
+      {
+        label: "Body Score",
+        name: "bodyScore",
+        type: "select",
+        options: [
+          "1: Very slim body",
+          "2: Skinned body",
+          "3: Slim body",
+          "4: Mild fat body",
+          "5: Fatty bulky body",
+        ],
+      },
+      { label: "Date of Purchasing", name: "purchaseDate", type: "date" },
+      { label: "Last Vaccine Date", name: "lastVaccineDate", type: "date", conditional: "purchaseDate" },
+      { label: "Last Vaccine Name", name: "lastVaccineName", type: "text", conditional: "purchaseDate" },
+      { label: "Comments (if any)", name: "comments", type: "text" },
+      { label: "Pregnant", name: "isPregnant", type: "checkbox", conditional: "gender === 'Female'" },
+      {
+        label: "Date of Mating",
+        name: "matingDate",
+        type: "date",
+        conditional: "isPregnant",
+      },
+      {
+        label: "Current Pregnancy Month",
+        name: "pregnancyDetails",
+        type: "select",
+        options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
+        conditional: "isPregnant",
+      },
+      {
+        label: "Failed",
+        name: "pregnencyFail",
+        type: "select",
+        options: ["Yes", "No"],
+        conditional: "isPregnant",
+      },
+      {
+        label: "Mother Wean Date",
+        name: "weanDate",
+        type: "date",
+        conditional: "isPregnant",
+      },
+      { label: "Other Vaccine Name", name: "otherVaccineName", type: "text" },
+      { label: "Other Vaccine Date", name: "otherVaccineDate", type: "date" },
+      {
+        label: "Farm Name",
+        name: "farmName",
+        type: "text",
+        required: true,
+      },
+    ],
     PostWean: [
       // {
       //   name: "tagId",
@@ -356,8 +433,8 @@ const Record = () => {
     ],
   };
 
-  const [activeTab, setActiveTab] = useState("PostWean");
   const [animals, setAnimals] = useState([]);
+  console.log('animals: ', animals);
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -383,6 +460,11 @@ const Record = () => {
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
+  const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
+  const [activeTab, setActiveTab] = useState(defaultForm);
+  const [selectedAnimal, setSelectedAnimal] = useState(animalData);
+  console.log('selectedAnimal: ', selectedAnimal);
+
 
 
   const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
@@ -391,13 +473,20 @@ const Record = () => {
   const fetchAnimals = async () => {
     try {
       const response = await getData("/user/animaldata/parent/getAll");
-      console.log('response: ', response);
+      console.log('response basic: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
     } catch (error) {
       toast.error("Error fetching animal data.");
     }
   };
+
+  // Show Basic Details Data
+  useEffect(() => {
+    if (!selectedAnimal) {
+      fetchAnimals();
+    }
+  }, [selectedAnimal, uniqueId]);
 
   // child
   const fetchChildren = async () => {
@@ -629,6 +718,35 @@ const Record = () => {
                 )}
               </Tabs>
 
+              {/* Show  Basic Details Form  Data  */}
+              <div>
+                {activeTab === "BasicDetails" && selectedAnimal && (
+                  <div className="row mb-4">
+                    {/* <div className="col-lg-3 pb-3">
+                          <Form.Group>
+                            <Form.Label>Tag ID</Form.Label>
+                            <Form.Control type="text" value={selectedAnimal.tagId} readOnly />
+                          </Form.Group>
+                        </div> */}
+
+                    {fieldConfigs["BasicDetails"]?.map((field, idx) => (
+                      <div key={idx} className="col-lg-3 pb-3">
+                        <Form.Group>
+                          <Form.Label>{field.label}</Form.Label>
+                          <Form.Control
+                            type="text"
+                            value={selectedAnimal[field.name] || ""}
+                            readOnly
+                            disabled
+                          />
+                        </Form.Group>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              </div>
+
               {kidId === undefined && activeTab === "Child" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
@@ -784,26 +902,29 @@ const Record = () => {
               {activeTab !== "Child" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
-                    <p className="record-para mb-4">
-                      Fill {activeTab} details below
-                    </p>
+
 
                     {/* Show blank form  through  add buttons */}
-                    <button
-                      className="btn text-white px-4 border rounded-pill me-5 mb-2"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #60A5FA, #EC4899)",
-                      }}
-                      onClick={() => {
-                        setShowForm(!showForm);
-                        setEditIndex(null);
-                        reset();
-                      }}
-                    >
-                      {" "}
-                      <span className="me-1">+</span> {activeTab}
-                    </button>
+                    {activeTab !== "BasicDetails" && (
+                      <>
+                        <p className="record-para mb-4">
+                          Fill {activeTab} details below
+                        </p>
+                        <button
+                          className="btn text-white px-4 border rounded-pill me-5 mb-2"
+                          style={{
+                            background: "linear-gradient(to right, #60A5FA, #EC4899)",
+                          }}
+                          onClick={() => {
+                            setShowForm(!showForm);
+                            setEditIndex(null);
+                            reset();
+                          }}
+                        >
+                          <span className="me-1">+</span> {activeTab}
+                        </button>
+                      </>
+                    )}
                   </div>
 
                   <Form
@@ -1020,10 +1141,18 @@ const Record = () => {
                       </div>
 
                     ) : (
-                      <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
+                     <div>
+                       { activeTab !== "BasicDetails" && (
+                        <>
+                          <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
+                        </>
+                      )}
+                     </div>
                     )}
 
                   </div>
+
+
                 </>
               )}
             </Card.Body>
