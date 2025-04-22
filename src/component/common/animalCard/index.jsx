@@ -23,8 +23,26 @@ const AnimalCard = ({
   gender,
   age,
   _id,
+  birthDate,
+  fatherUniqueId,
+  motherUniqueId,
+  birthWeight,
+  birthType,
+  motherWeanDate,
+  purchaseDate,
+  lastVaccineDate,
+  lastVaccineName,
+  isPregnant,
+  matingDate,
+  pregnencyFail,
+  weanDate,
+  vaccineName,
+  vaccineDate,
+  farmName,
+
+
   ageMonth,
-  weight,
+  weightKg,
   bodyScore,
   pregnancyDetails,
   maleDetail,
@@ -40,6 +58,7 @@ const AnimalCard = ({
   estrusHeat,
   farmSanitation,
   currentIndex,
+  comments,
 }) => {
   // console.log('tagId: ', tagId);
   console.log("AnimalCard", tagId);
@@ -56,7 +75,7 @@ const AnimalCard = ({
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
     { label: "Year", value: age, icon: <PiCalendarBlankFill /> },
     { label: "Month", value: ageMonth, icon: <PiCalendarBlankFill /> },
-    { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
+    { label: "Weight (kg)", value: weightKg, icon: <GiWeightScale /> },
     { label: "Body Score", value: bodyScore, icon: <RiRulerFill /> },
     {
       label: "Pregnancy Details",
@@ -126,7 +145,7 @@ const AnimalCard = ({
       await deleteData("user/animaldata/parent/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => {window.location.reload();} , 10);
+      setTimeout(() => { window.location.reload(); }, 10);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();
@@ -190,7 +209,50 @@ const AnimalCard = ({
           className="bg-light pb-1 rounded-circle d-flex align-items-center d-flex align-items-center justify-content-center"
           style={{ width: "24px", height: "24px" }}
         >
-          <button onClick={handleShow} className="border-0 bg-transparent">
+          <button onClick={() =>
+            navigate(`/record/${parentId}/${uniqueId}`, {
+              state: {
+                parentId,
+                uniqueId,
+                tagId,
+                defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
+                animalData: {
+                  parentId,
+                  tagId,
+                  height,
+                  gender,
+                  age,
+                  _id,
+                  birthDate,
+                  ageMonth,
+                  weightKg,
+                  bodyScore,
+                  pregnancyDetails,
+                  maleDetail,
+                  uniqueId,
+                  kidId,
+                  postweight,
+                  comments,
+                  fatherUniqueId,
+                  motherUniqueId,
+                  birthWeight,
+                  birthType,
+                  motherWeanDate,
+                  purchaseDate,
+                  lastVaccineDate,
+                  lastVaccineName,
+                  isPregnant,
+                  matingDate,
+                  pregnencyFail,
+                  weanDate,
+                  vaccineName,
+                  vaccineDate,
+                  farmName,
+                },
+              }
+            })
+          }
+            className="border-0 bg-transparent">
             <SlArrowRight
               className="fs-6 m-auto"
               style={{ cursor: "pointer" }}
@@ -198,7 +260,7 @@ const AnimalCard = ({
           </button>
         </div>
         {/* Modal */}
-        <Modal show={show} onHide={handleClose} centered size="lg">
+        {/* <Modal show={show} onHide={handleClose} centered size="lg">
           <Modal.Header className="parent-card-modal">
             <div className="d-flex">
               <button className="border-0 bg-transparent" onClick={handleClose}>
@@ -274,7 +336,7 @@ const AnimalCard = ({
               </div>
             </div>
           </Modal.Body>
-        </Modal>
+        </Modal> */}
       </Card.Header>
       <Card.Body>
         {details.map((item, idx) => (
@@ -361,7 +423,7 @@ const AnimalCard = ({
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${parentId}/${uniqueId}`, {
-                  state: { parentId, uniqueId,tagId },
+                  state: { parentId, uniqueId, tagId },
                 })
               }
             >
