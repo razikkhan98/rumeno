@@ -23,6 +23,8 @@ const GoatDetailForm = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const uniqueId = location.state?.uniqueId;
+  // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
   // const farmerDetail = location.state?.farmName;
@@ -40,6 +42,7 @@ const GoatDetailForm = () => {
       const formData = {
         ...data,
         selectedAnimal,
+        uniqueId,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,

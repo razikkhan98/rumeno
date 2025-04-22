@@ -39,8 +39,6 @@ const AnimalCard = ({
   vaccineName,
   vaccineDate,
   farmName,
-
-
   ageMonth,
   weightKg,
   bodyScore,
@@ -61,7 +59,7 @@ const AnimalCard = ({
   comments,
 }) => {
   // console.log('tagId: ', tagId);
-  console.log("AnimalCard", tagId);
+  console.log("tagId", tagId);
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -142,7 +140,7 @@ const AnimalCard = ({
   const handleConfirmDeleteParent = async () => {
 
     try {
-      await deleteData("user/animaldata/parent/delete", uniqueId);
+      await deleteData("user/animaldata/newEntity/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
       setTimeout(() => { window.location.reload(); }, 10);

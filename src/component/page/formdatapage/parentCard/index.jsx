@@ -14,13 +14,13 @@ const Parent = () => {
   const [loading, setLoading] = useState(true);
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 
-  const endpoint = "user/animaldata/newEntity/getAll";
+  const endpoint = "/user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        console.log('response: cardssss', response);
+        console.log('response: cardssss', response?.data);
         setAnimals(response.data);
         console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
