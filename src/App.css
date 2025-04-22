@@ -308,6 +308,15 @@ body {
   right: -50%;
 }
 
+.dropdow-bg{
+  background-image: url(../src/component/assets/img/logo/logorumneo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(221, 240, 248, 1);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .products-collapse {
@@ -2668,6 +2677,8 @@ input[type="radio"] {
   width: 100%;
   height: 183px;
 }
+
+
 
 /* Dashboard Cards */
 .dashboard-cards {

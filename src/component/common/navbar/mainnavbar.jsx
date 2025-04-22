@@ -149,7 +149,11 @@ const Mainnav = () => {
                       className="rounded-circle user-icon-img"
                     />
                   </div>
-                  <p className="text-center mb-0">User Name</p>
+                  {isLoggedIn ? (
+                    <p className="text-center mb-0">User Name</p>
+                  ) : (
+                    <></>
+                  )}
                 </div>
 
                 <div className="d-flex justify-content-center">
@@ -361,7 +365,9 @@ const Mainnav = () => {
                 <FarmerDetails />
                 </>
               ) : (
-                <> </>
+                <> 
+                  
+                </>
               )}
             </li>
           </ul>
@@ -375,7 +381,13 @@ const Mainnav = () => {
                 <FarmerDetails />
             </>
           ) : (
-            <> </>
+            <>
+              <NavLink to="/login" className={"farm-btn my-3"}>
+                <button className="btn rounded-pill text-white">
+                  Login
+                </button>
+              </NavLink>
+            </>
           )}
           <NavLink to="/cart">
             <div className="position-relative">
@@ -422,10 +434,11 @@ const Mainnav = () => {
 
             {/* Dropdown user Profile  */}
             {open && (
-              <div className="dropdown-menu show py-2">
+              <div className="dropdown-menu dropdow-bg py-0 px-3 border-0 rounded-4 show">
+                {isLoggedIn ? (
                 <div>
                   <div
-                    className="user-icon my-3 d-flex align-items-center justify-content-center"
+                    className="user-icon mt-3 d-flex align-items-center justify-content-center"
                     style={{ cursor: "pointer" }}
                   >
                     <img
@@ -436,13 +449,22 @@ const Mainnav = () => {
                   </div>
                   {/* <p className="text-center mb-0">User Name</p> */}
                   {isLoggedIn ? (
-                    <p className="text-center mb-0">User Name</p>
+                    <p className="text-center mb-0 pt-2">User Name</p>
                   ) : (
-                    <p className="text-center d-none mb-0">User Name</p>
+                    <></>
+                  )}
+
+                  {isLoggedIn ? (
+                    <p className="text-center mb-2">username12@gmail.com</p>
+                  ) : (
+                    <></>
                   )}
                 </div>
+                ) : (
+                  <></>
+                )}
 
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center border-top border-2 border-dark">
                   {isLoggedIn ? (
                     <div className="farm-btn my-3">
                       <button
@@ -454,11 +476,7 @@ const Mainnav = () => {
                       </button>
                     </div>
                   ) : (
-                    <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">
-                        Login
-                      </button>
-                    </NavLink>
+                    <></>
                   )}
                 </div>
               </div>
