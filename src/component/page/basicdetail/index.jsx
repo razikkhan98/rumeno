@@ -23,6 +23,8 @@ const GoatDetailForm = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const uniqueId = location.state?.uniqueId;
+  // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
   const farmerDetail = location.state?.farmerDetail;
@@ -37,6 +39,7 @@ const GoatDetailForm = () => {
       const formData = {
         ...data,
         selectedAnimal,
+        uniqueId,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         farmerDetail,
@@ -46,8 +49,8 @@ const GoatDetailForm = () => {
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/parent"; // Add API
+          ? `/user/animaldata/newEntity/update` // Edit API
+          : "/user/animaldata/newEntity"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
@@ -76,7 +79,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
