@@ -84,12 +84,12 @@ const FarmerDetails = () => {
                   type="text"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Farm House Name"
-                  {...register("farmHouseName", {
+                  {...register("farmName", {
                     required: "Farm House Name is required",
                   })}
                 />
-                {errors.farmHouseName && (
-                  <p className="text-danger">{errors.farmHouseName.message}</p>
+                {errors.farmName && (
+                  <p className="text-danger">{errors.farmName.message}</p>
                 )}
               </div>
 

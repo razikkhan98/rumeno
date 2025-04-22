@@ -38,6 +38,7 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('filteredAnimals: ', filteredAnimals);
 
   // Add Goat 
   const addGoat = () => {

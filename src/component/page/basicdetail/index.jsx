@@ -27,8 +27,11 @@ const GoatDetailForm = () => {
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-  const farmerDetail = location.state?.farmerDetail;
-  console.log('farmerDetail: ', farmerDetail);
+  // const farmerDetail = location.state?.farmName;
+  // console.log('farmerDetail: ', farmerDetail);
+  const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
+  console.log('farmName: ', farmerDetail.farmName);
+  
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
@@ -42,7 +45,8 @@ const GoatDetailForm = () => {
         uniqueId,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
-        farmerDetail,
+        // farmName,
+        farmerDetail: farmerDetail.farmName, 
         
       };
 
