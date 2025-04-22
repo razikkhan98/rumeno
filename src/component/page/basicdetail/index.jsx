@@ -46,8 +46,7 @@ const GoatDetailForm = () => {
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,
-        farmName: farmerDetail.farmName, 
-        
+        farmName: farmerDetail.farmName,
       };
       console.log('formData: ', formData);
 
