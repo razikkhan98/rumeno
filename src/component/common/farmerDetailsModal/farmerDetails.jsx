@@ -20,6 +20,7 @@ const FarmerDetails = () => {
   const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log('data: ', data);
+    localStorage.setItem('farmerDetail', JSON.stringify(data));
     reset();         // clear the form
     handleClose();   // close the modal
     navigate('/farmdata', { state: data });

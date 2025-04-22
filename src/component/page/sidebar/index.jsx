@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
@@ -21,6 +21,15 @@ const Sidebar = () => {
   // const selectedAnimal = location.state?.animal; // Default: Goat
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
+
+  const location = useLocation();
+
+  const handleClick = (e) => {
+    if (location.pathname === '/farmdata/dashboard') {
+      // Force reload if already on the same page
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="side">
@@ -53,6 +62,7 @@ const Sidebar = () => {
             {/* Navigation Links */}
             <div className="nav flex-column gap-3">
               <NavLink
+              onClick={ handleClick }
                 to="/farmdata/dashboard"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
