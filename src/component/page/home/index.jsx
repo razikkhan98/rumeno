@@ -19,7 +19,7 @@ import Prdimg4 from "../../assets/img/animals/prdaml4.png";
 import Prdimg5 from "../../assets/img/animals/prdaml5.png";
 import Prdimg6 from "../../assets/img/animals/prdaml6.png";
 import Prdimg7 from "../../assets/img/animals/prdaml7.png";
-import Prdimg8 from "../../assets/img/animals/prdaml8.png";
+import Prdimg8 from "../../assets/img/animals/pigrabbit.png";
 
 const animals = [
   { id: "cow", imgSrc: Prdimg1 },

@@ -137,16 +137,16 @@ const Record = () => {
       // },
       {
         name: "weightKg",
-        label: "Kid Weight (Kg)",
+        label: "Kid Weight (Kg.Gm)",
         type: "text",
         placeholder: "Enter Weight kg",
       },
-      {
-        name: "weightGm",
-        label: "Kid Weight (Gm)",
-        type: "text",
-        placeholder: "Enter Weight gm",
-      },
+      // {
+      //   name: "weightGm",
+      //   label: "Kid Weight (Gm)",
+      //   type: "text",
+      //   placeholder: "Enter Weight gm",
+      // },
       {
         name: "bodyScore",
         label: "Wean Body Score",
@@ -170,19 +170,25 @@ const Record = () => {
       // },
       {
         name: "milkvolume",
-        label: "Milk Volume",
+        label: "Milk Liter",
         type: "text",
         placeholder: "Enter Milk Volume",
       },
       {
         name: "numberKids",
-        label: "Number of Kids",
+        label: "Number of Kids Sucking Milk",
         type: "Number",
         placeholder: "Enter Number of Kids",
       },
       {
         name: "milkDate",
         label: "Milk Date",
+        type: "date",
+        required: true
+      },
+      {
+        name: "lastDeliveryDate",
+        label: "Last Delivery Date",
         type: "date",
         required: true
       },
@@ -280,6 +286,18 @@ const Record = () => {
       //   placeholder: "Enter Tag Id",
       // },
       {
+        name: "maleId",
+        label: "Male Tag Id",
+        type: "select",
+        options: [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+        ],
+      },
+      {
         name: "heat",
         label: "Heat Number",
         type: "select",
@@ -292,9 +310,20 @@ const Record = () => {
           "heat 5",
         ],
       },
+      
       {
         name: "heatDate",
-        label: "Heat Date",
+        label: "Estrus Heat Date",
+        type: "date",
+      },
+      {
+        name: "matingDate",
+        label: "Mating Date",
+        type: "date",
+      },
+      {
+        name: "heatNextDate",
+        label: "Estrus Heat Next Date",
         type: "date",
       },
       {

@@ -315,7 +315,12 @@ const Mainnav = () => {
                       >
                         <li>About</li>
                       </NavLink>
-                      <li className="cursor">FAQs</li>
+                      <NavLink
+                        to={"/goatfarming"}
+                        className="text-decoration-none"
+                      >
+                        <li className="cursor">FAQs</li>
+                      </NavLink>
                     </ul>
                   </div>
                   <div>
@@ -329,7 +334,12 @@ const Mainnav = () => {
                       >
                         <li>About</li>
                       </NavLink>
-                      <li>Dairy Management</li>
+                      <NavLink
+                        to={"/dairyconsultant"}
+                        className="text-decoration-none"
+                      >
+                        <li>Dairy Management</li>
+                      </NavLink>
                     </ul>
                   </div>
                 </div>
@@ -447,6 +457,7 @@ const Mainnav = () => {
                       className="rounded-circle user-icon-img"
                     />
                   </div>
+                  
                   {/* <p className="text-center mb-0">User Name</p> */}
                   {isLoggedIn ? (
                     <p className="text-center mb-0 pt-2">User Name</p>
