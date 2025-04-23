@@ -192,7 +192,7 @@ const Addtocart = () => {
                               selectedWeight === size ? "#ffffff" : "#707070",
                           }}
                         >
-                          ₹ {basePrice.toFixed(2)} /-{" "}
+                          ₹ {size * basePrice.toFixed(2)} /-{" "}
                         </div>
                         <div
                           className="input-group-text border-0 product-kg"

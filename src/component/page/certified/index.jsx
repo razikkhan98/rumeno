@@ -1,7 +1,7 @@
 import React from "react";
-import Image1 from "../../assets/img/certifi/certimg1.svg";
+import Image1 from "../../assets/img/certifi/gvtgem.png";
 import Image2 from "../../assets/img/certifi/certimg2.svg";
-import Image3 from "../../assets/img/certifi/certimg3.svg";
+import Image3 from "../../assets/img/certifi/idmart.png";
 import Image4 from "../../assets/img/certifi/certimg4.svg";
 import Image5 from "../../assets/img/certifi/certimg5.svg";
 import Image6 from "../../assets/img/certifi/certimg6.svg";
@@ -18,8 +18,8 @@ const Certified = () => {
                 Certified Company
               </p>
               <div className="certified-images gap-3">
-                <div className="certified-img">
-                  <img src={Image1} alt="" />
+                <div className="certified-img d-flex align-items-center">
+                  <img src={Image1} alt="" className="h-75" />
                 </div>
                 <div className="certified-img">
                   <img src={Image2} alt="" />
@@ -30,9 +30,9 @@ const Certified = () => {
                 <div className="certified-img">
                   <img src={Image5} alt="" />
                 </div>
-                <div className="certified-img">
+                {/* <div className="certified-img">
                   <img src={Image4} alt="" />
-                </div>
+                </div> */}
                 <div className="certified-img">
                   <img src={Image3} alt="" />
                 </div>
