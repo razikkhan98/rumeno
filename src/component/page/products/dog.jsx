@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 // Import Common Components
 import Navbar from "../../common/navbar/mainnavbar";
@@ -29,28 +29,29 @@ import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
 import Firstaid from "../../assets/img/products/sterilization.svg";
 import Star from "../../assets/img/products/star.svg";
+import Faq from "../faq";
 
 
-const faqs = [
+const DogProductsFaq = [
   {
-    question: "1. What are Veterinary Products?",
-    answer:
-      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
+    question: "1. Do Dog Supplements Works?",
+    answer: "Of course! Supplements for dogs can be quite beneficial if they are chosen carefully. The secret is to choose supplements that are supported by scientific research and target particular needs. We at Rumeno Farmotech provide expertly created, clinically supported supplements. To determine which vitamins are best for your dog, speak with your veterinarian.",
   },
   {
-    question: "2. How to Sell Veterinary Products?",
+    question: "2. Are Dog Supplements Worth it?",
     answer:
-      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+      "If dog supplements offer noticeable advantages, then the investment is worthwhile. Take into account the following elements: Health Objectives: Supplements can be helpful if your dog needs help with joints, weight management, or better coat health. Quality Is Important Select premium supplements made entirely of natural components. See Your Veterinarian: Consult a veterinarian about the unique requirements of your dog to decide whether supplements are beneficial for your animal friend.",
   },
   {
-    question: "3. Veterinary Products and Services?",
+    question: "3. Dog Supplement for weight gain ?",
     answer:
-      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+      "For dogs who are underweight, our weight gain vitamins are perfect. They supply calories and vital elements to encourage a healthy weight growth. These supplements can significantly improve your dog's ability to maintain a healthy weight.",
   },
   {
-    question: "4. Veterinary Products Manufacturers in India?",
+    question: "4. Supplements for Dogs to Gain Muscle?",
     answer:
-      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+      "Think about using our specific vitamins to help your dog get more muscle. These goods are made to encourage the growth of muscles, particularly in active or working dogs. Muscle growth can be facilitated by specific supplements, appropriate diet, and regular exercise. " +
+      "Keep in mind that every person may experience different outcomes, and you should always speak with a veterinarian before beginning any new supplement regimen. At Rumeno Farmotech, we provide safe and effective supplements with a focus on your dog's health."
   },
 ];
 
@@ -59,7 +60,7 @@ const productItem = [
     id: 1,
     name: "Neonato Veterinary products for Goat ,Cow, and Buffalo kids | Natural supplement for newborn animals",
     image: Neonato,
-    price:245,
+    price: 245,
     inStock: true,
     productUnit: ["1", "5", "25"],
   },
@@ -87,7 +88,7 @@ const productItem = [
     inStock: false,
     productUnit: ["1", "5", "25"],
   },
-  
+
 ];
 
 const petProducts = [
@@ -118,7 +119,7 @@ const petProducts = [
 ];
 
 const Products = () => {
- 
+
 
   const navigate = useNavigate();
   // const uid = sessionStorage.getItem("uid");
@@ -155,7 +156,7 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
- 
+
 
   return (
     <>
@@ -182,17 +183,17 @@ const Products = () => {
                           state: { product },
                         })
                       }>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="rounded-3"
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="rounded-3"
                       // onClick={() =>
                       //   navigate(`/productDetails/${product.id}`, {
                       //     state: { product },
                       //   })
                       // }
-                    />
-                    <div class="overlay">
+                      />
+                      <div class="overlay">
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -226,11 +227,10 @@ const Products = () => {
             <div className="col-lg-7">
               <div className="pagination-button mb-0 me-lg-4">
                 <div
-                  className={`page-item mx-2 d-flex align-items-center ${
-                    currentPage === 1
+                  className={`page-item mx-2 d-flex align-items-center ${currentPage === 1
                       ? "disabled disable-page-bg border"
                       : "active-page-bg"
-                  }`}
+                    }`}
                 >
                   <button
                     className="page-link  py-1 px-2"
@@ -241,11 +241,10 @@ const Products = () => {
                   </button>
                 </div>
                 <div
-                  className={`page-item d-flex align-items-center ${
-                    currentPage === totalPages
+                  className={`page-item d-flex align-items-center ${currentPage === totalPages
                       ? "disabled disable-page-bg border"
                       : "active-page-bg"
-                  }`}
+                    }`}
                 >
                   <button
                     className="page-link py-1 px-2 m-auto"
@@ -291,7 +290,7 @@ const Products = () => {
         style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
       >
         <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
-          Veterinary Products: Keeping Your Animals Happy and Healthy
+          Dog Feed Supplements to Promote Optimal Health
         </p>
       </div>
 
@@ -301,59 +300,11 @@ const Products = () => {
             <p
               style={{ color: "#373737", fontSize: "18px", fontWeight: "400" }}
             >
-              In the dynamic world of animal husbandry, ensuring the well-being
-              and productivity of our beloved creatures is of utmost importance.
-              Proper nutrition and specialized care play pivotal roles in
-              achieving these goals. Enter Rumeno Farmotech, a name synonymous
-              with excellence in veterinary products and veterinary services.
+              Here at Rumeno Farmotech, we put your dog's health first. We make sure that your pet gets the assistance they require with our carefully chosen collection of dog vitamins. We offer the ideal remedies for any dog suffering from allergies, joint problems, weight issues, or nutritional deficits.
             </p>
           </div>
         </div>
-        <div className="row justify-content-center mt-3">
-          <div
-            className="col-lg-12"
-            style={{ background: "rgba(255, 255, 255, 1)" }}
-          >
-            <p
-              className=" text-center mb-4"
-              style={{ color: "#111111", fontSize: "24px", fontWeight: "500" }}
-            >
-              PRODUCT CATEGORIES
-            </p>
-            <div className="row text-center mt-3">
-              {petProducts.map((product, index) => (
-                <div key={index} className="col-lg-3 col-md-6 mb-4">
-                  <div className="p-3">
-                    <img
-                      src={product.icon}
-                      size={44}
-                      className="mb-3"
-                      alt={product.title}
-                    />
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: "600",
-                        color: "#707070",
-                      }}
-                    >
-                      {product.title}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#373737",
-                      }}
-                    >
-                      {product.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
         <div className="row pt-lg-4 pb-lg-5 px-2">
           <div
             className="col-lg-12 p-4"
@@ -362,161 +313,89 @@ const Products = () => {
               borderRadius: "16px",
             }}
           >
-            <p
-              style={{
-                fontSize: "18px",
-                fontWeight: "400",
-                color: "#373737",
-              }}
-            >
-              A wide selection of veterinary equipment from Rumeno are available
-              to improve the care of animals. Their goods are made with great
-              care and attention to detail, from the strength of surgical tools
-              for delicate procedures to the precision of microscopes for
-              thorough examinations. Among their offerings are: Instruments for
-              diagnosis: X-ray machines, ultrasound scanners, and microscopes.
-              Surgical instruments: a broad range of implements for diverse
-              operations. Vital signs and anesthetic devices are examples of
-              patient monitoring equipment. Dental supplies: for hygienic and
-              oral care. Rumeno's dedication to excellence guarantees that
-              veterinarians have the resources needed to give their patients the
-              best care possible.
-            </p>
+
+            <h2>Dog Supplements for Weight Gain:</h2>
+            <div className="py-3">
+              <p
+                style={{
+                  color: "#373737",
+                }}
+              >
+                <span className="fw-bold">Description:</span> Our weight gain pills are the solution if your dog needs to put on weight.
+              </p>
+              <p><span className="fw-bold">Benefits:</span> Rich in calories and important nutrients. encourages a healthy increase in weight. Perfect for dogs who are underweight.</p>
+            <hr />
+            </div>
+            <div className="">
+              <p
+                style={{
+                  color: "#373737",
+                }}
+              >
+                <span className="fw-bold">Iron Supplements for dogs</span> Overview: Our iron supplements provide the right amounts of iron for your dog's general well-being.
+              </p>
+              <p><span className="fw-bold">Benefits:</span> Encourages the creation of energy. strengthens the immune system. vital to the production of red blood cells.</p>
+            <hr />
+            </div>
+            <div className="">
+              <p
+                style={{
+                  color: "#373737",
+                }}
+              >
+                <span className="fw-bold">Dog Joint Supplements:</span>Overview: Our joint supplements help maintain the health of your dog's joints.
+              </p>
+              <p><span className="fw-bold">Benefits:</span> Glucosamine and chondroitin are present. increases the flexibility of joints. promotes the health of cartilage.</p>
+            <hr />
+            </div>
+            <div className="">
+              <p
+                style={{
+                  color: "#373737",
+                }}
+              >
+                <span className="fw-bold">Weight Gain Supplements for dogs:</span>Overview: Tailored specifically for dogs in need of additional calories, this supplement supports the development of muscular mass and general vigor.
+              </p>
+              <p><span className="fw-bold">Advantages:</span>Promotes a healthy increase in weight. gives vital nutrients. enhances general well-being.</p>
+            <hr />
+            </div>
+            <div className="">
+              <p
+                style={{
+                  color: "#373737",
+                }}
+              >
+                <span className="fw-bold">Dog Fiber Supplement:</span>Summary: Keep your dog's digestive system in good working order with our fiber supplement
+              </p>
+              <p><span className="fw-bold">Pros:</span>Facilitates digestion. keeps constipation at bay. promotes gut health.</p>
+            <hr />
+            </div>
           </div>
         </div>
+
       </div>
 
       <div className="container py-5">
-        <div className="row text-center justify-content-center py-lg-5">
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(253, 199, 158, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning" />
-              </div>
-              <p className="product-star-title pt-5">
-                Pet Dental Kit Description
-              </p>
-              <p className="product-star-content">
-                Use our dental kit to maintain the health and cleanliness of
-                your pet's teeth. It contains toothpaste, mouthwash, and mouth
-                rinse.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(191, 227, 241, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Joint Health Supplement Description
-              </p>
-              <p className="product-star-content">
-                Our organic joint supplement will provide your senior pet with
-                the necessary support. It lessens discomfort and encourages
-                movement.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(244, 166, 191, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Premium Flea and Tick Collar
-              </p>
-              <p className="product-star-content">
-                This durable collar keeps out fleas, ticks, and mosquitoes for
-                up to eight months. It is odorless and resistant to water.
-              </p>
-            </div>
-          </div>
-        </div>
         <div className="row">
           <div className="col-lg-9 col-md-12 product-rumeno-heading m-auto text-center">
             <p className="product-rumeno-title">
-              RUMENO - A PREMIER VETERINARY PRODUCTS MANUFACTURER
+            Examine Our Selection of Supplements for Dogs:
             </p>
             <p className="product-rumeno-content">
-              We’re Rumeno, and we’re passionate about making life better for
-              animals. As a leading veterinary product manufacturer, we’re proud
-              to be recognized as one of the top 10 animal wellness startups by
-              Industry Outlook. That’s a big deal, but it’s really just the
-              beginning.
+            <span className="fw-bold">Dog Allergy Supplement: </span>Described as a natural mixture, this supplement helps dogs with common allergies.
             </p>
             <p className="product-rumeno-content">
-              Our aim is to make all animals healthier and happier and increase
-              your profits through our excellent veterinary products, which are
-              made from high-quality vitamins and minerals. Take Rumeno’s
-              veterinary products and grow your livestock.
+            <span className="fw-bold">Benefits:</span> Aids in maintaining a strong immune system. minimizes the occurrence of allergic responses. improves general well-being.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="product-faq pb-5">
-        <div className="container py-lg-5">
+      <div className="product-faq">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="accordion pt-lg-3" id="faqAccordion">
-                {faqs.map((faq, index) => (
-                  <div className="accordion-item" key={index}>
-                    <h2 className="accordion-header">
-                      <button
-                        className={`accordion-button ${
-                          openIndex === index ? "" : "collapsed"
-                        }`}
-                        type="button"
-                        // data-bs-toggle="collapse"
-                        // data-bs-target={`#collapse${index}`}
-                        onClick={() => toggleFAQ(index)}
-                        aria-expanded={openIndex === index}
-                        aria-controls={`collapse${index}`}
-                        style={{
-                          fontSize: "18px",
-                          fontWeight: "500",
-                          borderBottom: "1px solid #E8E8E8",
-                          height: "58px",
-                        }}
-                      >
-                        {faq.question}{" "}
-                        <span
-                          className="icon"
-                          style={{
-                            marginLeft: "auto",
-                            color: "#707070",
-                            width: "17px",
-                            height: "36px",
-                            fontSize: "24px",
-                            fontWeight: "400",
-                          }}
-                        >
-                          {openIndex === index ? "−" : "+"}
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id={`collapse${index}`}
-                      className={`accordion-collapse collapse ${
-                        openIndex === index ? "show" : ""
-                      }`}
-                      data-bs-parent="#faqAccordion"
-                    >
-                      <div className="accordion-body">{faq.answer}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Faq faqs={DogProductsFaq} showHeading={false} />
             </div>
           </div>
         </div>

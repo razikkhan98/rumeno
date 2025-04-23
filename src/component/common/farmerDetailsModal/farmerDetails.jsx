@@ -30,7 +30,8 @@ const FarmerDetails = () => {
     <>
       <div className='text-center farm-btn'>
         <Button className='btn rounded-pill text-white p-0' onClick={handleShow}>
-          Smart Livestock Manager
+          {/* Smart Livestock Manager */}
+          My Smart Farm Manager
         </Button>
       </div>
 

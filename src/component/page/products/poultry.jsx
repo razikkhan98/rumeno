@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 // Import Common Components
 import Navbar from "../../common/navbar/mainnavbar";
@@ -28,28 +28,36 @@ import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
 import Firstaid from "../../assets/img/products/sterilization.svg";
 import Star from "../../assets/img/products/star.svg";
+import Faq from "../faq";
 
 
-const faqs = [
+const PoultryProductsFaq = [
   {
-    question: "1. What are Veterinary Products?",
-    answer:
-      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
+    question: "1. What is feed supplement for poultry?",
+    answer: "Poultry feed supplements are additional nutritional substances given to chickens to enhance their diet and promote health and productivity.Commonly used supplements include protein sources like fish meal or soybean meal.The need for supplementation depends on various factors, and it’s crucial for egg - laying hens and during winter months12.",
   },
   {
-    question: "2. How to Sell Veterinary Products?",
+    question: "2. What is the best feed for poultry?",
     answer:
-      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+      "Scratch and Peck Organic Chicken Feeds are highly recommended. They are USDA certified organic, non-GMO, and sustainably sourced.These feeds contain essential vitamins, minerals, and protein sources like black soldier fly larvae(grubs) for optimal health and egg production3.",
   },
   {
-    question: "3. Veterinary Products and Services?",
+    question: "3. Which vitamin is good for poultry?",
     answer:
-      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+      "Vitamin A: Boosts growth and egg production.Vitamin B2: Supports growth.Vitamin K: Essential for muscle health and healthy blood.Vitamin E: Important for growth and reproduction.Vitamin D: Strengthens eggshells and increases egg production1.",
   },
   {
-    question: "4. Veterinary Products Manufacturers in India?",
+    question: "4. Which medicine is best for poultry growth?",
     answer:
-      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+      "Rumeno Farmotech provides you various types of supplements that will increase your poultry growth like Energico=Maintains energy level Poultryfine=Antibacterial for your broilers Florovita- 12=Probiotic supplement for poultry and weight gainer Selennium - E=helps to maintain selenium balance in broilers",
+  },
+  {
+    question: "5. Do chickens need supplements?",
+    answer: "Chickens benefit from supplements:Vitamin D for strong eggshells. Calcium during peak egg production. Stress relief during challenging times. Consult experts for personalized advice.",
+  },
+  {
+    question: "6. Which poultry feed supplements promote eggshell strength?",
+    answer: "When it comes to promoting eggshell strength in poultry, several supplements play a crucial role. One notable product is “Selennium-E” by Rumeno Farmotech. This supplement combines the power of selenium and vitamin E to enhance eggshell quality. Selenium supports antioxidant function, while vitamin E contributes to overall reproductive health. Including Selennium-E in your poultry feed can lead to stronger, more resilient eggshells.",
   },
 ];
 
@@ -58,7 +66,7 @@ const productItem = [
     id: 1,
     name: "Neonato Veterinary products for Goat ,Cow, and Buffalo kids | Natural supplement for newborn animals",
     image: Neonato,
-    price:245,
+    price: 245,
     inStock: true,
     productUnit: ["1", "5", "25"],
   },
@@ -148,7 +156,7 @@ const petProducts = [
 ];
 
 const Products = () => {
- 
+
 
   const navigate = useNavigate();
   // const uid = sessionStorage.getItem("uid");
@@ -185,7 +193,7 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
- 
+
 
   return (
     <>
@@ -212,17 +220,17 @@ const Products = () => {
                           state: { product },
                         })
                       }>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="rounded-3"
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="rounded-3"
                       // onClick={() =>
                       //   navigate(`/productDetails/${product.id}`, {
                       //     state: { product },
                       //   })
                       // }
-                    />
-                    <div class="overlay">
+                      />
+                      <div class="overlay">
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -256,11 +264,10 @@ const Products = () => {
             <div className="col-lg-7">
               <div className="pagination-button mb-0 me-lg-4">
                 <div
-                  className={`page-item mx-2 d-flex align-items-center ${
-                    currentPage === 1
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item mx-2 d-flex align-items-center ${currentPage === 1
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link  py-1 px-2"
@@ -271,11 +278,10 @@ const Products = () => {
                   </button>
                 </div>
                 <div
-                  className={`page-item d-flex align-items-center ${
-                    currentPage === totalPages
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item d-flex align-items-center ${currentPage === totalPages
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link py-1 px-2 m-auto"
@@ -321,7 +327,7 @@ const Products = () => {
         style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
       >
         <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
-          Veterinary Products: Keeping Your Animals Happy and Healthy
+          Enhancing Poultry Health An All-Inclusive Handbook on Poultry Feed Supplements
         </p>
       </div>
 
@@ -331,59 +337,11 @@ const Products = () => {
             <p
               style={{ color: "#373737", fontSize: "18px", fontWeight: "400" }}
             >
-              In the dynamic world of animal husbandry, ensuring the well-being
-              and productivity of our beloved creatures is of utmost importance.
-              Proper nutrition and specialized care play pivotal roles in
-              achieving these goals. Enter Rumeno Farmotech, a name synonymous
-              with excellence in veterinary products and veterinary services.
+              The dynamic field of poultry husbandry necessitates accuracy, tenderness, and a thorough comprehension of avian health. As a poultry farmer, you are well aware that the key to productive chicken production is a well-balanced diet. But occasionally, your flock doesn't get all the nutrition it needs from normal feed alone.Thats why poultry feed Supplements are used in this situation. We'll dive into the world of poultry supplements in this blog, highlighting their advantages and illuminating how they're changing the way that chicken nutrition is provided.
             </p>
           </div>
         </div>
-        <div className="row justify-content-center mt-3">
-          <div
-            className="col-lg-12"
-            style={{ background: "rgba(255, 255, 255, 1)" }}
-          >
-            <p
-              className=" text-center mb-4"
-              style={{ color: "#111111", fontSize: "24px", fontWeight: "500" }}
-            >
-              PRODUCT CATEGORIES
-            </p>
-            <div className="row text-center mt-3">
-              {petProducts.map((product, index) => (
-                <div key={index} className="col-lg-3 col-md-6 mb-4">
-                  <div className="p-3">
-                    <img
-                      src={product.icon}
-                      size={44}
-                      className="mb-3"
-                      alt={product.title}
-                    />
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: "600",
-                        color: "#707070",
-                      }}
-                    >
-                      {product.title}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#373737",
-                      }}
-                    >
-                      {product.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
         <div className="row pt-lg-4 pb-lg-5 px-2">
           <div
             className="col-lg-12 p-4"
@@ -392,161 +350,86 @@ const Products = () => {
               borderRadius: "16px",
             }}
           >
-            <p
-              style={{
-                fontSize: "18px",
-                fontWeight: "400",
-                color: "#373737",
-              }}
-            >
-              A wide selection of veterinary equipment from Rumeno are available
-              to improve the care of animals. Their goods are made with great
-              care and attention to detail, from the strength of surgical tools
-              for delicate procedures to the precision of microscopes for
-              thorough examinations. Among their offerings are: Instruments for
-              diagnosis: X-ray machines, ultrasound scanners, and microscopes.
-              Surgical instruments: a broad range of implements for diverse
-              operations. Vital signs and anesthetic devices are examples of
-              patient monitoring equipment. Dental supplies: for hygienic and
-              oral care. Rumeno's dedication to excellence guarantees that
-              veterinarians have the resources needed to give their patients the
-              best care possible.
-            </p>
+            <h2>Why Poultry Feed Supplements Are Important:</h2>
+            <div className="my-4">
+              <h5>1. Improved Weight Gain and Growth</h5>
+              <p
+                style={{
+                  // fontSize: "18px",
+                  // fontWeight: "400",
+                  color: "#373737",
+                }}
+              >
+                Supplements to poultry feed, enhanced with premium proteins and amino acids, facilitate effective muscle growth and weight gain in birds. This results in birds that grow more quickly and are healthier and more marketable.
+              </p>
+            </div> <hr />
+            <div className="my-4">
+              <h5>2. Higher Yield and Better Quality of Eggs</h5>
+              <p
+                style={{
+                  // fontSize: "18px",
+                  // fontWeight: "400",
+                  color: "#373737",
+                }}
+              >
+                Egg production can be increased by taking certain supplements that contain important vitamins, minerals, and omega-3 fatty acids. They not only make eggs bigger, but their shells are also better. You will gain from increased egg harvests and enhanced market value as a chicken farmer.
+              </p>
+            </div>
+            <hr />
+            <div className="my-4">
+              <h5>3. A more robust immune system</h5>
+              <p
+                style={{
+                  // fontSize: "18px",
+                  // fontWeight: "400",
+                  color: "#373737",
+                }}
+              >
+                Poultry need a strong immune system to fight against illnesses and infections. Antioxidants, probiotics, and herbal extracts are a few immune-boosting components added to poultry feed additives to enhance the birds' natural defenses and lower their risk of sickness.            </p>
+            </div>
+            <hr />
+            <div className="my-4">
+              <h5>4. Better Absorption of Nutrients and Digestion</h5>
+              <p
+                style={{
+                  // fontSize: "18px",
+                  // fontWeight: "400",
+                  color: "#373737",
+                }}
+              >
+                Supplementing with enzymes is essential for improving nutrition absorption and digestion. These supplements increase feed conversion ratios, improve nutritional availability, and decrease feed waste by optimizing the utilization of dietary components.
+              </p>
+              <p>Selecting the Proper Supplements for Poultry Feed When choosing supplements for poultry feed, take into account the following factors:
+              </p>
+              <p><span className="fw-bold">Type of Supplement:</span> There are many different kinds of supplements out there, such as probiotics, enzymes, vitamins, minerals, and amino acids. Select a supplement that fills in the particular nutrient gap found in your flock.</p>
+              <p><span className="fw-bold">Supplement Type:</span>There are three types of supplements for poultry feed: liquids, pellets, and powders. Select the form that best fits the preferences of your birds and your management procedures.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="container py-5">
-        <div className="row text-center justify-content-center py-lg-5">
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(253, 199, 158, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning" />
-              </div>
-              <p className="product-star-title pt-5">
-                Pet Dental Kit Description
-              </p>
-              <p className="product-star-content">
-                Use our dental kit to maintain the health and cleanliness of
-                your pet's teeth. It contains toothpaste, mouthwash, and mouth
-                rinse.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(191, 227, 241, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Joint Health Supplement Description
-              </p>
-              <p className="product-star-content">
-                Our organic joint supplement will provide your senior pet with
-                the necessary support. It lessens discomfort and encourages
-                movement.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(244, 166, 191, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Premium Flea and Tick Collar
-              </p>
-              <p className="product-star-content">
-                This durable collar keeps out fleas, ticks, and mosquitoes for
-                up to eight months. It is odorless and resistant to water.
-              </p>
-            </div>
-          </div>
-        </div>
         <div className="row">
           <div className="col-lg-9 col-md-12 product-rumeno-heading m-auto text-center">
             <p className="product-rumeno-title">
-              RUMENO - A PREMIER VETERINARY PRODUCTS MANUFACTURER
+            Let me present Rumeno Farmotech.
             </p>
             <p className="product-rumeno-content">
-              We’re Rumeno, and we’re passionate about making life better for
-              animals. As a leading veterinary product manufacturer, we’re proud
-              to be recognized as one of the top 10 animal wellness startups by
-              Industry Outlook. That’s a big deal, but it’s really just the
-              beginning.
+            Rumeno Farmotech, a trusted name in animal feed supplements, offers high-quality poultry vitamin supplements. These supplements enhance the general health and well-being of chickens, ducks, and other fowl. With a commitment to research-driven solutions, Rumeno Farmotech ensures that its products reach farmers and livestock owners across India.
             </p>
             <p className="product-rumeno-content">
-              Our aim is to make all animals healthier and happier and increase
-              your profits through our excellent veterinary products, which are
-              made from high-quality vitamins and minerals. Take Rumeno’s
-              veterinary products and grow your livestock.
+            Our quick-start poultry supplements are made to get your flock moving, whether you're an experienced farmer or just getting started. When you need dependable, scientifically supported solutions to increase your poultry output to new levels, turn toRumeno Farmotech.
             </p>
+            <p className="product-rumeno-content">Recall that happy birds translate into successful businesses. With Rumeno Farmotech's poultry health supplements, you can make an investment in your feathery companions' wellbeing.</p>
           </div>
         </div>
       </div>
 
-      <div className="product-faq pb-5">
-        <div className="container py-lg-5">
+      <div className="product-faq">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="accordion pt-lg-3" id="faqAccordion">
-                {faqs.map((faq, index) => (
-                  <div className="accordion-item" key={index}>
-                    <h2 className="accordion-header">
-                      <button
-                        className={`accordion-button ${
-                          openIndex === index ? "" : "collapsed"
-                        }`}
-                        type="button"
-                        // data-bs-toggle="collapse"
-                        // data-bs-target={`#collapse${index}`}
-                        onClick={() => toggleFAQ(index)}
-                        aria-expanded={openIndex === index}
-                        aria-controls={`collapse${index}`}
-                        style={{
-                          fontSize: "18px",
-                          fontWeight: "500",
-                          borderBottom: "1px solid #E8E8E8",
-                          height: "58px",
-                        }}
-                      >
-                        {faq.question}{" "}
-                        <span
-                          className="icon"
-                          style={{
-                            marginLeft: "auto",
-                            color: "#707070",
-                            width: "17px",
-                            height: "36px",
-                            fontSize: "24px",
-                            fontWeight: "400",
-                          }}
-                        >
-                          {openIndex === index ? "−" : "+"}
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id={`collapse${index}`}
-                      className={`accordion-collapse collapse ${
-                        openIndex === index ? "show" : ""
-                      }`}
-                      data-bs-parent="#faqAccordion"
-                    >
-                      <div className="accordion-body">{faq.answer}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Faq faqs={PoultryProductsFaq} showHeading={false} />
             </div>
           </div>
         </div>
