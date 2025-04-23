@@ -12,7 +12,7 @@ import Dashboard from "./component/page/formdatapage/dashboard/index";
 import Parent from "./component/page/formdatapage/parentCard/index";
 import Child from "./component/page/formdatapage/childCard/index";
 import Record from "./component/page/record";
-import Products from "./component/page/products/index";
+import Products from "./component/page/products/GoatProducts";
 import Cattleproduct from "./component/page/products/cattle";
 import Poultryproduct from "./component/page/products/poultry";
 import Dogproduct from "./component/page/products/dog";
@@ -35,6 +35,8 @@ import Blogs from "./component/page/Blogs/blogs";
 import ProTraining from "./component/page/goattraining/proTraining";
 import PrivacyPolicy from "./component/page/PrivacyPolicy/policy";
 import { useLocation } from "react-router-dom";
+import AllProducts from "./component/page/products/allProducts";
+import FarmHouseEquipment from "./component/page/FarmHouseEquipment/equipment";
 
 
 const App = () => {
@@ -53,6 +55,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main />} />Poultryproduct
           <Route path="/goatproduct" element={<Products />} />
+          <Route path="/allproducts" element={<AllProducts />} />
+          <Route path="/equipment" element={<FarmHouseEquipment />} />
           <Route path="/cattleproduct" element={<Cattleproduct />} />
           <Route path="/poultryproduct" element={<Poultryproduct />} />
           <Route path="/dogproduct" element={<Dogproduct />} />
