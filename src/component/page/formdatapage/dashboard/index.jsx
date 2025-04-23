@@ -136,7 +136,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://756d-106-222-219-215.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://a4b6-2401-4900-8821-96ab-544f-d7e0-ef8c-a13.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }

@@ -23,10 +23,15 @@ const GoatDetailForm = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const uniqueId = location.state?.uniqueId;
+  // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("type");
-  const farmerData = location.state?.farmName;
-  console.log('farmerData: ', farmerData);
+  // const farmerDetail = location.state?.farmName;
+  // console.log('farmerDetail: ', farmerDetail);
+  const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
+  console.log('farmName: ', farmerDetail.farmName);
+  
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
@@ -37,16 +42,19 @@ const GoatDetailForm = () => {
       const formData = {
         ...data,
         selectedAnimal,
+        uniqueId,
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
-        farmerData,
+        // farmName,
+        farmName: farmerDetail.farmName,
       };
+      console.log('formData: ', formData);
 
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/parent/update` // Edit API
-          : "/user/animaldata/parent"; // Add API
+          ? `/user/animaldata/newEntity/update` // Edit API
+          : "/user/animaldata/newEntity"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
@@ -75,7 +83,7 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -477,7 +485,7 @@ const GoatDetailForm = () => {
                     {...register("vaccineDate")}
                   />
                 </div>
-                <div className="col-lg-2 lh-lg">
+                {/* <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Farm Name</label>
                   <input
                     type="text"
@@ -490,7 +498,7 @@ const GoatDetailForm = () => {
                   {errors.farmName && (
                     <p className="text-danger">{errors.farmName.message}</p>
                   )}
-                </div>
+                </div> */}
               </div>
 
 

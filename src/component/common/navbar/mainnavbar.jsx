@@ -95,7 +95,7 @@ const Mainnav = () => {
         {/* Action Buttons  for mobile screen*/}
         <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto gap-2">
           <NavLink to="/cart">
-            <div className="position-relative ms-5">
+            <div className="position-relative ms-5 me-2">
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
@@ -120,60 +120,67 @@ const Mainnav = () => {
             </div>
           </NavLink>
 
-          <div className="position-relative">
-            {/* User Icon and Arrow */}
-            <div
-              className="user-icon my-3 d-flex align-items-center justify-content-center"
-              style={{ cursor: "pointer" }}
-              onClick={toggleDropdown}
-            >
-              <img
-                src={User}
-                alt="User"
-                className="rounded-circle user-icon-img"
-              />
-              <MdOutlineKeyboardArrowDown />
-            </div>
+          {/* User Profile PopUp for Mobile Screen */}
+          {isLoggedIn ? (
+            <div className="position-relative">
+              {/* User Icon and Arrow */}
+              <div
+                className="user-icon my-3 d-flex align-items-center justify-content-center"
+                style={{ cursor: "pointer" }}
+                onClick={toggleDropdown}
+              >
+                <img
+                  src={User}
+                  alt="User"
+                  className="rounded-circle user-icon-img"
+                />
+                <MdOutlineKeyboardArrowDown />
+              </div>
 
-            {/* Dropdown */}
-            {open && (
-              <div className="dropdown-menu show py-2">
-                <div>
-                  <div
-                    className="user-icon my-3 d-flex align-items-center justify-content-center"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img
-                      src={User}
-                      alt="User"
-                      className="rounded-circle user-icon-img"
-                    />
-                  </div>
-                  <p className="text-center mb-0">User Name</p>
-                </div>
-
-                <div className="d-flex justify-content-center">
+              {/* Dropdown user Profile  */}
+              {open && (
+                <div className="dropdown-menu dropdow-bg py-0 px-3 border-0 rounded-4 show">
                   {isLoggedIn ? (
-                    <div className="farm-btn my-3">
-                      <button
-                        onClick={handleLogout}
-                        className="btn rounded-pill text-white"
+                    <div>
+                      <div
+                        className="user-icon mt-3 d-flex align-items-center justify-content-center"
+                        style={{ cursor: "pointer" }}
                       >
-                        {" "}
-                        <RiLogoutBoxRLine className="me-2" /> Logout
-                      </button>
+                        <img
+                          src={User}
+                          alt="User"
+                          className="rounded-circle user-icon-img"
+                        />
+                      </div>
+                      <p className="text-center mb-0 pt-2">User Name</p>
+                      <p className="text-center mb-2">username12@gmail.com</p>
+
                     </div>
                   ) : (
-                    <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">
-                        Login
-                      </button>
-                    </NavLink>
+                    <> </>
                   )}
+
+                  <div className="d-flex justify-content-center border-top border-2 border-dark">
+                    {isLoggedIn ? (
+                      <div className="farm-btn my-3">
+                        <button
+                          onClick={handleLogout}
+                          className="btn rounded-pill text-white"
+                        >
+                          {" "}
+                          <RiLogoutBoxRLine className="me-2" /> Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <> </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <> </>
+          )}
         </div>
 
         <button
@@ -214,7 +221,7 @@ const Mainnav = () => {
                 Products
               </a>
               <div
-              //  ref={dropdownRef}
+                //  ref={dropdownRef}
                 className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
                   }`}
               >
@@ -224,7 +231,9 @@ const Mainnav = () => {
                       VETERINARY PRODUCTS
                     </p>
                     <ul className="list-unstyled products-list text-start">
+                      <NavLink to={"/allproducts"} className="text-decoration-none">
                       <li>All Animal Supplements</li>
+                      </NavLink>
                       <NavLink
                         to="/goatproduct"
                         className="text-decoration-none"
@@ -257,9 +266,11 @@ const Mainnav = () => {
                       OTHER CATEGORIES
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>Farmhouse Equipments</li>
+                     <NavLink to={"/equipment"} className="text-decoration-none">
+                     <li>Farmhouse Equipments</li>
                       <li>Human Consumable</li>
                       <li>Crop Seeds</li>
+                     </NavLink>
                     </ul>
                   </div>
                   <div>
@@ -295,8 +306,12 @@ const Mainnav = () => {
                       <NavLink to="/service" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
+                      <NavLink to={"/equipment"} className="text-decoration-none">
                       <li className="cursor">Business Startup Support </li>
+                      </NavLink>
+                      <NavLink to={"/equipment"} className="text-decoration-none">
                       <li className="cursor">Query Form</li>
+                      </NavLink>
                       {/* <li>Poultry Supplements</li> */}
                     </ul>
                   </div>
@@ -358,10 +373,12 @@ const Mainnav = () => {
                 <>
                   {" "}
                   {/* Smart Live stock button and Open Modal */}
-                <FarmerDetails />
+                  <FarmerDetails />
                 </>
               ) : (
-                <> </>
+                <>
+
+                </>
               )}
             </li>
           </ul>
@@ -370,12 +387,18 @@ const Mainnav = () => {
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
           {isLoggedIn ? (
             <>
-              {" "} 
+              {" "}
               {/* Smart Live stock button and Open Modal */}
-                <FarmerDetails />
+              <FarmerDetails />
             </>
           ) : (
-            <> </>
+            <>
+              <NavLink to="/login" className={"farm-btn my-3"}>
+                <button className="btn rounded-pill text-white">
+                  Login
+                </button>
+              </NavLink>
+            </>
           )}
           <NavLink to="/cart">
             <div className="position-relative">
@@ -405,65 +428,68 @@ const Mainnav = () => {
               )}
             </div>
           </NavLink>
-          <div className="position-relative">
-            {/* User Icon and Arrow */}
-            <div
-              className="user-icon my-3 d-flex align-items-center justify-content-center"
-              style={{ cursor: "pointer" }}
-              onClick={toggleDropdown}
-            >
-              <img
-                src={User}
-                alt="User"
-                className="rounded-circle user-icon-img"
-              />
-              <MdOutlineKeyboardArrowDown />
-            </div>
 
-            {/* Dropdown user Profile  */}
-            {open && (
-              <div className="dropdown-menu show py-2">
-                <div>
-                  <div
-                    className="user-icon my-3 d-flex align-items-center justify-content-center"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img
-                      src={User}
-                      alt="User"
-                      className="rounded-circle user-icon-img"
-                    />
-                  </div>
-                  {/* <p className="text-center mb-0">User Name</p> */}
-                  {isLoggedIn ? (
-                    <p className="text-center mb-0">User Name</p>
-                  ) : (
-                    <p className="text-center d-none mb-0">User Name</p>
-                  )}
-                </div>
+          {/* User Profile PopUp for Large Screen */}
+          {isLoggedIn ? (
+            <div className="position-relative">
+              {/* User Icon and Arrow */}
+              <div
+                className="user-icon my-3 d-flex align-items-center justify-content-center"
+                style={{ cursor: "pointer" }}
+                onClick={toggleDropdown}
+              >
+                <img
+                  src={User}
+                  alt="User"
+                  className="rounded-circle user-icon-img"
+                />
+                <MdOutlineKeyboardArrowDown />
+              </div>
 
-                <div className="d-flex justify-content-center">
+              {/* Dropdown user Profile  */}
+              {open && (
+                <div className="dropdown-menu dropdow-bg py-0 px-3 border-0 rounded-4 show">
                   {isLoggedIn ? (
-                    <div className="farm-btn my-3">
-                      <button
-                        onClick={handleLogout}
-                        className="btn rounded-pill text-white"
+                    <div>
+                      <div
+                        className="user-icon mt-3 d-flex align-items-center justify-content-center"
+                        style={{ cursor: "pointer" }}
                       >
-                        {" "}
-                        <RiLogoutBoxRLine className="me-2" /> Logout
-                      </button>
+                        <img
+                          src={User}
+                          alt="User"
+                          className="rounded-circle user-icon-img"
+                        />
+                      </div>
+                      <p className="text-center mb-0 pt-2">User Name</p>
+                      <p className="text-center mb-2">username12@gmail.com</p>
+
                     </div>
                   ) : (
-                    <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">
-                        Login
-                      </button>
-                    </NavLink>
+                    <> </>
                   )}
+
+                  <div className="d-flex justify-content-center border-top border-2 border-dark">
+                    {isLoggedIn ? (
+                      <div className="farm-btn my-3">
+                        <button
+                          onClick={handleLogout}
+                          className="btn rounded-pill text-white"
+                        >
+                          {" "}
+                          <RiLogoutBoxRLine className="me-2" /> Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <> </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <> </>
+          )}
         </div>
       </div>
     </nav>

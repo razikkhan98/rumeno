@@ -14,13 +14,13 @@ const Parent = () => {
   const [loading, setLoading] = useState(true);
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const endpoint = "/user/animaldata/newEntity/getAll";
 
   useEffect(() => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        console.log('response: cardssss', response);
+        console.log('response: cardssss', response?.data);
         setAnimals(response.data);
         console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
@@ -38,6 +38,7 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('filteredAnimals: ', filteredAnimals);
 
   // Add Goat 
   const addGoat = () => {
@@ -75,7 +76,7 @@ const Parent = () => {
     setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      await deleteData("/user/animaldata/parent/delete", uniqueId);
+      await deleteData("/user/animaldata/newEntity/delete", uniqueId);
       toast.success("Animal deleted successfully.");
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");

@@ -1,5 +1,5 @@
 import React from "react";
-import Image1 from "../../assets/img/award/awardimg.png";
+import Image1 from "../../assets/img/award/rumeno-Award.png";
 import { Link } from "react-router-dom";
 
 const Award = () => {

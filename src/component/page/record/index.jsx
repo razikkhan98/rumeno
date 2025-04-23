@@ -21,7 +21,7 @@ import { GoPencil } from "react-icons/go";
 
 const Record = () => {
   const API_ENDPOINTS = {
-    BasicDetails: "user/animaldata/parent",
+    BasicDetails: "user/animaldata/newEntity",
     PostWean: "/user/animal/postweandata/add",
     Milk: "/user/animal/milkdata/add",
     Vaccine: "/user/animal/vaccinedata/add",
@@ -461,7 +461,7 @@ const Record = () => {
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
-  const [activeTab, setActiveTab] = useState(defaultForm);
+  const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
   console.log('selectedAnimal: ', selectedAnimal);
 
@@ -472,7 +472,7 @@ const Record = () => {
 
   const fetchAnimals = async () => {
     try {
-      const response = await getData("/user/animaldata/parent/getAll");
+      const response = await getData("/user/animaldata/newEntity/getAll");
       console.log('response basic: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
@@ -1116,7 +1116,7 @@ const Record = () => {
                               <tr onClick={() => {
                                 setEditIndex(index);     // open the form and load data
                                 setShowForm(false);      // hide blank form if open
-                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "table-info" : "table-secondary"
+                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
                                 <td>{index + 1}</td>
                                 <td>{data?.tagId}</td>

@@ -308,6 +308,15 @@ body {
   right: -50%;
 }
 
+.dropdow-bg{
+  background-image: url(../src/component/assets/img/logo/logorumneo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(221, 240, 248, 1);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .products-collapse {
@@ -1097,8 +1106,8 @@ body {
 }
 
 .award-img {
-  width: 461px;
-  height: 332px;
+  width: 350px;
+  height: 100%;
 }
 
 .award-img img {
@@ -1730,9 +1739,9 @@ body {
   line-height: 24px;
 }
 
-.product-faq {
-  height: 400px;
-}
+/* .product-faq {
+  height: 550px;
+} */
 
 @media (max-width: 1024px) {
   .products {
@@ -2669,6 +2678,8 @@ input[type="radio"] {
   height: 183px;
 }
 
+
+
 /* Dashboard Cards */
 .dashboard-cards {
   transition: "transform 0.3s ease, box-shadow 0.3s ease";
@@ -2717,4 +2728,10 @@ background-color: #f1fbff;
  .table .heading{
   font-size: 15px !important;
   font-weight: 600;
+}
+tr.bg-light-blue td {
+  background-color: rgb(184, 224, 247) !important;
+}
+tr.bg-light-gray td {
+  background-color: rgb(224, 240, 249)!important;
 }

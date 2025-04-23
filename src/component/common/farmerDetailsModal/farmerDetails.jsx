@@ -20,6 +20,7 @@ const FarmerDetails = () => {
   const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log('data: ', data);
+    localStorage.setItem('farmerDetail', JSON.stringify(data));
     reset();         // clear the form
     handleClose();   // close the modal
     navigate('/farmdata', { state: data });
@@ -29,7 +30,8 @@ const FarmerDetails = () => {
     <>
       <div className='text-center farm-btn'>
         <Button className='btn rounded-pill text-white p-0' onClick={handleShow}>
-          Smart Livestock Manager
+          {/* Smart Livestock Manager */}
+          My Smart Farm Manager
         </Button>
       </div>
 
@@ -83,12 +85,12 @@ const FarmerDetails = () => {
                   type="text"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Farm House Name"
-                  {...register("farmHouseName", {
+                  {...register("farmName", {
                     required: "Farm House Name is required",
                   })}
                 />
-                {errors.farmHouseName && (
-                  <p className="text-danger">{errors.farmHouseName.message}</p>
+                {errors.farmName && (
+                  <p className="text-danger">{errors.farmName.message}</p>
                 )}
               </div>
 
