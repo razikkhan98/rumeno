@@ -934,7 +934,9 @@ const Record = () => {
                         ))}
 
                         {/* Animal Stauts Form  */}
-                        {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
+                       {activeTab ===  `${animalName} stauts` && (
+                         <>
+                         {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
                           <div key={index} className="col-lg-3 pb-3">
                             <Form.Group>
                               <Form.Label>{field.label}</Form.Label>
@@ -948,7 +950,7 @@ const Record = () => {
                                   disabled={!editActive && InputPreFillData}
                                 >
                                   <option value="">Select an option</option>{" "}
-                                  {/* Placeholder */}
+                                 
                                   {field?.options?.map((option, idx) => (
                                     <option key={idx} value={option}>
                                       {option}
@@ -956,7 +958,7 @@ const Record = () => {
                                   ))}
                                 </Form.Select>
                               ) : (
-                                // Rendering a regular input field
+                                
                                 <Form.Control
                                   type={field.type}
                                   {...register(field.name, { required: field.required })}
@@ -965,6 +967,11 @@ const Record = () => {
                             </Form.Group>
                           </div>
                         ))}
+                         </>
+                       )
+
+
+                       }
 
                       </div>
                       <Button
