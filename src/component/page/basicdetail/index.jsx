@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 
 const GoatDetailForm = () => {
+
+  const [animalUniqueId, setAnimalUniqueId] = useState()
   const {
     register,
     handleSubmit,
@@ -26,14 +28,17 @@ const GoatDetailForm = () => {
   const uniqueId = location.state?.uniqueId;
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
+  
   const type = queryParams.get("type");
+  
   // const farmerDetail = location.state?.farmName;
-  // console.log('farmerDetail: ', farmerDetail);
+  // 
   const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
-  // console.log('farmName: ', farmerDetail.farmName);
-
+  // 
+  
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
+    console.log('data: ', data);
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
       const animalName = sessionStorage.getItem("animalName"); // Retrieve animalName from sessionStorage
@@ -48,20 +53,22 @@ const GoatDetailForm = () => {
         // farmName,
         farmName: farmerDetail.farmName,
       };
-      console.log('formData: ', formData);
+      console.log('uniqueId: ', uniqueId);
+      
 
       // Determine API endpoint dynamically based on type
       const endpoint =
         type === "edit"
-          ? `/user/animaldata/newEntity/update` // Edit API
+          ? `user/animaldata/newEntity/update` // Edit API
           : "/user/animaldata/newEntity"; // Add API
 
       // Call the appropriate API method
       const response = await (type === "edit"
-        ? updateData(endpoint, data?.uniqueName, formData)
+        ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
-
-      console.log('response cards: ', response);
+        console.log('data?.uid: ', data?.uid);
+        
+        
       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -89,12 +96,22 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
+        
 
         if (response.data && response.data.length > 0) {
-          const animalData = response.data[storedIndex];
+
+          
+          const filteredAnimals = response.data?.filter( (animal) => animal?.animalName === selectedAnimal  );
+          const animalData = filteredAnimals[storedIndex];
+
+          console.log('animalData: ', animalData);
+
+          setAnimalUniqueId(animalData.uniqueId)
+
+          console.log('filteredAnimals: ', filteredAnimals);
 
           localStorage.removeItem("currentIndex");
-          // setValue("uniqueName", animalData.uniqueId || "");
+          setValue("uniqueName", animalData.uniqueId || "");
           setValue("tagId", animalData.tagId || "");
           setValue("ageYear", animalData.ageYear || "");
           setValue("ageMonth", animalData.ageMonth || "");
@@ -116,6 +133,8 @@ const GoatDetailForm = () => {
     };
     fetchAnimals();
   }, [setValue]); // Fetch only once on mount
+
+  
 
   const [gender, setGender] = useState("");
 

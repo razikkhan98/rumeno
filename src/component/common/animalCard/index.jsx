@@ -58,6 +58,7 @@ const AnimalCard = ({
   currentIndex,
   comments,
 }) => {
+  console.log('currentIndex: ', currentIndex);
   // console.log('tagId: ', tagId);
   console.log("tagId", tagId);
   const details = [
@@ -105,10 +106,10 @@ const AnimalCard = ({
   const handleShowDelete = () => setShowDeleteModal(true);
   const handleCloseDelete = () => setShowDeleteModal(false);
 
-  // const editForm = () => {
-  //   localStorage.setItem("currentIndex", currentIndex);
-  //   console.log('currentIndex: ', currentIndex);
-  // }
+  const editForm = () => {
+    localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
+  }
 
   const handleConfirmDelete = () => {
     if (kidId) {
@@ -291,8 +292,9 @@ const AnimalCard = ({
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
         {kidId === undefined ? (
           <>
-            <NavLink to="/parentform">
+            <NavLink to="/parentform?type=edit">
               <Button
+               onClick={editForm}
                 variant="light"
                 className="border px-1 py-0"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
