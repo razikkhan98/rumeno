@@ -131,8 +131,8 @@ const Parent = () => {
                       gender={animal.gender}
                       age={animal.ageYear}
                       weightKg={animal.weightKg}
-                      fatherUniqueId={animal.fatherUniqueId}
-                      motherUniqueId={animal.motherUniqueId}
+                      fatherTag={animal.fatherTag}
+                      motherTag={animal.motherTag}
                       birthWeight={animal.birthWeight}
                       birthType={animal.birthType}
                       motherWeanDate={animal.motherWeanDate}
@@ -140,7 +140,7 @@ const Parent = () => {
                       lastVaccineDate={animal.lastVaccineDate}
                       lastVaccineName={animal.lastVaccineName}
                       isPregnant={animal.isPregnant}
-                      matingDate={animal.matingDate}
+                      dateMading={animal.dateMading}
                       pregnencyFail={animal.pregnencyFail}
                       weanDate={animal.weanDate}
                       vaccineName={animal.vaccineName}

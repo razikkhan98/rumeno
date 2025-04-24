@@ -22,9 +22,8 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { setuid } = useContext(CartContext);
+  const { setuid, setUserName, setUserEmail } = useContext(CartContext);
   const navigate = useNavigate();
-
   // API endpoint
 
   const endpoint = "/user/login";
@@ -35,8 +34,12 @@ const Login = () => {
       const response = await postData(endpoint, data);
       if (response?.data?.user?.uid) {
         setuid(response?.data?.user?.uid);
+        setUserName(response?.data?.user?.name);
+        setUserEmail(response?.data?.user?.email);
         // local storage data setItem
         sessionStorage.setItem("uid", response?.data?.user?.uid);
+        sessionStorage.setItem("name", response?.data?.user?.name);
+        sessionStorage.setItem("email", response?.data?.user?.email);
       }
 
       if (response?.data?.token) {

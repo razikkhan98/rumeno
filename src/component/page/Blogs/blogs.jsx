@@ -16,7 +16,7 @@ const Blogs = () => {
         <>
             <Navbar />
             <div className='bg-white products'>
-                <div className="pt-4">
+                <div className="pt-lg-4 -pt-2">
                     <Header title="Home" subtitle="Blogs" />
                 </div>
                 <div className='container'>

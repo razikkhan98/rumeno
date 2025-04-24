@@ -445,7 +445,7 @@ const Products = () => {
       </div>
 
       <div className="container py-5">
-        <div className="text-center">
+        <div className="text-center pb-lg-0 pb-3">
           <h2>RumenO Farmotech: A Reputable Brand in Supplements for Cattle</h2>
           <p>In the cattle business, Rumeno Farmotech is a well-known brand that provides a selection of premium supplements. This is why their products are unique:</p>
         </div>

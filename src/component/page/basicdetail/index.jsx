@@ -31,7 +31,7 @@ const GoatDetailForm = () => {
   // console.log('farmerDetail: ', farmerDetail);
   const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
   // console.log('farmName: ', farmerDetail.farmName);
-  
+
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     try {
@@ -60,8 +60,8 @@ const GoatDetailForm = () => {
       const response = await (type === "edit"
         ? updateData(endpoint, data?.uniqueName, formData)
         : postData(endpoint, formData));
-        
-        console.log('response cards: ', response);
+
+      console.log('response cards: ', response);
       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -258,23 +258,46 @@ const GoatDetailForm = () => {
 
               <div className="row mt-3">
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Mother Unique Id</label>
+                  {/* <label className="form-lable-detail">Mother Tag Id</label>
                   <input
                     type="text"
                     placeholder="Enter Mother tag"
                     className="form-control form-control-detail"
-                    {...register("motherUniqueId")}
-                  />
+                    {...register("motherTagId")}
+                  /> */}
+                  <label className="form-lable-detail">Mother Tag Id</label>
+                  <select
+                    // disabled={purchaseDate}
+                    className="form-select form-control-detail"
+                    {...register("motherTag")}
+                  >
+                    <option value="">Select Tag Id</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                  </select>
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Father Unique Id</label>
+                  {/* <label className="form-lable-detail">Father Tag Id</label>
                   <input
                     type="text"
                     placeholder="Enter Father tag"
                     className="form-control form-control-detail"
-                    {...register("fatherUniqueId")}
-                  />
+                    {...register("fatherTagId")}
+                  /> */}
+
+                  <label className="form-lable-detail">Father Tag Id</label>
+                  <select
+                    // disabled={purchaseDate}
+                    className="form-select form-control-detail"
+                    {...register("fatherTag")}
+                  >
+                    <option value="">Select Tag Id</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                  </select>
                 </div>
 
                 <div className="col-lg-2 d-flex align-items-center gap-1">
@@ -350,7 +373,7 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
-                {purchaseDate && ( 
+                {purchaseDate && (
                   <div className="col-lg-2 lh-lg">
                     <label className="form-lable-detail">
                       Last Vaccine Date
@@ -431,7 +454,7 @@ const GoatDetailForm = () => {
                     <input
                       type="date"
                       className="form-control form-control-detail"
-                      {...register("matingDate")}
+                      {...register("dateMading")}
                     />
                   </div>
                   <div className="col-lg-2 lh-lg">
@@ -440,7 +463,7 @@ const GoatDetailForm = () => {
                     </label>
                     <select
                       className="form-select form-control-detail"
-                      {...register("pregnancyDetails")}
+                      {...register("currentPregnancyMonth")}
                     >
                       <option value="">Select Month</option>
                       <option value="1 Month">1 Month</option>
@@ -454,11 +477,11 @@ const GoatDetailForm = () => {
                     <label className="form-lable-detail">Failed</label>
                     <select
                       className="form-select form-control-detail"
-                      {...register("pregnencyFail")}
+                      {...register("failed")}
                     >
                       <option value="">Select Yes Or No</option>
-                      <option value="1">Yes</option>
-                      <option value="2">No</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </select>
                   </div>
                   <div className="col-lg-2 lh-lg">
@@ -468,7 +491,7 @@ const GoatDetailForm = () => {
                     <input
                       type="date"
                       className="form-control form-control-detail"
-                      {...register("weanDate")}
+                      {...register("motherWeanDate")}
                     />
                   </div>
                 </div>
