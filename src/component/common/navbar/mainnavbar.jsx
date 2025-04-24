@@ -14,6 +14,8 @@ const Mainnav = () => {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
+  const [username, setUsername] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   console.log("activeLink: ", activeLink);
   const { cart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,8 +50,13 @@ const Mainnav = () => {
 
   useEffect(() => {
     const user = sessionStorage?.getItem("uid");
+    const name = sessionStorage?.getItem("name");
+    const email = sessionStorage?.getItem("email");
+
     if (user) {
       setIsLoggedIn(true);
+      setUsername(name || "User");
+      setUserEmail(email || "Email12@gmail.com");
     }
   }, []);
 
@@ -122,6 +129,12 @@ const Mainnav = () => {
             </div>
           </NavLink>
 
+          <NavLink to="/login" className={"farm-btn my-3 me-2"}>
+                <button className="btn rounded-pill text-white">
+                  Login
+                </button>
+              </NavLink>
+
           {/* User Profile PopUp for Mobile Screen */}
           {isLoggedIn ? (
             <div className="position-relative">
@@ -154,8 +167,9 @@ const Mainnav = () => {
                           className="rounded-circle user-icon-img"
                         />
                       </div>
-                      <p className="text-center mb-0 pt-2">User Name</p>
-                      <p className="text-center mb-2">username12@gmail.com</p>
+                      <p className="text-center mb-0 pt-2">{username}</p>
+                      <p className="text-center mb-2">{userEmail}</p>
+
                     </div>
                   ) : (
                     <> </>
@@ -416,6 +430,7 @@ const Mainnav = () => {
             </li>
           </ul>
         </div>
+        
         {/* Action Buttons for laptop screen */}
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
           {isLoggedIn ? (
@@ -492,8 +507,9 @@ const Mainnav = () => {
                           className="rounded-circle user-icon-img"
                         />
                       </div>
-                      <p className="text-center mb-0 pt-2">User Name</p>
-                      <p className="text-center mb-2">username12@gmail.com</p>
+                      <p className="text-center mb-0 pt-2">{username}</p>
+                      <p className="text-center mb-2">{userEmail}</p>
+
                     </div>
                   ) : (
                     <> </>

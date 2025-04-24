@@ -36,7 +36,7 @@ const VeterinaryService = () => {
       {/* Navbar Start */}
       <Navbar />
       <div className="service-bg-color products">
-        <div className="pt-4">
+        <div className="pt-lg-4">
           <Header title="Services" subtitle="Veteriniary Services" />
         </div>
         <div className="container pt-lg-5">
