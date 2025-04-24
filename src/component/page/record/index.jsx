@@ -939,18 +939,22 @@ const Record = () => {
                             <Form.Group>
                               <Form.Label>{field.label}</Form.Label>
 
-                              {field.type === "select" ? (
-                                // Rendering a select input
-                                <Form.Control
-                                  as="select"
-                                  {...register(field.name, { required: field.required })}
+                              {field?.type === "select" ? (
+                                // ✅ Corrected Select Field
+                                <Form.Select
+                                  {...register(field.name, {
+                                    required: field.required,
+                                  })}
+                                  disabled={!editActive && InputPreFillData}
                                 >
-                                  {field.options?.map((option, i) => (
-                                    <option key={i} value={option.value}>
-                                      {option.label}
+                                  <option value="">Select an option</option>{" "}
+                                  {/* Placeholder */}
+                                  {field?.options?.map((option, idx) => (
+                                    <option key={idx} value={option}>
+                                      {option}
                                     </option>
                                   ))}
-                                </Form.Control>
+                                </Form.Select>
                               ) : (
                                 // Rendering a regular input field
                                 <Form.Control
