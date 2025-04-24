@@ -18,8 +18,9 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
 
 
-
 const Record = () => {
+  const animalName = sessionStorage.getItem("animalName");
+
   const API_ENDPOINTS = {
     BasicDetails: "user/animaldata/newEntity",
     PostWean: "/user/animal/postweandata/add",
@@ -28,9 +29,10 @@ const Record = () => {
     Deworm: "/user/animal/dewormdata/add",
     EstrusHeat: "/user/animal/estrusdata/add",
     // FarmSanitation: "/user/animal/sanitationdata/add",
-    Child: "/user/animaldata/child",
-
+    Kid: "/user/animaldata/child",
   };
+
+  const TabItems = ["BasicDetails", "PostWean", "Milk", "Vaccine", "Deworm", "EstrusHeat", "Kid", `${animalName} stauts`]
 
   const API_UPDATEENDPOINTS = {
     PostWean: "/user/animal/postweandata/update",
@@ -39,7 +41,7 @@ const Record = () => {
     Deworm: "/user/animal/dewormdata/update",
     EstrusHeat: "/user/animal/estrusdata/update",
     // FarmSanitation: "/user/animal/sanitationdata/update",
-    Child: "/user/animaldata/child",
+    Kid: "/user/animaldata/child",
   };
 
   const API_DELETEENDPOINTS = {
@@ -49,7 +51,7 @@ const Record = () => {
     Deworm: "/user/animal/dewormdata/delete",
     EstrusHeat: "/user/animal/estrusdata/delete",
     // FarmSanitation: "/user/animal/sanitationdata/delete",
-    Child: "/user/animaldata/child",
+    Kid: "/user/animaldata/child",
   };
 
   const fieldConfigs = {
@@ -310,7 +312,7 @@ const Record = () => {
           "heat 5",
         ],
       },
-      
+
       {
         name: "heatDate",
         label: "Estrus Heat Date",
@@ -352,7 +354,7 @@ const Record = () => {
         type: "date",
       },
     ],
-    Child: [
+    Kid: [
       // {
       //   name: "tagId",
       //   label: "Tag Id",
@@ -460,6 +462,20 @@ const Record = () => {
         type: "date",
       },
     ],
+    [`${animalName}Status`]: [
+      {
+        name: `${animalName}Status`,
+        label: `${animalName} Status`,
+        type: "select",
+        options: ["Sell", "Death"],
+      },
+      {
+        label: "Date",
+        name: `${animalName}StatusDate`,
+        type: "date",
+      },
+    ],
+
   };
 
   const [animals, setAnimals] = useState([]);
@@ -492,7 +508,7 @@ const Record = () => {
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
-  console.log('selectedAnimal: ', selectedAnimal);
+  // console.log('selectedAnimal: ', selectedAnimal);
 
 
 
@@ -505,6 +521,7 @@ const Record = () => {
       console.log('response basic: ', response);
       setAnimals(response.data || []);
       // setPostWean(response.data || []);
+
     } catch (error) {
       toast.error("Error fetching animal data.");
     }
@@ -518,37 +535,20 @@ const Record = () => {
   }, [selectedAnimal, uniqueId]);
 
   // child
-  const fetchChildren = async () => {
-    try {
-      const response = await getData("/user/animaldata/child/getAll");
-      setChildren(response.data || []);
-    } catch (error) {
-      toast.error("Error fetching child data.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchChildren = async () => {
+  //   try {
+  //     const response = await getData("/user/animaldata/child/getAll");
+  //     setChildren(response.data || []);
+  //   } catch (error) {
+  //     toast.error("Error fetching child data.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   useEffect(() => {
     fetchAnimals();
-    fetchChildren();
+    // fetchChildren();
   }, []);
-
-  // const filteredPostWean = Array.isArray(animals)
-  //   ? animals.postWean.filter((postWean) => postWean.uniqueId === uniqueId)
-  //   : [];
-
-  //   console.log(filteredPostWean,"postWean")
-
-  // // Map through filtered data
-  // const postWeanData = filteredPostWean?.map((postWean) => ({
-  //   id: postWean.uniqueId,
-  //   weight: postWean.weightKg,
-  //   bodyScore: postWean.bodyScore,
-  //   weanDate: postWean.weanDate,
-  //   comment: postWean.weanComment,
-  // }));
-
-  // console.log("postWeanData: ", postWeanData.id);
 
   useEffect(() => {
     const tabMapping = {
@@ -718,7 +718,16 @@ const Record = () => {
   //   }
   // };
 
+  const isShowForm = showForm[activeTab] || false;
 
+  const toggleFormForActiveTab = () => {
+    setShowForm((prev) => ({
+      ...prev,
+      [activeTab]: !prev[activeTab],
+    }));
+    setEditIndex(null);
+    reset();
+  };
 
   return (
 
@@ -736,8 +745,8 @@ const Record = () => {
                 onSelect={(k) => setActiveTab(k)}
                 className="mb-4"
               >
-                {Object.keys(API_ENDPOINTS).map((tab) =>
-                  kidId !== undefined && tab === "Child" ? null : (
+                {TabItems.map((tab) =>
+                  kidId !== undefined && tab === "Kid" ? null : (
                     <Tab
                       key={tab}
                       eventKey={tab}
@@ -776,9 +785,9 @@ const Record = () => {
 
               </div>
 
-              {kidId === undefined && activeTab === "Child" && (
+              {kidId === undefined && activeTab === "Kid" && (
                 <>
-                  <div className="d-flex justify-content-between align-items-center">
+                  {/* <div className="d-flex justify-content-between align-items-center">
                     <h4>{activeTab?.replace(/([A-Z])/g, " $1")}</h4>
                     <button
                       className="btn text-white px-4 border rounded-pill me-5"
@@ -788,147 +797,30 @@ const Record = () => {
                       }}
                       onClick={() => setIsActive(true)}
                     >
-                      <span className="me-1">+</span> Add Child
+                      <span className="me-1">+</span> Add Kid
                     </button>
-                  </div>
+                  </div> */}
 
-                  {isActive ? (
-                    <>
-                      <p className="record-para mb-4">
-                        Fill {activeTab} details below
-                      </p>
-                      <Form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="row mb-4">
-                          <div className="col-lg-3 pb-3">
-                            <Form.Group>
-                              <Form.Label>Tag ID</Form.Label>
-                              <Form.Control
-                                type="text"
-                                value={tagId}
-                                readOnly
-                              />
-                            </Form.Group>
-                          </div>
-
-                          {/* <div className="col-lg-3 pb-3">
-                            <Form.Group>
-                              <Form.Label>Tag ID</Form.Label>
-                              <Form.Control
-                                type="text"
-                                value={tagId}
-                                readOnly
-                              />
-                            </Form.Group>
-                          </div> */}
-
-                          {fieldConfigs[activeTab]?.map((field, index) => (
-                            <div key={index} className="col-lg-3 pb-3">
-                              <Form.Group>
-                                <Form.Label>{field.label}</Form.Label>
-
-                                {field?.type === "radio" ? (
-                                  // Radio buttons
-                                  <div className="d-flex gap-3">
-                                    {field?.options?.map((option, idx) => (
-                                      <Form.Check
-                                        key={idx}
-                                        type="radio"
-                                        label={option}
-                                        value={option}
-                                        {...register(field.name, {
-                                          required: field.required,
-                                        })}
-                                        disabled={
-                                          !editActive && InputPreFillData
-                                        }
-                                        name={field.name} // Radio ke liye name zaroori hai
-                                      />
-                                    ))}
-                                  </div>
-                                ) : field?.type === "select" ? (
-                                  // ✅ Corrected Select Field
-                                  <Form.Select
-                                    {...register(field.name, {
-                                      required: field.required,
-                                    })}
-                                    disabled={!editActive && InputPreFillData}
-                                  >
-                                    <option value="">Select an option</option>{" "}
-                                    {/* Placeholder */}
-                                    {field?.options?.map((option, idx) => (
-                                      <option key={idx} value={option}>
-                                        {option}
-                                      </option>
-                                    ))}
-                                  </Form.Select>
-                                ) : (
-                                  // Normal input fields
-                                  <Form.Control
-                                    type={field.type}
-                                    {...register(field.name, {
-                                      required: field.required,
-                                    })}
-                                    disabled={!editActive && InputPreFillData}
-                                  />
-                                )}
-
-                                {errors[field.name] && (
-                                  <span className="text-danger">
-                                    This field is required
-                                  </span>
-                                )}
-                              </Form.Group>
-                            </div>
-                          ))}
+                  {loading ? (
+                    <p>Loading...</p>
+                  ) : filteredChildren.length > 0 ? (
+                    <div className="row">
+                      {filteredChildren.map((animal, index) => (
+                        <div key={index} className="col-lg-3 px-3 pt-4">
+                          <AnimalCard {...animal} />
                         </div>
-                        <Button
-                          type="submit"
-                          className="record-btn"
-                          disabled={editActive ? !isDirty : !!InputPreFillData}
-                        >
-                          Submit
-                        </Button>
-                        {/* <Button
-                          type="submit"
-                          className="btn-success px-4 mx-2"
-                          onClick={handleUpdateApi}
-                          disabled={!InputPreFillData || editActive}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          type="submit"
-                          className="btn-danger px-4"
-                          onClick={handleDeleteApi}
-                          disabled={!InputPreFillData}
-                        >
-                          Delet
-                        </Button> */}
-                      </Form>
-                    </>
+                      ))}
+                    </div>
                   ) : (
-                    <>
-                      {loading ? (
-                        <p>Loading...</p>
-                      ) : filteredChildren.length > 0 ? (
-                        <div className="row">
-                          {filteredChildren.map((animal, index) => (
-                            <div key={index} className="col-lg-3 px-3 pt-4">
-                              <AnimalCard {...animal} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p>No Child animals found.</p>
-                      )}
-                    </>
+                    <p>No Kid animals found.</p>
                   )}
                 </>
+
               )}
 
 
 
-              {activeTab !== "Child" && (
+              {activeTab !== "Kid" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
 
@@ -944,11 +836,12 @@ const Record = () => {
                           style={{
                             background: "linear-gradient(to right, #60A5FA, #EC4899)",
                           }}
-                          onClick={() => {
-                            setShowForm(!showForm);
-                            setEditIndex(null);
-                            reset();
-                          }}
+                          onClick={toggleFormForActiveTab}
+                        // onClick={() => {
+                        //   setShowForm((prev) => !prev);
+                        //   setEditIndex(null);
+                        //   reset();
+                        // }}
                         >
                           <span className="me-1">+</span> {activeTab}
                         </button>
@@ -956,26 +849,28 @@ const Record = () => {
                     )}
                   </div>
 
-                  <Form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className={showForm ? "d-block" : "d-none"}
-                  >
-                    <div className="row mb-4">
-                      <div className="col-lg-3 pb-3">
-                        <Form.Group>
-                          <Form.Label>Tag ID</Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={tagId}
-                            readOnly
-                          />
-                        </Form.Group>
-                      </div>
-                      {fieldConfigs[activeTab]?.map((field, index) => (
-                        <div key={index} className="col-lg-3 pb-3">
+                  {isShowForm && (
+                    <Form
+                      onSubmit={handleSubmit(onSubmit)}
+                    // className={showForm ? "d-block" : "d-none"}
+                    >
+                      <div className="row mb-4">
+                        <div className="col-lg-3 pb-3">
                           <Form.Group>
-                            <Form.Label>{field.label}</Form.Label>
-                            {/* <Form.Control
+                            <Form.Label>Tag ID</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={tagId}
+                              readOnly
+                            />
+                          </Form.Group>
+                        </div>
+
+                        {fieldConfigs[activeTab]?.map((field, index) => (
+                          <div key={index} className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>{field.label}</Form.Label>
+                              {/* <Form.Control
                               type={field.type}
                               {...register(field.name, {
                                 required: field.required,
@@ -983,85 +878,100 @@ const Record = () => {
                               disabled={!editActive && InputPreFillData}
                             /> */}
 
-                            {field?.type === "radio" ? (
-                              // Radio buttons
-                              <div className="d-flex gap-3">
-                                {field?.options?.map((option, idx) => (
-                                  <Form.Check
-                                    key={idx}
-                                    type="radio"
-                                    label={option}
-                                    value={option}
-                                    {...register(field.name, {
-                                      required: field.required,
-                                    })}
-                                    disabled={
-                                      !editActive && InputPreFillData
-                                    }
-                                    name={field.name} // Radio ke liye name zaroori hai
-                                  />
-                                ))}
-                              </div>
-                            ) : field?.type === "select" ? (
-                              // ✅ Corrected Select Field
-                              <Form.Select
-                                {...register(field.name, {
-                                  required: field.required,
-                                })}
-                                disabled={!editActive && InputPreFillData}
-                              >
-                                <option value="">Select an option</option>{" "}
-                                {/* Placeholder */}
-                                {field?.options?.map((option, idx) => (
-                                  <option key={idx} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                            ) : (
-                              // Normal input fields
-                              <Form.Control
-                                type={field.type}
-                                {...register(field.name, {
-                                  required: field.required,
-                                })}
-                                disabled={!editActive && InputPreFillData}
-                              />
-                            )}
+                              {field?.type === "radio" ? (
+                                // Radio buttons
+                                <div className="d-flex gap-3">
+                                  {field?.options?.map((option, idx) => (
+                                    <Form.Check
+                                      key={idx}
+                                      type="radio"
+                                      label={option}
+                                      value={option}
+                                      {...register(field.name, {
+                                        required: field.required,
+                                      })}
+                                      disabled={
+                                        !editActive && InputPreFillData
+                                      }
+                                      name={field.name} // Radio ke liye name zaroori hai
+                                    />
+                                  ))}
+                                </div>
+                              ) : field?.type === "select" ? (
+                                // ✅ Corrected Select Field
+                                <Form.Select
+                                  {...register(field.name, {
+                                    required: field.required,
+                                  })}
+                                  disabled={!editActive && InputPreFillData}
+                                >
+                                  <option value="">Select an option</option>{" "}
+                                  {/* Placeholder */}
+                                  {field?.options?.map((option, idx) => (
+                                    <option key={idx} value={option}>
+                                      {option}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                              ) : (
+                                // Normal input fields
+                                <Form.Control
+                                  type={field.type}
+                                  {...register(field.name, {
+                                    required: field.required,
+                                  })}
+                                  disabled={!editActive && InputPreFillData}
+                                />
+                              )}
 
-                            {errors[field.name] && (
-                              <span className="text-danger">
-                                This field is required
-                              </span>
-                            )}
-                          </Form.Group>
-                        </div>
-                      ))}
-                    </div>
-                    <Button
-                      type="submit"
-                      className="record-btn"
-                      disabled={editActive ? !isDirty : !!InputPreFillData}
-                    >
-                      Submit
-                    </Button>
-                    {/* <Button
-                      type="submit"
-                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-success"}`}
-                      onClick={handleUpdateApi}
-                      disabled={!InputPreFillData || editActive}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      type="submit"
-                      className={` px-4 mx-2 ${!InputPreFillData ? "btn-secondary" : "btn-danger"}`}
-                      onClick={handleDeleteApi}
-                      disabled={!InputPreFillData}
-                    >
-                      Delete
-                    </Button> */}
-                  </Form>
+                              {errors[field.name] && (
+                                <span className="text-danger">
+                                  This field is required
+                                </span>
+                              )}
+                            </Form.Group>
+                          </div>
+                        ))}
+
+                        {/* Animal Stauts Form  */}
+                        {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
+                          <div key={index} className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>{field.label}</Form.Label>
+
+                              {field.type === "select" ? (
+                                // Rendering a select input
+                                <Form.Control
+                                  as="select"
+                                  {...register(field.name, { required: field.required })}
+                                >
+                                  {field.options?.map((option, i) => (
+                                    <option key={i} value={option.value}>
+                                      {option.label}
+                                    </option>
+                                  ))}
+                                </Form.Control>
+                              ) : (
+                                // Rendering a regular input field
+                                <Form.Control
+                                  type={field.type}
+                                  {...register(field.name, { required: field.required })}
+                                />
+                              )}
+                            </Form.Group>
+                          </div>
+                        ))}
+
+                      </div>
+                      <Button
+                        type="submit"
+                        className="record-btn"
+                        disabled={editActive ? !isDirty : !!InputPreFillData}
+                      >
+                        Submit
+                      </Button>
+                    </Form>
+                  )}
 
                   {/* Show Prefillled form Data */}
                   {editIndex !== null && (
@@ -1170,13 +1080,13 @@ const Record = () => {
                       </div>
 
                     ) : (
-                     <div>
-                       { activeTab !== "BasicDetails" && (
-                        <>
-                          <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
-                        </>
-                      )}
-                     </div>
+                      <div>
+                        {activeTab !== "BasicDetails" && (
+                          <>
+                            <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
+                          </>
+                        )}
+                      </div>
                     )}
 
                   </div>
