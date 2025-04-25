@@ -19,7 +19,7 @@ const CartFaq = [
   },
   {
     question: "2. How to Sell Veterinary Products?",
-    answer: "...................",
+    answer: "With Rumeno Affiliate program you can sell our veterinary products and get commission on them.",
   },
 ];
 

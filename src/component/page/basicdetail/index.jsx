@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
-import Navbar from "../../common/navbar";
+import Navbar from "../../common/navbar/mainnavbar";
 import { getData, postData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -28,14 +28,14 @@ const GoatDetailForm = () => {
   const uniqueId = location.state?.uniqueId;
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
-  
+
   const type = queryParams.get("type");
-  
+
   // const farmerDetail = location.state?.farmName;
   // 
   const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
   // 
-  
+
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
     console.log('data: ', data);
@@ -54,7 +54,7 @@ const GoatDetailForm = () => {
         farmName: farmerDetail.farmName,
       };
       console.log('uniqueId: ', uniqueId);
-      
+
 
       // Determine API endpoint dynamically based on type
       const endpoint =
@@ -66,9 +66,9 @@ const GoatDetailForm = () => {
       const response = await (type === "edit"
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
-        console.log('data?.uid: ', data?.uid);
-        
-        
+      console.log('data?.uid: ', data?.uid);
+
+
       if (response.data.message === "success") {
         toast.success(
           `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -96,12 +96,12 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-        
+
 
         if (response.data && response.data.length > 0) {
 
-          
-          const filteredAnimals = response.data?.filter( (animal) => animal?.animalName === selectedAnimal  );
+
+          const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
           const animalData = filteredAnimals[storedIndex];
 
           console.log('animalData: ', animalData);
@@ -134,7 +134,7 @@ const GoatDetailForm = () => {
     fetchAnimals();
   }, [setValue]); // Fetch only once on mount
 
-  
+
 
   const [gender, setGender] = useState("");
 
@@ -147,11 +147,11 @@ const GoatDetailForm = () => {
     <>
       <div className="goat-form">
         <Navbar />
-        <div className="row">
-          <div className="col-lg-2">
+        <div className="row pt-5">
+          <div className="col-lg-2 py-5">
             <Sidebar />
           </div>
-          <div className="col-lg-10 px-4 py-3">
+          <div className="col-lg-10 px-4 py-5">
             <div className="d-flex justify-content-between">
               <div>
                 <p className="detail-head text-chinese-black-color mb-1">
@@ -291,9 +291,11 @@ const GoatDetailForm = () => {
                     {...register("motherTag")}
                   >
                     <option value="">Select Tag Id</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
+                    {["01", "02", "03", "04", "11"].map((tagId) => (
+                      <option key={tagId} value={tagId}>
+                        {tagId}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -313,17 +315,19 @@ const GoatDetailForm = () => {
                     {...register("fatherTag")}
                   >
                     <option value="">Select Tag Id</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
+                    {["01", "02", "03", "04", "22"].map((tagId) => (
+                      <option key={tagId} value={tagId}>
+                        {tagId}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
-                <div className="col-lg-2 d-flex align-items-center gap-1">
+                <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Gender</label>
                   <input
                     type="text"
-                    className="form-control form-control-detail mt-4"
+                    className="form-control form-control-detail"
                     // placeholder="Enter Father Breed"
                     disabled={gender}
                     {...register("gender")}
@@ -601,7 +605,7 @@ const GoatDetailForm = () => {
                     fontWeight: "600",
                   }}
                 >
-                  {type === "edit" ? "Edit" : `Add ${selectedAnimal}`}
+                  {type === "edit" ? "Save" : `Add ${selectedAnimal}`}
                 </button>
               </div>
             </form>

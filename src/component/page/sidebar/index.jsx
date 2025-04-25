@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
@@ -17,6 +17,7 @@ const animalImages = {
 };
 
 const Sidebar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal; // Default: Goat
   const user = sessionStorage?.getItem("animalName");
@@ -31,6 +32,22 @@ const Sidebar = () => {
     }
   };
 
+  
+    useEffect(() => {
+      const user = sessionStorage?.getItem("uid");
+  
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false); 
+      }
+    }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("uid");
+    setIsLoggedIn(false);
+    
+  };
   return (
     <div className="side">
       <div className="row">
@@ -101,7 +118,7 @@ const Sidebar = () => {
                 <FaRegQuestionCircle className="me-2" />
                 Help
               </button>
-              <button className="btn w-100 text-start text-danger">
+              <button onClick={handleLogout} className="btn w-100 text-start text-danger">
                 <RiLogoutBoxRLine className="me-2" />
                 Logout
               </button>
