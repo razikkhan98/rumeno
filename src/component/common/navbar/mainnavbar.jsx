@@ -16,7 +16,7 @@ const Mainnav = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  console.log("activeLink: ", activeLink);
+  
   const { cart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
@@ -36,14 +36,37 @@ const Mainnav = () => {
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
+    setIsProductsOpen(false);
+    setIsServicesOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if(isNavbarOpen) {
+        setIsNavbarOpen(false);
+      }
+      if(isProductsOpen) {
+        setIsProductsOpen(false);
+      }
+      if(isServicesOpen) {
+        setIsServicesOpen(false)
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[isNavbarOpen, isProductsOpen, isServicesOpen]);
+
+
+
   const location = useLocation();
-  console.log("location: ", location);
+  
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    console.log("link: ", link);
+    
     setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
     setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
@@ -85,7 +108,7 @@ const Mainnav = () => {
     "/dogproduct",
     "productDetails",
   ]);
-  console.log("active: ", active);
+  
 
   return (
     <nav
