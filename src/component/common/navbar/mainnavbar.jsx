@@ -16,7 +16,7 @@ const Mainnav = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  console.log("activeLink: ", activeLink);
+  
   const { cart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
@@ -62,11 +62,11 @@ const Mainnav = () => {
 
 
   const location = useLocation();
-  console.log("location: ", location);
+  
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    console.log("link: ", link);
+    
     setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
     setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
@@ -108,7 +108,7 @@ const Mainnav = () => {
     "/dogproduct",
     "productDetails",
   ]);
-  console.log("active: ", active);
+  
 
   return (
     <nav

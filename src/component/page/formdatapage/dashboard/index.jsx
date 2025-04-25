@@ -115,6 +115,7 @@ const Dashboard = () => {
     SanitationCount: 0,
     PregnantCount: 0,
   });
+  console.log('stats: ', stats);
 
   const [selectedCard, setSelectedCard] = useState(null);
   console.log('selectedCard: ', selectedCard);
