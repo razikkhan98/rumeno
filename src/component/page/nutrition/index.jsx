@@ -58,7 +58,7 @@ const Nutrition = () => {
         <div className="container text-center text-white pt-5 pb-4">
           <div className="row">
             <div className="col-lg-12 col-md-10 m-auto">
-              <p className="nutrition-heading pb-lg-4">
+              <p className="nutrition-heading pb-lg-4 responsive-heading">
                 THE ROLE OF ANIMAL FEED SUPPLEMENTS
               </p>
 

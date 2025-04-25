@@ -13,7 +13,7 @@ const FarmHouseEquipment = () => {
         <>
             <Navbar />
             <div className='bg-white products'>
-                <div className="pt-4">
+                <div className="pt-lg-4">
                     <Header title="Home" subtitle="Farm" />
                 </div>
                 <div className='service-bg-color'>

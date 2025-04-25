@@ -173,7 +173,7 @@ const Home = () => {
             className="d-flex my-3 align-items-center"
 
           >
-            <div className="label-title mt-3">
+            <div className="label-title responsive-heading mt-3">
               Our Products According To Species
             </div>
             <div>

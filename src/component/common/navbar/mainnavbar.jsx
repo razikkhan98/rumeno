@@ -125,9 +125,9 @@ const Mainnav = () => {
         </a>
 
         {/* Action Buttons  for mobile screen*/}
-        <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto gap-2">
+        <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto">
           <NavLink to="/cart">
-            <div className="position-relative ms-5 me-2">
+            <div className="position-relative">
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
@@ -152,11 +152,15 @@ const Mainnav = () => {
             </div>
           </NavLink>
 
-          <NavLink to="/login" className={"farm-btn my-3 me-2"}>
-                <button className="btn rounded-pill text-white">
-                  Login
-                </button>
-              </NavLink>
+          {!isLoggedIn ? (
+            <><NavLink to="/login" className={"farm-btn my-3 mx-2"}>
+            <button className="btn rounded-pill text-white">
+              Login
+            </button>
+          </NavLink> </>
+          ) : (
+            <> </>
+          )}
 
           {/* User Profile PopUp for Mobile Screen */}
           {isLoggedIn ? (
@@ -222,7 +226,7 @@ const Mainnav = () => {
         </div>
 
         <button
-          className="navbar-toggler px-1"
+          className="navbar-toggler px-1 ms-1"
           type="button"
           onClick={toggleNavbar}
           aria-expanded={isNavbarOpen}
@@ -350,13 +354,15 @@ const Mainnav = () => {
                   isServicesOpen ? "show" : ""
                 }`}
               >
-                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
-                  <div className="ms-4">
+                <div className="products-collapse-list gap-5 ms-lg-5 py-3 px-1">
+                  <div className="ms-lg-4 ms-2">
                     <p className="products-title text-start text-uppercase">
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
+                      <NavLink to="/service" className="text-decoration-none">
                       <li className="cursor">Why Choose US?</li>
+                      </NavLink>
                       <NavLink to="/service" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
@@ -394,7 +400,7 @@ const Mainnav = () => {
                       </NavLink>
                     </ul>
                   </div>
-                  <div>
+                  <div className="me-2">
                     <p className="products-title text-start text-uppercase">
                       dairy consultant
                     </p>
@@ -440,7 +446,7 @@ const Mainnav = () => {
                 </div>
               </li>
             </NavLink>
-            <li className="d-lg-none">
+            <li className="d-lg-none nav-itme mt-2">
               {isLoggedIn ? (
                 <>
                   {" "}

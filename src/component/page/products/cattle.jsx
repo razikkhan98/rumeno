@@ -353,9 +353,9 @@ const Products = () => {
 
       <div
         className="col-lg-12 my-5 text-center d-flex align-items-center justify-content-center"
-        style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
+        style={{ background: "#F4FAFD", color: "#EC7229" }}
       >
-        <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
+        <p className="mb-0 py-3 px-lg-0 px-1" style={{ fontSize: "18px", fontWeight: "400" }}>
           Enhancing Cattle Well-being and Growth with Rumeno's Cattle Feed Supplements
         </p>
       </div>

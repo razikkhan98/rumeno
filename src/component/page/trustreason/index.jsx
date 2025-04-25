@@ -13,7 +13,7 @@ const Trust = () => {
         <div className="container pt-lg-5">
           <div className="row">
             <div className=" pb-5">
-              <p className="trust-heading text-uppercase text-center">
+              <p className="trust-heading responsive-heading text-uppercase text-center">
                 Rumeno Farmotech is trusted by Indian farmers for a number of
                 reasons:
               </p>
