@@ -54,7 +54,7 @@ const DairyConsultantService = () => {
     <>
       <Navbar />
       <div className="service-bg-color products">
-        <div className="pt-lg-4">
+        <div className="pt-lg-4 mt-n1">
           <Header title="Services" subtitle="Dairy Consultant Service" />
         </div>
         <div className="container pt-lg-5">
