@@ -36,7 +36,30 @@ const Mainnav = () => {
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
+    setIsProductsOpen(false);
+    setIsServicesOpen(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(isNavbarOpen) {
+        setIsNavbarOpen(false);
+      }
+      if(isProductsOpen) {
+        setIsProductsOpen(false);
+      }
+      if(isServicesOpen) {
+        setIsServicesOpen(false)
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[isNavbarOpen, isProductsOpen, isServicesOpen]);
+
+
 
   const location = useLocation();
   console.log("location: ", location);
