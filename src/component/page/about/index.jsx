@@ -48,8 +48,8 @@ const About = () => {
             <div className="col-lg-12">
               <div className="row gap-3">
                 <div className="col-lg-7">
-                  <div className="about-content py-3">
-                    <p className="text-uppercase about-heading">
+                  <div className="about-content py-2">
+                    <p className="text-uppercase responsive-heading about-heading">
                       About Rumeno Farmotech
                     </p>
                     <p className="about-para">

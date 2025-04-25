@@ -918,6 +918,9 @@ body {
     font-weight: 400;
     line-height: 21px;
   }
+  .about-img img{
+    border-radius: 10px;
+  }
 }
 
 /* <--------- About End ---------> */
@@ -956,6 +959,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+  .certified {
+    height: 550px;
+  }
+  .responsive-heading{
+    font-size: 24px !important;
   }
 }
 
@@ -1360,7 +1369,7 @@ body {
   }
 
   .livestock-title {
-    font-size: 1.75rem;
+    font-size: 1rem;
   }
 
   .livestock-content {
@@ -2551,17 +2560,22 @@ input[type="radio"] {
   position: relative; /* Required for ::before to layer correctly */
   overflow: hidden;
 }
-/* .contact-us-bg-img::before{
+.contact-us-bg-img::before{
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3); 
+  background-color: rgba(0, 0, 0, 0.2); 
   border-radius: 20px; 
   z-index: 1;
-} */
+}
+
+.contact-us-bg-img > * {
+  position: relative;
+  z-index: 2;
+}
 
 /* ------------------- Error Page Css -------------------- */
 .error-img {
@@ -2632,6 +2646,9 @@ input[type="radio"] {
   .blog-mini-img {
     height: auto !important;
   }
+  .product-contant-card {
+    width: 300px;
+}
   /* .slick-next {
   right: -10px !important;
 }
@@ -2734,4 +2751,7 @@ tr.bg-light-blue td {
 }
 tr.bg-light-gray td {
   background-color: rgb(224, 240, 249)!important;
+}
+.width-50{
+  width: 120px;
 }

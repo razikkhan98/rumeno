@@ -16,7 +16,7 @@ const Award = () => {
             {/* <div className="col-lg-1"></div> */}
             <div className="col-lg-6 py-lg-4">
               <div className="award-content ms-lg-5">
-                <p className="award-heading">
+                <p className="award-heading responsive-heading">
                   Awards & <br /> Recognition
                 </p>
                 <p className="award-head">Rumeno Farmtech</p>
