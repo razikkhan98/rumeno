@@ -24,7 +24,7 @@ const Formdata = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 py-5">
-            <div className="form-data-content text-center pt-lg-5 mt-lg-5">
+            <div className="form-data-content text-center pt-lg-5 mt-5">
               <p className="text-chinese-black-color font-32-500">
                 Please select an animal to proceed
               </p>

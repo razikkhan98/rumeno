@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../common/navbar";
+import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
 import { deleteData, getData } from "../../../common/APIs/api";
@@ -86,11 +86,11 @@ const Parent = () => {
   return (
     <div className="parent">
       <Navbar />
-      <div className="row">
-        <div className="col-lg-2 col-md-3">
+      <div className="row pt-5">
+        <div className="col-lg-2 col-md-3 pt-5">
           <Sidebar />
         </div>
-        <div className="col-lg-10 col-md-9 py-0">
+        <div className="col-lg-10 col-md-9 pt-5">
           <div
             className="content-container flex-grow-1"
             style={{
@@ -99,7 +99,7 @@ const Parent = () => {
               padding: "0px 20px",
             }}
           >
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mt-2">
               <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
               {/* Add Goat Button */}
               <NavLink to="/parentform">

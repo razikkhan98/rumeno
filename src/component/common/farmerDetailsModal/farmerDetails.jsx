@@ -82,6 +82,10 @@ const FarmerDetails = () => {
                   placeholder="Enter Mobile No."
                   {...register("number", {
                     required: "Mobile Number is required",
+                    pattern: {
+                      value: /^\d{10}$/,
+                      message: "Mobile number must be 10 digits",
+                    },
                   })}
                 />
                 {errors.number && (

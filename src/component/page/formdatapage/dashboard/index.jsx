@@ -73,7 +73,7 @@
 // export default Dashboard;
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../common/navbar";
+import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import { Card, InputGroup } from "react-bootstrap";
 import DashboardTable from "../dashboardTable";
@@ -101,6 +101,7 @@ import Deworm from "../../../assets/img/dashboard/dewarming1.svg";
 import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
 import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
+import Header from "../../../common/Header/header";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -122,6 +123,10 @@ const Dashboard = () => {
   const [error, setError] = useState("");
   const [data, setdata] = useState([]);
 
+  const {farmName} =JSON.parse(localStorage?.getItem("farmerDetail")) ;
+  const user = sessionStorage?.getItem("animalName");
+  const selectedAnimal = user ? user : "Goat";
+
   useEffect(() => {
     // Get UID and animalName from sessionStorage
     const uid = sessionStorage.getItem("uid");
@@ -136,7 +141,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://2ace-2401-4900-8821-8785-10d5-9e6d-20d-9de3.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://a7fb-2401-4900-8821-8785-5430-8942-4182-8aaa.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
@@ -233,8 +238,12 @@ const Dashboard = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="parent">
+   <>
       <Navbar />
+    <div className="parent pt-5">
+      <div className="pt-5">
+          <Header title={farmName} subtitle={selectedAnimal} />
+        </div>
       <div className="row">
         <div className="col-lg-2 col-md-3">
           {/* Left Sidebar - Fixed */}
@@ -242,7 +251,7 @@ const Dashboard = () => {
             <Sidebar />
           </div>
         </div>
-        <div className="col-lg-10 col-md-9  py-3">
+        <div className="col-lg-10 col-md-9">
           {/* Right Content - Scrollable */}
           <div
             className="content-container flex-grow-1"
@@ -313,7 +322,7 @@ const Dashboard = () => {
                           </div>
                          </div>
                           <div className="col-lg-7">
-                            <Card.Title> 20</Card.Title>
+                            <Card.Title>{card.value}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
                               {" "}
                               {card.title}
@@ -337,6 +346,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 
