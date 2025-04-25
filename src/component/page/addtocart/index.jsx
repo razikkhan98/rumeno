@@ -320,10 +320,14 @@ const Addtocart = () => {
                         height: "56px",
                         borderRadius: "8px",
                       }}>
-                      <NavLink to="/cart">
+                      {/* <NavLink to="/cart"> */}
                         <Button
                           className="mx-3 border-0 px-lg-5"
-                          onClick={() => handleAddToCart(product)}
+                          onClick={() => {
+                            // handleAddToCart(product);
+                            console.log('product: ', product);
+
+                          }}
                           style={{
                             background: "#EC7229",
                             width: "100%",
@@ -333,7 +337,7 @@ const Addtocart = () => {
                         >
                           Add To Cart
                         </Button>
-                      </NavLink>
+                      {/* </NavLink> */}
                     </div>
                   </div>
                 </div>
