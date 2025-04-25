@@ -365,9 +365,9 @@ const Products = () => {
 
       <div
         className="col-lg-12 my-5 text-center d-flex align-items-center justify-content-center"
-        style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
+        style={{ background: "#F4FAFD", color: "#EC7229", }}
       >
-        <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
+        <p className="py-3 px-lg-0 px-1 mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
           Goat Feed Supplements Improving Performance and Health
         </p>
       </div>

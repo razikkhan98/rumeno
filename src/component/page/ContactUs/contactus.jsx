@@ -79,19 +79,19 @@ const ContactUs = () => {
                                 rel="noreferrer"
                                 target="_blank"
                                 className='text-color-orange'>
-                                <FaSquareFacebook className="me-lg-5 me-4 fs-3 shadow" />
+                                <FaSquareFacebook className="me-lg-5 me-4 fs-2" />
                             </a>
                             <a href="https://www.instagram.com/rumenofarmotech/"
                                 rel="noreferrer"
                                 target="_blank"
                                 className='text-color-orange'>
-                                <AiFillInstagram className="me-lg-5 me-4 fs-3" />
+                                <AiFillInstagram className="me-lg-5 me-4 fs-2" />
                             </a>
                             <a href='https://www.youtube.com/@RumenoFarmotech-bg5y'
                                 rel="noreferrer"
                                 target="_blank"
                                 className='text-color-orange'>
-                                <FaYoutube className="me-lg-5 me-4 fs-3" />
+                                <FaYoutube className="me-lg-5 me-4 fs-2" />
                             </a>
                             {/* <a href='/#' className='text-color-orange'> */}
                             <ReactWhatsapp
@@ -99,7 +99,7 @@ const ContactUs = () => {
                                 number="+91 7355043892"
                                 message="Hello World"
                             >
-                                <FaWhatsapp className="me-lg-5 me- fs-3" />
+                                <FaWhatsapp className="me-lg-5 me- fs-2" />
                             </ReactWhatsapp>
                             {/* </a> */}
                         </div>

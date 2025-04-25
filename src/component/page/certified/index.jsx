@@ -13,28 +13,28 @@ const Certified = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-10 m-auto">
-              <p className="certified-heading text-center mb-0">
+              <p className="certified-heading responsive-heading text-center mb-0">
                 An ISO 9001:2015 recognized by International Accredited Forum
                 Certified Company
               </p>
               <div className="certified-images gap-3">
                 <div className="certified-img d-flex align-items-center">
-                  <img src={Image1} alt="" className="h-75" />
+                  <img src={Image1} alt="Loading" className="h-75" />
                 </div>
                 <div className="certified-img">
-                  <img src={Image2} alt="" />
+                  <img src={Image2} alt="Loading" />
                 </div>
                 <div className="certified-img">
-                  <img src={Image6} alt="" />
+                  <img src={Image6} alt="Loading" />
                 </div>
                 <div className="certified-img">
-                  <img src={Image5} alt="" />
+                  <img src={Image5} alt="Loading" />
                 </div>
                 {/* <div className="certified-img">
                   <img src={Image4} alt="" />
                 </div> */}
                 <div className="certified-img">
-                  <img src={Image3} alt="" />
+                  <img src={Image3} alt="Loading" />
                 </div>
               </div>
             </div>
