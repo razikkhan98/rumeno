@@ -444,7 +444,7 @@ const AllProducts = () => {
                 className="col-lg-12 my-5 text-center d-flex align-items-center justify-content-center"
                 style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
             >
-                <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
+                <p className="mb-0 px-lg-0 px-1" style={{ fontSize: "18px", fontWeight: "400" }}>
                     Veterinary Products: Keeping Your Animals Happy and Healthy
                 </p>
             </div>
