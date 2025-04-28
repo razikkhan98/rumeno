@@ -8,6 +8,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../Context";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import FarmerDetails from "../farmerDetailsModal/farmerDetails";
+import { useNavigate } from "react-router-dom";
 
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -16,7 +17,7 @@ const Mainnav = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  
+  const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
@@ -95,6 +96,7 @@ const Mainnav = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
     setOpen(false);
+    navigate("/"); 
   };
 
   const isRouteActive = (pathname, routeList = []) => {
