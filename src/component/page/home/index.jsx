@@ -176,10 +176,10 @@ const Home = () => {
             <div className="label-title responsive-heading mt-3">
               Our Products According To Species
             </div>
-            <div>
+            {/* <div>
               <div className="about-line-large"></div>
               <div className="about-line-small"></div>
-            </div>
+            </div> */}
           </div>
         </div>
 
