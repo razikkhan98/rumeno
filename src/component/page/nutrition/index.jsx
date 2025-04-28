@@ -55,10 +55,10 @@ const Nutrition = () => {
   return (
     <>
       <div className="nutrition" style={{ backgroundColor: "#373737" }}>
-        <div className="container text-center text-white pt-5 pb-4">
+        <div className="container text-center text-white pt-lg-5 pt-3 pb-4">
           <div className="row">
             <div className="col-lg-12 col-md-10 m-auto">
-              <p className="nutrition-heading pb-lg-4 responsive-heading">
+              <p className="nutrition-heading pb-lg-4">
                 THE ROLE OF ANIMAL FEED SUPPLEMENTS
               </p>
 
@@ -76,7 +76,7 @@ const Nutrition = () => {
               </Slider>
 
               {/* Dots Navigation */}
-              <div className="mt-5">
+              <div className="mt-lg-5">
                 {slides.map((_, index) => (
                   <span
                     key={index}
@@ -96,24 +96,20 @@ const Nutrition = () => {
               </div>
 
               {/* Image Cards */}
-              <div className="nutrition-cards mt-4">
+              <div className="nutrition-cards mt-lg-4 mt-2">
                 {slides.map((slide, index) => (
                   <div
                     key={index}
-                    className="p-3 text-center mx-2 nutrition-card"
+                    className="text-center mx-2 nutrition-card"
                     style={{ cursor: "pointer" }}
                     onClick={() => sliderRef.current.slickGoTo(index)}
                   >
                     <div
                       style={{
-                        fontSize: "2rem",
-                        height: "120px",
-                        width: "134px",
-                        borderRadius: "24px",
                         backgroundColor:
                           activeIndex === index ? "#89C9E6" : "#89C9E6",
                       }}
-                      className={`d-flex align-items-center justify-content-around ${
+                      className={`nutrition-img mx-auto d-flex align-items-center justify-content-around ${
                         activeIndex === index ? "bg-lightblue" : "bg-opacity"
                       }`}
                     >
@@ -121,7 +117,7 @@ const Nutrition = () => {
                     </div>
                     <div>
                       <p
-                        className={`mt-4 font-20-500 ${
+                        className={`mt-lg-4 mb-0 nutrition-img-text ${
                           activeIndex === index ? "text-white" : "text-second"
                         }`}
                         style={{
