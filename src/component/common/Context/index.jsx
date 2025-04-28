@@ -7,7 +7,9 @@ export const CartProvider = ({ children }) => {
   const [uid, setuid] = useState(null); // User Id
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
-  console.log('userName: ', userName);
+  const [farmHouseName, setFarmHouseName] = useState(null);
+  console.log('farmHouseName: ', farmHouseName);
+ 
 
 
   // Load cart from sessionStorage or default to an empty array
@@ -66,7 +68,7 @@ export const CartProvider = ({ children }) => {
 
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid, userName, setUserName, userEmail, setUserEmail }}>
+    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid, userName, setUserName, userEmail, setUserEmail,farmHouseName, setFarmHouseName }}>
       {children}
     </CartContext.Provider>
   );
