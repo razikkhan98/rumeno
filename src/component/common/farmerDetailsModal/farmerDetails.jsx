@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { postData } from "../APIs/api";
+import { toast } from "react-toastify";
 
 const FarmerDetails = () => {
   const {
@@ -16,18 +18,44 @@ const FarmerDetails = () => {
 
   const handleClose = () => setShow(false);
   const navigate = useNavigate();
-  const onSubmit = (data) => {
-    localStorage.setItem("farmerDetail", JSON.stringify(data));
-    reset(); // clear the form
-    handleClose(); // close the modal
-    navigate("/farmdata", { state: data });
-  };
-  const handleShow = () => {
-    const farmerDetail = JSON.parse(localStorage.getItem("farmerDetail"));
-    if (farmerDetail) {
-      navigate("/farmdata", { state: farmerDetail });
+
+  const uid = sessionStorage.getItem("uid");
+  const onSubmit = async (data) => {
+    const ApiUrl = "/user/farmdata"
+    const payload = {
+      ...data, 
+      uid: uid,   
+    };
+
+    try {
+      const response = await postData(ApiUrl, payload);
+      toast.success(response?.data?.message, {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      sessionStorage.setItem("farmHouseName", data.farmHouseName);
+      reset(); // clear the form
+      handleClose(); // close the modal
+      navigate("/farmdata", { state: data });
+    } catch (error) {
+      toast.error(error?.data?.message || "Failed to create account!", {
+        position: "top-right",
+        autoClose: 5000,
+      });
     }
-    setShow(!farmerDetail ? true : false);
+  };
+
+
+  const handleShow = () => {
+    const setfarmHouseName = sessionStorage?.getItem("farmHouseName");
+    console.log('setfarmHouseName: ', setfarmHouseName);
+    if (setfarmHouseName && setfarmHouseName.trim() !== "") {
+      navigate("/farmdata", { state: { farmHouseName: setfarmHouseName } });
+    }
+    else {
+      setShow(true);
+    }
+
   };
 
   return (
@@ -80,7 +108,7 @@ const FarmerDetails = () => {
                   type="number"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Mobile No."
-                  {...register("number", {
+                  {...register("mobileNumber", {
                     required: "Mobile Number is required",
                     pattern: {
                       value: /^\d{10}$/,
@@ -88,8 +116,8 @@ const FarmerDetails = () => {
                     },
                   })}
                 />
-                {errors.number && (
-                  <p className="text-danger">{errors.number.message}</p>
+                {errors.mobileNumber && (
+                  <p className="text-danger">{errors.mobileNumber.message}</p>
                 )}
               </div>
 
@@ -101,12 +129,12 @@ const FarmerDetails = () => {
                   type="text"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Farm House Name"
-                  {...register("farmName", {
+                  {...register("farmHouseName", {
                     required: "Farm House Name is required",
                   })}
                 />
-                {errors.farmName && (
-                  <p className="text-danger">{errors.farmName.message}</p>
+                {errors.farmHouseName && (
+                  <p className="text-danger">{errors.farmHouseName.message}</p>
                 )}
               </div>
 
@@ -133,12 +161,12 @@ const FarmerDetails = () => {
                   type="text"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Address"
-                  {...register("address", {
+                  {...register("farmAddress", {
                     required: "Address is required",
                   })}
                 />
-                {errors.address && (
-                  <p className="text-danger">{errors.address.message}</p>
+                {errors.farmAddress && (
+                  <p className="text-danger">{errors.farmAddress.message}</p>
                 )}
               </div>
 
@@ -150,12 +178,12 @@ const FarmerDetails = () => {
                   type="number"
                   className="form-control form-control-detail shadow"
                   placeholder="Enter Number of Animals"
-                  {...register("numberOfAnimal", {
+                  {...register("animalsNumber", {
                     required: "Number of Animal is required",
                   })}
                 />
-                {errors.numberOfAnimal && (
-                  <p className="text-danger">{errors.numberOfAnimal.message}</p>
+                {errors.animalsNumber && (
+                  <p className="text-danger">{errors.animalsNumber.message}</p>
                 )}
               </div>
             </div>

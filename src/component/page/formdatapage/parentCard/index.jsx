@@ -24,9 +24,9 @@ const Parent = () => {
         setAnimals(response.data);
         console.log('response.data: ', response.data[2].postWean);
       } catch (error) {
-        toast.error(
-          error.message || "Error fetching animal data. Please try again."
-        );
+        // toast.error(
+        //   error.message || "Error fetching animal data. Please try again."
+        // );
       } finally {
         setLoading(false);
       }
