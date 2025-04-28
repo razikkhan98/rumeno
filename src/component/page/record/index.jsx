@@ -16,6 +16,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 // import { FaPencil } from "react-icons/fa6";
 import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
+import axios from "axios";
 
 
 const Record = () => {
@@ -498,6 +499,7 @@ const Record = () => {
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
   console.log('submittedData: ', submittedData);
   const [editIndex, setEditIndex] = useState(null);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const {
@@ -511,6 +513,7 @@ const Record = () => {
   console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
+  console.log('uniqueId: ', uniqueId);
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
@@ -520,11 +523,10 @@ const Record = () => {
 
 
 
-  const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
+  const uid = sessionStorage.getItem("uid");
   console.log('uid: ', uid);
 
   // Show all Records Postwean, milk etc.....
-  
   const fetchRecordDetails = async () => {
     try {
       const response = await getData(GET_API_ENDPOINTS[activeTab]);
@@ -532,47 +534,57 @@ const Record = () => {
       setSubmittedData(response?.data || []);
 
     } catch (error) {
-      toast.error("Error fetching animal data.");
+      // toast.error("Error fetching animal data.");
     }
   };
   useEffect(() => {
     fetchRecordDetails();
   }, [activeTab]);
 
-  const fetchAnimals = async () => {
-    try {
-      const response = await getData("/user/animaldata/newEntity/getAll");
-      console.log('response basic: ', response);
-      setAnimals(response.data || []);
-      // setPostWean(response.data || []);
+  // const fetchAnimals = async () => {
+  //   try {
+  //     const response = await getData("user/animaldata/newEntity/getAllById");
+  //     console.log('response basic: ', response);
+  //     setAnimals(response.data || []);
+  //   } catch (error) {
+      
+  //   }
+  // };
 
-    } catch (error) {
-      // toast.error("Error fetching animal data.");
+  const fetchAnimal = async () => {
+    console.log("Heloo")
+    try {
+      const response = await axios.get(
+        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        {
+          params: { animalName: selectedAnimal, uid },
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Required for ngrok
+            "Content-Type": "application/json",   // Adjust as needed
+          },
+        }
+      );
+      console.log('response: ', response,);
+      setAnimals(response.data.animals || []);
+      if(response.data.animals) {
+        setLoading(false)
+      }
+    } catch (err) {
+      setError("Error fetching data");
     }
   };
 
-  // Show Basic Details Data
-  useEffect(() => {
-    if (!selectedAnimal) {
-      fetchAnimals();
-    }
-  }, [selectedAnimal, uniqueId]);
 
-  // child
-  // const fetchChildren = async () => {
-  //   try {
-  //     const response = await getData("/user/animaldata/child/getAll");
-  //     setChildren(response.data || []);
-  //   } catch (error) {
-  //     toast.error("Error fetching child data.");
-  //   } finally {
-  //     setLoading(false);
+  // Show Basic Details Data
+  // useEffect(() => {
+  //   if (!selectedAnimal) {
+  //     fetchAnimal();
   //   }
-  // };
-  useEffect(() => {
-    fetchAnimals();
-    // fetchChildren();
-  }, []);
+  // }, [selectedAnimal, uniqueId]);
+
+  // useEffect(() => {
+  //   fetchAnimals();
+  // }, []);
 
   useEffect(() => {
     const tabMapping = {
@@ -642,7 +654,7 @@ const Record = () => {
 
     setSubmittedData(formData);
     setShowForm(false);
-    fetchAnimals();
+    // fetchAnimal();
   };
 
   // ====================================================
@@ -650,13 +662,12 @@ const Record = () => {
 
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
-    // setEditIndex(index);
-    // reset(submittedData[index]); // Set form data for editing
+  
     console.log("submittedData[index]: ", submittedData[index]);
-    // setIsActive(true);
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
+
     // Dynamically get the ID key based on the active tab
     const idKeyMap = {
       PostWean: "postWeanId",
