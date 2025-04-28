@@ -11,7 +11,6 @@ import axios from "axios";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
-  console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
   const uid = sessionStorage.getItem("uid");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
@@ -30,7 +29,6 @@ const Parent = () => {
           },
         }
       );
-      console.log('response: ', response,);
       setAnimals(response.data.animals || []);
       if(response.data.animals) {
         setLoading(false)
@@ -48,8 +46,7 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
-  console.log('selectedAnimal: ', selectedAnimal);
-  console.log('filteredAnimals: ', filteredAnimals);
+
 
   // Add Goat 
   const addGoat = () => {

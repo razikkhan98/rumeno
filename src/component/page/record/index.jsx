@@ -488,7 +488,6 @@ const Record = () => {
   };
 
   const [animals, setAnimals] = useState([]);
-  console.log('animals: ', animals);
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -497,7 +496,6 @@ const Record = () => {
   const [editActive, setEditActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
-  console.log('submittedData: ', submittedData);
   const [editIndex, setEditIndex] = useState(null);
   const [error, setError] = useState("");
 
@@ -510,10 +508,8 @@ const Record = () => {
     formState: { isDirty },
   } = useForm();
   const location = useLocation();
-  console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
-  console.log('uniqueId: ', uniqueId);
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
@@ -524,7 +520,6 @@ const Record = () => {
 
 
   const uid = sessionStorage.getItem("uid");
-  console.log('uid: ', uid);
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {

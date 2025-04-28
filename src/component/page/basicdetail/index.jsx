@@ -33,15 +33,16 @@ const GoatDetailForm = () => {
 
   // const farmerDetail = location.state?.farmName;
   // 
-  const farmerDetail = JSON?.parse(sessionStorage.getItem("farmerDetail") ?? "{ }");
+  // const farmerDetail = JSON?.parse(sessionStorage.getItem("farmerDetail") ?? "{ }");
   // 
 
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
-    console.log('data: ', data);
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
       const animalName = sessionStorage.getItem("animalName"); // Retrieve animalName from sessionStorage
+      const farmHouseName = sessionStorage.getItem("farmHouseName"); // Retrieve animalName from sessionStorage
+
       // Convert gender value to lowercase
 
       const formData = {
@@ -51,9 +52,8 @@ const GoatDetailForm = () => {
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,
-        farmName: farmerDetail.farmHouseName,
+        farmHouseName,
       };
-      console.log('uniqueId: ', uniqueId);
 
 
       // Determine API endpoint dynamically based on type
@@ -66,7 +66,6 @@ const GoatDetailForm = () => {
       const response = await (type === "edit"
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
-      console.log('data?.uid: ', data?.uid);
 
 
       if (response.data.message === "success") {
@@ -96,19 +95,13 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-
-
         if (response.data && response.data.length > 0) {
-
-
           const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
           const animalData = filteredAnimals[storedIndex];
 
-          console.log('animalData: ', animalData);
 
           setAnimalUniqueId(animalData.uniqueId)
 
-          console.log('filteredAnimals: ', filteredAnimals);
 
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
