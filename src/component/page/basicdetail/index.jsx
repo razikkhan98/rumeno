@@ -33,7 +33,7 @@ const GoatDetailForm = () => {
 
   // const farmerDetail = location.state?.farmName;
   // 
-  const farmerDetail = JSON?.parse(localStorage.getItem("farmerDetail") ?? "{ }");
+  const farmerDetail = JSON?.parse(sessionStorage.getItem("farmerDetail") ?? "{ }");
   // 
 
   const storedIndex = localStorage.getItem("currentIndex");
@@ -51,7 +51,7 @@ const GoatDetailForm = () => {
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,
-        farmName: farmerDetail.farmName,
+        farmName: farmerDetail.farmHouseName,
       };
       console.log('uniqueId: ', uniqueId);
 
