@@ -1,42 +1,55 @@
 
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../common/navbar";
+import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
 import { deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
   console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
+  const uid = sessionStorage.getItem("uid");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
+  const [error, setError] = useState("");
 
-  const endpoint = "/user/animaldata/parent/getAll";
+  const fetchAnimal = async () => {
+    console.log("Heloo")
+    try {
+      const response = await axios.get(
+        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        {
+          params: { animalName: selectedAnimal, uid },
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Required for ngrok
+            "Content-Type": "application/json",   // Adjust as needed
+          },
+        }
+      );
+      console.log('response: ', response,);
+      setAnimals(response.data.animals || []);
+      if(response.data.animals) {
+        setLoading(false)
+      }
+    } catch (err) {
+      setError("Error fetching data");
+    }
+  };
 
   useEffect(() => {
-    const fetchAnimals = async () => {
-      try {
-        const response = await getData(endpoint);
-        setAnimals(response.data);
-        console.log('response.data: ', response.data[2].postWean);
-      } catch (error) {
-        toast.error(
-          error.message || "Error fetching animal data. Please try again."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAnimals();
-  }, []); // Fetch only once on mount
+    fetchAnimal()
+  }, []);
 
   // Filter animals based on selectedAnimal
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('selectedAnimal: ', selectedAnimal);
+  console.log('filteredAnimals: ', filteredAnimals);
 
   // Add Goat 
   const addGoat = () => {
@@ -44,25 +57,7 @@ const Parent = () => {
   };
 
 
-  // // Delete Animal Card
-  // const handleDeleteAnimal = async (uniqueId) => {
-  //   setAnimals((prevAnimals) =>
-  //     prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
-  //   );
-
-  //   try {
-  //     const response = await deleteData(
-  //       "/user/animaldata/parent/delete",
-  //       uniqueId
-  //     );
-  //     toast.success("Animal deleted successfully.");
-  //     console.log("response:------deleteData ", response);
-  //   } catch (error) {
-  //     toast.error(
-  //       error.message || "Error deleting animal. Please try again."
-  //     );
-  //   }
-  // };
+  
 
   // Delete  Animal Card
   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
@@ -74,7 +69,7 @@ const Parent = () => {
     setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      await deleteData("/user/animaldata/parent/delete", uniqueId);
+      await deleteData("/user/animaldata/newEntity/delete", uniqueId);
       toast.success("Animal deleted successfully.");
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
@@ -84,11 +79,11 @@ const Parent = () => {
   return (
     <div className="parent">
       <Navbar />
-      <div className="row">
-        <div className="col-lg-2 col-md-3">
+      <div className="row pt-5">
+        <div className="col-lg-2 col-md-3 pt-5">
           <Sidebar />
         </div>
-        <div className="col-lg-10 col-md-9 py-0">
+        <div className="col-lg-10 col-md-9 pt-5">
           <div
             className="content-container flex-grow-1"
             style={{
@@ -97,7 +92,7 @@ const Parent = () => {
               padding: "0px 20px",
             }}
           >
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mt-2">
               <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
               {/* Add Goat Button */}
               <NavLink to="/parentform">
@@ -128,6 +123,22 @@ const Parent = () => {
                       height={animal.height}
                       gender={animal.gender}
                       age={animal.ageYear}
+                      weightKg={animal.weightKg}
+                      fatherTag={animal.fatherTag}
+                      motherTag={animal.motherTag}
+                      birthWeight={animal.birthWeight}
+                      birthType={animal.birthType}
+                      motherWeanDate={animal.motherWeanDate}
+                      purchaseDate={animal.purchaseDate}
+                      lastVaccineDate={animal.lastVaccineDate}
+                      lastVaccineName={animal.lastVaccineName}
+                      isPregnant={animal.isPregnant}
+                      dateMading={animal.dateMading}
+                      pregnencyFail={animal.pregnencyFail}
+                      weanDate={animal.weanDate}
+                      vaccineName={animal.vaccineName}
+                      vaccineDate={animal.vaccineDate}
+                      farmName={animal.farmName}
                       ageMonth={animal.ageMonth}
                       bodyScore={animal.bodyScore}
                       pregnancyDetails={animal.pregnancyDetails}

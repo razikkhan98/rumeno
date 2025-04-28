@@ -8,13 +8,16 @@ import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../Context";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import FarmerDetails from "../farmerDetailsModal/farmerDetails";
+import { useNavigate } from "react-router-dom";
 
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
-  console.log("activeLink: ", activeLink);
+  const [username, setUsername] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const navigate = useNavigate();
   const { cart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
@@ -34,22 +37,50 @@ const Mainnav = () => {
 
   const toggleNavbar = () => {
     setIsNavbarOpen(!isNavbarOpen);
+    setIsProductsOpen(false);
+    setIsServicesOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if(isNavbarOpen) {
+        setIsNavbarOpen(false);
+      }
+      if(isProductsOpen) {
+        setIsProductsOpen(false);
+      }
+      if(isServicesOpen) {
+        setIsServicesOpen(false)
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[isNavbarOpen, isProductsOpen, isServicesOpen]);
+
+
+
   const location = useLocation();
-  console.log("location: ", location);
+  
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    console.log("link: ", link);
+    
     setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
     setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
 
   useEffect(() => {
     const user = sessionStorage?.getItem("uid");
+    const name = sessionStorage?.getItem("name");
+    const email = sessionStorage?.getItem("email");
+
     if (user) {
       setIsLoggedIn(true);
+      setUsername(name || "User");
+      setUserEmail(email || "Email12@gmail.com");
     }
   }, []);
 
@@ -65,23 +96,26 @@ const Mainnav = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
     setOpen(false);
+    navigate("/"); 
   };
 
   const isRouteActive = (pathname, routeList = []) => {
     return routeList.some((route) => pathname.includes(route));
   };
   const active = isRouteActive(location.pathname, [
+    "/allproducts",
     "/goatproduct",
     "/cattleproduct",
     "/poultryproduct",
     "/dogproduct",
+    "productDetails",
   ]);
-  console.log('active: ', active);
+  
 
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-    // style={{ backgroundColor: "#DDF0F8" }}
+      // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-lg-5 px-3 d-flex">
         <a className="navbar-brand me-lg-2 me-0" href="/#">
@@ -93,13 +127,13 @@ const Mainnav = () => {
         </a>
 
         {/* Action Buttons  for mobile screen*/}
-        <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto gap-2">
+        <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto">
           <NavLink to="/cart">
-            <div className="position-relative ms-5">
+            <div className="position-relative">
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
-                // style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                  // style={{ height: "24px", width: "24px", color: "#FB9038" }}
                 />
               </div>
               {cart && Object.keys(cart).length > 0 && (
@@ -120,64 +154,81 @@ const Mainnav = () => {
             </div>
           </NavLink>
 
-          <div className="position-relative">
-            {/* User Icon and Arrow */}
-            <div
-              className="user-icon my-3 d-flex align-items-center justify-content-center"
-              style={{ cursor: "pointer" }}
-              onClick={toggleDropdown}
-            >
-              <img
-                src={User}
-                alt="User"
-                className="rounded-circle user-icon-img"
-              />
-              <MdOutlineKeyboardArrowDown />
-            </div>
+          {!isLoggedIn ? (
+            <><NavLink to="/login" className={"farm-btn my-3 mx-2"}>
+            <button className="btn rounded-pill text-white">
+              Login
+            </button>
+          </NavLink> </>
+          ) : (
+            <> </>
+          )}
 
-            {/* Dropdown */}
-            {open && (
-              <div className="dropdown-menu show py-2">
-                <div>
-                  <div
-                    className="user-icon my-3 d-flex align-items-center justify-content-center"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img
-                      src={User}
-                      alt="User"
-                      className="rounded-circle user-icon-img"
-                    />
-                  </div>
-                  <p className="text-center mb-0">User Name</p>
-                </div>
+          {/* User Profile PopUp for Mobile Screen */}
+          {isLoggedIn ? (
+            <div className="position-relative">
+              {/* User Icon and Arrow */}
+              <div
+                className="user-icon my-3 d-flex align-items-center justify-content-center"
+                style={{ cursor: "pointer" }}
+                onClick={toggleDropdown}
+              >
+                <img
+                  src={User}
+                  alt="User"
+                  className="rounded-circle user-icon-img"
+                />
+                <MdOutlineKeyboardArrowDown />
+              </div>
 
-                <div className="d-flex justify-content-center">
+              {/* Dropdown user Profile  */}
+              {open && (
+                <div className="dropdown-menu dropdow-bg py-0 px-3 border-0 rounded-4 show">
                   {isLoggedIn ? (
-                    <div className="farm-btn my-3">
-                      <button
-                        onClick={handleLogout}
-                        className="btn rounded-pill text-white"
+                    <div>
+                      <div
+                        className="user-icon mt-3 d-flex align-items-center justify-content-center"
+                        style={{ cursor: "pointer" }}
                       >
-                        {" "}
-                        <RiLogoutBoxRLine className="me-2" /> Logout
-                      </button>
+                        <img
+                          src={User}
+                          alt="User"
+                          className="rounded-circle user-icon-img"
+                        />
+                      </div>
+                      <p className="text-center mb-0 pt-2">{username}</p>
+                      <p className="text-center mb-2">{userEmail}</p>
+
                     </div>
                   ) : (
-                    <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">
-                        Login
-                      </button>
-                    </NavLink>
+                    <> </>
                   )}
+
+                  <div className="d-flex justify-content-center border-top border-2 border-dark">
+                    {isLoggedIn ? (
+                      <div className="farm-btn my-3">
+                        <button
+                          onClick={handleLogout}
+                          className="btn rounded-pill text-white"
+                        >
+                          {" "}
+                          <RiLogoutBoxRLine className="me-2" /> Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <> </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <> </>
+          )}
         </div>
 
         <button
-          className="navbar-toggler px-1"
+          className="navbar-toggler px-1 ms-1"
           type="button"
           onClick={toggleNavbar}
           aria-expanded={isNavbarOpen}
@@ -187,8 +238,9 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
-            }`}
+          className={`navbar-collapse custom-collapse ${
+            isNavbarOpen ? "custom-collapse-show" : ""
+          }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -196,8 +248,9 @@ const Mainnav = () => {
             <NavLink to={"/"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <a
-                  className={`nav-link ${String(location?.pathname) === "/" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Home")}
                 >
                   Home
@@ -214,9 +267,10 @@ const Mainnav = () => {
                 Products
               </a>
               <div
-              //  ref={dropdownRef}
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
-                  }`}
+                //  ref={dropdownRef}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isProductsOpen ? "show" : ""
+                }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -224,7 +278,12 @@ const Mainnav = () => {
                       VETERINARY PRODUCTS
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>All Animal Supplements</li>
+                      <NavLink
+                        to={"/allproducts"}
+                        className="text-decoration-none"
+                      >
+                        <li>All Animal Supplements</li>
+                      </NavLink>
                       <NavLink
                         to="/goatproduct"
                         className="text-decoration-none"
@@ -257,9 +316,14 @@ const Mainnav = () => {
                       OTHER CATEGORIES
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <li>Farmhouse Equipments</li>
-                      <li>Human Consumable</li>
-                      <li>Crop Seeds</li>
+                      <NavLink
+                        to={"/equipment"}
+                        className="text-decoration-none"
+                      >
+                        <li>Farmhouse Equipments</li>
+                        <li>Human Consumable</li>
+                        <li>Crop Seeds</li>
+                      </NavLink>
                     </ul>
                   </div>
                   <div>
@@ -274,29 +338,48 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <div
-                className={`nav-link ${String(location?.pathname) === "/service" ? "active" : ""
-                  }`}
+                className={`nav-link ${
+                  String(location?.pathname) === "/service" ||
+                  String(location?.pathname) === "/equipment" ||
+                  String(location?.pathname) === "/goatfarming" ||
+                  String(location?.pathname) === "/dairyconsultant"
+                    ? "active"
+                    : ""
+                }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
-                  }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
+                  isServicesOpen ? "show" : ""
+                }`}
               >
-                <div className="products-collapse-list gap-5 ms-lg-5 py-3">
-                  <div className="ms-4">
+                <div className="products-collapse-list gap-5 ms-lg-5 py-3 px-1">
+                  <div className="ms-lg-4 ms-2">
                     <p className="products-title text-start text-uppercase">
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
+                      <NavLink to="/service" className="text-decoration-none">
                       <li className="cursor">Why Choose US?</li>
+                      </NavLink>
                       <NavLink to="/service" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
-                      <li className="cursor">Business Startup Support </li>
-                      <li className="cursor">Query Form</li>
+                      <NavLink
+                        to={"/equipment"}
+                        className="text-decoration-none"
+                      >
+                        <li className="cursor">Business Startup Support </li>
+                      </NavLink>
+                      <NavLink
+                        to={"/equipment"}
+                        className="text-decoration-none"
+                      >
+                        <li className="cursor">Query Form</li>
+                      </NavLink>
                       {/* <li>Poultry Supplements</li> */}
                     </ul>
                   </div>
@@ -311,10 +394,15 @@ const Mainnav = () => {
                       >
                         <li>About</li>
                       </NavLink>
-                      <li className="cursor">FAQs</li>
+                      <NavLink
+                        to={"/goatfarming"}
+                        className="text-decoration-none"
+                      >
+                        <li className="cursor">FAQs</li>
+                      </NavLink>
                     </ul>
                   </div>
-                  <div>
+                  <div className="me-2">
                     <p className="products-title text-start text-uppercase">
                       dairy consultant
                     </p>
@@ -325,7 +413,12 @@ const Mainnav = () => {
                       >
                         <li>About</li>
                       </NavLink>
-                      <li>Dairy Management</li>
+                      <NavLink
+                        to={"/dairyconsultant"}
+                        className="text-decoration-none"
+                      >
+                        <li>Dairy Management</li>
+                      </NavLink>
                     </ul>
                   </div>
                 </div>
@@ -334,8 +427,9 @@ const Mainnav = () => {
             <NavLink to={"/blog"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${String(location?.pathname) === "/blog" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/blog" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Blogs")}
                 >
                   Blogs
@@ -345,37 +439,43 @@ const Mainnav = () => {
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${String(location?.pathname) === "/contactus" ? "active" : ""
-                    }`}
+                  className={`nav-link ${
+                    String(location?.pathname) === "/contactus" ? "active" : ""
+                  }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
                 </div>
               </li>
             </NavLink>
-            <li className="d-lg-none">
+            <li className="d-lg-none nav-itme mt-2">
               {isLoggedIn ? (
                 <>
                   {" "}
                   {/* Smart Live stock button and Open Modal */}
-                <FarmerDetails />
+                  <FarmerDetails />
                 </>
               ) : (
-                <> </>
+                <></>
               )}
             </li>
           </ul>
         </div>
+        
         {/* Action Buttons for laptop screen */}
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
           {isLoggedIn ? (
             <>
-              {" "} 
+              {" "}
               {/* Smart Live stock button and Open Modal */}
-                <FarmerDetails />
+              <FarmerDetails />
             </>
           ) : (
-            <> </>
+            <>
+              <NavLink to="/login" className={"farm-btn my-3"}>
+                <button className="btn rounded-pill text-white">Login</button>
+              </NavLink>
+            </>
           )}
           <NavLink to="/cart">
             <div className="position-relative">
@@ -405,65 +505,68 @@ const Mainnav = () => {
               )}
             </div>
           </NavLink>
-          <div className="position-relative">
-            {/* User Icon and Arrow */}
-            <div
-              className="user-icon my-3 d-flex align-items-center justify-content-center"
-              style={{ cursor: "pointer" }}
-              onClick={toggleDropdown}
-            >
-              <img
-                src={User}
-                alt="User"
-                className="rounded-circle user-icon-img"
-              />
-              <MdOutlineKeyboardArrowDown />
-            </div>
 
-            {/* Dropdown user Profile  */}
-            {open && (
-              <div className="dropdown-menu show py-2">
-                <div>
-                  <div
-                    className="user-icon my-3 d-flex align-items-center justify-content-center"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <img
-                      src={User}
-                      alt="User"
-                      className="rounded-circle user-icon-img"
-                    />
-                  </div>
-                  {/* <p className="text-center mb-0">User Name</p> */}
-                  {isLoggedIn ? (
-                    <p className="text-center mb-0">User Name</p>
-                  ) : (
-                    <p className="text-center d-none mb-0">User Name</p>
-                  )}
-                </div>
+          {/* User Profile PopUp for Large Screen */}
+          {isLoggedIn ? (
+            <div className="position-relative">
+              {/* User Icon and Arrow */}
+              <div
+                className="user-icon my-3 d-flex align-items-center justify-content-center"
+                style={{ cursor: "pointer" }}
+                onClick={toggleDropdown}
+              >
+                <img
+                  src={User}
+                  alt="User"
+                  className="rounded-circle user-icon-img"
+                />
+                <MdOutlineKeyboardArrowDown />
+              </div>
 
-                <div className="d-flex justify-content-center">
+              {/* Dropdown user Profile  */}
+              {open && (
+                <div className="dropdown-menu dropdow-bg py-0 px-3 border-0 rounded-4 show">
                   {isLoggedIn ? (
-                    <div className="farm-btn my-3">
-                      <button
-                        onClick={handleLogout}
-                        className="btn rounded-pill text-white"
+                    <div>
+                      <div
+                        className="user-icon mt-3 d-flex align-items-center justify-content-center"
+                        style={{ cursor: "pointer" }}
                       >
-                        {" "}
-                        <RiLogoutBoxRLine className="me-2" /> Logout
-                      </button>
+                        <img
+                          src={User}
+                          alt="User"
+                          className="rounded-circle user-icon-img"
+                        />
+                      </div>
+                      <p className="text-center mb-0 pt-2">{username}</p>
+                      <p className="text-center mb-2">{userEmail}</p>
+
                     </div>
                   ) : (
-                    <NavLink to="/login" className={"farm-btn my-3"}>
-                      <button className="btn rounded-pill text-white">
-                        Login
-                      </button>
-                    </NavLink>
+                    <> </>
                   )}
+
+                  <div className="d-flex justify-content-center border-top border-2 border-dark">
+                    {isLoggedIn ? (
+                      <div className="farm-btn my-3">
+                        <button
+                          onClick={handleLogout}
+                          className="btn rounded-pill text-white"
+                        >
+                          {" "}
+                          <RiLogoutBoxRLine className="me-2" /> Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <> </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            <> </>
+          )}
         </div>
       </div>
     </nav>

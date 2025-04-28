@@ -19,7 +19,8 @@ import Prdimg4 from "../../assets/img/animals/prdaml4.png";
 import Prdimg5 from "../../assets/img/animals/prdaml5.png";
 import Prdimg6 from "../../assets/img/animals/prdaml6.png";
 import Prdimg7 from "../../assets/img/animals/prdaml7.png";
-import Prdimg8 from "../../assets/img/animals/prdaml8.png";
+import Prdimg8 from "../../assets/img/animals/pigrabbit.png";
+import { NavLink } from "react-router-dom";
 
 const animals = [
   { id: "cow", imgSrc: Prdimg1 },
@@ -170,15 +171,15 @@ const Home = () => {
         <div className="text-center pt-lg-5 px-lg-5">
           <div
             className="d-flex my-3 align-items-center"
-           
+
           >
-            <div className="label-title mt-3">
+            <div className="label-title responsive-heading mt-3">
               Our Products According To Species
             </div>
-            <div>
+            {/* <div>
               <div className="about-line-large"></div>
               <div className="about-line-small"></div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -192,15 +193,17 @@ const Home = () => {
         <div className="row px-5">
           {animals?.map((animal) => (
             <div key={animal?.id} className="col-lg-3 col-md-6 col-sm-6">
-              <div className="card-box my-2 ">
-                <div className="card1 border-radius-20 shadow-2">
-                  <img
-                    src={animal?.imgSrc}
-                    alt="Rumeno-Veterinary-Product"
-                    className="card-img"
-                  />
+              <NavLink to={"/goatproduct"}>
+                <div className="card-box my-2 ">
+                  <div className="card1 border-radius-20 shadow-2">
+                    <img
+                      src={animal?.imgSrc}
+                      alt="Rumeno-Veterinary-Product"
+                      className="card-img"
+                    />
+                  </div>
                 </div>
-              </div>
+              </NavLink>
             </div>
           ))}
         </div>

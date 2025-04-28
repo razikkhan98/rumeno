@@ -4,20 +4,24 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
 
-  const [uid , setuid] = useState(null); // User Id
+  const [uid, setuid] = useState(null); // User Id
+  const [userName, setUserName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
+  const [farmHouseName, setFarmHouseName] = useState(null);
+  console.log('farmHouseName: ', farmHouseName);
+ 
 
 
+  // Load cart from sessionStorage or default to an empty array
+  const [cart, setCart] = useState(() => {
+    const savedCart = sessionStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-    // Load cart from sessionStorage or default to an empty array
-    const [cart, setCart] = useState(() => {
-      const savedCart = sessionStorage.getItem("cart");
-      return savedCart ? JSON.parse(savedCart) : [];
-    });
-    
- // Save cart to sessionStorage whenever it changes
- useEffect(() => {
-  sessionStorage.setItem("cart", JSON.stringify(cart));
-}, [cart]);
+  // Save cart to sessionStorage whenever it changes
+  useEffect(() => {
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
 
 
@@ -26,7 +30,7 @@ export const CartProvider = ({ children }) => {
       const existingItem = prevCart.find(
         (item) => item.id === product.id && item.selectedWeight === selectedWeight
       );
-  
+
       if (existingItem) {
         return prevCart.map((item) =>
           item.id === product.id && item.selectedWeight === selectedWeight
@@ -38,16 +42,16 @@ export const CartProvider = ({ children }) => {
       }
     });
   };
-  
-   
 
-    const incrementQuantity = (productId) => {
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    };
+
+
+  const incrementQuantity = (productId) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
 
 
 
@@ -64,8 +68,8 @@ export const CartProvider = ({ children }) => {
 
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid }}>
-    {children}
-  </CartContext.Provider>
+    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid, userName, setUserName, userEmail, setUserEmail,farmHouseName, setFarmHouseName }}>
+      {children}
+    </CartContext.Provider>
   );
 };

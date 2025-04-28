@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../common/navbar/mainnavbar";
 import { Button } from "react-bootstrap";
@@ -12,6 +12,7 @@ import { CiStar } from "react-icons/ci";
 import Header from "../../common/Header/header";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { getData, postData } from "../../common/APIs/api";
 
 const StarRating = ({ rating, onRatingChange }) => {
   const handleClick = (index) => {
@@ -100,21 +101,53 @@ const Addtocart = () => {
   };
 
 
+  const fetchReview = async () => {
+      try {
+        const response = await getData("user/getReview");
+        console.log('response Review: ', response);
   
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      reset
-    } = useForm();
-  
-    const onSubmit = (data) => {
-      const formData = { ...data, rating: reviewRating };
-      console.log('Review submitted:', formData);
-      // submit logic here...
-      reset();
-      // setShowReviewForm(false);
+      } catch (error) {
+        toast.error("Error fetching animal data.");
+      }
     };
+
+      useEffect(() => {
+          fetchReview();
+      }, []);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm();
+
+  // Review Form Submit Function Start
+
+  const endpoint = "/user/review";
+  const onSubmit = async (data) => {
+    const uid = sessionStorage.getItem("uid");
+    const formData = { ...data, uid, productid: product?.id, rating: reviewRating };
+    try {
+      const response = await postData(endpoint, formData);
+      console.log('response: ', response);
+      console.log('Review submitted:', formData);
+      toast.success(response?.data?.message,
+        {
+          position: "top-right",
+          autoClose: 3000,
+        }
+      );
+      setShowReviewForm(false);
+
+      reset();
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
 
   return (
     <>
@@ -124,7 +157,7 @@ const Addtocart = () => {
           <Header title="Goat Suppliment" subtitle={product.name} />
         </div>
         <div className="container pt-lg-5">
-          <div className="row pt-lg-3">
+          <div className="row pt-3 justify-content-center">
             <div key={product.id} className="row">
               <div className="col-lg-6">
                 <div className="addtocart-img">
@@ -192,7 +225,7 @@ const Addtocart = () => {
                               selectedWeight === size ? "#ffffff" : "#707070",
                           }}
                         >
-                          ₹ {basePrice.toFixed(2)} /-{" "}
+                          ₹ {size * basePrice.toFixed(2)} /-{" "}
                         </div>
                         <div
                           className="input-group-text border-0 product-kg"
@@ -280,17 +313,21 @@ const Addtocart = () => {
                         +
                       </Button> */}
                     </div>
-                    <div  
+                    <div
                       style={{
                         background: "#EC7229",
                         width: "200px",
                         height: "56px",
                         borderRadius: "8px",
                       }}>
-                      <NavLink to="/cart">
+                      {/* <NavLink to="/cart"> */}
                         <Button
                           className="mx-3 border-0 px-lg-5"
-                          onClick={() => handleAddToCart(product)}
+                          onClick={() => {
+                            // handleAddToCart(product);
+                            console.log('product: ', product);
+
+                          }}
                           style={{
                             background: "#EC7229",
                             width: "100%",
@@ -300,7 +337,7 @@ const Addtocart = () => {
                         >
                           Add To Cart
                         </Button>
-                      </NavLink>
+                      {/* </NavLink> */}
                     </div>
                   </div>
                 </div>
@@ -314,11 +351,10 @@ const Addtocart = () => {
                     <div className="accordion-item pb-3" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button  ${
-                            openIndex === index
-                              ? "addtocart-colapse color-707070"
-                              : "collapsed "
-                          }`}
+                          className={`accordion-button  ${openIndex === index
+                            ? "addtocart-colapse color-707070"
+                            : "collapsed "
+                            }`}
                           type="button"
                           // data-bs-toggle="collapse"
                           // data-bs-target={`#collapse${index}`}
@@ -353,9 +389,8 @@ const Addtocart = () => {
                       </h2>
                       <div
                         id={`collapse${index}`}
-                        className={`accordion-collapse collapse ${
-                          openIndex === index ? "show" : ""
-                        }`}
+                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                          }`}
                         data-bs-parent="#faqAccordion"
                       >
                         <div className="accordion-body text-gray-color">
@@ -391,9 +426,8 @@ const Addtocart = () => {
                   <input
                     type="text"
                     placeholder="Give your review a title"
-                    className={`form-control mb-2 border-0 font-14-400 py-2 ${
-                      errors.title ? "is-invalid" : ""
-                    }`}
+                    className={`form-control mb-2 border-0 font-14-400 py-2 ${errors.title ? "is-invalid" : ""
+                      }`}
                     {...register("title", { required: "Title is required" })}
                   />
                   {errors.title && (
@@ -405,9 +439,8 @@ const Addtocart = () => {
                   <label className="text-gray-color font-12-400">Review</label>
                   <textarea
                     placeholder="Write your review"
-                    className={`form-control mb-2 border-0 py-2 font-14-400 ${
-                      errors.review ? "is-invalid" : ""
-                    }`}
+                    className={`form-control mb-2 border-0 py-2 font-14-400 ${errors.review ? "is-invalid" : ""
+                      }`}
                     rows="5"
                     {...register("review", { required: "Review is required" })}
                   ></textarea>
@@ -423,9 +456,8 @@ const Addtocart = () => {
                   <input
                     type="text"
                     placeholder="Enter Your Name"
-                    className={`form-control mb-2 py-2 border-0 font-14-400 ${
-                      errors.name ? "is-invalid" : ""
-                    }`}
+                    className={`form-control mb-2 py-2 border-0 font-14-400 ${errors.name ? "is-invalid" : ""
+                      }`}
                     {...register("name", { required: "Name is required" })}
                   />
                   {errors.name && (
@@ -436,9 +468,8 @@ const Addtocart = () => {
                   <input
                     type="email"
                     placeholder="Enter Your E-mail"
-                    className={`form-control mb-4 border-0 py-2 font-14-400 ${
-                      errors.email ? "is-invalid" : ""
-                    }`}
+                    className={`form-control mb-4 border-0 py-2 font-14-400 ${errors.email ? "is-invalid" : ""
+                      }`}
                     {...register("email", {
                       required: "Email is required",
                       pattern: {
@@ -482,7 +513,7 @@ const Addtocart = () => {
                   <p className="mb-5 font-24-400 text-chinese-black-color">
                     Customer reviews
                   </p>
-                  <StarRating rating={reviewRating} onRatingChange={() => {}} />
+                  <StarRating rating={reviewRating} onRatingChange={() => { }} />
                   {/* <p className="fs-3 mb-0 text-chinese-black-color">
                     {[...Array(5)].map((_, index) => (
                       <CiStar key={index} />

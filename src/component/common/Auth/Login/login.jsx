@@ -22,9 +22,8 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { setuid } = useContext(CartContext);
+  const { setuid, setUserName, setUserEmail, setFarmHouseName } = useContext(CartContext);
   const navigate = useNavigate();
-
   // API endpoint
 
   const endpoint = "/user/login";
@@ -35,8 +34,15 @@ const Login = () => {
       const response = await postData(endpoint, data);
       if (response?.data?.user?.uid) {
         setuid(response?.data?.user?.uid);
+        setUserName(response?.data?.user?.name);
+        setUserEmail(response?.data?.user?.email);
+        setFarmHouseName(response?.data?.user?.farmHouseName);
         // local storage data setItem
         sessionStorage.setItem("uid", response?.data?.user?.uid);
+        sessionStorage.setItem("name", response?.data?.user?.name);
+        sessionStorage.setItem("email", response?.data?.user?.email);
+        sessionStorage.setItem("farmHouseName", response?.data?.user?.farmHouseName);
+
       }
 
       if (response?.data?.token) {

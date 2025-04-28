@@ -54,8 +54,8 @@ const DairyConsultantService = () => {
     <>
       <Navbar />
       <div className="service-bg-color products">
-        <div className="pt-4">
-          <Header title="Services" subtitle="Goat Farming Consultant" />
+        <div className="pt-lg-4 mt-n1">
+          <Header title="Services" subtitle="Dairy Consultant Service" />
         </div>
         <div className="container pt-lg-5">
           <div className="text-center">

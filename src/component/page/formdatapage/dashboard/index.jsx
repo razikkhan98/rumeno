@@ -73,7 +73,7 @@
 // export default Dashboard;
 
 import React, { useEffect, useState } from "react";
-import Navbar from "../../../common/navbar";
+import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import { Card, InputGroup } from "react-bootstrap";
 import DashboardTable from "../dashboardTable";
@@ -101,9 +101,11 @@ import Deworm from "../../../assets/img/dashboard/dewarming1.svg";
 import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
 import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
+import Header from "../../../common/Header/header";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
+    
     TotalAnimals: 0,
     TotalParents: 0,
     TotalChildren: 0,
@@ -115,11 +117,18 @@ const Dashboard = () => {
     SanitationCount: 0,
     PregnantCount: 0,
   });
+  console.log('stats: ', stats);
 
   const [selectedCard, setSelectedCard] = useState(null);
+  console.log('selectedCard: ', selectedCard);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setdata] = useState([]);
+
+  // const {farmName} =JSON.parse(localStorage?.getItem("farmerDetail")) ;
+  const setfarmHouseName = sessionStorage?.getItem("farmHouseName");
+  const user = sessionStorage?.getItem("animalName");
+  const selectedAnimal = user ? user : "Goat";
 
   useEffect(() => {
     // Get UID and animalName from sessionStorage
@@ -135,11 +144,13 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://9767-106-222-212-140.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
         );
+        
+        console.log('response: ', response);
         setStats(response.data);
         setdata(response.data);
       } catch (err) {
@@ -232,8 +243,12 @@ const Dashboard = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="parent">
+   <>
       <Navbar />
+    <div className="parent pt-5">
+      <div className="pt-5">
+          <Header title={setfarmHouseName} subtitle={selectedAnimal} />
+        </div>
       <div className="row">
         <div className="col-lg-2 col-md-3">
           {/* Left Sidebar - Fixed */}
@@ -241,7 +256,7 @@ const Dashboard = () => {
             <Sidebar />
           </div>
         </div>
-        <div className="col-lg-10 col-md-9  py-3">
+        <div className="col-lg-10 col-md-9">
           {/* Right Content - Scrollable */}
           <div
             className="content-container flex-grow-1"
@@ -252,7 +267,7 @@ const Dashboard = () => {
             }}
           >
             <h4 className="text-chinese-black-color">
-              Dashboard
+               <span onClick={() => setSelectedCard(null)} role="button">Dashboard</span>
               {selectedCard && (
                 <>
                   {" > "}
@@ -312,7 +327,7 @@ const Dashboard = () => {
                           </div>
                          </div>
                           <div className="col-lg-7">
-                            <Card.Title> 20</Card.Title>
+                            <Card.Title>{card.value}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
                               {" "}
                               {card.title}
@@ -336,6 +351,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 

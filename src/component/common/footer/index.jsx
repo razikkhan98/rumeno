@@ -49,7 +49,7 @@ const Footer = () => {
                   </li>
                   <li className="py-1 inter-font-family-400">
                     <NavLink
-                      to="/products"
+                      to="/allproducts"
                       className="text-light text-decoration-none py-2"
                     >
                       Products
@@ -80,14 +80,16 @@ const Footer = () => {
                   Contact Us
                 </p>
                 <div className="text-light d-flex align-items-center mb-4">
-                  <MdLocationOn
+                 <span>
+                 <MdLocationOn
                     className=" rounded-circle p-1 me-3"
                     style={{
                       background: "#8BC6E5",
                       height: "24px",
-                      width: "28px",
+                      width: "24px",
                     }}
                   />
+                 </span>
 
                   <p className="text-light footer-contact mb-0  inter-font-family-400">
                     {" "}
@@ -95,6 +97,7 @@ const Footer = () => {
                   </p>
                 </div>
                 <p className="text-light mb-4  inter-font-family-400">
+                  <span>
                   <FaPhone
                     className="me-2 rounded-circle p-1"
                     style={{
@@ -102,14 +105,16 @@ const Footer = () => {
                       height: "24px",
                       width: "24px",
                     }}
-                  />{" "}
+                  />
+                    </span> {" "}
                   +91-7355043892
                 </p>
                 <a
                   href="mailto:rumeno.farmotech@gmail.com"
                   className="text-light text-decoration-none inter-font-family-400"
                 >
-                  <PiEnvelopeSimpleFill
+                 <span>
+                 <PiEnvelopeSimpleFill
                     className="me-2 rounded-circle p-1"
                     style={{
                       background: "#DD3675",
@@ -117,6 +122,7 @@ const Footer = () => {
                       width: "24px",
                     }}
                   />
+                 </span>
                   rumeno.farmotech@gmail.com
                 </a>
               </div>

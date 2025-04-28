@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 // Import Common Components
 import Navbar from "../../common/navbar/mainnavbar";
@@ -30,29 +30,36 @@ import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
 import Firstaid from "../../assets/img/products/sterilization.svg";
 import Star from "../../assets/img/products/star.svg";
+import Faq from "../faq";
 
 
-const faqs = [
+const GoatProductsFaq = [
   {
-    question: "1. What are Veterinary Products?",
-    answer:
-      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
+    question: "1. What is Goat Supplementary Feeding?",
+    answer: "Goat supplementary feeding refers to providing additional nutrition to goats beyond their natural forage intake. It ensures that goats receive essential nutrients for optimal health and productivity."
   },
   {
-    question: "2. How to Sell Veterinary Products?",
-    answer:
-      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+    question: "2. What Supplements Do Goats Need?",
+    answer: "Goats require various supplements to meet their nutritional needs:\n\n" +
+      "• Loose Minerals: Essential for vitamins and minerals. Offer free choice.\n" +
+      "• Sodium Bicarbonate (Baking Soda): Aids digestion and prevents bloat.\n" +
+      "• Probios (Probiotic): Supports rumen function.\n" +
+      "• Vitamins and Minerals: Selenium, zinc, copper, calcium, phosphorus, iodine, iron, and manganese are crucial.",
   },
   {
-    question: "3. Veterinary Products and Services?",
+    question: "3. Do Goats Need Supplemental Feed?",
     answer:
-      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+      "Yes, especially when natural forage lacks certain nutrients. Proper supplementation ensures overall health.",
   },
   {
-    question: "4. Veterinary Products Manufacturers in India?",
+    question: "4. What Is the Best Feed for Goats?",
     answer:
-      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+      "Forages: High-quality grass, hay, leaves, and woody plants. Mineral Supplements: Loose minerals and essential vitamins. Avoid Excessive Grain-Based Feeds: Focus on forages and balanced nutrition",
   },
+  {
+    question: "5. Is Medicated Feed Good for Goats?",
+    answer: "Medicated feed may be necessary for specific health conditions. Consult a veterinarian for guidance."
+  }
 ];
 
 const productItem = [
@@ -60,7 +67,7 @@ const productItem = [
     id: 1,
     name: "Neonato Veterinary products for Goat ,Cow, and Buffalo kids | Natural supplement for newborn animals",
     image: Neonato,
-    price:245,
+    price: 245,
     inStock: true,
     productUnit: ["1", "5", "25"],
   },
@@ -190,7 +197,7 @@ const petProducts = [
 ];
 
 const Products = () => {
- 
+
 
   const navigate = useNavigate();
   // const uid = sessionStorage.getItem("uid");
@@ -227,7 +234,7 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
- 
+
 
   return (
     <>
@@ -254,17 +261,17 @@ const Products = () => {
                           state: { product },
                         })
                       }>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="rounded-3"
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="rounded-3"
                       // onClick={() =>
                       //   navigate(`/productDetails/${product.id}`, {
                       //     state: { product },
                       //   })
                       // }
-                    />
-                    <div class="overlay">
+                      />
+                      <div class="overlay">
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -298,11 +305,10 @@ const Products = () => {
             <div className="col-lg-7">
               <div className="pagination-button mb-0 me-lg-4">
                 <div
-                  className={`page-item mx-2 d-flex align-items-center ${
-                    currentPage === 1
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item mx-2 d-flex align-items-center ${currentPage === 1
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link  py-1 px-2"
@@ -313,11 +319,10 @@ const Products = () => {
                   </button>
                 </div>
                 <div
-                  className={`page-item d-flex align-items-center ${
-                    currentPage === totalPages
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item d-flex align-items-center ${currentPage === totalPages
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link py-1 px-2 m-auto"
@@ -360,10 +365,10 @@ const Products = () => {
 
       <div
         className="col-lg-12 my-5 text-center d-flex align-items-center justify-content-center"
-        style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
+        style={{ background: "#F4FAFD", color: "#EC7229", }}
       >
-        <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
-          Veterinary Products: Keeping Your Animals Happy and Healthy
+        <p className="py-3 px-lg-0 px-1 mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
+          Goat Feed Supplements Improving Performance and Health
         </p>
       </div>
 
@@ -373,59 +378,15 @@ const Products = () => {
             <p
               style={{ color: "#373737", fontSize: "18px", fontWeight: "400" }}
             >
-              In the dynamic world of animal husbandry, ensuring the well-being
-              and productivity of our beloved creatures is of utmost importance.
-              Proper nutrition and specialized care play pivotal roles in
-              achieving these goals. Enter Rumeno Farmotech, a name synonymous
-              with excellence in veterinary products and veterinary services.
+              If you own goats, you are aware of how important good nourishment is to your pets' health and wellbeing.
+              Giving your goats the correct vitamins can have a big impact on how well they perform overall,
+              whether you raise them for meat, milk, or as pets.
+              This post will introduce you to Rumeno Farmotech, a reputable brand in the business,
+              and discuss the advantages of goat feed supplements.
             </p>
           </div>
         </div>
-        <div className="row justify-content-center mt-3">
-          <div
-            className="col-lg-12"
-            style={{ background: "rgba(255, 255, 255, 1)" }}
-          >
-            <p
-              className=" text-center mb-4"
-              style={{ color: "#111111", fontSize: "24px", fontWeight: "500" }}
-            >
-              PRODUCT CATEGORIES
-            </p>
-            <div className="row text-center mt-3">
-              {petProducts.map((product, index) => (
-                <div key={index} className="col-lg-3 col-md-6 mb-4">
-                  <div className="p-3">
-                    <img
-                      src={product.icon}
-                      size={44}
-                      className="mb-3"
-                      alt={product.title}
-                    />
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: "600",
-                        color: "#707070",
-                      }}
-                    >
-                      {product.title}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "400",
-                        color: "#373737",
-                      }}
-                    >
-                      {product.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
         <div className="row pt-lg-4 pb-lg-5 px-2">
           <div
             className="col-lg-12 p-4"
@@ -434,6 +395,7 @@ const Products = () => {
               borderRadius: "16px",
             }}
           >
+            <p className=" fs-2">The Significance of Goat Feed Supplements</p>
             <p
               style={{
                 fontSize: "18px",
@@ -441,154 +403,32 @@ const Products = () => {
                 color: "#373737",
               }}
             >
-              A wide selection of veterinary equipment from Rumeno are available
-              to improve the care of animals. Their goods are made with great
-              care and attention to detail, from the strength of surgical tools
-              for delicate procedures to the precision of microscopes for
-              thorough examinations. Among their offerings are: Instruments for
-              diagnosis: X-ray machines, ultrasound scanners, and microscopes.
-              Surgical instruments: a broad range of implements for diverse
-              operations. Vital signs and anesthetic devices are examples of
-              patient monitoring equipment. Dental supplies: for hygienic and
-              oral care. Rumeno's dedication to excellence guarantees that
-              veterinarians have the resources needed to give their patients the
-              best care possible.
+              Goats have special dietary requirements, and depending on age, breed, and use, these needs can change. Supplements for goat feed are essential for the following reasons:
             </p>
+            <p> <span className="fw-bold">Better Growth and Weight increase:</span> Supplements for goat weight increase are essential for encouraging healthy growth. They supply vital vitamins, minerals, and amino acids that promote the growth of muscles and the general health of the body.</p>
+            <hr />
+            <p> <span className="fw-bold">Enhanced Milk Production:</span>Providing your dairy goats with the correct nutrients in their diet can help them produce more milk. Improved lactation is a result of using goat supplements high in calcium, phosphorus, and trace minerals.</p>
+            <hr />
+            <p> <span className="fw-bold">Strong Immune System:</span> Preventing disease requires a strong immune system. Selenium, zinc, and copper found in goat mineral supplements strengthen immunity and lower illness risk.</p>
+            <hr />
+            <p><span className="fw-bold">Healthy Skin and Hooves:</span>Eating a balanced diet has an impact on both skin and hoof health. Zinc and biotin supplements promote healthy hoof growth and guard against frequent problems like hoof rot.</p>
+            <hr />
+            <p><span className="fw-bold">Presenting Farmotech Rumeno:</span> Renowned in the livestock sector, Rumeno Farmotech specializes in premium supplements for goat feed. Here are some reasons to think about their products:</p>
+            <hr />
+            <p><span className="fw-bold">Scientifically Formulated:</span> A great deal of study and scientific principles are used in the development of Rumeno Farmotech's supplements. Every product is precisely calibrated to satisfy the unique requirements of goats.</p>
+            <hr />
+            <p><span className="fw-bold">Variety of Options:</span>Rumeno Farmotech offers a selection of weight gain supplements, mineral blends, and general health enhancers. Goats of various ages and purposes are catered to by their goods. Rumeno Farmotech is aware of the significance of trace minerals in the diets of goats. To ensure optimum health, their supplements include vital components including manganese, copper, and selenium.</p>
+            <hr />
+            <p><span className="fw-bold">Client Contentment:</span>:Rumeno Farmotech is the supplement brand that goat owners nationwide rely on for consistent and potent results. The organization stands out for its dedication to client satisfaction. In summary Purchasing premium additives for goat feed is an investment in the future of your herd. The supplies you need to maintain your goats happy, healthy, and productive are available from Rumeno Farmotech. Check out their product range now to provide your goats with the nourishment they need!</p>
           </div>
         </div>
       </div>
-
-      <div className="container py-5">
-        <div className="row text-center justify-content-center py-lg-5">
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(253, 199, 158, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning" />
-              </div>
-              <p className="product-star-title pt-5">
-                Pet Dental Kit Description
-              </p>
-              <p className="product-star-content">
-                Use our dental kit to maintain the health and cleanliness of
-                your pet's teeth. It contains toothpaste, mouthwash, and mouth
-                rinse.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(191, 227, 241, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Joint Health Supplement Description
-              </p>
-              <p className="product-star-content">
-                Our organic joint supplement will provide your senior pet with
-                the necessary support. It lessens discomfort and encourages
-                movement.
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-4 my-5">
-            <div
-              className="product-contant-card m-auto p-4 rounded"
-              style={{ background: "rgba(244, 166, 191, 0.2)" }}
-            >
-              <div className="product-star-img">
-                <img src={Star} className="text-warning mb-3" />
-              </div>
-              <p className="product-star-title pt-5">
-                Premium Flea and Tick Collar
-              </p>
-              <p className="product-star-content">
-                This durable collar keeps out fleas, ticks, and mosquitoes for
-                up to eight months. It is odorless and resistant to water.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-9 col-md-12 product-rumeno-heading m-auto text-center">
-            <p className="product-rumeno-title">
-              RUMENO - A PREMIER VETERINARY PRODUCTS MANUFACTURER
-            </p>
-            <p className="product-rumeno-content">
-              We’re Rumeno, and we’re passionate about making life better for
-              animals. As a leading veterinary product manufacturer, we’re proud
-              to be recognized as one of the top 10 animal wellness startups by
-              Industry Outlook. That’s a big deal, but it’s really just the
-              beginning.
-            </p>
-            <p className="product-rumeno-content">
-              Our aim is to make all animals healthier and happier and increase
-              your profits through our excellent veterinary products, which are
-              made from high-quality vitamins and minerals. Take Rumeno’s
-              veterinary products and grow your livestock.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="product-faq pb-5">
-        <div className="container py-lg-5">
+      {/* Faq Start */}
+      <div className="product-faq">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="accordion pt-lg-3" id="faqAccordion">
-                {faqs.map((faq, index) => (
-                  <div className="accordion-item" key={index}>
-                    <h2 className="accordion-header">
-                      <button
-                        className={`accordion-button ${
-                          openIndex === index ? "" : "collapsed"
-                        }`}
-                        type="button"
-                        // data-bs-toggle="collapse"
-                        // data-bs-target={`#collapse${index}`}
-                        onClick={() => toggleFAQ(index)}
-                        aria-expanded={openIndex === index}
-                        aria-controls={`collapse${index}`}
-                        style={{
-                          fontSize: "18px",
-                          fontWeight: "500",
-                          borderBottom: "1px solid #E8E8E8",
-                          height: "58px",
-                        }}
-                      >
-                        {faq.question}{" "}
-                        <span
-                          className="icon"
-                          style={{
-                            marginLeft: "auto",
-                            color: "#707070",
-                            width: "17px",
-                            height: "36px",
-                            fontSize: "24px",
-                            fontWeight: "400",
-                          }}
-                        >
-                          {openIndex === index ? "−" : "+"}
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id={`collapse${index}`}
-                      className={`accordion-collapse collapse ${
-                        openIndex === index ? "show" : ""
-                      }`}
-                      data-bs-parent="#faqAccordion"
-                    >
-                      <div className="accordion-body">{faq.answer}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Faq faqs={GoatProductsFaq} showHeading={false} />
             </div>
           </div>
         </div>

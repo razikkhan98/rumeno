@@ -11,7 +11,7 @@
   
   .custom-card {
     width: 300px;
-    height: 220px !important;
+    height: 210px !important;
     margin: 0 10px;
     position: absolute;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -100,7 +100,7 @@
 
    @media only screen and (min-width: 320px) and (max-width: 992px) {
     .card-container {
-      top: 220px;
+      top: 110px;
       display: flex;
       overflow-x: auto;
       overflow-y: hidden;
@@ -113,7 +113,7 @@
       flex: 0 0 auto;
       scroll-snap-align: start;
       width: 240px;
-      height: 220px !important;
+      height: 230px !important;
       transform: rotate(0deg) !important;
       margin: 0 8px;
       position: relative !important;

@@ -308,13 +308,22 @@ body {
   right: -50%;
 }
 
+.dropdow-bg{
+  background-image: url(../src/component/assets/img/logo/logorumneo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(221, 240, 248, 1);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .products-collapse {
     position: absolute;
     width: 100%;
     left: 0;
-    top: 28%;
+    top: 60%;
     z-index: 1000;
   }
 }
@@ -853,7 +862,7 @@ body {
 }
 
 .about-heading {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 500;
 }
 
@@ -909,6 +918,9 @@ body {
     font-weight: 400;
     line-height: 21px;
   }
+  .about-img img{
+    border-radius: 10px;
+  }
 }
 
 /* <--------- About End ---------> */
@@ -921,7 +933,7 @@ body {
 }
 
 .certified-heading {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 500;
   color: #000000;
 }
@@ -947,6 +959,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+  .certified {
+    height: 550px;
+  }
+  .responsive-heading{
+    font-size: 24px !important;
   }
 }
 
@@ -1027,11 +1045,11 @@ body {
 /* <--------- Goat Info ---------> */
 
 .goat-info {
-  /* height: 100vh; */
+  min-height: 100vh;
   width: 100%;
   background-image: url(../src/component/assets/img/goatfixed/goatfix.png);
   background-repeat: no-repeat;
-  background-position: fixed;
+  background-position: center;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -1097,8 +1115,8 @@ body {
 }
 
 .award-img {
-  width: 461px;
-  height: 332px;
+  width: 350px;
+  height: 100%;
 }
 
 .award-img img {
@@ -1351,7 +1369,7 @@ body {
   }
 
   .livestock-title {
-    font-size: 1.75rem;
+    font-size: 1rem;
   }
 
   .livestock-content {
@@ -1421,6 +1439,18 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
+.nutrition-card {
+  padding: 16px;
+}
+.nutrition-img{
+  height: 120px;
+  width: 134px;
+  border-radius: 24px;
+}
+.nutrition-img-text{
+  font-size: 20px;
+  font-family: 500;
+}
 
 .bg-lightblue {
   background-color: #89c9e6;
@@ -1438,10 +1468,14 @@ body {
 }
 
 @media (max-width: 992px) {
+  .nutrition-heading{
+    font-size: 18px;
+    font-weight: 500;
+  }
   .nutrition-para {
     width: 100%;
     height: auto;
-    line-height: 28px;
+    line-height: 20px;
     color: var(--white-color);
     font-size: 18px;
     font-weight: 400;
@@ -1457,6 +1491,50 @@ body {
   .nutrition-card:nth-child(1) {
     position: relative;
     bottom: 0px;
+  }
+}
+
+@media (max-width: 580px) {
+  .nutrition-heading{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .nutrition-para {
+    width: 100%;
+    height: auto;
+    line-height: 20px;
+    color: var(--white-color);
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .nutrition-cards {
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .nutrition-card {
+    padding: 10px 0px;
+  }
+  .nutrition-img{
+    height: 80px;
+    width: 87px;
+    border-radius: 24px;
+  }
+  .nutrition-img img{
+    width: 80%;
+    height: 80%;
+  }
+  .nutrition-img-text{
+    font-size: 15px;
+    font-family: 300;
+  }
+
+  .nutrition-card:nth-child(1) {
+    position: relative;
+    bottom: 10px;
   }
 }
 
@@ -1730,9 +1808,9 @@ body {
   line-height: 24px;
 }
 
-.product-faq {
-  height: 400px;
-}
+/* .product-faq {
+  height: 550px;
+} */
 
 @media (max-width: 1024px) {
   .products {
@@ -2542,17 +2620,22 @@ input[type="radio"] {
   position: relative; /* Required for ::before to layer correctly */
   overflow: hidden;
 }
-/* .contact-us-bg-img::before{
+.contact-us-bg-img::before{
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3); 
+  background-color: rgba(0, 0, 0, 0.2); 
   border-radius: 20px; 
   z-index: 1;
-} */
+}
+
+.contact-us-bg-img > * {
+  position: relative;
+  z-index: 2;
+}
 
 /* ------------------- Error Page Css -------------------- */
 .error-img {
@@ -2623,6 +2706,12 @@ input[type="radio"] {
   .blog-mini-img {
     height: auto !important;
   }
+  .product-contant-card {
+    width: 300px;
+}
+.addtocart-content-title {
+  font-size: 18px;
+}
   /* .slick-next {
   right: -10px !important;
 }
@@ -2668,6 +2757,8 @@ input[type="radio"] {
   width: 100%;
   height: 183px;
 }
+
+
 
 /* Dashboard Cards */
 .dashboard-cards {
@@ -2717,4 +2808,13 @@ background-color: #f1fbff;
  .table .heading{
   font-size: 15px !important;
   font-weight: 600;
+}
+tr.bg-light-blue td {
+  background-color: rgb(184, 224, 247) !important;
+}
+tr.bg-light-gray td {
+  background-color: rgb(224, 240, 249)!important;
+}
+.width-50{
+  width: 120px;
 }

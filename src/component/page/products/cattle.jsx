@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 // Import Common Components
 import Navbar from "../../common/navbar/mainnavbar";
@@ -28,29 +28,41 @@ import Medicine from "../../assets/img/products/medicine.svg";
 import Medical from "../../assets/img/products/medical.svg";
 import Firstaid from "../../assets/img/products/sterilization.svg";
 import Star from "../../assets/img/products/star.svg";
+import Faq from "../faq";
 
 
-const faqs = [
+const CattleProductsFaq = [
   {
-    question: "1. What are Veterinary Products?",
-    answer:
-      "Veterinary products are essential tools in the prevention and control of animal diseases. The definition of veterinary products may vary from one country to another, but for the purposes of the World Organisation for Animal Health (WOAH), they include:Vaccines: Used for disease prevention.Veterinary Medicines: Including antimicrobial agents for treatment.Diagnostic Kits: Used for disease detection and monitoring.Governments regulate the authorization, manufacturing, distribution, and use of veterinary products through veterinary legislation",
+    question: "1. What is cattle feed supplement?",
+    answer: "Cattle feed supplements are essential additives that enhance the nutritional value of the basal feed for livestock. They provide essential nutrients like vitamins, minerals, and proteins to improve growth, health, and productivity. Common supplements include calcium, phosphorus, magnesium, and selenium"
   },
   {
-    question: "2. How to Sell Veterinary Products?",
-    answer:
-      "Animal feed supplements are important because they help ensure animals get the nutrients they need to be healthy and productive.",
+    question: "2. What is livestock supplements?",
+    answer: "Livestock supplements are ingredients added to feed in micro quantities to improve growth, feed efficiency, and prevent diseases. They include essential nutrients like vitamins, minerals, and protein sources. Proper supplementation ensures optimal health and performance in cattle"
   },
   {
-    question: "3. Veterinary Products and Services?",
+    question: "3. Do Cows Need Supplements?",
     answer:
-      "Many types of animals benefit from feed supplements, including cattle, poultry, pigs, sheep, horses, and goats.",
+      "Yes, cows benefit from supplements to meet their nutritional requirements. Vitamins A, D, and E, along with minerals, are crucial for their health and productivity. Supplements help address deficiencies and support growth, reproduction, and milk production.",
   },
   {
-    question: "4. Veterinary Products Manufacturers in India?",
+    question: "4. What is the best vitamins for cow?",
     answer:
-      "You can contact Rumeno Farmotech by calling +91 73550 43892 or emailing rumeno.farmotech@gmail.com. You can also visit their website.",
+      "Vitamin A: Essential for vision, immune function, and reproductive health. Vitamin D: Supports calcium absorption and bone health. Vitamin E: Acts as an antioxidant and promotes muscle function. Vitamin B12: Vital for metabolism and energy production",
   },
+  {
+    question: "5. What is selenium vitamin for cows?",
+    answer: "Selenium is an essential trace mineral. It works with vitamin E to protect tissues, supports muscle growth, and prevents white muscle disease. Proper supplementation strategies are crucial to prevent deficiency or toxicity You can get all selenium from our Selennium-E products",
+  },
+  {
+    question: "6. What is the best cow weight gain supplement?",
+    answer: "High-energy feeds like corn are effective for weight gain. Consider protein-rich supplements (soybean meal, canola meal) to support growth. Ensure a balanced diet with adequate nutrients for optimal weight gain",
+  },
+  {
+    question: "7. How to increase milk production in cows naturally ?",
+    answer: "Quality Forage: Provide high-quality pasture and hay. Proper Nutrition: Balanced diet with adequate protein, energy, and minerals. Hydration: Ensure access to clean water. Stress Reduction: Minimize stressors like overcrowding or abrupt changes. Regular Milking Schedule: Consistent milking routines stimulate production Increase your cattle milk with our doodh vardhan product",
+  },
+
 ];
 
 const productItem = [
@@ -58,7 +70,7 @@ const productItem = [
     id: 1,
     name: "Neonato Veterinary products for Goat ,Cow, and Buffalo kids | Natural supplement for newborn animals",
     image: Neonato,
-    price:245,
+    price: 245,
     inStock: true,
     productUnit: ["1", "5", "25"],
   },
@@ -110,7 +122,7 @@ const productItem = [
     inStock: true,
     productUnit: ["1", "5", "25"],
   },
-  
+
   {
     id: 8,
     name: "Selennium-GC | Selenium supplement for cattle and goats | Animal feed supplement",
@@ -173,7 +185,7 @@ const petProducts = [
 ];
 
 const Products = () => {
- 
+
 
   const navigate = useNavigate();
   // const uid = sessionStorage.getItem("uid");
@@ -210,7 +222,7 @@ const Products = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
- 
+
 
   return (
     <>
@@ -237,17 +249,17 @@ const Products = () => {
                           state: { product },
                         })
                       }>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="rounded-3"
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="rounded-3"
                       // onClick={() =>
                       //   navigate(`/productDetails/${product.id}`, {
                       //     state: { product },
                       //   })
                       // }
-                    />
-                    <div class="overlay">
+                      />
+                      <div class="overlay">
                         <NavLink
                           className="text-decoration-none"
                           to={"/products"}
@@ -281,11 +293,10 @@ const Products = () => {
             <div className="col-lg-7">
               <div className="pagination-button mb-0 me-lg-4">
                 <div
-                  className={`page-item mx-2 d-flex align-items-center ${
-                    currentPage === 1
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item mx-2 d-flex align-items-center ${currentPage === 1
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link  py-1 px-2"
@@ -296,11 +307,10 @@ const Products = () => {
                   </button>
                 </div>
                 <div
-                  className={`page-item d-flex align-items-center ${
-                    currentPage === totalPages
-                      ? "disabled disable-page-bg border"
-                      : "active-page-bg"
-                  }`}
+                  className={`page-item d-flex align-items-center ${currentPage === totalPages
+                    ? "disabled disable-page-bg border"
+                    : "active-page-bg"
+                    }`}
                 >
                   <button
                     className="page-link py-1 px-2 m-auto"
@@ -343,10 +353,10 @@ const Products = () => {
 
       <div
         className="col-lg-12 my-5 text-center d-flex align-items-center justify-content-center"
-        style={{ background: "#F4FAFD", color: "#EC7229", height: "56px" }}
+        style={{ background: "#F4FAFD", color: "#EC7229" }}
       >
-        <p className=" mb-0" style={{ fontSize: "18px", fontWeight: "400" }}>
-          Veterinary Products: Keeping Your Animals Happy and Healthy
+        <p className="mb-0 py-3 px-lg-0 px-1" style={{ fontSize: "18px", fontWeight: "400" }}>
+          Enhancing Cattle Well-being and Growth with Rumeno's Cattle Feed Supplements
         </p>
       </div>
 
@@ -356,15 +366,11 @@ const Products = () => {
             <p
               style={{ color: "#373737", fontSize: "18px", fontWeight: "400" }}
             >
-              In the dynamic world of animal husbandry, ensuring the well-being
-              and productivity of our beloved creatures is of utmost importance.
-              Proper nutrition and specialized care play pivotal roles in
-              achieving these goals. Enter Rumeno Farmotech, a name synonymous
-              with excellence in veterinary products and veterinary services.
+              Rumeno Farmotech produces high-quality animal feed supplements to enhance livestock health and productivity. Their cattle feed supplements includes mineral combinations and calcium supplements, ensuring robust growth and nourishment for cows and buffaloes. With a commitment to research-driven solutions, Rumeno Farmotech offers a broad range of products for your lovely cattle, like
             </p>
           </div>
         </div>
-        <div className="row justify-content-center mt-3">
+        {/* <div className="row justify-content-center mt-3">
           <div
             className="col-lg-12"
             style={{ background: "rgba(255, 255, 255, 1)" }}
@@ -408,7 +414,7 @@ const Products = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row pt-lg-4 pb-lg-5 px-2">
           <div
             className="col-lg-12 p-4"
@@ -417,6 +423,7 @@ const Products = () => {
               borderRadius: "16px",
             }}
           >
+            <h2> Cattle Weight Gain Supplements</h2>
             <p
               style={{
                 fontSize: "18px",
@@ -424,24 +431,24 @@ const Products = () => {
                 color: "#373737",
               }}
             >
-              A wide selection of veterinary equipment from Rumeno are available
-              to improve the care of animals. Their goods are made with great
-              care and attention to detail, from the strength of surgical tools
-              for delicate procedures to the precision of microscopes for
-              thorough examinations. Among their offerings are: Instruments for
-              diagnosis: X-ray machines, ultrasound scanners, and microscopes.
-              Surgical instruments: a broad range of implements for diverse
-              operations. Vital signs and anesthetic devices are examples of
-              patient monitoring equipment. Dental supplies: for hygienic and
-              oral care. Rumeno's dedication to excellence guarantees that
-              veterinarians have the resources needed to give their patients the
-              best care possible.
+              Cattle need the proper balance of nutrients to acquire weight. Consider the following weight-gain supplements:
             </p>
+            <h4>A. High-Intensity Foods</h4>
+            <p><span className="fw-bold">Corn:</span> Feeds based on corn are high in energy and aid in the growth of cattle's mass. They are especially helpful when cattle are being finished.</p>
+            <p><span className="fw-bold">Barley:</span> An additional grain high in energy that encourages weight gain.</p>
+            <h4>B. Supplements with Protein</h4>
+            <p>A common protein supplement for cattle is soybean meal. It offers the vital amino acids required for the growth of muscle. Cottonseed Meal: Packed in fiber and protein, this meal promotes weight gain.</p>
+            <h4>C. Vitamin and Mineral Supplements</h4>
+            <p>Calcium and phosphorus are necessary for healthy bones and general growth. Vitamin E: Promotes the growth of muscles and immunity.</p>
           </div>
         </div>
       </div>
 
       <div className="container py-5">
+        <div className="text-center pb-lg-0 pb-3">
+          <h2>RumenO Farmotech: A Reputable Brand in Supplements for Cattle</h2>
+          <p>In the cattle business, Rumeno Farmotech is a well-known brand that provides a selection of premium supplements. This is why their products are unique:</p>
+        </div>
         <div className="row text-center justify-content-center py-lg-5">
           <div className="col-lg-4 my-5">
             <div
@@ -452,12 +459,10 @@ const Products = () => {
                 <img src={Star} className="text-warning" />
               </div>
               <p className="product-star-title pt-5">
-                Pet Dental Kit Description
+                Formulas Backed by Research
               </p>
               <p className="product-star-content">
-                Use our dental kit to maintain the health and cleanliness of
-                your pet's teeth. It contains toothpaste, mouthwash, and mouth
-                rinse.
+                RumenO Farmotech makes research investments to create potent mixtures. Their supplements are made to specifically address the requirements of cattle.
               </p>
             </div>
           </div>
@@ -470,12 +475,10 @@ const Products = () => {
                 <img src={Star} className="text-warning mb-3" />
               </div>
               <p className="product-star-title pt-5">
-                Joint Health Supplement Description
+                Dietary Balance
               </p>
               <p className="product-star-content">
-                Our organic joint supplement will provide your senior pet with
-                the necessary support. It lessens discomfort and encourages
-                movement.
+                RumenO Farmotech products offer balanced nutrition for weight gain, protein intake, and general wellness.
               </p>
             </div>
           </div>
@@ -488,11 +491,10 @@ const Products = () => {
                 <img src={Star} className="text-warning mb-3" />
               </div>
               <p className="product-star-title pt-5">
-                Premium Flea and Tick Collar
+                Licks and Mineral Blocks
               </p>
               <p className="product-star-content">
-                This durable collar keeps out fleas, ticks, and mosquitoes for
-                up to eight months. It is odorless and resistant to water.
+                Cattle may easily obtain necessary minerals with RumenO Farmotech's handy mineral blocks and licks.
               </p>
             </div>
           </div>
@@ -500,78 +502,25 @@ const Products = () => {
         <div className="row">
           <div className="col-lg-9 col-md-12 product-rumeno-heading m-auto text-center">
             <p className="product-rumeno-title">
-              RUMENO - A PREMIER VETERINARY PRODUCTS MANUFACTURER
+              Supplements for Cattle Protein
             </p>
             <p className="product-rumeno-content">
-              We’re Rumeno, and we’re passionate about making life better for
-              animals. As a leading veterinary product manufacturer, we’re proud
-              to be recognized as one of the top 10 animal wellness startups by
-              Industry Outlook. That’s a big deal, but it’s really just the
-              beginning.
+              Cattle require protein for both growth and maintenance because it is the building block of muscle. Consider the following protein supplements:
             </p>
+            <h5>Meal Made of Soy</h5>
             <p className="product-rumeno-content">
-              Our aim is to make all animals healthier and happier and increase
-              your profits through our excellent veterinary products, which are
-              made from high-quality vitamins and minerals. Take Rumeno’s
-              veterinary products and grow your livestock.
+              Soybean meal is a dependable source of protein, as previously noted
             </p>
+            <p><span className="fw-bold">Alfalfa Hay:</span> Protein and fiber are both present in high-quality alfalfa hay.</p>
           </div>
         </div>
       </div>
 
-      <div className="product-faq pb-5">
-        <div className="container py-lg-5">
+      <div className="product-faq">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="accordion pt-lg-3" id="faqAccordion">
-                {faqs.map((faq, index) => (
-                  <div className="accordion-item" key={index}>
-                    <h2 className="accordion-header">
-                      <button
-                        className={`accordion-button ${
-                          openIndex === index ? "" : "collapsed"
-                        }`}
-                        type="button"
-                        // data-bs-toggle="collapse"
-                        // data-bs-target={`#collapse${index}`}
-                        onClick={() => toggleFAQ(index)}
-                        aria-expanded={openIndex === index}
-                        aria-controls={`collapse${index}`}
-                        style={{
-                          fontSize: "18px",
-                          fontWeight: "500",
-                          borderBottom: "1px solid #E8E8E8",
-                          height: "58px",
-                        }}
-                      >
-                        {faq.question}{" "}
-                        <span
-                          className="icon"
-                          style={{
-                            marginLeft: "auto",
-                            color: "#707070",
-                            width: "17px",
-                            height: "36px",
-                            fontSize: "24px",
-                            fontWeight: "400",
-                          }}
-                        >
-                          {openIndex === index ? "−" : "+"}
-                        </span>
-                      </button>
-                    </h2>
-                    <div
-                      id={`collapse${index}`}
-                      className={`accordion-collapse collapse ${
-                        openIndex === index ? "show" : ""
-                      }`}
-                      data-bs-parent="#faqAccordion"
-                    >
-                      <div className="accordion-body">{faq.answer}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Faq faqs={CattleProductsFaq} showHeading={false} />
             </div>
           </div>
         </div>

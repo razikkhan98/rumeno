@@ -9,7 +9,7 @@ const cards = [
     to: "/service",
     title: "Services",
     content:
-      "In the dynamic world of animal husbandry, ensuring the well-being and productivity of our beloved creatures is of utmost importance. Proper nutrition and specialized care play pivotal roles in achieving these goals. Enter Rumeno Farmotech, a name synonymous with excellence in animal feed supplements and veterinary services.",
+      "In the dynamic world of animal husbandry, ensuring the well-being and productivity of our beloved creatures is of utmost importance.",
   },
   {
     title: "News",
@@ -17,10 +17,10 @@ const cards = [
     // iframe:
     //   "https://www.theindustryoutlook.com/startups/vendor/rumeno-farmotech-elevating-livestock-health-with-innovative-nutrition-solutions--cid-9975.html#google_vignette",
     content:
-    "Rumeno Farmotech: Elevating Livestock Health With Innovative Nutrition Solutions Starting Rumeno Farmotech was like following a personal journey from my small goat farm in rural India.",
+      "Starting Rumeno Farmotech was like following a personal journey from my small goat farm in rural India.With every challenge and success",
   },
   {
-    to:"https://www.youtube.com/watch?v=MgA56V6PdBI",
+    to: "https://www.youtube.com/watch?v=MgA56V6PdBI",
     // title: "YouTube Video",
     // iframe: "https://www.youtube.com/embed/MgA56V6PdBI?si=3PpvGLqWd1wWSsiI",
     // content:"Click here to Watch on our Youtube Channel....",
@@ -30,7 +30,7 @@ const cards = [
     to: "/blog",
     title: "Blogs",
     content:
-      "Ever heard about Mutual Rescue? It's an innovative concept that proves when we extend our hearts to rescue animals, they rescue us right back! It's deeply rooted in the symbiotic relationship between humans and animals—a relationship that is incredibly heartwarming...",
+      "Ever heard about Mutual Rescue? It's an innovative concept that proves when we extend our hearts to rescue animals, they rescue us right back!",
   },
 ];
 
@@ -55,7 +55,9 @@ const CollapsingCards = () => {
               <div className="card-body mx-0 ">
                 <h5 className="card-title">{card?.title}</h5>
                 <p className="card-text mb-0">{card?.content}</p>
-                <img src={card?.icon} className=" w-100 h-100" alt="Loading" />
+                {card?.icon && (
+                  <img src={card?.icon} className="w-100 h-100" alt="Loading" />
+                )}
               </div>
             )}
           </NavLink>

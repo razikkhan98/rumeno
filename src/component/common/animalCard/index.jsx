@@ -23,8 +23,24 @@ const AnimalCard = ({
   gender,
   age,
   _id,
+  birthDate,
+  fatherTag,
+  motherTag,
+  birthWeight,
+  birthType,
+  motherWeanDate,
+  purchaseDate,
+  lastVaccineDate,
+  lastVaccineName,
+  isPregnant,
+  dateMading,
+  pregnencyFail,
+  weanDate,
+  vaccineName,
+  vaccineDate,
+  farmName,
   ageMonth,
-  weight,
+  weightKg,
   bodyScore,
   pregnancyDetails,
   maleDetail,
@@ -40,8 +56,11 @@ const AnimalCard = ({
   estrusHeat,
   farmSanitation,
   currentIndex,
+  comments,
 }) => {
-  console.log("AnimalCard", kidId);
+  console.log('currentIndex: ', currentIndex);
+  // console.log('tagId: ', tagId);
+  console.log("tagId", tagId);
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -55,7 +74,7 @@ const AnimalCard = ({
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
     { label: "Year", value: age, icon: <PiCalendarBlankFill /> },
     { label: "Month", value: ageMonth, icon: <PiCalendarBlankFill /> },
-    { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
+    { label: "Weight (kg)", value: weightKg, icon: <GiWeightScale /> },
     { label: "Body Score", value: bodyScore, icon: <RiRulerFill /> },
     {
       label: "Pregnancy Details",
@@ -87,10 +106,10 @@ const AnimalCard = ({
   const handleShowDelete = () => setShowDeleteModal(true);
   const handleCloseDelete = () => setShowDeleteModal(false);
 
-  // const editForm = () => {
-  //   localStorage.setItem("currentIndex", currentIndex);
-  //   console.log('currentIndex: ', currentIndex);
-  // }
+  const editForm = () => {
+    localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
+  }
 
   const handleConfirmDelete = () => {
     if (kidId) {
@@ -120,18 +139,12 @@ const AnimalCard = ({
   };
 
   const handleConfirmDeleteParent = async () => {
-    // if (children?.length > 0) {
-    //   toast.error("Cannot delete parent. It has child records associated.");
-    //   return;
-    // }
-
-    // setAnimals((prevAnimals) => prevAnimals.filter(animal => animal.uniqueId !== uniqueId));
 
     try {
-      await deleteData("user/animaldata/parent/delete", uniqueId);
+      await deleteData("user/animaldata/newEntity/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => navigate("/farmdata/parent"), 100);
+      setTimeout(() => { window.location.reload(); }, 10);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();
@@ -195,91 +208,57 @@ const AnimalCard = ({
           className="bg-light pb-1 rounded-circle d-flex align-items-center d-flex align-items-center justify-content-center"
           style={{ width: "24px", height: "24px" }}
         >
-          <button onClick={handleShow} className="border-0 bg-transparent">
+          <button onClick={() =>
+            navigate(`/record/${parentId}/${uniqueId}`, {
+              state: {
+                parentId,
+                uniqueId,
+                tagId,
+                defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
+                animalData: {
+                  parentId,
+                  tagId,
+                  height,
+                  gender,
+                  age,
+                  _id,
+                  birthDate,
+                  ageMonth,
+                  weightKg,
+                  bodyScore,
+                  pregnancyDetails,
+                  maleDetail,
+                  uniqueId,
+                  kidId,
+                  postweight,
+                  comments,
+                  fatherTag,
+                  motherTag,
+                  birthWeight,
+                  birthType,
+                  motherWeanDate,
+                  purchaseDate,
+                  lastVaccineDate,
+                  lastVaccineName,
+                  isPregnant,
+                  dateMading,
+                  pregnencyFail,
+                  weanDate,
+                  vaccineName,
+                  vaccineDate,
+                  farmName,
+                },
+              }
+            })
+          }
+            className="border-0 bg-transparent">
             <SlArrowRight
               className="fs-6 m-auto"
               style={{ cursor: "pointer" }}
             />
           </button>
         </div>
-        {/* Modal */}
-        <Modal show={show} onHide={handleClose} centered size="lg">
-          <Modal.Header className="parent-card-modal">
-            <div className="d-flex">
-              <button className="border-0 bg-transparent" onClick={handleClose}>
-                <SlArrowLeft className="fs-6 m-auto" />
-              </button>
-              <p className="mx-2 mb-0 font-16-500 color111111 text-center">
-                {parentId}
-              </p>
-            </div>
-          </Modal.Header>
-          <Modal.Body className="p-0">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-12 p-0">
-                  {modalDetails.map((item, idx) =>
-                    idx % 2 === 0 ? (
-                      <div className="row" key={idx}>
-                        <div className="col-lg-6 col-md-6 py-2 pe-0">
-                          <div
-                            className="py-2 border-bottom d-flex justify-content-between align-items-center px-3"
-                            style={{ color: "#707070" }}
-                          >
-                            <div className="d-flex align-items-center">
-                              <div
-                                className="rounded-2 p-1 d-flex"
-                                style={{
-                                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-                                }}
-                              >
-                                {modalDetails[idx].icon}
-                              </div>
-                              <div className="card-content ms-2">
-                                {modalDetails[idx].label}:
-                              </div>
-                            </div>
-                            <div>
-                              <strong>{modalDetails[idx].value || "-"}</strong>
-                            </div>
-                          </div>
-                        </div>
 
-                        {modalDetails[idx + 1] && (
-                          <div className="col-lg-6 col-md-6 border-start py-2 ps-0">
-                            <div
-                              className="py-2 border-bottom d-flex justify-content-between align-items-center px-3"
-                              style={{ color: "#707070" }}
-                            >
-                              <div className="d-flex align-items-center">
-                                <div
-                                  className="rounded-2 p-1 d-flex"
-                                  style={{
-                                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-                                  }}
-                                >
-                                  {modalDetails[idx + 1].icon}
-                                </div>
-                                <div className="card-content ms-2">
-                                  {modalDetails[idx + 1].label}:
-                                </div>
-                              </div>
-                              <div>
-                                <strong>
-                                  {modalDetails[idx + 1].value || "-"}
-                                </strong>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    ) : null
-                  )}
-                </div>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
       </Card.Header>
       <Card.Body>
         {details.map((item, idx) => (
@@ -313,8 +292,9 @@ const AnimalCard = ({
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
         {kidId === undefined ? (
           <>
-            <NavLink to="/parentform">
+            <NavLink to="/parentform?type=edit">
               <Button
+               onClick={editForm}
                 variant="light"
                 className="border px-1 py-0"
                 style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
@@ -366,7 +346,45 @@ const AnimalCard = ({
               style={{ background: "#FB9038", color: "white" }}
               onClick={() =>
                 navigate(`/record/${parentId}/${uniqueId}`, {
-                  state: { parentId, uniqueId,tagId },
+                  state: {
+                    parentId,
+                    uniqueId,
+                    tagId,
+                    defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
+                    animalData: {
+                      parentId,
+                      tagId,
+                      height,
+                      gender,
+                      age,
+                      _id,
+                      birthDate,
+                      ageMonth,
+                      weightKg,
+                      bodyScore,
+                      pregnancyDetails,
+                      maleDetail,
+                      uniqueId,
+                      kidId,
+                      postweight,
+                      comments,
+                      fatherTag,
+                      motherTag,
+                      birthWeight,
+                      birthType,
+                      motherWeanDate,
+                      purchaseDate,
+                      lastVaccineDate,
+                      lastVaccineName,
+                      isPregnant,
+                      dateMading,
+                      pregnencyFail,
+                      weanDate,
+                      vaccineName,
+                      vaccineDate,
+                      farmName,
+                    },
+                  }
                 })
               }
             >
