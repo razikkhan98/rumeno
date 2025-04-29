@@ -12,6 +12,7 @@ export const getData = async (endpoint) => {
         "Content-Type": "application/json", // Adjust as needed
       },
     });
+    console.log('response: ', response);
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message;

@@ -6,6 +6,7 @@ import { getData, postData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
+import moment from "moment";
 
 const GoatDetailForm = () => {
 
@@ -32,6 +33,7 @@ const GoatDetailForm = () => {
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
+  console.log('type: ', type);
 
 
 
@@ -53,6 +55,7 @@ const GoatDetailForm = () => {
         // farmName,
         farmHouseName,
       };
+      console.log('uniqueId: ', uniqueId);
 
 
       // Determine API endpoint dynamically based on type
@@ -96,7 +99,10 @@ const GoatDetailForm = () => {
         const response = await getData(endpoint);
         if (response.data && response.data.length > 0) {
           const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
+          console.log('filteredAnimals: ', filteredAnimals);
           const animalData = filteredAnimals[storedIndex];
+          console.log('storedIndex: ', storedIndex);
+          console.log('animalData: ', animalData);
           setAnimalUniqueId(animalData.uniqueId)
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
@@ -107,14 +113,16 @@ const GoatDetailForm = () => {
           setValue("purchaseDate", animalData.purchaseDate || "");
           setValue("gender", animalData.gender || "");
           setValue("weightKg", animalData.weightKg || "");
+          setValue("birthDate", moment(animalData.birthDate).format('YYYY-MM-DD') || "");
+          setValue("birthWeight", animalData.birthWeight || "");
+          // moment(animalData.birthDate).utc().format('YYYY-MM-DD')
           setValue("pregnancyDetails", animalData.pregnancyDetails || "");
           setValue("maleDetail", animalData.maleDetail || "");
           setValue("bodyScore", animalData.bodyScore || "");
           setValue("comments", animalData.comments || "");
         }
       } catch (error) {
-        console.error("Error fetching animals:", error);
-        // toast.error("Failed to fetch animal data", {
+        // toast.error(error.message || "Something went wrong!", {
         //   position: "top-right",
         //   autoClose: 3000,
         // });
@@ -317,7 +325,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Weight"
-                    {...register("birthWeightKg")}
+                    {...register("birthWeight")}
                   />
                 </div>
               </div>
