@@ -336,6 +336,7 @@ const AnimalCard = ({
                   farmHouseName,
                 },
               });
+              editForm() 
             }}
             variant="light"
             className="border px-1 py-0"

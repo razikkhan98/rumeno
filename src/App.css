@@ -1372,8 +1372,24 @@ body {
     font-size: 1rem;
   }
 
+  /* .livestock-content {
+    margin-top: 2rem;
+    height: auto;
+  } */
+}
+
+
+@media (max-width: 580px) {
   .livestock-content {
     margin-top: 2rem;
+    /* height: 1190px !important; */
+  }
+}
+
+@media (max-width: 360px) {
+  .livestock-content {
+    margin-top: 2rem;
+    /* height: 1145px !important; */
   }
 }
 

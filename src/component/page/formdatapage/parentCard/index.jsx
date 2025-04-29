@@ -52,6 +52,7 @@ const Parent = () => {
   const addGoat = () => {
     localStorage.removeItem("currentIndex");
   };
+ 
 
 
   
@@ -125,6 +126,7 @@ const Parent = () => {
                       motherTag={animal.motherTag}
                       birthWeight={animal.birthWeight}
                       birthType={animal.birthType}
+                      birthDate={animal.birthDate}
                       motherWeanDate={animal.motherWeanDate}
                       purchaseDate={animal.purchaseDate}
                       lastVaccineDate={animal.lastVaccineDate}
