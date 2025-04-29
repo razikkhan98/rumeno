@@ -12,7 +12,7 @@ const DashboardTable = ({ data }) => {
               <thead>
                 <tr className="heads">
                   <th scope="col" className="text-chinese-black-color">
-                    #
+                    S No.
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     UniqueId

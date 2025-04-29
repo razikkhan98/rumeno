@@ -26,36 +26,44 @@ const Record = () => {
     BasicDetails: "user/animaldata/newEntity",
     PostWean: "/post-wean/post-wean-add",
     Milk: "/milk-record/create-milk-record",
-    Vaccine: "/vaccine/register-animal-vaccine",
+    Vaccine: "/vaccine/add-vaccine",
     Deworm: "/user/animal/dewormdata/add",
     EstrusHeat: "/estrus-heat/create-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/add",
-    Kid: "/user/animaldata/child",
+    AnimalStatus: "/user/animaldata/transferAnimal",
   };
 
-  const TabItems = ["BasicDetails", "PostWean", "Milk", "Vaccine", "Deworm", "EstrusHeat", "Kid", `${animalName} stauts`]
+  const TabItems = [  { label: "Basic Details", key: "BasicDetails" },
+    { label: "Post Wean", key: "PostWean" },
+    { label: "Milk", key: "Milk" },
+    { label: "Vaccine", key: "Vaccine" },
+    { label: "Deworm", key: "Deworm" },
+    { label: "Estrus Heat", key: "EstrusHeat" },
+    { label: "Kid", key: "Kid" },
+    { label: `${animalName} Status`, key: "AnimalStatus" },]
 
-  const GET_API_ENDPOINTS ={
+  const GET_API_ENDPOINTS = {
     PostWean: "/post-wean/get-all-post-wean",
     Milk: "/milk-record/get-all-milk-records",
-    Vaccine: "/vaccine/get-all-register-animal-vaccine",
+    Vaccine: "/vaccine/reminders/:userId",
     // Deworm: "/user/animal/dewormdata/add",
-    EstrusHeat: "/estrus-heat/get-all-create-heat-record",   
+    EstrusHeat: "/estrus-heat/get-all-heat-records",
+    AnimalStatus: "/user/animaldata/getAllTransferAnimal"
   }
 
   const API_UPDATEENDPOINTS = {
-    PostWean: "/post-wean/update-post-wean-by-id/:id",
-    Milk: "/milk-record/update-milk-record/:id",
+    PostWean: "/post-wean/update-post-wean-by-id",
+    Milk: "/milk-record/update-milk-record",
     Vaccine: "/user/animal/vaccinedata/update",
     Deworm: "/user/animal/dewormdata/update",
-    EstrusHeat: "/estrus-heat/update-heat-record/:id",
+    EstrusHeat: "/estrus-heat/update-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/update",
     Kid: "/user/animaldata/child",
   };
 
   const API_DELETEENDPOINTS = {
     PostWean: "/post-wean/delete-post-wean-by-id",
-    Milk: "/milk-record/delete-milk-record-by-id/:id",
+    Milk: "/milk-record/delete-milk-record-by-id",
     Vaccine: "/user/animal/vaccinedata/delete",
     Deworm: "/user/animal/dewormdata/delete",
     EstrusHeat: "/estrus-heat/delete-heat-record-by-id/:id",
@@ -71,8 +79,8 @@ const Record = () => {
       { label: "Height (in Ft)", name: "height", type: "number" },
       { label: "Weight (kg)", name: "weightKg", type: "number" },
       { label: "Birth Date", name: "birthDate", type: "date", required: true },
-      { label: "Mother Unique Id", name: "motherUniqueId", type: "text" },
-      { label: "Father Unique Id", name: "fatherUniqueId", type: "text" },
+      { label: "Mother Tag Id", name: "motherTag", type: "text" },
+      { label: "Father Tag Id", name: "fatherTag", type: "text" },
       { label: "Gender", name: "gender", type: "text", disabled: true },
       {
         label: "Birth Type",
@@ -199,7 +207,7 @@ const Record = () => {
       // },
       {
         name: "kiddingDeliveryDate",
-        label: "Last Delivery Date",
+        label: "Last Delivery Date (kidding)",
         type: "date",
         required: true
       },
@@ -348,11 +356,6 @@ const Record = () => {
         ],
       },
       {
-        name: "breederName",
-        label: "Breeder Name",
-        type: "text",
-      },
-      {
         name: "breedDate",
         label: "Date of Breed",
         type: "date",
@@ -471,7 +474,7 @@ const Record = () => {
         type: "date",
       },
     ],
-    [`${animalName}Status`]: [
+    AnimalStatus: [
       {
         name: `${animalName}Status`,
         label: `${animalName} Status`,
@@ -484,7 +487,6 @@ const Record = () => {
         type: "date",
       },
     ],
-
   };
 
   const [animals, setAnimals] = useState([]);
@@ -509,6 +511,8 @@ const Record = () => {
   } = useForm();
   const location = useLocation();
   const parentId = location.state?.parentId;
+  const motherTag = location?.state?.motherTag;
+  console.log('motherTag: ', motherTag);
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
@@ -524,7 +528,12 @@ const Record = () => {
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
     try {
-      const response = await getData(GET_API_ENDPOINTS[activeTab]);
+      let endpoint = GET_API_ENDPOINTS[activeTab];
+      if (activeTab === "Vaccine") {
+        endpoint += `?userId=${uid}`;
+      }
+      const response = await getData(endpoint);
+      console.log('response: asdf', response);
       setSubmittedData(response?.data || []);
 
     } catch (error) {
@@ -541,32 +550,40 @@ const Record = () => {
   //     console.log('response basic: ', response);
   //     setAnimals(response.data || []);
   //   } catch (error) {
-      
+
   //   }
   // };
 
-  // const fetchAnimal = async () => {
-    
-  //   try {
-  //     const response = await axios.get(
-  //       "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
-  //       {
-  //         params: { animalName: selectedAnimal, uid },
-  //         headers: {
-  //           "ngrok-skip-browser-warning": "true", // Required for ngrok
-  //           "Content-Type": "application/json",   // Adjust as needed
-  //         },
-  //       }
-  //     );
-  //     console.log('response: ', response,);
-  //     setAnimals(response.data.animals || []);
-  //     if(response.data.animals) {
-  //       setLoading(false)
-  //     }
-  //   } catch (err) {
-  //     setError("Error fetching data");
-  //   }
-  // };
+  const fetchAnimal = async () => {
+    try {
+      const response = await axios.get(
+        "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        {
+          params: { animalName, uid },
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Required for ngrok
+            "Content-Type": "application/json",   // Adjust as needed
+          },
+        }
+      );
+
+      const allAnimals = response.data.animals || [];
+      console.log('response.data.animals: ', response.data.animals);
+
+      //  Filter kids (having both motherTag and fatherTag)
+      const Kids = allAnimals.filter(
+        (animal) => animal.motherTag && animal.fatherTag
+      );
+
+      setAnimals(Kids);
+
+      if (Kids.length > 0) {
+        setLoading(false);
+      }
+    } catch (err) {
+      setError("Error fetching data");
+    }
+  };
 
 
   // Show Basic Details Data
@@ -576,9 +593,9 @@ const Record = () => {
   //   }
   // }, [selectedAnimal, uniqueId]);
 
-  // useEffect(() => {
-  //   fetchAnimals();
-  // }, []);
+  useEffect(() => {
+    fetchAnimal();
+  }, []);
 
   useEffect(() => {
     const tabMapping = {
@@ -614,7 +631,6 @@ const Record = () => {
 
   const onSubmit = async (data) => {
     const apiUrl = API_ENDPOINTS[activeTab];
-
     let formData = {}; // Declare once
 
     if (kidId === undefined) {
@@ -624,16 +640,24 @@ const Record = () => {
       // Child
       formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
       console.log("formData: ", formData);
-      console.log(parentId, "parentId");
+      // console.log(parentId, "parentId");
     }
 
     try {
       const response = await postData(apiUrl, formData);
+      console.log('response: ', response);
       if (response.status) {
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
         });
+
+         // Update submittedData after form submission
+        setSubmittedData((prevData) => [
+          ...prevData, 
+          formData,    
+        ]);
+
         if (kidId === undefined) {
           setTimeout(() => navigate("/record/:name/:uniqueId"), 1000);
         } else {
@@ -646,7 +670,6 @@ const Record = () => {
       toast.error(error?.message || "Submission failed.");
     }
 
-    setSubmittedData(formData);
     setShowForm(false);
     // fetchAnimal();
   };
@@ -656,27 +679,29 @@ const Record = () => {
 
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
-  
+    const dataToUpdate = submittedData[index];
     console.log("submittedData[index]: ", submittedData[index]);
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
 
-    // Dynamically get the ID key based on the active tab
-    const idKeyMap = {
-      PostWean: "postWeanId",
-      Milk: "milkId",
-      Vaccine: "vaccineId",
-      Deworming: "dewormingId",
-      EstrusHeat: "estrusId",
-    };
+    const recordId = dataToUpdate?._id;
 
-    const idKey = idKeyMap[activeTab];
-    const dataToUpdate = submittedData[index];
+    if (!recordId || !apiUrl) {
+      toast.error("Missing ID or API endpoint for update.");
+      return;
+    }
+
 
     try {
-      const response = await updateData(apiUrl, dataToUpdate[idKey], dataToUpdate)
+      const response = await updateData(apiUrl, recordId, dataToUpdate)
+      console.log('response: edit', response);
       if (response.status === 200 || response.status === 201) {
+
+        const updatedData = [...submittedData];
+        updatedData[index] = { ...updatedData[index], ...response.data }; // Update data with API response
+        setSubmittedData(updatedData);
+
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
@@ -693,59 +718,37 @@ const Record = () => {
   const handleDeleteApi = async (index) => {
     // Call Delete Api
     const apiUrl = API_DELETEENDPOINTS[activeTab];
-    const idKey = activeTab === "PostWean" ? "postWeanId" : "vaccineId";
     const itemToDelete = submittedData[index];
+    const recordId = itemToDelete?._id;
+
+    if (!recordId || !apiUrl) {
+      toast.error("Missing ID or API endpoint for deletion.");
+      return;
+    }
+
     try {
-      const response = await deleteData(
-        apiUrl,
-        itemToDelete[idKey]
-      );
-      console.log("responseupdate: ", response);
+      const response = await deleteData(apiUrl, recordId);
+
+      console.log("responsedetel: ", response);
       if (response.status === 200 || response.status === 201) {
+
+        setSubmittedData(prev =>
+          prev.filter(item => item._id !== recordId));
+
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
         });
-        setSubmittedData((prev) => prev.filter((_, i) => i !== index));
+        setTimeout(fetchRecordDetails, 1000);
+        // setSubmittedData((prev) => prev.filter((_, i) => i !== index));
       } else {
-        throw new Error(response.data.message);
+        // throw new Error(response.data.message);
       }
     } catch (error) {
       toast.error(error?.message || "Submission failed.");
     }
   };
 
-
-  // const handleDeleteApi = async (index) => {
-  //   // Call Delete Api
-  //   const apiUrl = API_DELETEENDPOINTS[activeTab];
-  //   const idField = submittedData?.postWeanId
-  //   ? "postWeanId"
-  //   : submittedData[index].milkId
-  //   ? "milkId"
-  //   : submittedData[index].weaningId
-  //   ? "weaningId"
-  //   : "id"; 
-  //   console.log('submittedData[index].postWeanId: ', submittedData?.postWeanId);
-
-  // const id = submittedData[index][idField];
-  //   try {
-  //     const response = await deleteData(apiUrl, id);
-  //     console.log("responseupdate: ", response);
-  //     if (response.status === 200 || response.status === 201) {
-  //       toast.success(response.data.message, {
-  //         autoClose: 3000,
-  //         transition: Bounce,
-  //       });
-
-  //       await fetchAnimals();
-  //     } else {
-  //       throw new Error(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error(error?.message || "Submission failed.");
-  //   }
-  // };
 
   const isShowForm = showForm[activeTab] || false;
 
@@ -777,9 +780,9 @@ const Record = () => {
                 {TabItems.map((tab) =>
                   kidId !== undefined && tab === "Kid" ? null : (
                     <Tab
-                      key={tab}
-                      eventKey={tab}
-                      title={tab.replace(/([A-Z])/g, " $1")}
+                      key={tab.key}
+                      eventKey={tab.key}
+                      title={tab.label}
                     />
                   )
                 )}
@@ -816,27 +819,14 @@ const Record = () => {
 
               {kidId === undefined && activeTab === "Kid" && (
                 <>
-                  {/* <div className="d-flex justify-content-between align-items-center">
-                    <h4>{activeTab?.replace(/([A-Z])/g, " $1")}</h4>
-                    <button
-                      className="btn text-white px-4 border rounded-pill me-5"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #60A5FA, #EC4899)",
-                      }}
-                      onClick={() => setIsActive(true)}
-                    >
-                      <span className="me-1">+</span> Add Kid
-                    </button>
-                  </div> */}
 
                   {loading ? (
                     <p>Loading...</p>
-                  ) : filteredChildren.length > 0 ? (
+                  ) : animals.length > 0 ? (
                     <div className="row">
-                      {filteredChildren.map((animal, index) => (
-                        <div key={index} className="col-lg-3 px-3 pt-4">
-                          <AnimalCard {...animal} />
+                      {animals.map((animal, index) => (
+                        <div key={index} className="col-lg-3 width-20 px-3 pt-4">
+                          <AnimalCard {...animal} showDetailsButton={false} />
                         </div>
                       ))}
                     </div>
@@ -872,7 +862,8 @@ const Record = () => {
                         //   reset();
                         // }}
                         >
-                          <span className="me-1">+</span> {activeTab}
+                          <span className="me-1">+</span> {  TabItems.find((tab) => tab.key === activeTab)?.label || activeTab
+                          }
                         </button>
                       </>
                     )}
@@ -894,7 +885,18 @@ const Record = () => {
                             />
                           </Form.Group>
                         </div>
-
+                        {activeTab === "PostWean" && (
+                          <div className="col-lg-3 pb-3">
+                            <Form.Group>
+                              <Form.Label>Mother ID</Form.Label>
+                              <Form.Control
+                                type="text"
+                                value={motherTag}
+                                readOnly
+                              />
+                            </Form.Group>
+                          </div>
+                        )}
                         {fieldConfigs[activeTab]?.map((field, index) => (
                           <div key={index} className="col-lg-3 pb-3">
                             <Form.Group>
@@ -963,50 +965,50 @@ const Record = () => {
                         ))}
 
                         {/* Animal Stauts Form  */}
-                       {activeTab ===  `${animalName} stauts` && (
-                         <>
-                         {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
-                          <div key={index} className="col-lg-3 pb-3">
-                            <Form.Group>
-                              <Form.Label>{field.label}</Form.Label>
+                        {activeTab === `${animalName} stauts` && (
+                          <>
+                            {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
+                              <div key={index} className="col-lg-3 pb-3">
+                                <Form.Group>
+                                  <Form.Label>{field.label}</Form.Label>
 
-                              {field?.type === "select" ? (
-                                // ✅ Corrected Select Field
-                                <Form.Select
-                                  {...register(field.name, {
-                                    required: field.required,
-                                  })}
-                                  disabled={!editActive && InputPreFillData}
-                                >
-                                  <option value="">Select an option</option>{" "}
-                                 
-                                  {field?.options?.map((option, idx) => (
-                                    <option key={idx} value={option}>
-                                      {option}
-                                    </option>
-                                  ))}
-                                </Form.Select>
-                              ) : (
-                                
-                                <Form.Control
-                                  type={field.type}
-                                  {...register(field.name, { required: field.required })}
-                                />
-                              )}
-                            </Form.Group>
-                          </div>
-                        ))}
-                         </>
-                       )
+                                  {field?.type === "select" ? (
+                                    // ✅ Corrected Select Field
+                                    <Form.Select
+                                      {...register(field.name, {
+                                        required: field.required,
+                                      })}
+                                      disabled={!editActive && InputPreFillData}
+                                    >
+                                      <option value="">Select an option</option>{" "}
+
+                                      {field?.options?.map((option, idx) => (
+                                        <option key={idx} value={option}>
+                                          {option}
+                                        </option>
+                                      ))}
+                                    </Form.Select>
+                                  ) : (
+
+                                    <Form.Control
+                                      type={field.type}
+                                      {...register(field.name, { required: field.required })}
+                                    />
+                                  )}
+                                </Form.Group>
+                              </div>
+                            ))}
+                          </>
+                        )
 
 
-                       }
+                        }
 
                       </div>
                       <Button
                         type="submit"
                         className="record-btn"
-                        disabled={editActive ? !isDirty : !!InputPreFillData}
+                        // disabled={editActive ? !isDirty : !!InputPreFillData}
                       >
                         Submit
                       </Button>
@@ -1082,7 +1084,7 @@ const Record = () => {
                         <table class="table table-hover text-center align-middle">
                           <thead >
                             <tr>
-                              <th scope="col" className="heading">#</th>
+                              <th scope="col" className="heading">S No.</th>
                               <th className="heading">Tag Id</th>
                               {fieldConfigs[activeTab]?.map((field, i) => (
                                 <th key={i} className="heading">{field.label}</th>

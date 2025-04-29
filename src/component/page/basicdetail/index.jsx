@@ -261,7 +261,7 @@ const GoatDetailForm = () => {
                     {...register("motherTag")}
                   >
                     <option value="">Select Tag Id</option>
-                    {["01", "02", "03", "04", "11"].map((tagId) => (
+                    {["01", "02", "03", "04","05", "11"].map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>
@@ -279,7 +279,7 @@ const GoatDetailForm = () => {
                     {...register("fatherTag")}
                   >
                     <option value="">Select Tag Id</option>
-                    {["01", "02", "03", "04", "22"].map((tagId) => (
+                    {["01", "02", "03", "04","05", "22"].map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>

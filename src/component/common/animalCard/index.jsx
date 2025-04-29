@@ -57,6 +57,7 @@ const AnimalCard = ({
   farmSanitation,
   currentIndex,
   comments,
+  showDetailsButton,
 }) => {
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
@@ -212,6 +213,7 @@ const AnimalCard = ({
                   parentId,
                   uniqueId,
                   tagId,
+                  motherTag,
                   defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                   animalData: {
                     parentId,
@@ -370,7 +372,8 @@ const AnimalCard = ({
             </Button>
           </Modal.Footer>
         </Modal>
-        {kidId === undefined ? (
+        {showDetailsButton && (
+           kidId === undefined ? (
           <>
             <Button
               size="sm"
@@ -382,6 +385,7 @@ const AnimalCard = ({
                     parentId,
                     uniqueId,
                     tagId,
+                    motherTag,
                     defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                     animalData: {
                       parentId,
@@ -425,19 +429,6 @@ const AnimalCard = ({
           </>
         ) : (
           <>
-            {/* <Button
-              size="sm"
-              className="rounded-pill py-2 px-3 border-0"
-              style={{ background: "#FB9038", color: "white" }}
-              onClick={() =>
-                navigate(`/record/${kidId}/${uniqueId}`, {
-                  state: { kidId, uniqueId },
-                })
-              }
-            >
-              More
-            </Button> */}
-
             <Dropdown>
               <Dropdown.Toggle
                 size="sm"
@@ -475,6 +466,7 @@ const AnimalCard = ({
               </Dropdown.Menu>
             </Dropdown>
           </>
+        )
         )}
       </Card.Footer>
     </Card>
