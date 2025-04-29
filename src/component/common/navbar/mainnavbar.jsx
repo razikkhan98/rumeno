@@ -96,7 +96,7 @@ const Mainnav = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
     setOpen(false);
-    navigate("/"); 
+    setTimeout(() => navigate("/"), 1000);
   };
 
   const isRouteActive = (pathname, routeList = []) => {

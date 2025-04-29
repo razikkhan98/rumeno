@@ -488,7 +488,6 @@ const Record = () => {
   };
 
   const [animals, setAnimals] = useState([]);
-  console.log('animals: ', animals);
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -497,7 +496,6 @@ const Record = () => {
   const [editActive, setEditActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
-  console.log('submittedData: ', submittedData);
   const [editIndex, setEditIndex] = useState(null);
   const [error, setError] = useState("");
 
@@ -510,10 +508,8 @@ const Record = () => {
     formState: { isDirty },
   } = useForm();
   const location = useLocation();
-  console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
-  console.log('uniqueId: ', uniqueId);
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
@@ -524,13 +520,11 @@ const Record = () => {
 
 
   const uid = sessionStorage.getItem("uid");
-  console.log('uid: ', uid);
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
     try {
       const response = await getData(GET_API_ENDPOINTS[activeTab]);
-      console.log('response basic: ', response);
       setSubmittedData(response?.data || []);
 
     } catch (error) {
@@ -551,28 +545,28 @@ const Record = () => {
   //   }
   // };
 
-  const fetchAnimal = async () => {
-    console.log("Heloo")
-    try {
-      const response = await axios.get(
-        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
-        {
-          params: { animalName: selectedAnimal, uid },
-          headers: {
-            "ngrok-skip-browser-warning": "true", // Required for ngrok
-            "Content-Type": "application/json",   // Adjust as needed
-          },
-        }
-      );
-      console.log('response: ', response,);
-      setAnimals(response.data.animals || []);
-      if(response.data.animals) {
-        setLoading(false)
-      }
-    } catch (err) {
-      setError("Error fetching data");
-    }
-  };
+  // const fetchAnimal = async () => {
+    
+  //   try {
+  //     const response = await axios.get(
+  //       "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+  //       {
+  //         params: { animalName: selectedAnimal, uid },
+  //         headers: {
+  //           "ngrok-skip-browser-warning": "true", // Required for ngrok
+  //           "Content-Type": "application/json",   // Adjust as needed
+  //         },
+  //       }
+  //     );
+  //     console.log('response: ', response,);
+  //     setAnimals(response.data.animals || []);
+  //     if(response.data.animals) {
+  //       setLoading(false)
+  //     }
+  //   } catch (err) {
+  //     setError("Error fetching data");
+  //   }
+  // };
 
 
   // Show Basic Details Data

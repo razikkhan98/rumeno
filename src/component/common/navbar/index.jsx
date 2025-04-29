@@ -19,8 +19,9 @@ const Navbar = () => {
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal || "Goat"; // Default: Goat
 
-  const {farmName} =JSON.parse(localStorage?.getItem("farmerDetail")) ;
-  
+  // const farmHouseName =JSON.parse(localStorage?.getItem("farmHouseName")) ;
+  const farmHouseName = sessionStorage.getItem("farmHouseName"); // Retrieve animalName from sessionStorage
+
 
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
@@ -106,7 +107,7 @@ const Navbar = () => {
               <div className="col-lg-12 px-5">
                 <nav aria-label="breadcrumb" className="py-2 px-3">
                   <ol className="breadcrumb mb-0">
-                    <li className="breadcrumb-item text-uppercase">{farmName}</li>
+                    <li className="breadcrumb-item text-uppercase">{farmHouseName}</li>
                     <li className="breadcrumb-item active">{selectedAnimal}</li>
                   </ol>
                 </nav>

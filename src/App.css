@@ -1899,14 +1899,14 @@ body {
   height: 100%;
 }
 
-.addtocart-btn {
+.addsize-btn {
   width: 160px;
   height: 45px !important;
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
 }
 
-.addtocart-btn:hover {
+.addsize-btn:hover {
   border-radius: 4px !important;
   /* border: 1px solid var(--chinese-black-color) !important; */
 }
@@ -1926,7 +1926,28 @@ body {
   background-color: var(--light-blue-color) !important;
   border-left: 2px dotted var(--chinese-black-color) !important;
 }
+.buynow-btn{
+  width: 200px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+.buynow-btn Button{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
 
+.addtocart-btn{
+  width: 200px;
+  height: 56px;
+  border-radius: 8px;
+}
+.addtocart-btn Button{
+  width: 100%;
+  height: 100%;
+  background-color: #EC7229;
+}
 .addtocart-colapse {
   background-color: var(--white-color) !important;
 }
@@ -1973,14 +1994,87 @@ body {
   }
 }
 
+@media (max-width: 580px) {
+  .addsize-btn {
+    width: 42%;
+    height: 36px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ebebeb !important;
+  }
+  .font-16-400 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
+  .font-15-500 {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+  }
+  .font-17-600 {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+  }
+  .buynow-btn {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid;
+    text-align: center;
+    margin: auto;
+  }
+  .buynow-btn Button{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px !important;
+    font-weight: 500;
+  }
+  .addtocart-btn {
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+  }
+  .addtocart-btn Button{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px !important;
+    font-weight: 500;
+  }
+  .faq-heading {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+}
+.faqsub-heading{
+  font-size: 17px;
+    font-weight: 500;
+}
+}
+@media (max-width: 360px) {
+  .addsize-btn {
+    width: 46%;
+    height: 36px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ebebeb !important;
+  }
+}
+
 /* <--------- AddtoCart End ---------> */
 
 /* <--------- Cart ---------> */
 
-.cart-container {
-  width: 1104px;
-  height: auto;
-}
+/* .cart-container { */
+  /* width: 1104px; */
+  /* height: auto; */
+/* } */
 .cart-img {
   width: 90px;
   height: 90px;
@@ -1989,11 +2083,51 @@ body {
   width: 100%;
   height: 100%;
 }
+.cart-text-truncate{
+  max-width: 400px;
+}
+.proceed-pay-btn{
+  width: 200px;
+  height: 56px;
+}
 
 @media (max-width: 1024px) {
   .cart-container {
     width: 100%;
     height: auto;
+  }
+}
+@media (max-width: 580px) {
+  .cart-container {
+    width: 100%;
+    height: auto;
+  }
+  .cart-text-truncate{
+    max-width: 200px;
+  }
+  .font-11-400{
+    font-size: 12px !important;
+    font-weight: 400 !important;
+  }
+  .font-13-500{
+    font-size: 13px !important;
+    font-weight: 500 !important;
+  }
+  .font-12-500{
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+  .font-14-300{
+    font-size: 14px !important;
+    font-weight: 300 !important;
+  }
+  .font-14-500{
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+  .proceed-pay-btn{
+    width: 150px;
+    height: 40px;
   }
 }
 /* <--------- Cart End ---------> */
