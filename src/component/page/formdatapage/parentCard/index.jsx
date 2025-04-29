@@ -11,7 +11,6 @@ import axios from "axios";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
-  console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
   const uid = sessionStorage.getItem("uid");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
@@ -21,7 +20,7 @@ const Parent = () => {
     console.log("Heloo")
     try {
       const response = await axios.get(
-        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
         {
           params: { animalName: selectedAnimal, uid },
           headers: {
@@ -30,7 +29,6 @@ const Parent = () => {
           },
         }
       );
-      console.log('response: ', response,);
       setAnimals(response.data.animals || []);
       if(response.data.animals) {
         setLoading(false)
@@ -48,8 +46,7 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
-  console.log('selectedAnimal: ', selectedAnimal);
-  console.log('filteredAnimals: ', filteredAnimals);
+
 
   // Add Goat 
   const addGoat = () => {

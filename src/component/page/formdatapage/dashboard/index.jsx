@@ -90,7 +90,6 @@ import axios from "axios";
 // import Sanitation from "../../../assets/img/dashboard/sanitation.svg";
 // import Vaccine from "../../../assets/img/dashboard/vaccine.svg";
 
-
 import Animal from "../../../assets/img/dashboard/animals1.svg";
 import Parent from "../../../assets/img/dashboard/parent1.svg";
 import Child from "../../../assets/img/dashboard/baby1.svg";
@@ -105,7 +104,6 @@ import Header from "../../../common/Header/header";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
-    
     TotalAnimals: 0,
     TotalParents: 0,
     TotalChildren: 0,
@@ -117,10 +115,10 @@ const Dashboard = () => {
     SanitationCount: 0,
     PregnantCount: 0,
   });
-  console.log('stats: ', stats);
+  console.log("stats: ", stats);
 
   const [selectedCard, setSelectedCard] = useState(null);
-  console.log('selectedCard: ', selectedCard);
+  console.log("selectedCard: ", selectedCard);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [data, setdata] = useState([]);
@@ -144,13 +142,17 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Required for ngrok
+              "Content-Type": "application/json", // Adjust as needed
+            },
           }
         );
-        
-        console.log('response: ', response);
+
+        console.log("response: ", response);
         setStats(response.data);
         setdata(response.data);
       } catch (err) {
@@ -169,7 +171,7 @@ const Dashboard = () => {
       cardborder: "card-orange-border",
       cardcircle: "card-orange-circle",
       img: Animal,
-      value: stats.TotalAnimals,
+      value: stats.TotalAnimals || " ",
     },
 
     // {
@@ -189,8 +191,8 @@ const Dashboard = () => {
       cardborder: "card-blue-border",
       cardcircle: "card-blue-circle",
       img: Vaccine,
-      value: stats.VaccineCount,
-      details: stats.VaccineData,
+      value: stats.VaccineCount || " ",
+      details: stats.VaccineData || [],
     },
     // {
     //   title: "Post Wean",
@@ -216,10 +218,10 @@ const Dashboard = () => {
     {
       title: "Deworming",
       cardborder: "card-blue-border",
-      cardcircle: "card-blue-circle", 
+      cardcircle: "card-blue-circle",
       img: Deworm,
-      value: stats.DewormCount,
-      details: stats.DewormData,
+      value: stats.DewormCount || " ",
+      details: stats.DewormData || [],
     },
     // {
     //   title: "Farm Sanitation",
@@ -237,50 +239,51 @@ const Dashboard = () => {
     // },
   ];
 
-  console.log(cardData);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
-   <>
+    <>
       <Navbar />
-    <div className="parent pt-5">
-      <div className="pt-5">
+      <div className="parent pt-5">
+        <div className="pt-5">
           <Header title={setfarmHouseName} subtitle={selectedAnimal} />
         </div>
-      <div className="row">
-        <div className="col-lg-2 col-md-3">
-          {/* Left Sidebar - Fixed */}
-          <div className="sidebar-container">
-            <Sidebar />
+        <div className="row">
+          <div className="col-lg-2 col-md-3">
+            {/* Left Sidebar - Fixed */}
+            <div className="sidebar-container">
+              <Sidebar />
+            </div>
           </div>
-        </div>
-        <div className="col-lg-10 col-md-9">
-          {/* Right Content - Scrollable */}
-          <div
-            className="content-container flex-grow-1"
-            style={{
-              overflowY: "auto",
-              height: "calc(100vh - 200px)", // Adjust based on Navbar height
-              padding: "20px",
-            }}
-          >
-            <h4 className="text-chinese-black-color">
-               <span onClick={() => setSelectedCard(null)} role="button">Dashboard</span>
-              {selectedCard && (
-                <>
-                  {" > "}
-                  {selectedCard?.title}
-                </>
-              )}
-            </h4>
-            <div className="row">
-              {!selectedCard && (
-                <>
-                  {cardData?.map((card, index) => (
-                    <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
-                      {/* <Card
+          <div className="col-lg-10 col-md-9">
+            {/* Right Content - Scrollable */}
+            <div
+              className="content-container flex-grow-1"
+              style={{
+                overflowY: "auto",
+                height: "calc(100vh - 200px)", // Adjust based on Navbar height
+                padding: "20px",
+              }}
+            >
+              <h4 className="text-chinese-black-color">
+                <span onClick={() => setSelectedCard(null)} role="button">
+                  Dashboard
+                </span>
+                {selectedCard && (
+                  <>
+                    {" > "}
+                    {selectedCard?.title}
+                  </>
+                )}
+              </h4>
+              <div className="row">
+                {!selectedCard && (
+                  <>
+                    {cardData?.map((card, index) => (
+                      <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
+                        {/* <Card
                         className="mb-3 card-hover"
                         onClick={() => setSelectedCard(card)}
                         style={{
@@ -316,42 +319,44 @@ const Dashboard = () => {
                         </Card.Body>
                       </Card> */}
 
-                      <Card
-                        className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
-                        onClick={() => setSelectedCard(card)}
-                      >
-                        <div className="row gap-2 align-items-center justify-content-between">
-                         <div className="col-lg-3">
-                         <div className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}>
-                            <img src={card.img} alt="Loading" />
+                        <Card
+                          className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
+                          onClick={() => setSelectedCard(card)}
+                        >
+                          <div className="row gap-2 align-items-center justify-content-between">
+                            <div className="col-lg-3">
+                              <div
+                                className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}
+                              >
+                                <img src={card.img} alt="Loading" />
+                              </div>
+                            </div>
+                            <div className="col-lg-7">
+                              <Card.Title>{card.value}</Card.Title>
+                              <Card.Subtitle className="mb-2 text-muted">
+                                {" "}
+                                {card.title}
+                              </Card.Subtitle>
+                              {/* <Card.Body>This is some text within a card body.</Card.Body> */}
+                            </div>
                           </div>
-                         </div>
-                          <div className="col-lg-7">
-                            <Card.Title>{card.value}</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                              {" "}
-                              {card.title}
-                            </Card.Subtitle>
-                            {/* <Card.Body>This is some text within a card body.</Card.Body> */}
-                          </div>
-                        </div>
-                      </Card>
-                    </div>
-                  ))}
-                </>
+                        </Card>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+              {selectedCard && (
+                <div className="mt-4">
+                  {/* <h5>{selectedCard.title} Details</h5> */}
+                  <DashboardTable data={selectedCard?.details} />
+                </div>
               )}
             </div>
-            {selectedCard && (
-              <div className="mt-4">
-                {/* <h5>{selectedCard.title} Details</h5> */}
-                <DashboardTable data={selectedCard?.details} />
-              </div>
-            )}
           </div>
         </div>
       </div>
-    </div>
-   </>
+    </>
   );
 };
 

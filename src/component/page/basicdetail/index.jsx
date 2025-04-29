@@ -18,7 +18,6 @@ const GoatDetailForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  // const { setparentId } = useContext(CartContext);
   const selectedAnimal = sessionStorage.getItem("animalName");
 
   const { purchaseDate, birthDate, isPregnant, isChild } = watch();
@@ -26,22 +25,23 @@ const GoatDetailForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
+  const animalData = location.state; // This will be the full animal object
+  console.log('animalData: ', animalData);
+
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
 
-  // const farmerDetail = location.state?.farmName;
-  // 
-  const farmerDetail = JSON?.parse(sessionStorage.getItem("farmerDetail") ?? "{ }");
-  // 
+
 
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
-    console.log('data: ', data);
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
       const animalName = sessionStorage.getItem("animalName"); // Retrieve animalName from sessionStorage
+      const farmHouseName = sessionStorage.getItem("farmHouseName"); // Retrieve animalName from sessionStorage
+
       // Convert gender value to lowercase
 
       const formData = {
@@ -51,9 +51,8 @@ const GoatDetailForm = () => {
         uid, // Add UID to the form data
         animalName, // Add animalName to the form data
         // farmName,
-        farmName: farmerDetail.farmHouseName,
+        farmHouseName,
       };
-      console.log('uniqueId: ', uniqueId);
 
 
       // Determine API endpoint dynamically based on type
@@ -66,7 +65,6 @@ const GoatDetailForm = () => {
       const response = await (type === "edit"
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
-      console.log('data?.uid: ', data?.uid);
 
 
       if (response.data.message === "success") {
@@ -96,20 +94,10 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await getData(endpoint);
-
-
         if (response.data && response.data.length > 0) {
-
-
           const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
           const animalData = filteredAnimals[storedIndex];
-
-          console.log('animalData: ', animalData);
-
           setAnimalUniqueId(animalData.uniqueId)
-
-          console.log('filteredAnimals: ', filteredAnimals);
-
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
           setValue("tagId", animalData.tagId || "");
@@ -125,7 +113,8 @@ const GoatDetailForm = () => {
           setValue("comments", animalData.comments || "");
         }
       } catch (error) {
-        // toast.error(error.message || "Something went wrong!", {
+        console.error("Error fetching animals:", error);
+        // toast.error("Failed to fetch animal data", {
         //   position: "top-right",
         //   autoClose: 3000,
         // });
@@ -191,20 +180,7 @@ const GoatDetailForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Unique ID</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Unique ID"
-                    // {...register("uniqueName", {
-                    //   required: "Unique ID is required",
-                    // })}
-                  />
-                  {errors.uniqueId && (
-                    <p className="text-danger">{errors.uniqueId.message}</p>
-                  )}
-                </div> */}
+               
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Tag ID</label>
@@ -277,13 +253,7 @@ const GoatDetailForm = () => {
 
               <div className="row mt-3">
                 <div className="col-lg-2 lh-lg">
-                  {/* <label className="form-lable-detail">Mother Tag Id</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Mother tag"
-                    className="form-control form-control-detail"
-                    {...register("motherTagId")}
-                  /> */}
+              
                   <label className="form-lable-detail">Mother Tag Id</label>
                   <select
                     // disabled={purchaseDate}
@@ -300,13 +270,7 @@ const GoatDetailForm = () => {
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-                  {/* <label className="form-lable-detail">Father Tag Id</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Father tag"
-                    className="form-control form-control-detail"
-                    {...register("fatherTagId")}
-                  /> */}
+              
 
                   <label className="form-lable-detail">Father Tag Id</label>
                   <select
@@ -578,20 +542,7 @@ const GoatDetailForm = () => {
                     {...register("vaccineDate")}
                   />
                 </div>
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Farm Name</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Farm Name"
-                    {...register("farmName", {
-                      required: "Farm Name is required",
-                    })}
-                  />
-                  {errors.farmName && (
-                    <p className="text-danger">{errors.farmName.message}</p>
-                  )}
-                </div> */}
+                
               </div>
 
 

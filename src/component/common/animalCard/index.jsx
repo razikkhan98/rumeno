@@ -38,7 +38,7 @@ const AnimalCard = ({
   weanDate,
   vaccineName,
   vaccineDate,
-  farmName,
+  farmHouseName,
   ageMonth,
   weightKg,
   bodyScore,
@@ -58,9 +58,6 @@ const AnimalCard = ({
   currentIndex,
   comments,
 }) => {
-  console.log('currentIndex: ', currentIndex);
-  // console.log('tagId: ', tagId);
-  console.log("tagId", tagId);
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
     { label: "Gender", value: gender, icon: <PiGenderIntersexFill /> },
@@ -108,8 +105,7 @@ const AnimalCard = ({
 
   const editForm = () => {
     localStorage.setItem("currentIndex", currentIndex);
-    console.log('currentIndex: ', currentIndex);
-  }
+  };
 
   const handleConfirmDelete = () => {
     if (kidId) {
@@ -139,12 +135,13 @@ const AnimalCard = ({
   };
 
   const handleConfirmDeleteParent = async () => {
-
     try {
       await deleteData("user/animaldata/newEntity/delete", uniqueId);
       toast.success("Parent deleted successfully.");
       handleCloseDelete();
-      setTimeout(() => { window.location.reload(); }, 10);
+      setTimeout(() => {
+        window.location.reload();
+      }, 10);
     } catch (error) {
       toast.error(error.message || "Error deleting animal. Please try again.");
       handleCloseDelete();
@@ -208,57 +205,58 @@ const AnimalCard = ({
           className="bg-light pb-1 rounded-circle d-flex align-items-center d-flex align-items-center justify-content-center"
           style={{ width: "24px", height: "24px" }}
         >
-          <button onClick={() =>
-            navigate(`/record/${parentId}/${uniqueId}`, {
-              state: {
-                parentId,
-                uniqueId,
-                tagId,
-                defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
-                animalData: {
+          <button
+            onClick={() =>
+              navigate(`/record/${parentId}/${uniqueId}`, {
+                state: {
                   parentId,
-                  tagId,
-                  height,
-                  gender,
-                  age,
-                  _id,
-                  birthDate,
-                  ageMonth,
-                  weightKg,
-                  bodyScore,
-                  pregnancyDetails,
-                  maleDetail,
                   uniqueId,
-                  kidId,
-                  postweight,
-                  comments,
-                  fatherTag,
-                  motherTag,
-                  birthWeight,
-                  birthType,
-                  motherWeanDate,
-                  purchaseDate,
-                  lastVaccineDate,
-                  lastVaccineName,
-                  isPregnant,
-                  dateMading,
-                  pregnencyFail,
-                  weanDate,
-                  vaccineName,
-                  vaccineDate,
-                  farmName,
+                  tagId,
+                  defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
+                  animalData: {
+                    parentId,
+                    tagId,
+                    height,
+                    gender,
+                    age,
+                    _id,
+                    birthDate,
+                    ageMonth,
+                    weightKg,
+                    bodyScore,
+                    pregnancyDetails,
+                    maleDetail,
+                    uniqueId,
+                    kidId,
+                    postweight,
+                    comments,
+                    fatherTag,
+                    motherTag,
+                    birthWeight,
+                    birthType,
+                    motherWeanDate,
+                    purchaseDate,
+                    lastVaccineDate,
+                    lastVaccineName,
+                    isPregnant,
+                    dateMading,
+                    pregnencyFail,
+                    weanDate,
+                    vaccineName,
+                    vaccineDate,
+                    farmHouseName,
+                  },
                 },
-              }
-            })
-          }
-            className="border-0 bg-transparent">
+              })
+            }
+            className="border-0 bg-transparent"
+          >
             <SlArrowRight
               className="fs-6 m-auto"
               style={{ cursor: "pointer" }}
             />
           </button>
         </div>
-
       </Card.Header>
       <Card.Body>
         {details.map((item, idx) => (
@@ -290,9 +288,8 @@ const AnimalCard = ({
       </Card.Body>
 
       <Card.Footer className="d-flex justify-content-between align-items-center py-3">
-        {kidId === undefined ? (
-          <>
-            <NavLink to="/parentform?type=edit">
+        <>
+          {/* <NavLink to="/parentform?type=edit">
               <Button
                onClick={editForm}
                 variant="light"
@@ -301,27 +298,62 @@ const AnimalCard = ({
               >
                 <PiPencilSimple className="fs-6 text-primary" />
               </Button>
-            </NavLink>
+            </NavLink> */}
 
-            <Button
-              variant="light"
-              className="border px-1 py-0"
-              style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
-              onClick={handleShowDelete}
-            >
-              <PiTrashSimple className="fs-6 text-danger" />
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button
-              className="promot-parent rounded-pill px-2 py-1"
-              onClick={handleConvertParent}
-            >
-              Convert to parent
-            </Button>
-          </>
-        )}
+          <Button
+            onClick={() => {
+              navigate("/parentform?type=edit", {
+                state: {
+                  parentId,
+                  uniqueId,
+                  tagId,
+                  height,
+                  gender,
+                  age,
+                  _id,
+                  birthDate,
+                  ageMonth,
+                  weightKg,
+                  bodyScore,
+                  pregnancyDetails,
+                  maleDetail,
+                  postweight,
+                  comments,
+                  fatherTag,
+                  motherTag,
+                  birthWeight,
+                  birthType,
+                  motherWeanDate,
+                  purchaseDate,
+                  lastVaccineDate,
+                  lastVaccineName,
+                  isPregnant,
+                  dateMading,
+                  pregnencyFail,
+                  weanDate,
+                  vaccineName,
+                  vaccineDate,
+                  farmHouseName,
+                },
+              });
+            }}
+            variant="light"
+            className="border px-1 py-0"
+            style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+          >
+            <PiPencilSimple className="fs-6 text-primary" />
+          </Button>
+
+          <Button
+            variant="light"
+            className="border px-1 py-0"
+            style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)" }}
+            onClick={handleShowDelete}
+          >
+            <PiTrashSimple className="fs-6 text-danger" />
+          </Button>
+        </>
+
         <Modal show={showDeleteModal} onHide={handleCloseDelete} centered>
           <Modal.Header closeButton>
             <Modal.Title>Confirm Deletion</Modal.Title>
@@ -382,9 +414,9 @@ const AnimalCard = ({
                       weanDate,
                       vaccineName,
                       vaccineDate,
-                      farmName,
+                      farmHouseName,
                     },
-                  }
+                  },
                 })
               }
             >
