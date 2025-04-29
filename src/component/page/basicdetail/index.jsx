@@ -18,7 +18,6 @@ const GoatDetailForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  // const { setparentId } = useContext(CartContext);
   const selectedAnimal = sessionStorage.getItem("animalName");
 
   const { purchaseDate, birthDate, isPregnant, isChild } = watch();
@@ -26,15 +25,15 @@ const GoatDetailForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
+  const animalData = location.state; // This will be the full animal object
+  console.log('animalData: ', animalData);
+
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
 
-  // const farmerDetail = location.state?.farmName;
-  // 
-  // const farmerDetail = JSON?.parse(sessionStorage.getItem("farmerDetail") ?? "{ }");
-  // 
+
 
   const storedIndex = localStorage.getItem("currentIndex");
   const onSubmit = async (data) => {
@@ -98,11 +97,7 @@ const GoatDetailForm = () => {
         if (response.data && response.data.length > 0) {
           const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
           const animalData = filteredAnimals[storedIndex];
-
-
           setAnimalUniqueId(animalData.uniqueId)
-
-
           localStorage.removeItem("currentIndex");
           setValue("uniqueName", animalData.uniqueId || "");
           setValue("tagId", animalData.tagId || "");
@@ -118,7 +113,8 @@ const GoatDetailForm = () => {
           setValue("comments", animalData.comments || "");
         }
       } catch (error) {
-        // toast.error(error.message || "Something went wrong!", {
+        console.error("Error fetching animals:", error);
+        // toast.error("Failed to fetch animal data", {
         //   position: "top-right",
         //   autoClose: 3000,
         // });
@@ -184,20 +180,7 @@ const GoatDetailForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Unique ID</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Unique ID"
-                    // {...register("uniqueName", {
-                    //   required: "Unique ID is required",
-                    // })}
-                  />
-                  {errors.uniqueId && (
-                    <p className="text-danger">{errors.uniqueId.message}</p>
-                  )}
-                </div> */}
+               
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Tag ID</label>
@@ -270,13 +253,7 @@ const GoatDetailForm = () => {
 
               <div className="row mt-3">
                 <div className="col-lg-2 lh-lg">
-                  {/* <label className="form-lable-detail">Mother Tag Id</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Mother tag"
-                    className="form-control form-control-detail"
-                    {...register("motherTagId")}
-                  /> */}
+              
                   <label className="form-lable-detail">Mother Tag Id</label>
                   <select
                     // disabled={purchaseDate}
@@ -293,13 +270,7 @@ const GoatDetailForm = () => {
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-                  {/* <label className="form-lable-detail">Father Tag Id</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Father tag"
-                    className="form-control form-control-detail"
-                    {...register("fatherTagId")}
-                  /> */}
+              
 
                   <label className="form-lable-detail">Father Tag Id</label>
                   <select
@@ -571,20 +542,7 @@ const GoatDetailForm = () => {
                     {...register("vaccineDate")}
                   />
                 </div>
-                {/* <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Farm Name</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Farm Name"
-                    {...register("farmName", {
-                      required: "Farm Name is required",
-                    })}
-                  />
-                  {errors.farmName && (
-                    <p className="text-danger">{errors.farmName.message}</p>
-                  )}
-                </div> */}
+                
               </div>
 
 
