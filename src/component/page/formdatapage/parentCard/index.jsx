@@ -30,7 +30,7 @@ const Parent = () => {
         }
       );
       setAnimals(response.data.animals || []);
-      if(response.data.animals) {
+      if (response.data.animals) {
         setLoading(false)
       }
     } catch (err) {
@@ -54,7 +54,7 @@ const Parent = () => {
   };
 
 
-  
+
 
   // Delete  Animal Card
   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
@@ -114,6 +114,7 @@ const Parent = () => {
                 {filteredAnimals?.map((animal, index) => (
                   <div key={index} className="width-20 px-3 pt-1">
                     <AnimalCard
+                      showDetailsButton={true}
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
                       tagId={animal.tagId}
