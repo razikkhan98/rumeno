@@ -16,6 +16,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 // import { FaPencil } from "react-icons/fa6";
 import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
+import axios from "axios";
 
 
 const Record = () => {
@@ -23,33 +24,41 @@ const Record = () => {
 
   const API_ENDPOINTS = {
     BasicDetails: "user/animaldata/newEntity",
-    PostWean: "/user/animal/postweandata/add",
-    Milk: "/user/animal/milkdata/add",
-    Vaccine: "/user/animal/vaccinedata/add",
+    PostWean: "/post-wean/post-wean-add",
+    Milk: "/milk-record/create-milk-record",
+    Vaccine: "/vaccine/register-animal-vaccine",
     Deworm: "/user/animal/dewormdata/add",
-    EstrusHeat: "/user/animal/estrusdata/add",
+    EstrusHeat: "/estrus-heat/create-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/add",
     Kid: "/user/animaldata/child",
   };
 
   const TabItems = ["BasicDetails", "PostWean", "Milk", "Vaccine", "Deworm", "EstrusHeat", "Kid", `${animalName} stauts`]
 
+  const GET_API_ENDPOINTS ={
+    PostWean: "/post-wean/get-all-post-wean",
+    Milk: "/milk-record/get-all-milk-records",
+    Vaccine: "/vaccine/get-all-register-animal-vaccine",
+    // Deworm: "/user/animal/dewormdata/add",
+    EstrusHeat: "/estrus-heat/get-all-create-heat-record",   
+  }
+
   const API_UPDATEENDPOINTS = {
-    PostWean: "/user/animal/postweandata/update",
-    Milk: "/user/animal/milkdata/update",
+    PostWean: "/post-wean/update-post-wean-by-id/:id",
+    Milk: "/milk-record/update-milk-record/:id",
     Vaccine: "/user/animal/vaccinedata/update",
     Deworm: "/user/animal/dewormdata/update",
-    EstrusHeat: "/user/animal/estrusdata/update",
+    EstrusHeat: "/estrus-heat/update-heat-record/:id",
     // FarmSanitation: "/user/animal/sanitationdata/update",
     Kid: "/user/animaldata/child",
   };
 
   const API_DELETEENDPOINTS = {
-    PostWean: "/user/animal/postweandata/delete",
-    Milk: "/user/animal/milkdata/delete",
+    PostWean: "/post-wean/delete-post-wean-by-id",
+    Milk: "/milk-record/delete-milk-record-by-id/:id",
     Vaccine: "/user/animal/vaccinedata/delete",
     Deworm: "/user/animal/dewormdata/delete",
-    EstrusHeat: "/user/animal/estrusdata/delete",
+    EstrusHeat: "/estrus-heat/delete-heat-record-by-id/:id",
     // FarmSanitation: "/user/animal/sanitationdata/delete",
     Kid: "/user/animaldata/child",
   };
@@ -138,7 +147,7 @@ const Record = () => {
       //   placeholder: "Enter Tag Id",
       // },
       {
-        name: "weightKg",
+        name: "kidWeight",
         label: "Kid Weight (Kg.Gm)",
         type: "text",
         placeholder: "Enter Weight kg",
@@ -177,19 +186,19 @@ const Record = () => {
         placeholder: "Enter Milk Volume",
       },
       {
-        name: "numberKids",
+        name: "numberOfKidsSuckingMilk",
         label: "Number of Kids Sucking Milk",
         type: "Number",
         placeholder: "Enter Number of Kids",
       },
+      // {
+      //   name: "milkDate",
+      //   label: "Milk Date",
+      //   type: "date",
+      //   required: true
+      // },
       {
-        name: "milkDate",
-        label: "Milk Date",
-        type: "date",
-        required: true
-      },
-      {
-        name: "lastDeliveryDate",
+        name: "kiddingDeliveryDate",
         label: "Last Delivery Date",
         type: "date",
         required: true
@@ -490,6 +499,7 @@ const Record = () => {
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
   console.log('submittedData: ', submittedData);
   const [editIndex, setEditIndex] = useState(null);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const {
@@ -503,6 +513,7 @@ const Record = () => {
   console.log('location: ', location);
   const parentId = location.state?.parentId;
   const uniqueId = location.state?.uniqueId;
+  console.log('uniqueId: ', uniqueId);
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
@@ -512,43 +523,68 @@ const Record = () => {
 
 
 
-  const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
+  const uid = sessionStorage.getItem("uid");
   console.log('uid: ', uid);
 
-  const fetchAnimals = async () => {
+  // Show all Records Postwean, milk etc.....
+  const fetchRecordDetails = async () => {
     try {
-      const response = await getData("/user/animaldata/newEntity/getAll");
+      const response = await getData(GET_API_ENDPOINTS[activeTab]);
       console.log('response basic: ', response);
-      setAnimals(response.data || []);
-      // setPostWean(response.data || []);
+      setSubmittedData(response?.data || []);
 
     } catch (error) {
-      toast.error("Error fetching animal data.");
+      // toast.error("Error fetching animal data.");
+    }
+  };
+  useEffect(() => {
+    fetchRecordDetails();
+  }, [activeTab]);
+
+  // const fetchAnimals = async () => {
+  //   try {
+  //     const response = await getData("user/animaldata/newEntity/getAllById");
+  //     console.log('response basic: ', response);
+  //     setAnimals(response.data || []);
+  //   } catch (error) {
+      
+  //   }
+  // };
+
+  const fetchAnimal = async () => {
+    console.log("Heloo")
+    try {
+      const response = await axios.get(
+        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        {
+          params: { animalName: selectedAnimal, uid },
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Required for ngrok
+            "Content-Type": "application/json",   // Adjust as needed
+          },
+        }
+      );
+      console.log('response: ', response,);
+      setAnimals(response.data.animals || []);
+      if(response.data.animals) {
+        setLoading(false)
+      }
+    } catch (err) {
+      setError("Error fetching data");
     }
   };
 
-  // Show Basic Details Data
-  useEffect(() => {
-    if (!selectedAnimal) {
-      fetchAnimals();
-    }
-  }, [selectedAnimal, uniqueId]);
 
-  // child
-  // const fetchChildren = async () => {
-  //   try {
-  //     const response = await getData("/user/animaldata/child/getAll");
-  //     setChildren(response.data || []);
-  //   } catch (error) {
-  //     toast.error("Error fetching child data.");
-  //   } finally {
-  //     setLoading(false);
+  // Show Basic Details Data
+  // useEffect(() => {
+  //   if (!selectedAnimal) {
+  //     fetchAnimal();
   //   }
-  // };
-  useEffect(() => {
-    fetchAnimals();
-    // fetchChildren();
-  }, []);
+  // }, [selectedAnimal, uniqueId]);
+
+  // useEffect(() => {
+  //   fetchAnimals();
+  // }, []);
 
   useEffect(() => {
     const tabMapping = {
@@ -599,7 +635,7 @@ const Record = () => {
 
     try {
       const response = await postData(apiUrl, formData);
-      if (response.status === 200 || response.status === 201) {
+      if (response.status) {
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
@@ -618,7 +654,7 @@ const Record = () => {
 
     setSubmittedData(formData);
     setShowForm(false);
-    fetchAnimals();
+    // fetchAnimal();
   };
 
   // ====================================================
@@ -626,13 +662,12 @@ const Record = () => {
 
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
-    // setEditIndex(index);
-    // reset(submittedData[index]); // Set form data for editing
+  
     console.log("submittedData[index]: ", submittedData[index]);
-    // setIsActive(true);
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
+
     // Dynamically get the ID key based on the active tab
     const idKeyMap = {
       PostWean: "postWeanId",

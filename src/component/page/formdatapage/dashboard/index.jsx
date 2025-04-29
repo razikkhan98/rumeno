@@ -105,6 +105,7 @@ import Header from "../../../common/Header/header";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
+    
     TotalAnimals: 0,
     TotalParents: 0,
     TotalChildren: 0,
@@ -124,7 +125,8 @@ const Dashboard = () => {
   const [error, setError] = useState("");
   const [data, setdata] = useState([]);
 
-  const {farmName} =JSON.parse(localStorage?.getItem("farmerDetail")) ;
+  // const {farmName} =JSON.parse(localStorage?.getItem("farmerDetail")) ;
+  const setfarmHouseName = sessionStorage?.getItem("farmHouseName");
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
 
@@ -142,11 +144,13 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://c4df-2401-4900-8822-6b6f-f575-fcdb-9082-f03f.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
           }
         );
+        
+        console.log('response: ', response);
         setStats(response.data);
         setdata(response.data);
       } catch (err) {
@@ -243,7 +247,7 @@ const Dashboard = () => {
       <Navbar />
     <div className="parent pt-5">
       <div className="pt-5">
-          <Header title={farmName} subtitle={selectedAnimal} />
+          <Header title={setfarmHouseName} subtitle={selectedAnimal} />
         </div>
       <div className="row">
         <div className="col-lg-2 col-md-3">

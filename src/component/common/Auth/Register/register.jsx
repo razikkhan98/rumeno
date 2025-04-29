@@ -33,7 +33,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const response = await postData(endpoint, data);
-      toast.success(response.data.message, {
+      toast.success(response?.data?.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -46,7 +46,7 @@ const Register = () => {
       });
       setTimeout(() => navigate("/login"), 1000);
     } catch (error) {
-      toast.error(error || "Failed to create account!", {
+      toast.error(error?.data?.message || "Failed to create account!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

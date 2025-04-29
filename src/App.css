@@ -2843,6 +2843,9 @@ input[type="radio"] {
   .product-contant-card {
     width: 300px;
 }
+.addtocart-content-title {
+  font-size: 18px;
+}
   /* .slick-next {
   right: -10px !important;
 }

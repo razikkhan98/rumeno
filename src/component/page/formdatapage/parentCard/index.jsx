@@ -7,37 +7,48 @@ import AnimalCard from "../../../common/animalCard/index";
 import { deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Parent = () => {
   const [animals, setAnimals] = useState([]);
   console.log('animals: ', animals);
   const [loading, setLoading] = useState(true);
+  const uid = sessionStorage.getItem("uid");
   const selectedAnimal = sessionStorage.getItem("animalName") || "Goat"; // Default to Goat
+  const [error, setError] = useState("");
 
-  const endpoint = "user/animaldata/newEntity/getAll";
+  const fetchAnimal = async () => {
+    console.log("Heloo")
+    try {
+      const response = await axios.get(
+        "https://cb10-106-222-219-65.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        {
+          params: { animalName: selectedAnimal, uid },
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Required for ngrok
+            "Content-Type": "application/json",   // Adjust as needed
+          },
+        }
+      );
+      console.log('response: ', response,);
+      setAnimals(response.data.animals || []);
+      if(response.data.animals) {
+        setLoading(false)
+      }
+    } catch (err) {
+      setError("Error fetching data");
+    }
+  };
 
   useEffect(() => {
-    const fetchAnimals = async () => {
-      try {
-        const response = await getData(endpoint);
-        console.log('response: cardssss', response?.data);
-        setAnimals(response.data);
-        console.log('response.data: ', response.data[2].postWean);
-      } catch (error) {
-        toast.error(
-          error.message || "Error fetching animal data. Please try again."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAnimals();
-  }, []); // Fetch only once on mount
+    fetchAnimal()
+  }, []);
 
   // Filter animals based on selectedAnimal
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('selectedAnimal: ', selectedAnimal);
   console.log('filteredAnimals: ', filteredAnimals);
 
   // Add Goat 
@@ -46,25 +57,7 @@ const Parent = () => {
   };
 
 
-  // // Delete Animal Card
-  // const handleDeleteAnimal = async (uniqueId) => {
-  //   setAnimals((prevAnimals) =>
-  //     prevAnimals.filter((animal) => animal.uniqueId !== uniqueId)
-  //   );
-
-  //   try {
-  //     const response = await deleteData(
-  //       "/user/animaldata/parent/delete",
-  //       uniqueId
-  //     );
-  //     toast.success("Animal deleted successfully.");
-  //     console.log("response:------deleteData ", response);
-  //   } catch (error) {
-  //     toast.error(
-  //       error.message || "Error deleting animal. Please try again."
-  //     );
-  //   }
-  // };
+  
 
   // Delete  Animal Card
   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
