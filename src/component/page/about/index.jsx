@@ -47,6 +47,11 @@ const About = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="row gap-3">
+                <div className="d-lg-none col-md-12 m-auto">
+                  <div className="about-mobile-img d-flex justify-content-center pt-4">
+                    <img src={Slide2} alt="" />
+                  </div>
+                </div>
                 <div className="col-lg-7">
                   <div className="about-content py-2">
                     <p className="text-uppercase responsive-heading about-heading">
@@ -78,12 +83,13 @@ const About = () => {
                     </div> */}
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-6 m-auto px-0">
+
+                <div className="d-none d-lg-flex justify-content-center align-items-center col-lg-2 col-md-6 m-auto px-0">
                   <div className="about-img m-auto">
                     <img src={Image1} alt="Loading" />
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-6 m-auto px-0">
+                <div className="d-none d-lg-flex justify-content-center align-items-center col-lg-2 col-md-6 m-auto px-0">
                   <div className="about-slideimg m-auto">
                     <Slider {...sliderSettings}>
                       {slide.map((item) => (
@@ -94,6 +100,7 @@ const About = () => {
                     </Slider>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
