@@ -28,13 +28,13 @@ const Footer = () => {
                 <img src={Image1} alt="Loading" />
               </div>
             </div>
-            <div className="col-lg-4 col-md-5">
+            <div className="col-lg-4 col-md-5 col-3">
               <div className="footer-link px-2">
                 <p className="footer-heading josefin-sans-font-family-500">
                   Pages
                 </p>
                 <ul className="list-unstyled footer-ul">
-                  <li className="py-1 inter-font-family-400">
+                  <li className="py-1 inter-font-family-400 font-sm-10">
                     <NavLink to="/" className="text-light text-decoration-none">
                       Home
                     </NavLink>
@@ -63,18 +63,10 @@ const Footer = () => {
                       Privacy Policy
                     </NavLink>
                   </li>
-                  {/* <li className="py-1 inter-font-family-400">
-                    <NavLink
-                      to="/terms-conditions"
-                      className="text-light text-decoration-none"
-                    >
-                      Terms & Conditions
-                    </NavLink>
-                  </li> */}
                 </ul>
               </div>
             </div>
-            <div className="col-lg-4 col-md-7">
+            <div className="col-lg-4 col-md-7 col-9">
               <div className="footer-contact px-2">
                 <p className="footer-heading-contact josefin-sans-font-family-500">
                   Contact Us
@@ -91,12 +83,12 @@ const Footer = () => {
                   />
                  </span>
 
-                  <p className="text-light footer-contact mb-0  inter-font-family-400">
+                  <p className="text-light font-sm-12 footer-contact mb-0  inter-font-family-400">
                     {" "}
                     598 Lala Mahaveer Prasad Rd, Sadar Bazar, Lucknow, UP 226002
                   </p>
                 </div>
-                <p className="text-light mb-4  inter-font-family-400">
+                <p className="text-light mb-4 font-sm-12 inter-font-family-400">
                   <span>
                   <FaPhone
                     className="me-2 rounded-circle p-1"
@@ -111,7 +103,7 @@ const Footer = () => {
                 </p>
                 <a
                   href="mailto:rumeno.farmotech@gmail.com"
-                  className="text-light text-decoration-none inter-font-family-400"
+                  className="text-light font-sm-12 text-decoration-none inter-font-family-400"
                 >
                  <span>
                  <PiEnvelopeSimpleFill

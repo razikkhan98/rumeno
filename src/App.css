@@ -2562,17 +2562,18 @@ body {
 
   .footer-heading {
     /* text-align: center; */
+    font-size: 16px;
     margin: 10px 0px;
   }
 
   .footer-heading-contact {
     /* text-align: center; */
-    margin-bottom: 8px;
-    font-size: 22px;
+    margin-bottom: 15px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--white-color);
     line-height: 28px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .social-icons {
     display: flex;
@@ -2845,6 +2846,12 @@ input[type="radio"] {
 }
 .addtocart-content-title {
   font-size: 18px;
+}
+.footer-ul li .text-light{
+  font-size: 12px !important;
+}
+.font-sm-12{
+  font-size: 12px !important;
 }
   /* .slick-next {
   right: -10px !important;
