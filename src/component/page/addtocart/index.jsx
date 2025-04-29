@@ -88,7 +88,7 @@ const Addtocart = () => {
   };
 
   // Handle Add to Cart
-  const handleAddToCart = (product, selectedWeight) => {
+  const handleAddToCart = (product) => {
     if (!isAuthenticated) {
       console.log("Redirecting to login...");
       setTimeout(() => {
@@ -97,6 +97,7 @@ const Addtocart = () => {
       toast.warning("Please login to add items!", { autoClose: 3000 });
       return;
     }
+    console.log('selectedWeightHandleAddToCart: ', selectedWeight);
     addToCart(product, selectedWeight);
   };
 
@@ -171,14 +172,14 @@ const Addtocart = () => {
               <div className="col-lg-1"></div>
               <div className="col-lg-5">
                 <div className="addtocart-content">
-                  <p className="addtocart-content-title">{product.name}</p>
+                  <p className="addtocart-content-title font-16-400">{product.name}</p>
                   <div className="d-flex align-items-center">
                     <span className="fs-3 me-2 colorEC7229">☆☆☆☆☆</span>
                     <span className="font-14-500 color707070">
                       3.5 (312 Reviews)
                     </span>
                   </div>
-                  <p className="mt-2 pb-4 border-bottom font-24-500 d-flex align-items-center">
+                  <p className="mt-2 pb-4 border-bottom font-24-500 font-17-600 d-flex align-items-center">
                     ₹ {calculatedPrice.toFixed(2)} /-{" "}
                     <span
                       className="badge ms-2 p-2 font-14-300 colorffffff"
@@ -206,7 +207,7 @@ const Addtocart = () => {
                     {product?.productUnit?.map((size) => (
                       <button
                         key={size}
-                        className="addtocart-btn d-flex border rounded-3 mt-3"
+                        className="addsize-btn d-flex border rounded-3 mt-3"
                         style={{
                           background:
                             selectedWeight === size ? "#E32C2B" : "#ffffff",
@@ -273,14 +274,8 @@ const Addtocart = () => {
                   </p>
                   <div className="d-flex align-items-center gap-3 pt-lg-5 mt-lg-5">
                     <div
-                      className="d-flex align-items-center justify-content-between"
+                      className="buynow-btn d-flex align-items-center justify-content-between"
                       style={{
-                        background: "#ffffff",
-                        width: "200px",
-                        height: "56px",
-                        borderRadius: "8px",
-                        color: "#EC7229",
-                        border: "1px solid",
                         borderColor: "#EC7229",
                       }}
                     >
@@ -313,27 +308,17 @@ const Addtocart = () => {
                         +
                       </Button> */}
                     </div>
-                    <div
-                      style={{
-                        background: "#EC7229",
-                        width: "200px",
-                        height: "56px",
-                        borderRadius: "8px",
-                      }}>
+                    <div className="addtocart-btn">
                       {/* <NavLink to="/cart"> */}
                         <Button
-                          className="mx-3 border-0 px-lg-5"
-                          onClick={() => {
-                            // handleAddToCart(product);
-                            console.log('product: ', product);
-
-                          }}
-                          style={{
-                            background: "#EC7229",
-                            width: "100%",
-                            height: "56px",
-                            borderRadius: "8px",
-                          }}
+                          className=" border-0"
+                          onClick={() => handleAddToCart(product)}
+                          // style={{
+                          //   background: "#EC7229",
+                          //   width: "100%",
+                          //   height: "56px",
+                          //   borderRadius: "8px",
+                          // }}
                         >
                           Add To Cart
                         </Button>

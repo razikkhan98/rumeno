@@ -27,7 +27,7 @@ const Faq = ({ faqs, showHeading = true }) => {
                   <div className="accordion-item p-2 " key={index}>
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-button ${
+                        className={`accordion-button font-18-500 font-15-500 ${
                           openIndex === index ? "faq-colapse" : "collapsed"
                         }`}
                         type="button"
@@ -37,10 +37,7 @@ const Faq = ({ faqs, showHeading = true }) => {
                         aria-expanded={openIndex === index}
                         aria-controls={`collapse${index}`}
                         style={{
-                          fontSize: "18px",
-                          fontWeight: "500",
                           borderBottom: "1px solid #E8E8E8",
-                          // height: "58px"
                         }}
                       >
                         {faq.question}{" "}
