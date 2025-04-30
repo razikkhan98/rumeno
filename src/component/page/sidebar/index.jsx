@@ -114,14 +114,14 @@ const Sidebar = () => {
             </div>
 
             <div className="mt-4 pt-3 border-top">
-              <button className="btn w-100 text-start mb-2 text-muted">
+              {/* <button className="btn w-100 text-start mb-2 text-muted">
                 <FaRegQuestionCircle className="me-2" />
                 Help
               </button>
               <button onClick={handleLogout} className="btn w-100 text-start text-danger">
                 <RiLogoutBoxRLine className="me-2" />
                 Logout
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
