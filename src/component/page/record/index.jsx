@@ -28,7 +28,7 @@ const Record = () => {
     PostWean: "/post-wean/post-wean-add",
     Milk: "/milk-record/create-milk-record",
     Vaccine: "/vaccine/add-vaccine",
-    Deworm: "/user/animal/dewormdata/add",
+    Deworm: "/dewormdata/addDeworm",
     EstrusHeat: "/estrus-heat/create-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/add",
     AnimalStatus: "/user/animaldata/transferAnimal",
@@ -47,7 +47,7 @@ const Record = () => {
     PostWean: "/post-wean/get-all-post-wean",
     Milk: "/milk-record/get-all-milk-records",
     Vaccine: "/vaccine/reminders/:userId",
-    // Deworm: "/user/animal/dewormdata/add",
+    Deworm: "/dewormdata/getAllDeworm",
     EstrusHeat: "/estrus-heat/get-all-heat-records",
     AnimalStatus: "/user/animaldata/getAllTransferAnimal"
   }
@@ -56,7 +56,7 @@ const Record = () => {
     PostWean: "/post-wean/update-post-wean-by-id",
     Milk: "/milk-record/update-milk-record",
     Vaccine: "/user/animal/vaccinedata/update",
-    Deworm: "/user/animal/dewormdata/update",
+    Deworm: "/dewormdata/update",
     EstrusHeat: "/estrus-heat/update-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/update",
     Kid: "/user/animaldata/child",
@@ -65,8 +65,8 @@ const Record = () => {
   const API_DELETEENDPOINTS = {
     PostWean: "/post-wean/delete-post-wean-by-id",
     Milk: "/milk-record/delete-milk-record-by-id",
-    Vaccine: "/user/animal/vaccinedata/delete",
-    Deworm: "/user/animal/dewormdata/delete",
+    // Vaccine: "/user/animal/vaccinedata/delete",
+    Deworm: "/dewormdata/delete",
     EstrusHeat: "/estrus-heat/delete-heat-record-by-id/:id",
     // FarmSanitation: "/user/animal/sanitationdata/delete",
     Kid: "/user/animaldata/child",
@@ -149,12 +149,6 @@ const Record = () => {
       },
     ],
     PostWean: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
       {
         name: "kidWeight",
         label: "Kid Weight (Kg.Gm)",
@@ -182,12 +176,6 @@ const Record = () => {
       },
     ],
     Milk: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
       {
         name: "milkvolume",
         label: "Milk Liter",
@@ -227,12 +215,6 @@ const Record = () => {
       },
     ],
     Deworm: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
       {
         name: "report",
         label: "Worms Examination Report",
@@ -299,12 +281,6 @@ const Record = () => {
       },
     ],
     EstrusHeat: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
       {
         name: "maleId",
         label: "Male Tag Id",
@@ -368,12 +344,6 @@ const Record = () => {
       },
     ],
     Kid: [
-      // {
-      //   name: "tagId",
-      //   label: "Tag Id",
-      //   type: "text",
-      //   placeholder: "Enter Tag Id",
-      // },
       {
         name: "ageyear",
         label: "Kid Age",
@@ -545,16 +515,8 @@ const Record = () => {
     fetchRecordDetails();
   }, [activeTab]);
 
-  // const fetchAnimals = async () => {
-  //   try {
-  //     const response = await getData("user/animaldata/newEntity/getAllById");
-  //     console.log('response basic: ', response);
-  //     setAnimals(response.data || []);
-  //   } catch (error) {
 
-  //   }
-  // };
-
+  // Get All Animal API Start Here
   const fetchAnimal = async () => {
     try {
       const response = await axios.get(
@@ -659,11 +621,11 @@ const Record = () => {
           formData,    
         ]);
 
-        if (kidId === undefined) {
-          setTimeout(() => navigate("/record/:name/:uniqueId"), 1000);
-        } else {
-          setTimeout(() => navigate(`/farmdata/child`), 1000);
-        }
+        // if (kidId === undefined) {
+        //   setTimeout(() => navigate("/record/:name/:uniqueId"), 1000);
+        // } else {
+        //   setTimeout(() => navigate(`/farmdata/child`), 1000);
+        // }
       } else {
         throw new Error(response.data.message);
       }
@@ -731,15 +693,15 @@ const Record = () => {
       const response = await deleteData(apiUrl, recordId);
 
       console.log("responsedetel: ", response);
-      if (response.status === 200 || response.status === 201) {
+      if (response?.success) {
+        toast.success(response?.data?.message, {
+          autoClose: 3000,
+          transition: Bounce,
+        });
 
         setSubmittedData(prev =>
           prev.filter(item => item._id !== recordId));
 
-        toast.success(response.data.message, {
-          autoClose: 3000,
-          transition: Bounce,
-        });
         setTimeout(fetchRecordDetails, 1000);
         // setSubmittedData((prev) => prev.filter((_, i) => i !== index));
       } else {
@@ -1017,7 +979,7 @@ const Record = () => {
                   )}
 
                   {/* Show Prefillled form Data */}
-                  {editIndex !== null && (
+                  {editIndex !== null  && activeTab !== "AnimalStatus" && (
                     <>
                       <div>
                         <h4>Submitted Data</h4>
@@ -1098,7 +1060,8 @@ const Record = () => {
                               <tr onClick={() => {
                                 setEditIndex(index);     // open the form and load data
                                 setShowForm(false);      // hide blank form if open
-                              }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
+                              }} 
+                              key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
                                 <td>{index + 1}</td>
                                 <td>{data?.tagId}</td>
