@@ -320,6 +320,7 @@ const AllProducts = () => {
                 <div className="mt-lg-4">
                     <Header
                         title="Products"
+                        link="/"
                         subtitle="All Animal Products"
                         // products={"13 Products"}
                         showSortFilter

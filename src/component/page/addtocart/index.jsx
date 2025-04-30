@@ -393,7 +393,7 @@ const Addtocart = () => {
                 // Review Form Start here
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className="bg-skyblue border-radius-12 text-center py-5 px-5"
+                  className="bg-skyblue border-radius-12 text-center py-5 px-lg-5 px-3"
                 >
                   <p className="font-24-400 text-chinese-black-color">
                     Write a review
@@ -479,14 +479,14 @@ const Addtocart = () => {
                   <div className="d-flex justify-content-center gap-3">
                     <button
                       type="button"
-                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 py-2"
+                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 font-sm-12 py-2"
                       onClick={() => setShowReviewForm(false)}
                     >
                       Cancel Review
                     </button>
                     <button
                       type="submit"
-                      className="rounded-3 border-orange px-3 bg-orange-color text-white-color font-14-500 py-2"
+                      className="rounded-3 border-orange px-3 bg-orange-color text-white-color font-14-500 font-sm-12 py-2"
                     >
                       Submit Review
                     </button>

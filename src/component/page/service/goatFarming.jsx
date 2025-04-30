@@ -53,7 +53,7 @@ const GoatFarmingService = () => {
       <Navbar />
       <div className="service-bg-color products">
         <div className="pt-lg-4">
-          <Header title="Services" subtitle="Goat Farming Consultant" />
+          <Header title="Services" link="/" subtitle="Goat Farming Consultant" />
         </div>
         <div className="container pt-lg-5">
           <div className="text-center">

@@ -2412,17 +2412,19 @@ body {
 }
 
 .nav-tabs .nav-link {
+  width: 130px;
+  height: 36px;
   color: #6c757d;
   border: none;
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
+  /* padding: 0.5rem 1rem; */
+  /* margin-right: 0.5rem; */
   font-size: 14px;
   font-weight: 500;
 }
 
 .nav-tabs .nav-link.active {
-  width: 150px;
-  height: 36px;
+  /* width: 150px; */
+  /* height: 36px; */
   margin: 0px !important;
   background-color: #dd3675b2;
   color: white !important;

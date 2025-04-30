@@ -324,14 +324,14 @@ const Dashboard = () => {
                           onClick={() => setSelectedCard(card)}
                         >
                           <div className="row gap-2 align-items-center justify-content-between">
-                            <div className="col-lg-3">
+                            <div className="col-lg-3 col-3">
                               <div
                                 className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}
                               >
                                 <img src={card.img} alt="Loading" />
                               </div>
                             </div>
-                            <div className="col-lg-7">
+                            <div className="col-lg-7 col-7">
                               <Card.Title>{card.value}</Card.Title>
                               <Card.Subtitle className="mb-2 text-muted font-size-12">
                                 {" "}

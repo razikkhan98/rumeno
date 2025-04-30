@@ -1,10 +1,10 @@
 import React from "react";
 
 // Import React Icons
-import { PiSlidersHorizontalBold, PiFunnelBold } from "react-icons/pi";
+// import { PiSlidersHorizontalBold, PiFunnelBold } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ title, subtitle, products, link, showSortFilter = false }) => {
+const Header = ({ title,subtitle, link, showSortFilter = false }) => {
     return (
         <>
             <div className='bg-light-sky-blue-color pb-4 pt-4 d-flex align-items-center'>
@@ -15,7 +15,6 @@ const Header = ({ title, subtitle, products, link, showSortFilter = false }) => 
                         </NavLink>
                         <div className='text-chinese-black-color header-subtitle width-50 text-truncate'>/ {subtitle}</div>
                     </div>
-                    <div className='font-16-500 text-color-orange'>{products}</div>
                     {showSortFilter && (
                         <div className='d-flex align-items-center text-muted-gray-color justify-content-center'>
                             {/* <div className='me-4 font-16-400'>Sort <PiSlidersHorizontalBold className='fs-4' /></div> */}
