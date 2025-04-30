@@ -847,11 +847,11 @@ const Record = () => {
                     {/* Show blank form  through  add buttons */}
                     {activeTab !== "BasicDetails" && (
                       <>
-                        <p className="record-para mb-4">
+                        <p className="record-para">
                           Fill {activeTab} details below
                         </p>
                         <button
-                          className="btn text-white px-4 border rounded-pill me-5 mb-2"
+                          className="btn text-white px-4 border rounded-pill font-sm-12 me-lg-5 mb-2"
                           style={{
                             background: "linear-gradient(to right, #60A5FA, #EC4899)",
                           }}
