@@ -106,6 +106,7 @@ const AnimalCard = ({
 
   const editForm = () => {
     localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
   };
 
   const handleConfirmDelete = () => {

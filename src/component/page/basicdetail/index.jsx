@@ -38,6 +38,7 @@ const GoatDetailForm = () => {
 
 
   const storedIndex = localStorage.getItem("currentIndex");
+  console.log('storedIndex: ', storedIndex);
   const onSubmit = async (data) => {
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
@@ -94,41 +95,31 @@ const GoatDetailForm = () => {
   const endpoint = "user/animaldata/newEntity/getAll";
 
   useEffect(() => {
-    const fetchAnimals = async () => {
-      try {
-        const response = await getData(endpoint);
-        if (response.data && response.data.length > 0) {
-          const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
-          console.log('filteredAnimals: ', filteredAnimals);
-          const animalData = filteredAnimals[storedIndex];
-          console.log('storedIndex: ', storedIndex);
-          console.log('animalData: ', animalData);
-          setAnimalUniqueId(animalData.uniqueId)
-          localStorage.removeItem("currentIndex");
-          setValue("uniqueName", animalData.uniqueId || "");
-          setValue("tagId", animalData.tagId || "");
-          setValue("ageYear", animalData.ageYear || "");
-          setValue("ageMonth", animalData.ageMonth || "");
-          setValue("height", animalData.height || "");
-          setValue("purchaseDate", animalData.purchaseDate || "");
-          setValue("gender", animalData.gender || "");
-          setValue("weightKg", animalData.weightKg || "");
-          setValue("birthDate", moment(animalData.birthDate).format('YYYY-MM-DD') || "");
-          setValue("birthWeight", animalData.birthWeight || "");
-          // moment(animalData.birthDate).utc().format('YYYY-MM-DD')
-          setValue("pregnancyDetails", animalData.pregnancyDetails || "");
-          setValue("maleDetail", animalData.maleDetail || "");
-          setValue("bodyScore", animalData.bodyScore || "");
-          setValue("comments", animalData.comments || "");
-        }
-      } catch (error) {
-        // toast.error(error.message || "Something went wrong!", {
-        //   position: "top-right",
-        //   autoClose: 3000,
-        // });
-      }
-    };
-    fetchAnimals();
+    if (animalData) {
+      // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
+      // console.log('filteredAnimals: ', filteredAnimals);
+      // const animalData = filteredAnimals[storedIndex];
+      console.log('storedIndex: ', storedIndex);
+      console.log('animalData:============ ', animalData);
+      setAnimalUniqueId(animalData.uniqueId)
+      // localStorage.removeItem("currentIndex");
+      setValue("uniqueName", animalData.uniqueId || "");
+      setValue("tagId", animalData.tagId || "");
+      setValue("ageYear", animalData.age || "");
+      setValue("ageMonth", animalData.ageMonth || "");
+      setValue("height", animalData.height || "");
+      setValue("purchaseDate", animalData.purchaseDate || "");
+      setValue("gender", animalData.gender || "");
+      setGender(animalData.gender)
+      setValue("weightKg", animalData.weightKg || "");
+      setValue("birthDate", moment(animalData.birthDate).format('YYYY-MM-DD') || "");
+      setValue("birthWeight", animalData.birthWeight || "");
+      // moment(animalData.birthDate).utc().format('YYYY-MM-DD')
+      setValue("pregnancyDetails", animalData.pregnancyDetails || "");
+      setValue("maleDetail", animalData.maleDetail || "");
+      setValue("bodyScore", animalData.bodyScore || "");
+      setValue("comments", animalData.comments || "");
+    }
   }, [setValue]); // Fetch only once on mount
 
 
