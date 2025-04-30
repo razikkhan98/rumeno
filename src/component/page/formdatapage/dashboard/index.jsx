@@ -320,7 +320,7 @@ const Dashboard = () => {
                       </Card> */}
 
                         <Card
-                          className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
+                          className={`dashboard-cards card-hover rounded-3 shadow px-lg-4 py-4 ${card.cardborder}`}
                           onClick={() => setSelectedCard(card)}
                         >
                           <div className="row gap-2 align-items-center justify-content-between">
@@ -333,7 +333,7 @@ const Dashboard = () => {
                             </div>
                             <div className="col-lg-7 col-7">
                               <Card.Title>{card.value}</Card.Title>
-                              <Card.Subtitle className="mb-2 text-muted font-size-12">
+                              <Card.Subtitle className="mb-2 text-muted dashboard-card-title">
                                 {" "}
                                 {card.title}
                               </Card.Subtitle>
