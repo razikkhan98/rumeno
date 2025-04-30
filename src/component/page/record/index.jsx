@@ -721,10 +721,10 @@ const Record = () => {
     const itemToDelete = submittedData[index];
     const recordId = itemToDelete?._id;
 
-    if (!recordId || !apiUrl) {
-      toast.error("Missing ID or API endpoint for deletion.");
-      return;
-    }
+    // if (!recordId || !apiUrl) {
+    //   toast.error("Missing ID or API endpoint for deletion.");
+    //   return;
+    // }
 
     try {
       const response = await deleteData(apiUrl, recordId);
@@ -1084,12 +1084,12 @@ const Record = () => {
                         <table class="table table-hover text-center align-middle">
                           <thead >
                             <tr>
-                              <th scope="col" className="heading">S No.</th>
-                              <th className="heading">Tag Id</th>
+                              <th scope="col" className="heading text-nowrap">S No.</th>
+                              <th className="heading text-nowrap">Tag Id</th>
                               {fieldConfigs[activeTab]?.map((field, i) => (
-                                <th key={i} className="heading">{field.label}</th>
+                                <th key={i} className="heading text-nowrap">{field.label}</th>
                               ))}
-                              <th className="heading">Actions</th>
+                              <th className="heading text-nowrap">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -1099,12 +1099,12 @@ const Record = () => {
                                 setShowForm(false);      // hide blank form if open
                               }} key={index} className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
-                                <td>{index + 1}</td>
-                                <td>{data?.tagId}</td>
+                                <td className="text-nowrap">{index + 1}</td>
+                                <td className="text-nowrap">{data?.tagId}</td>
                                 {fieldConfigs[activeTab]?.map((field, i) => (
-                                  <td key={i}>{data?.[field.name] || "-"}</td>
+                                  <td className="text-nowrap" key={i}>{data?.[field.name] || "-"}</td>
                                 ))}
-                                <td className="d-flex align-items-center justify-content-center">
+                                <td className="d-flex align-items-center justify-content-center text-nowrap">
                                   <div
                                     className="me-3"
                                     onClick={() => handleUpdateApi(index)}

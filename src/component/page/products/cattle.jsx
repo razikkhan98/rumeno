@@ -231,6 +231,7 @@ const Products = () => {
         <div className="mt-lg-4">
           <Header
             title="Products"
+            link="/allproducts"
             subtitle="Cattle Supplement"
             // products={"13 Products"}
             showSortFilter
