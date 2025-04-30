@@ -142,7 +142,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://43ef-2402-8100-2710-66aa-9dfb-a83e-1c75-1b9.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
             headers: {
@@ -320,7 +320,7 @@ const Dashboard = () => {
                       </Card> */}
 
                         <Card
-                          className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
+                          className={`dashboard-cards card-hover rounded-3 shadow px-lg-4 py-4 ${card.cardborder}`}
                           onClick={() => setSelectedCard(card)}
                         >
                           <div className="row gap-2 align-items-center justify-content-between">
@@ -333,7 +333,7 @@ const Dashboard = () => {
                             </div>
                             <div className="col-lg-7">
                               <Card.Title>{card.value}</Card.Title>
-                              <Card.Subtitle className="mb-2 text-muted">
+                              <Card.Subtitle className="mb-2 text-muted dashboard-card-title">
                                 {" "}
                                 {card.title}
                               </Card.Subtitle>
