@@ -17,10 +17,9 @@ const Parent = () => {
   const [error, setError] = useState("");
 
   const fetchAnimal = async () => {
-    console.log("Heloo")
     try {
       const response = await axios.get(
-        "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        "https://43ef-2402-8100-2710-66aa-9dfb-a83e-1c75-1b9.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
         {
           params: { animalName: selectedAnimal, uid },
           headers: {

@@ -2869,6 +2869,9 @@ input[type="radio"] {
 .font-sm-12{
   font-size: 12px !important;
 }
+.record-para {
+  font-size: 12px;
+}
   /* .slick-next {
   right: -10px !important;
 }
