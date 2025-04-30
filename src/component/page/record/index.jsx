@@ -17,6 +17,7 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
 import axios from "axios";
+import moment from "moment";
 
 
 const Record = () => {
@@ -683,10 +684,10 @@ const Record = () => {
     const itemToDelete = submittedData[index];
     const recordId = itemToDelete?._id;
 
-    // if (!recordId || !apiUrl) {
-    //   toast.error("Missing ID or API endpoint for deletion.");
-    //   return;
-    // }
+    if (!recordId || !apiUrl) {
+      toast.error("Missing ID or API endpoint for deletion.");
+      return;
+    }
 
     try {
       const response = await deleteData(apiUrl, recordId);
@@ -809,11 +810,11 @@ const Record = () => {
                     {/* Show blank form  through  add buttons */}
                     {activeTab !== "BasicDetails" && (
                       <>
-                        <p className="record-para">
+                        <p className="record-para mb-4">
                           Fill {activeTab} details below
                         </p>
                         <button
-                          className="btn text-white px-4 border rounded-pill font-sm-12 me-lg-5 mb-2"
+                          className="btn text-white px-4 border rounded-pill me-5 mb-2"
                           style={{
                             background: "linear-gradient(to right, #60A5FA, #EC4899)",
                           }}
@@ -1046,12 +1047,12 @@ const Record = () => {
                         <table class="table table-hover text-center align-middle">
                           <thead >
                             <tr>
-                              <th scope="col" className="heading text-nowrap">S No.</th>
-                              <th className="heading text-nowrap">Tag Id</th>
+                              <th scope="col" className="heading">S No.</th>
+                              <th className="heading">Tag Id</th>
                               {fieldConfigs[activeTab]?.map((field, i) => (
-                                <th key={i} className="heading text-nowrap">{field.label}</th>
+                                <th key={i} className="heading">{field.label}</th>
                               ))}
-                              <th className="heading text-nowrap">Actions</th>
+                              <th className="heading">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -1062,12 +1063,14 @@ const Record = () => {
                               }} 
                               key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
-                                <td className="text-nowrap">{index + 1}</td>
-                                <td className="text-nowrap">{data?.tagId}</td>
-                                {fieldConfigs[activeTab]?.map((field, i) => (
-                                  <td className="text-nowrap" key={i}>{data?.[field.name] || "-"}</td>
-                                ))}
-                                <td className="d-flex align-items-center justify-content-center text-nowrap">
+                                <td>{index + 1}</td>
+                                <td>{data?.tagId}</td>
+                                {fieldConfigs[activeTab]?.map((field, i) => 
+                                {
+                                 return (
+                                  <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : data?.[field.name]   || "-"}</td>
+                                )})}
+                                <td className="d-flex align-items-center justify-content-center">
                                   <div
                                     className="me-3"
                                     onClick={() => handleUpdateApi(index)}
