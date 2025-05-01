@@ -73,7 +73,7 @@ const GoatDetailForm = () => {
 
       if (response.data.message === "success") {
         toast.success(
-          `Parent animal ${type === "edit" ? "updated" : "added"} successfully`,
+          `Animal ${type === "edit" ? "updated" : "added"} successfully`,
           {
             position: "top-right",
             autoClose: 3000,
