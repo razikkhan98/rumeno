@@ -58,6 +58,11 @@ const AnimalCard = ({
   currentIndex,
   comments,
   showDetailsButton,
+  failed,
+  childWeanDate,
+  childWeanWeight,
+  siblingDetails,
+  currentPregnancyMonth,
 }) => {
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
@@ -248,6 +253,11 @@ const AnimalCard = ({
                     vaccineName,
                     vaccineDate,
                     farmHouseName,
+                    failed,
+                    childWeanDate,
+                    childWeanWeight,
+                    siblingDetails,
+                    currentPregnancyMonth,
                   },
                 },
               })
@@ -337,6 +347,11 @@ const AnimalCard = ({
                   vaccineName,
                   vaccineDate,
                   farmHouseName,
+                  failed,
+                  childWeanDate,
+                  childWeanWeight,
+                  siblingDetails,
+                  currentPregnancyMonth,
                 },
               });
               editForm() 
@@ -421,6 +436,11 @@ const AnimalCard = ({
                       vaccineName,
                       vaccineDate,
                       farmHouseName,
+                      failed,
+                      childWeanDate,
+                      childWeanWeight,
+                      siblingDetails,
+                      currentPregnancyMonth,
                     },
                   },
                 })
