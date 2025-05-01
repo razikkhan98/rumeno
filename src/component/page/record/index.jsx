@@ -49,6 +49,7 @@ const Record = () => {
     Vaccine: "/vaccine/reminders/:userId",
     Deworm: "/dewormdata/getAllDeworm",
     EstrusHeat: "/estrus-heat/get-all-heat-records",
+    Kid : "/user/animaldata/newEntity/getAllById",
     AnimalStatus: "/user/animaldata/getAllTransferAnimal"
   }
 
@@ -59,7 +60,7 @@ const Record = () => {
     Deworm: "/dewormdata/update",
     EstrusHeat: "/estrus-heat/update-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/update",
-    Kid: "/user/animaldata/child",
+    // Kid: "/user/animaldata/child",
   };
 
   const API_DELETEENDPOINTS = {
@@ -67,9 +68,9 @@ const Record = () => {
     Milk: "/milk-record/delete-milk-record-by-id",
     // Vaccine: "/user/animal/vaccinedata/delete",
     Deworm: "/dewormdata/delete",
-    EstrusHeat: "/estrus-heat/delete-heat-record-by-id/:id",
+    EstrusHeat: "/estrus-heat/delete-heat-record-by-id",
     // FarmSanitation: "/user/animal/sanitationdata/delete",
-    Kid: "/user/animaldata/child",
+    // Kid: "/user/animaldata/child",
   };
 
   const fieldConfigs = {
@@ -447,14 +448,14 @@ const Record = () => {
     ],
     AnimalStatus: [
       {
-        name: `${animalName}Status`,
+        name: "animalStatus",
         label: `${animalName} Status`,
         type: "select",
-        options: ["Sell", "Death"],
+        options: ["Sale out", "Death"],
       },
       {
-        label: "Date",
-        name: `${animalName}StatusDate`,
+        label: `${animalName} Date`,
+        name: `date`,
         type: "date",
       },
     ],
@@ -500,53 +501,75 @@ const Record = () => {
   const fetchRecordDetails = async () => {
     try {
       let endpoint = GET_API_ENDPOINTS[activeTab];
-      if (activeTab === "Vaccine") {
-        endpoint += `?userId=${uid}`;
+      if (activeTab === "Vaccine" || activeTab === "Deworm" || activeTab === "PostWean") {
+        endpoint += `?uid=${uid}`;
+      }else if (activeTab === "Kid") {
+        endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
       const response = await getData(endpoint);
       console.log('response: asdf', response);
+
+      if (activeTab === "Kid") {
+        const allAnimals = response.animals || [];
+        console.log("response.data.animals: ", allAnimals);
+  
+        // Filter kids (having both motherTag and fatherTag)
+        const Kids = allAnimals.filter(
+          (animal) => animal.motherTag && animal.fatherTag
+        );
+  
+        setAnimals(Kids);
+        if (Kids.length > 0) setLoading(false);
+      }
       setSubmittedData(response?.data || []);
 
     } catch (error) {
       // toast.error("Error fetching animal data.");
     }
   };
+  
   useEffect(() => {
     fetchRecordDetails();
   }, [activeTab]);
 
 
   // Get All Animal API Start Here
-  const fetchAnimal = async () => {
-    try {
-      const response = await axios.get(
-        "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
-        {
-          params: { animalName, uid },
-          headers: {
-            "ngrok-skip-browser-warning": "true", // Required for ngrok
-            "Content-Type": "application/json",   // Adjust as needed
-          },
-        }
-      );
+  // const fetchAnimal = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+  //       {
+  //         params: { animalName, uid },
+  //         headers: {
+  //           "ngrok-skip-browser-warning": "true",
+  //           "Content-Type": "application/json",   
+  //         },
+  //       }
+  //     );
 
-      const allAnimals = response.data.animals || [];
-      console.log('response.data.animals: ', response.data.animals);
+  //     const allAnimals = response.data.animals || [];
+  //     console.log('response.data.animals: ', response.data.animals);
 
-      //  Filter kids (having both motherTag and fatherTag)
-      const Kids = allAnimals.filter(
-        (animal) => animal.motherTag && animal.fatherTag
-      );
+  //     //  Filter kids (having both motherTag and fatherTag)
+  //     const Kids = allAnimals.filter(
+  //       (animal) => animal.motherTag && animal.fatherTag
+  //     );
 
-      setAnimals(Kids);
+  //     setAnimals(Kids);
 
-      if (Kids.length > 0) {
-        setLoading(false);
-      }
-    } catch (err) {
-      setError("Error fetching data");
-    }
-  };
+  //     if (Kids.length > 0) {
+  //       setLoading(false);
+  //     }
+  //   } catch (err) {
+  //     setError("Error fetching data");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (activeTab === "Kid" && kidId === undefined) {
+  //     fetchAnimal();
+  //   }
+  // }, [activeTab , kidId]);
 
 
   // Show Basic Details Data
@@ -556,9 +579,6 @@ const Record = () => {
   //   }
   // }, [selectedAnimal, uniqueId]);
 
-  useEffect(() => {
-    fetchAnimal();
-  }, []);
 
   useEffect(() => {
     const tabMapping = {
@@ -588,9 +608,9 @@ const Record = () => {
     setSubmittedData(weanData);
   }, [animals, activeTab]);
 
-  const filteredChildren = children.filter(
-    (child) => child?.parentId === parentId
-  );
+  // const filteredChildren = children.filter(
+  //   (child) => child?.parentId === parentId
+  // );
 
   const onSubmit = async (data) => {
     const apiUrl = API_ENDPOINTS[activeTab];
@@ -598,7 +618,7 @@ const Record = () => {
 
     if (kidId === undefined) {
       // Parent
-      formData = { ...data, parentUniqueId: uniqueId, parentId, uid, tagId };
+      formData = { ...data, uniqueId, parentId, uid, tagId };
     } else {
       // Child
       formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
@@ -1047,12 +1067,12 @@ const Record = () => {
                         <table class="table table-hover text-center align-middle">
                           <thead >
                             <tr>
-                              <th scope="col" className="heading">S No.</th>
-                              <th className="heading">Tag Id</th>
+                              <th scope="col" className="heading text-nowrap">S No.</th>
+                              <th className="heading text-nowrap px-2">Tag Id</th>
                               {fieldConfigs[activeTab]?.map((field, i) => (
-                                <th key={i} className="heading">{field.label}</th>
+                                <th key={i} className="heading text-nowrap px-4">{field.label}</th>
                               ))}
-                              <th className="heading">Actions</th>
+                              <th className="heading text-nowrap">Actions</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -1063,14 +1083,14 @@ const Record = () => {
                               }} 
                               key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
                                 }`}>
-                                <td>{index + 1}</td>
-                                <td>{data?.tagId}</td>
+                                <td className="text-nowrap">{index + 1}</td>
+                                <td className="text-nowrap">{data?.tagId}</td>
                                 {fieldConfigs[activeTab]?.map((field, i) => 
                                 {
                                  return (
                                   <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : data?.[field.name]   || "-"}</td>
                                 )})}
-                                <td className="d-flex align-items-center justify-content-center">
+                                <td className="d-flex align-items-center justify-content-center text-nowrap px-4">
                                   <div
                                     className="me-3"
                                     onClick={() => handleUpdateApi(index)}

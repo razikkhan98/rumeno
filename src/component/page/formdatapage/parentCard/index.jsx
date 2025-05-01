@@ -19,7 +19,7 @@ const Parent = () => {
   const fetchAnimal = async () => {
     try {
       const response = await axios.get(
-        "https://43ef-2402-8100-2710-66aa-9dfb-a83e-1c75-1b9.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        "https://8dc9-2401-4900-8820-262c-7495-e9ae-6b7e-82d5.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
         {
           params: { animalName: selectedAnimal, uid },
           headers: {
@@ -90,7 +90,7 @@ const Parent = () => {
             }}
           >
             <div className="d-flex justify-content-between align-items-center mt-2">
-              <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
+              <p className="font-18-500 text-chinese-black-color ps-lg-3">Animal</p>
               {/* Add Goat Button */}
               <NavLink to="/parentform">
                 <button
