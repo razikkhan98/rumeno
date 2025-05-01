@@ -45,6 +45,7 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('filteredAnimals: ', filteredAnimals);
 
 
   // Add Goat 
@@ -111,8 +112,12 @@ const Parent = () => {
               <p>Loading...</p>
             ) : filteredAnimals?.length > 0 ? (
               <div className="row">
-                {filteredAnimals?.map((animal, index) => (
-                  <div key={index} className="width-20 px-3 pt-1">
+                {filteredAnimals?.map((animal, index) => 
+                
+                {
+                  console.log("animal.vaccineName==",animal)
+                  return(
+                    <div key={index} className="width-20 px-3 pt-1">
                     <AnimalCard
                       showDetailsButton={true}
                       selectedAnimal={selectedAnimal}
@@ -127,6 +132,11 @@ const Parent = () => {
                       birthWeight={animal.birthWeight}
                       birthType={animal.birthType}
                       birthDate={animal.birthDate}
+                      failed={animal.failed}
+                      siblingDetails={animal.siblingDetails}
+                      childWeanDate={animal.childWeanDate}
+                      childWeanWeight={animal.childWeanWeight}
+                      comments={animal.comments}
                       motherWeanDate={animal.motherWeanDate}
                       purchaseDate={animal.purchaseDate}
                       lastVaccineDate={animal.lastVaccineDate}
@@ -141,6 +151,7 @@ const Parent = () => {
                       ageMonth={animal.ageMonth}
                       bodyScore={animal.bodyScore}
                       pregnancyDetails={animal.pregnancyDetails}
+                      currentPregnancyMonth={animal.currentPregnancyMonth}
                       maleDetail={animal.maleDetail}
                       uniqueId={animal.uniqueId}
                       children={animal.children?.length > 0 ? animal.children?.length : "No Children"}
@@ -154,7 +165,8 @@ const Parent = () => {
                       currentIndex={index}
                     />
                   </div>
-                ))}
+                  )
+                })}
               </div>
             ) : (
               <p>No Parent animals found for {selectedAnimal}.</p>

@@ -27,7 +27,7 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
   const animalData = location.state; // This will be the full animal object
-  console.log('animalData: ', animalData);
+  // console.log('animalDatasiblingDetails==========: ', animalData.siblingDetails);
 
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
@@ -100,25 +100,38 @@ const GoatDetailForm = () => {
       // console.log('filteredAnimals: ', filteredAnimals);
       // const animalData = filteredAnimals[storedIndex];
       console.log('storedIndex: ', storedIndex);
-      console.log('animalData:============ ', animalData);
+      console.log('animalData:============ ', animalData.vaccineName);
       setAnimalUniqueId(animalData.uniqueId)
       // localStorage.removeItem("currentIndex");
       setValue("uniqueName", animalData.uniqueId || "");
       setValue("tagId", animalData.tagId || "");
+      setValue("fatherTag", animalData.fatherTag || "");
+      setValue("motherTag", animalData.motherTag || "");
       setValue("ageYear", animalData.age || "");
       setValue("ageMonth", animalData.ageMonth || "");
       setValue("height", animalData.height || "");
-      setValue("purchaseDate", animalData.purchaseDate || "");
+      setValue("purchaseDate", moment(animalData.purchaseDate).format('YYYY-MM-DD') || "");
       setValue("gender", animalData.gender || "");
       setGender(animalData.gender)
       setValue("weightKg", animalData.weightKg || "");
       setValue("birthDate", moment(animalData.birthDate).format('YYYY-MM-DD') || "");
+      setValue("dateMading", moment(animalData.dateMading).format('YYYY-MM-DD') || "");
+      setValue("motherWeanDate", moment(animalData.motherWeanDate).format('YYYY-MM-DD') || "");
+      setValue("childWeanDate", moment(animalData.childWeanDate).format('YYYY-MM-DD') || "");
+      setValue("vaccineDate", moment(animalData.vaccineDate).format('YYYY-MM-DD') || "");
+      setValue("lastVaccineDate", moment(animalData.lastVaccineDate).format('YYYY-MM-DD') || "");
+      setValue("lastVaccineName", animalData.lastVaccineName || "");
+      setValue("vaccineName", animalData.vaccineName || "");
+      setValue("childWeanWeight", animalData.childWeanWeight || "");
       setValue("birthWeight", animalData.birthWeight || "");
-      // moment(animalData.birthDate).utc().format('YYYY-MM-DD')
+      setValue("failed", animalData.failed || "");
+      setValue("siblingDetails", animalData.siblingDetails || "");
+      setValue("birthType", animalData.birthType || "");
       setValue("pregnancyDetails", animalData.pregnancyDetails || "");
       setValue("maleDetail", animalData.maleDetail || "");
       setValue("bodyScore", animalData.bodyScore || "");
       setValue("comments", animalData.comments || "");
+      setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
     }
   }, [setValue]); // Fetch only once on mount
 
@@ -511,9 +524,9 @@ const GoatDetailForm = () => {
                       {...register("siblingDetails")}
                     >
                       <option value="">Select Sibling</option>
-                      <option value="1 Month">Single</option>
-                      <option value="2 Month">Double</option>
-                      <option value="3 Month">Tripple</option>
+                      <option value="single">Single</option>
+                      <option value="double">Double</option>
+                      <option value="tripple">Tripple</option>
                     </select>
                   </div>
                 </div>
