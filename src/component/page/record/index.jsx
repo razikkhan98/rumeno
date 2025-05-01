@@ -115,7 +115,7 @@ const Record = () => {
       { label: "Pregnant", name: "isPregnant", type: "checkbox", conditional: "gender === 'Female'" },
       {
         label: "Date of Mating",
-        name: "matingDate",
+        name: "dateMading",
         type: "date",
         conditional: "isPregnant",
       },
