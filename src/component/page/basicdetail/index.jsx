@@ -429,7 +429,7 @@ const GoatDetailForm = () => {
                     </div>
                   </div>
 
-                  <div className="col-lg-2 lh-lg">
+                  {/* <div className="col-lg-2 lh-lg">
                     <div class="form-check d-flex align-items-center gap-2">
                       <input
                         class="form-check-input"
@@ -442,7 +442,7 @@ const GoatDetailForm = () => {
                         Child
                       </label>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               )}
 
@@ -496,7 +496,7 @@ const GoatDetailForm = () => {
                 </div>
               )}
 
-              {isChild && gender === "Female" && (
+              {/* {isChild && gender === "Female" && (
                 <div className="row mt-2">
                   <div className="col-lg-2 lh-lg">
                     <label className="form-lable-detail">Wean Date</label>
@@ -530,7 +530,7 @@ const GoatDetailForm = () => {
                     </select>
                   </div>
                 </div>
-              )}
+              )} */}
 
               <div className="row mt-2">
                 <p className="detail-para mb-0 lh-lg">Other Disease Vaccine</p>
