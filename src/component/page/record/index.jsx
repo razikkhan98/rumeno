@@ -72,7 +72,8 @@ const Record = () => {
     // FarmSanitation: "/user/animal/sanitationdata/delete",
     // Kid: "/user/animaldata/child",
   };
-
+ const farmHouseName = sessionStorage.getItem("farmHouseName")
+  console.log('farmHouseName==: ', farmHouseName);
   const fieldConfigs = {
     BasicDetails: [
       { label: "Tag ID", name: "tagId", type: "text", required: true },
@@ -122,29 +123,29 @@ const Record = () => {
       },
       {
         label: "Current Pregnancy Month",
-        name: "pregnancyDetails",
+        name: "currentPregnancyMonth",
         type: "select",
         options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
         conditional: "isPregnant",
       },
       {
         label: "Failed",
-        name: "pregnencyFail",
+        name: "failed",
         type: "select",
         options: ["Yes", "No"],
         conditional: "isPregnant",
       },
       {
         label: "Mother Wean Date",
-        name: "weanDate",
+        name: "motherWeanDate",
         type: "date",
         conditional: "isPregnant",
       },
-      { label: "Other Vaccine Name", name: "otherVaccineName", type: "text" },
-      { label: "Other Vaccine Date", name: "otherVaccineDate", type: "date" },
+      { label: "Other Vaccine Name", name: "vaccineName", type: "text" },
+      { label: "Other Vaccine Date", name: "vaccineDate", type: "date" },
       {
         label: "Farm Name",
-        name: "farmName",
+        name: "farmHouseName",
         type: "text",
         required: true,
       },
@@ -496,6 +497,7 @@ const Record = () => {
 
 
   const uid = sessionStorage.getItem("uid");
+ 
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
@@ -788,7 +790,7 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={selectedAnimal[field.name] || ""}
+                            value={ field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : selectedAnimal[field.name] || "-"}
                             readOnly
                             disabled
                           />

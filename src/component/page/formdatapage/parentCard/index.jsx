@@ -19,7 +19,7 @@ const Parent = () => {
   const fetchAnimal = async () => {
     try {
       const response = await axios.get(
-        "https://8dc9-2401-4900-8820-262c-7495-e9ae-6b7e-82d5.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        "https://f998-2401-4900-8820-262c-35c9-589c-2987-e0f9.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
         {
           params: { animalName: selectedAnimal, uid },
           headers: {

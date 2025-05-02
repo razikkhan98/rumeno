@@ -317,13 +317,13 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink
-                        to={"/equipment"}
+                        to={""}
                         className="text-decoration-none"
                       >
                         <li>Farmhouse Equipments</li>
+                      </NavLink>
                         <li>Human Consumable</li>
                         <li>Crop Seeds</li>
-                      </NavLink>
                     </ul>
                   </div>
                   <div>
