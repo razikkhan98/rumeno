@@ -24,7 +24,7 @@ const GoatDetailForm = () => {
   } = useForm();
   const handlePurchaseClick = () => {
     setIsPurchased(true);        
-    clearErrors("motherTag");   
+    // clearErrors("motherTag");   
   };
   const selectedAnimal = sessionStorage.getItem("animalName");
 
@@ -34,18 +34,18 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
   const animalData = location.state; // This will be the full animal object
-  // console.log('animalDatasiblingDetails==========: ', animalData.siblingDetails);
+  // 
 
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
-  console.log('type: ', type);
+  
 
 
 
   const storedIndex = localStorage.getItem("currentIndex");
-  console.log('storedIndex: ', storedIndex);
+  
   const onSubmit = async (data) => {
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
@@ -63,7 +63,7 @@ const GoatDetailForm = () => {
         // farmName,
         farmHouseName,
       };
-      console.log('uniqueId: ', uniqueId);
+      
 
 
       // Determine API endpoint dynamically based on type
@@ -78,7 +78,7 @@ const GoatDetailForm = () => {
         : postData(endpoint, formData));
 
 
-      if (response.data.message === "success") {
+      if (response.data.message === "success" || response.data.message === "Animal added successfully"  ) {
         toast.success(
           `Animal ${type === "edit" ? "updated" : "added"} successfully`,
           {
@@ -104,10 +104,8 @@ const GoatDetailForm = () => {
   useEffect(() => {
     if (animalData) {
       // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
-      // console.log('filteredAnimals: ', filteredAnimals);
+      // 
       // const animalData = filteredAnimals[storedIndex];
-      console.log('storedIndex: ', storedIndex);
-      console.log('animalData:============ ', animalData.vaccineName);
       setAnimalUniqueId(animalData.uniqueId)
       // localStorage.removeItem("currentIndex");
       setValue("uniqueName", animalData.uniqueId || "");
@@ -127,7 +125,7 @@ const GoatDetailForm = () => {
       setValue("childWeanDate", moment(animalData.childWeanDate).format('YYYY-MM-DD') || "");
       setValue("vaccineDate", moment(animalData.vaccineDate).format('YYYY-MM-DD') || "");
       setValue("lastVaccineDate", moment(animalData.lastVaccineDate).format('YYYY-MM-DD') || "");
-      setValue("lastVaccineName", animalData.lastVaccineName || "");
+      setValue("lastVaccineName", animalData.lastVaccineName || "");   
       setValue("vaccineName", animalData.vaccineName || "");
       setValue("childWeanWeight", animalData.childWeanWeight || "");
       setValue("birthWeight", animalData.birthWeight || "");
@@ -139,12 +137,14 @@ const GoatDetailForm = () => {
       setValue("bodyScore", animalData.bodyScore || "");
       setValue("comments", animalData.comments || "");
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
+      setIsPurchased(animalData.purchaseDate ? true : false)
     }
   }, [setValue]); // Fetch only once on mount
 
 
 
   const [gender, setGender] = useState("");
+  console.log('gender: ', gender);
 
   const handleSelect = (e) => {
     setGender(e.target.value);
@@ -160,7 +160,7 @@ const GoatDetailForm = () => {
             <Sidebar />
           </div>
           <div className="col-lg-10 px-4 py-5">
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between pt-3">
               <div>
                 <p className="detail-head text-chinese-black-color mb-1">
                   Basic Details
@@ -198,7 +198,7 @@ const GoatDetailForm = () => {
               <div className="d-flex pe-3">
                 <button
                   type="button"
-                  className={`gender-btn me-2 `}
+                  className={`me-2 ${isPurchased ? "gender-btn" : "gender-btn-light"} `}
                   onClick={handlePurchaseClick}
                 >
                   Purchase
@@ -296,11 +296,11 @@ const GoatDetailForm = () => {
               <div className="row mt-3">
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Mother Tag Id</label>
-                   <select
+                  <select
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("motherTag", {
-                      required: "Mother Tag is required",
+                      required: isPurchased ? false : "Mother Tag is required",
                     })}
                   >
                     <option value="">Select Tag Id</option>
@@ -310,19 +310,19 @@ const GoatDetailForm = () => {
                       </option>
                     ))}
                   </select>
-                  {errors.motherTag && (
+                  {isPurchased ? "" : errors.motherTag && (
                     <p className="text-danger">{errors.motherTag.message}</p>
                   )}
                 </div>
 
                 <div className="col-lg-2 lh-lg">
-              
-
                   <label className="form-lable-detail">Father Tag Id</label>
                   <select
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
-                    {...register("fatherTag")}
+                    {...register("fatherTag", {
+                      required: isPurchased ? false : "Father Tag is required",
+                    })}
                   >
                     <option value="">Select Tag Id</option>
                     {["01", "02", "03", "04","05", "22"].map((tagId) => (
@@ -331,18 +331,12 @@ const GoatDetailForm = () => {
                       </option>
                     ))}
                   </select>
+                  {isPurchased ? "" : errors.fatherTag && (
+                    <p className="text-danger">{errors.motherTag.message}</p>
+                  )}
                 </div>
 
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Gender</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    // placeholder="Enter Father Breed"
-                    disabled={gender}
-                    {...register("gender")}
-                  />
-                </div>
+                
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Type</label>
                   <select
@@ -366,6 +360,18 @@ const GoatDetailForm = () => {
                     {...register("birthWeight")}
                   />
                 </div>
+                {gender && 
+                <div className="col-lg-2 lh-lg">
+                  <label className="form-lable-detail">Gender</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail"
+                    // placeholder="Enter Father Breed"
+                    disabled={gender}
+                    {...register("gender")}
+                  />
+                </div>
+                }
               </div>
 
               <div className="row mt-3">
@@ -402,8 +408,13 @@ const GoatDetailForm = () => {
                     type="date"
                     // disabled={birthDate}
                     className="form-control form-control-detail"
-                    {...register("purchaseDate")}
+                    {...register("purchaseDate" , {
+                      required: !isPurchased ? false : "Purchase Date is required",
+                    })}
                   />
+                  {!isPurchased ? "" : errors.purchaseDate && (
+                    <p className="text-danger">{errors.purchaseDate.message}</p>
+                  )}
                 </div>
 
                 {purchaseDate && (

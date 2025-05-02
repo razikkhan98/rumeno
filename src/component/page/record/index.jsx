@@ -72,21 +72,21 @@ const Record = () => {
       },
       {
         label: "Current Pregnancy Month",
-        name: "pregnancyDetails",
+        name: "currentPregnancyMonth",
         type: "select",
         options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
         conditional: "isPregnant",
       },
       {
         label: "Failed",
-        name: "pregnencyFail",
+        name: "failed",
         type: "select",
         options: ["Yes", "No"],
         conditional: "isPregnant",
       },
       {
         label: "Mother Wean Date",
-        name: "weanDate",
+        name: "motherWeanDate",
         type: "date",
         conditional: "isPregnant",
       },
@@ -789,7 +789,7 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={selectedAnimal[field.name] || ""}
+                            value={field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : selectedAnimal[field.name] || ""}
                             readOnly
                             disabled
                           />
