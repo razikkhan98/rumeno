@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const DashboardTable = ({ data }) => {
   console.log("data: ", data);
@@ -59,6 +60,7 @@ const DashboardTable = ({ data }) => {
                     </td>
 
                     <td>
+                      <NavLink to={"/record"}>
                       <button
                         className="dashboard-table-btn"
                         disabled={
@@ -68,6 +70,7 @@ const DashboardTable = ({ data }) => {
                       >
                         Add
                       </button>
+                      </NavLink>
                     </td>
                   </tr>
                 ))}
