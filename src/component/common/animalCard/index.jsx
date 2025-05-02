@@ -21,6 +21,7 @@ const AnimalCard = ({
   tagId,
   height,
   gender,
+  hasKid,
   age,
   _id,
   birthDate,
@@ -220,6 +221,7 @@ const AnimalCard = ({
                   uniqueId,
                   tagId,
                   motherTag,
+                  fatherTag,
                   defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                   animalData: {
                     parentId,
@@ -403,6 +405,8 @@ const AnimalCard = ({
                     uniqueId,
                     tagId,
                     motherTag,
+                    hasKid,
+                    fatherTag,
                     defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                     animalData: {
                       parentId,

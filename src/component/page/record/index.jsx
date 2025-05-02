@@ -18,62 +18,11 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
 import axios from "axios";
 import moment from "moment";
+import Parent from "../formdatapage/parentCard";
 
 
 const Record = () => {
   const animalName = sessionStorage.getItem("animalName");
-
-  const API_ENDPOINTS = {
-    BasicDetails: "user/animaldata/newEntity",
-    PostWean: "/post-wean/post-wean-add",
-    Milk: "/milk-record/create-milk-record",
-    Vaccine: "/vaccine/add-vaccine",
-    Deworm: "/dewormdata/addDeworm",
-    EstrusHeat: "/estrus-heat/create-heat-record",
-    // FarmSanitation: "/user/animal/sanitationdata/add",
-    AnimalStatus: "/user/animaldata/transferAnimal",
-  };
-
-  const TabItems = [  { label: "Basic Details", key: "BasicDetails" },
-    { label: "Post Wean", key: "PostWean" },
-    { label: "Milk", key: "Milk" },
-    { label: "Vaccine", key: "Vaccine" },
-    { label: "Deworm", key: "Deworm" },
-    { label: "Estrus Heat", key: "EstrusHeat" },
-    { label: "Kid", key: "Kid" },
-    { label: `${animalName} Status`, key: "AnimalStatus" },]
-
-  const GET_API_ENDPOINTS = {
-    PostWean: "/post-wean/get-all-post-wean",
-    Milk: "/milk-record/get-all-milk-records",
-    Vaccine: "/vaccine/reminders/:userId",
-    Deworm: "/dewormdata/getAllDeworm",
-    EstrusHeat: "/estrus-heat/get-all-heat-records",
-    Kid : "/user/animaldata/newEntity/getAllById",
-    AnimalStatus: "/user/animaldata/getAllTransferAnimal"
-  }
-
-  const API_UPDATEENDPOINTS = {
-    PostWean: "/post-wean/update-post-wean-by-id",
-    Milk: "/milk-record/update-milk-record",
-    Vaccine: "/user/animal/vaccinedata/update",
-    Deworm: "/dewormdata/update",
-    EstrusHeat: "/estrus-heat/update-heat-record",
-    // FarmSanitation: "/user/animal/sanitationdata/update",
-    // Kid: "/user/animaldata/child",
-  };
-
-  const API_DELETEENDPOINTS = {
-    PostWean: "/post-wean/delete-post-wean-by-id",
-    Milk: "/milk-record/delete-milk-record-by-id",
-    // Vaccine: "/user/animal/vaccinedata/delete",
-    Deworm: "/dewormdata/delete",
-    EstrusHeat: "/estrus-heat/delete-heat-record-by-id",
-    // FarmSanitation: "/user/animal/sanitationdata/delete",
-    // Kid: "/user/animaldata/child",
-  };
- const farmHouseName = sessionStorage.getItem("farmHouseName")
-  console.log('farmHouseName==: ', farmHouseName);
   const fieldConfigs = {
     BasicDetails: [
       { label: "Tag ID", name: "tagId", type: "text", required: true },
@@ -123,32 +72,26 @@ const Record = () => {
       },
       {
         label: "Current Pregnancy Month",
-        name: "currentPregnancyMonth",
+        name: "pregnancyDetails",
         type: "select",
         options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
         conditional: "isPregnant",
       },
       {
         label: "Failed",
-        name: "failed",
+        name: "pregnencyFail",
         type: "select",
         options: ["Yes", "No"],
         conditional: "isPregnant",
       },
       {
         label: "Mother Wean Date",
-        name: "motherWeanDate",
+        name: "weanDate",
         type: "date",
         conditional: "isPregnant",
       },
       { label: "Other Vaccine Name", name: "vaccineName", type: "text" },
       { label: "Other Vaccine Date", name: "vaccineDate", type: "date" },
-      {
-        label: "Farm Name",
-        name: "farmHouseName",
-        type: "text",
-        required: true,
-      },
     ],
     PostWean: [
       {
@@ -462,7 +405,60 @@ const Record = () => {
     ],
   };
 
+  const API_ENDPOINTS = {
+    BasicDetails: "user/animaldata/newEntity",
+    PostWean: "/post-wean/post-wean-add",
+    Milk: "/milk-record/create-milk-record",
+    Vaccine: "/vaccine/add-vaccine",
+    Deworm: "/dewormdata/addDeworm",
+    EstrusHeat: "/estrus-heat/create-heat-record",
+    // FarmSanitation: "/user/animal/sanitationdata/add",
+    AnimalStatus: "/user/animaldata/transferAnimal",
+  };
+
+  const TabItems = [{ label: "Basic Details", key: "BasicDetails" },
+  { label: "Post Wean", key: "PostWean" },
+  { label: "Milk", key: "Milk" },
+  { label: "Vaccine", key: "Vaccine" },
+  { label: "Deworm", key: "Deworm" },
+  { label: "Estrus Heat", key: "EstrusHeat" },
+  { label: "Kid", key: "Kid" },
+  { label: `${animalName} Status`, key: "AnimalStatus" },]
+
+  const GET_API_ENDPOINTS = {
+    PostWean: "/post-wean/get-all-post-wean",
+    Milk: "/milk-record/get-all-milk-records",
+    Vaccine: "/vaccine/reminders/:userId",
+    Deworm: "/dewormdata/getAllDeworm",
+    EstrusHeat: "/estrus-heat/get-all-heat-records",
+    Kid: "/user/animaldata/newEntity/getAllById",
+    AnimalStatus: "/user/animaldata/getAllTransferAnimal"
+  }
+
+  const API_UPDATEENDPOINTS = {
+    PostWean: "/post-wean/update-post-wean-by-id",
+    Milk: "/milk-record/update-milk-record",
+    Vaccine: "/user/animal/vaccinedata/update",
+    Deworm: "/dewormdata/update",
+    EstrusHeat: "/estrus-heat/update-heat-record",
+    // FarmSanitation: "/user/animal/sanitationdata/update",
+    // Kid: "/user/animaldata/child",
+  };
+
+  const API_DELETEENDPOINTS = {
+    PostWean: "/post-wean/delete-post-wean-by-id",
+    Milk: "/milk-record/delete-milk-record-by-id",
+    // Vaccine: "/user/animal/vaccinedata/delete",
+    Deworm: "/dewormdata/delete",
+    EstrusHeat: "/estrus-heat/delete-heat-record-by-id",
+    // FarmSanitation: "/user/animal/sanitationdata/delete",
+    // Kid: "/user/animaldata/child",
+  };
+
+
   const [animals, setAnimals] = useState([]);
+  console.log('animals: ', animals);
+
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -485,19 +481,19 @@ const Record = () => {
   const location = useLocation();
   const parentId = location.state?.parentId;
   const motherTag = location?.state?.motherTag;
-  console.log('motherTag: ', motherTag);
+  const fatherTag = location?.state?.fatherTag;
+  // 
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
-  // console.log('selectedAnimal: ', selectedAnimal);
+
 
 
 
   const uid = sessionStorage.getItem("uid");
- 
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
@@ -505,81 +501,78 @@ const Record = () => {
       let endpoint = GET_API_ENDPOINTS[activeTab];
       if (activeTab === "Vaccine" || activeTab === "Deworm" || activeTab === "PostWean") {
         endpoint += `?uid=${uid}`;
-      }else if (activeTab === "Kid") {
+      } else if (activeTab === "Kid") {
         endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
       const response = await getData(endpoint);
-      console.log('response: asdf', response);
+      // 
+      const allAnimals = response.animals || [];
 
       if (activeTab === "Kid") {
-        const allAnimals = response.animals || [];
-        console.log("response.data.animals: ", allAnimals);
-  
-        // Filter kids (having both motherTag and fatherTag)
-        const Kids = allAnimals.filter(
-          (animal) => animal.motherTag && animal.fatherTag
-        );
-  
-        setAnimals(Kids);
-        if (Kids.length > 0) setLoading(false);
+      // 
+      const ShowKids = allAnimals.filter(
+        (animal) =>
+          animal.fatherTag === selectedAnimal.tagId ||
+          animal.motherTag === selectedAnimal.tagId
+      );
+
+
+      // Filter kids (having both motherTag and fatherTag)
+      // const Kids = allAnimals.filter(
+      //   (animal) => animal.motherTag && animal.fatherTag
+      // );
+
+      setAnimals(ShowKids);
+      if (ShowKids.length > 0) setLoading(false);
       }
       setSubmittedData(response?.data || []);
 
     } catch (error) {
-      // toast.error("Error fetching animal data.");
     }
   };
-  
+
   useEffect(() => {
     fetchRecordDetails();
   }, [activeTab]);
 
 
   // Get All Animal API Start Here
-  // const fetchAnimal = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
-  //       {
-  //         params: { animalName, uid },
-  //         headers: {
-  //           "ngrok-skip-browser-warning": "true",
-  //           "Content-Type": "application/json",   
-  //         },
-  //       }
-  //     );
+  const fetchKidAnimal = async () => {
+    try {
+      const response = await axios.get(
+        `https://079d-106-222-218-209.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
 
-  //     const allAnimals = response.data.animals || [];
-  //     console.log('response.data.animals: ', response.data.animals);
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  //     //  Filter kids (having both motherTag and fatherTag)
-  //     const Kids = allAnimals.filter(
-  //       (animal) => animal.motherTag && animal.fatherTag
-  //     );
+      const allAnimals = response.data.animals || [];
+      const ShowKids = allAnimals.filter(
+        (animal) =>
+          animal.fatherTag === selectedAnimal.tagId ||
+          animal.motherTag === selectedAnimal.tagId
+      );
 
-  //     setAnimals(Kids);
+      const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
-  //     if (Kids.length > 0) {
-  //       setLoading(false);
-  //     }
-  //   } catch (err) {
-  //     setError("Error fetching data");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (activeTab === "Kid" && kidId === undefined) {
-  //     fetchAnimal();
-  //   }
-  // }, [activeTab , kidId]);
+      if (!ShowKids.length > 0) {
+        button.classList.add("d-none")
+      } else {
+        button.classList.remove("d-none")
+      }
 
 
-  // Show Basic Details Data
-  // useEffect(() => {
-  //   if (!selectedAnimal) {
-  //     fetchAnimal();
-  //   }
-  // }, [selectedAnimal, uniqueId]);
+    } catch (err) {
+    }
+  };
+
+  useEffect(() => {
+    fetchKidAnimal();
+  }, []);
 
 
   useEffect(() => {
@@ -605,14 +598,11 @@ const Record = () => {
         : [];
     }
     );
-    console.log("weanData: ", weanData);
+
 
     setSubmittedData(weanData);
   }, [animals, activeTab]);
 
-  // const filteredChildren = children.filter(
-  //   (child) => child?.parentId === parentId
-  // );
 
   const onSubmit = async (data) => {
     const apiUrl = API_ENDPOINTS[activeTab];
@@ -624,23 +614,23 @@ const Record = () => {
     } else {
       // Child
       formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
-      console.log("formData: ", formData);
-      // console.log(parentId, "parentId");
+
+      // 
     }
 
     try {
       const response = await postData(apiUrl, formData);
-      console.log('response: ', response);
+
       if (response.status) {
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
         });
 
-         // Update submittedData after form submission
+        // Update submittedData after form submission
         setSubmittedData((prevData) => [
-          ...prevData, 
-          formData,    
+          ...prevData,
+          formData,
         ]);
 
         // if (kidId === undefined) {
@@ -665,7 +655,7 @@ const Record = () => {
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
     const dataToUpdate = submittedData[index];
-    console.log("submittedData[index]: ", submittedData[index]);
+
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
@@ -680,7 +670,7 @@ const Record = () => {
 
     try {
       const response = await updateData(apiUrl, recordId, dataToUpdate)
-      console.log('response: edit', response);
+
       if (response.status === 200 || response.status === 201) {
 
         const updatedData = [...submittedData];
@@ -714,7 +704,7 @@ const Record = () => {
     try {
       const response = await deleteData(apiUrl, recordId);
 
-      console.log("responsedetel: ", response);
+
       if (response?.success) {
         toast.success(response?.data?.message, {
           autoClose: 3000,
@@ -725,7 +715,6 @@ const Record = () => {
           prev.filter(item => item._id !== recordId));
 
         setTimeout(fetchRecordDetails, 1000);
-        // setSubmittedData((prev) => prev.filter((_, i) => i !== index));
       } else {
         // throw new Error(response.data.message);
       }
@@ -745,6 +734,16 @@ const Record = () => {
     setEditIndex(null);
     reset();
   };
+  useEffect(() => {
+
+    const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
+
+    if (animals.length < 0) {
+      button.classList.add("d-none")
+    } else {
+      button.classList.remove("d-none")
+    }
+  }, [])
 
   return (
 
@@ -762,14 +761,14 @@ const Record = () => {
                 onSelect={(k) => setActiveTab(k)}
                 className="mb-4"
               >
-                {TabItems.map((tab) =>
-                  kidId !== undefined && tab === "Kid" ? null : (
-                    <Tab
-                      key={tab.key}
-                      eventKey={tab.key}
-                      title={tab.label}
-                    />
+                {TabItems.map((tab) => {
+
+
+                  return (
+                    <Tab key={tab.key} eventKey={tab.key} title={tab.label} />
+
                   )
+                }
                 )}
               </Tabs>
 
@@ -790,7 +789,7 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={ field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : selectedAnimal[field.name] || "-"}
+                            value={selectedAnimal[field.name] || ""}
                             readOnly
                             disabled
                           />
@@ -802,9 +801,8 @@ const Record = () => {
 
               </div>
 
-              {kidId === undefined && activeTab === "Kid" && (
+              {activeTab === "Kid" && (
                 <>
-
                   {loading ? (
                     <p>Loading...</p>
                   ) : animals.length > 0 ? (
@@ -847,7 +845,7 @@ const Record = () => {
                         //   reset();
                         // }}
                         >
-                          <span className="me-1">+</span> {  TabItems.find((tab) => tab.key === activeTab)?.label || activeTab
+                          <span className="me-1">+</span> {TabItems.find((tab) => tab.key === activeTab)?.label || activeTab
                           }
                         </button>
                       </>
@@ -993,7 +991,7 @@ const Record = () => {
                       <Button
                         type="submit"
                         className="record-btn"
-                        // disabled={editActive ? !isDirty : !!InputPreFillData}
+                      // disabled={editActive ? !isDirty : !!InputPreFillData}
                       >
                         Submit
                       </Button>
@@ -1001,7 +999,7 @@ const Record = () => {
                   )}
 
                   {/* Show Prefillled form Data */}
-                  {editIndex !== null  && activeTab !== "AnimalStatus" && (
+                  {editIndex !== null && activeTab !== "AnimalStatus" && (
                     <>
                       <div>
                         <h4>Submitted Data</h4>
@@ -1082,16 +1080,16 @@ const Record = () => {
                               <tr onClick={() => {
                                 setEditIndex(index);     // open the form and load data
                                 setShowForm(false);      // hide blank form if open
-                              }} 
-                              key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
-                                }`}>
+                              }}
+                                key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
+                                  }`}>
                                 <td className="text-nowrap">{index + 1}</td>
                                 <td className="text-nowrap">{data?.tagId}</td>
-                                {fieldConfigs[activeTab]?.map((field, i) => 
-                                {
-                                 return (
-                                  <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : data?.[field.name]   || "-"}</td>
-                                )})}
+                                {fieldConfigs[activeTab]?.map((field, i) => {
+                                  return (
+                                    <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : data?.[field.name] || "-"}</td>
+                                  )
+                                })}
                                 <td className="d-flex align-items-center justify-content-center text-nowrap px-4">
                                   <div
                                     className="me-3"
