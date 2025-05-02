@@ -91,12 +91,6 @@ const Record = () => {
       },
       { label: "Other Vaccine Name", name: "vaccineName", type: "text" },
       { label: "Other Vaccine Date", name: "vaccineDate", type: "date" },
-      {
-        label: "Farm Name",
-        name: "farmHouseName",
-        type: "text",
-        required: true,
-      },
     ],
     PostWean: [
       {
