@@ -72,21 +72,21 @@ const Record = () => {
       },
       {
         label: "Current Pregnancy Month",
-        name: "pregnancyDetails",
+        name: "currentPregnancyMonth",
         type: "select",
         options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
         conditional: "isPregnant",
       },
       {
         label: "Failed",
-        name: "pregnencyFail",
+        name: "failed",
         type: "select",
         options: ["Yes", "No"],
         conditional: "isPregnant",
       },
       {
         label: "Mother Wean Date",
-        name: "weanDate",
+        name: "motherWeanDate",
         type: "date",
         conditional: "isPregnant",
       },
@@ -258,7 +258,7 @@ const Record = () => {
         type: "date",
       },
       {
-        name: "matingDate",
+        name: "dateMading",
         label: "Mating Date",
         type: "date",
       },
@@ -277,11 +277,11 @@ const Record = () => {
           "Left for Next cycle",
         ],
       },
-      {
-        name: "breedDate",
-        label: "Date of Breed",
-        type: "date",
-      },
+      // {
+      //   name: "breedDate",
+      //   label: "Date of Breed",
+      //   type: "date",
+      // },
       {
         name: "dueDate",
         label: "Birth Due Date",
@@ -427,10 +427,10 @@ const Record = () => {
 
   const GET_API_ENDPOINTS = {
     PostWean: "/post-wean/get-all-post-wean",
-    Milk: "/milk-record/get-all-milk-records",
+    Milk: "/milk-record/get-milk-record-by-id",
     Vaccine: "/vaccine/reminders/:userId",
     Deworm: "/dewormdata/getAllDeworm",
-    EstrusHeat: "/estrus-heat/get-all-heat-records",
+    EstrusHeat: "/estrus-heat/get-heat-record-by-id",
     Kid: "/user/animaldata/newEntity/getAllById",
     AnimalStatus: "/user/animaldata/getAllTransferAnimal"
   }
@@ -494,17 +494,19 @@ const Record = () => {
 
 
   const uid = sessionStorage.getItem("uid");
+  
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
     try {
       let endpoint = GET_API_ENDPOINTS[activeTab];
-      if (activeTab === "Vaccine" || activeTab === "Deworm" || activeTab === "PostWean") {
+      if (activeTab === "Vaccine" || activeTab === "Deworm" || activeTab === "PostWean" || activeTab === "Milk" || activeTab === "Estrus Heat") {
         endpoint += `?uid=${uid}`;
       } else if (activeTab === "Kid") {
         endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
       const response = await getData(endpoint);
+      console.log('response: =====================', response);
       // 
       const allAnimals = response.animals || [];
 
@@ -608,18 +610,21 @@ const Record = () => {
     const apiUrl = API_ENDPOINTS[activeTab];
     let formData = {}; // Declare once
 
-    if (kidId === undefined) {
+    // if (kidId === undefined) {
       // Parent
       formData = { ...data, uniqueId, parentId, uid, tagId };
-    } else {
+      console.log('uid: ', uid);
+      console.log('formData: ', formData);
+    // } else {
       // Child
-      formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
+      // formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
 
       // 
-    }
+    // }
 
     try {
       const response = await postData(apiUrl, formData);
+      console.log('response: submitttttttttttttt', response);
 
       if (response.status) {
         toast.success(response.data.message, {
@@ -789,7 +794,7 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={selectedAnimal[field.name] || ""}
+                            value={field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : selectedAnimal[field.name] || ""}
                             readOnly
                             disabled
                           />
@@ -1090,7 +1095,7 @@ const Record = () => {
                                     <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : data?.[field.name] || "-"}</td>
                                   )
                                 })}
-                                <td className="d-flex align-items-center justify-content-center text-nowrap px-4">
+                                <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
                                   <div
                                     className="me-3"
                                     onClick={() => handleUpdateApi(index)}
