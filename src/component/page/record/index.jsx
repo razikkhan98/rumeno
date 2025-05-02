@@ -18,6 +18,7 @@ import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
 import axios from "axios";
 import moment from "moment";
+import Parent from "../formdatapage/parentCard";
 
 
 const Record = () => {
@@ -71,21 +72,21 @@ const Record = () => {
       },
       {
         label: "Current Pregnancy Month",
-        name: "currentPregnancyMonth",
+        name: "pregnancyDetails",
         type: "select",
         options: ["1 Month", "2 Month", "3 Month", "4 Month", "5 Month"],
         conditional: "isPregnant",
       },
       {
         label: "Failed",
-        name: "failed",
+        name: "pregnencyFail",
         type: "select",
         options: ["Yes", "No"],
         conditional: "isPregnant",
       },
       {
         label: "Mother Wean Date",
-        name: "motherWeanDate",
+        name: "weanDate",
         type: "date",
         conditional: "isPregnant",
       },
@@ -456,6 +457,8 @@ const Record = () => {
 
 
   const [animals, setAnimals] = useState([]);
+  console.log('animals: ', animals);
+
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -478,19 +481,19 @@ const Record = () => {
   const location = useLocation();
   const parentId = location.state?.parentId;
   const motherTag = location?.state?.motherTag;
-  console.log('motherTag: ', motherTag);
+  const fatherTag = location?.state?.fatherTag;
+  // 
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
   const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
-  // console.log('selectedAnimal: ', selectedAnimal);
+
 
 
 
   const uid = sessionStorage.getItem("uid");
- 
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
@@ -502,85 +505,74 @@ const Record = () => {
         endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
       const response = await getData(endpoint);
-      console.log('response: asdf', response);
+      // 
+      const allAnimals = response.animals || [];
 
       if (activeTab === "Kid") {
-        const allAnimals = response.animals || [];
-        console.log("response.data.animals: ", allAnimals);
+      // 
+      const ShowKids = allAnimals.filter(
+        (animal) =>
+          animal.fatherTag === selectedAnimal.tagId ||
+          animal.motherTag === selectedAnimal.tagId
+      );
 
-        // Filter kids (having both motherTag and fatherTag)
-        const Kids = allAnimals.filter(
-          (animal) =>
-            animal?.motherTag === selectedAnimal?.tagId ||
-            animal?.fatherTag === selectedAnimal?.tagId
-        );
 
-        setAnimals(Kids);
-        // if (Kids.length > 0)
-           setLoading(false);
+      // Filter kids (having both motherTag and fatherTag)
+      // const Kids = allAnimals.filter(
+      //   (animal) => animal.motherTag && animal.fatherTag
+      // );
+
+      setAnimals(ShowKids);
+      if (ShowKids.length > 0) setLoading(false);
       }
-
       setSubmittedData(response?.data || []);
 
     } catch (error) {
-      // toast.error("Error fetching animal data.");
     }
   };
 
   useEffect(() => {
-    if (activeTab === "Kid" && kidId) {
-      setActiveTab("BasicDetails"); // fallback to a safe tab
-      return;
-    }
     fetchRecordDetails();
   }, [activeTab]);
 
 
   // Get All Animal API Start Here
-  // const fetchAnimal = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
-  //       {
-  //         params: { animalName, uid },
-  //         headers: {
-  //           "ngrok-skip-browser-warning": "true",
-  //           "Content-Type": "application/json",   
-  //         },
-  //       }
-  //     );
+  const fetchKidAnimal = async () => {
+    try {
+      const response = await axios.get(
+        `https://079d-106-222-218-209.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
 
-  //     const allAnimals = response.data.animals || [];
-  //     console.log('response.data.animals: ', response.data.animals);
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  //     //  Filter kids (having both motherTag and fatherTag)
-  //     const Kids = allAnimals.filter(
-  //       (animal) => animal.motherTag && animal.fatherTag
-  //     );
+      const allAnimals = response.data.animals || [];
+      const ShowKids = allAnimals.filter(
+        (animal) =>
+          animal.fatherTag === selectedAnimal.tagId ||
+          animal.motherTag === selectedAnimal.tagId
+      );
 
-  //     setAnimals(Kids);
+      const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
-  //     if (Kids.length > 0) {
-  //       setLoading(false);
-  //     }
-  //   } catch (err) {
-  //     setError("Error fetching data");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (activeTab === "Kid" && kidId === undefined) {
-  //     fetchAnimal();
-  //   }
-  // }, [activeTab , kidId]);
+      if (!ShowKids.length > 0) {
+        button.classList.add("d-none")
+      } else {
+        button.classList.remove("d-none")
+      }
 
 
-  // Show Basic Details Data
-  // useEffect(() => {
-  //   if (!selectedAnimal) {
-  //     fetchAnimal();
-  //   }
-  // }, [selectedAnimal, uniqueId]);
+    } catch (err) {
+    }
+  };
+
+  useEffect(() => {
+    fetchKidAnimal();
+  }, []);
 
 
   useEffect(() => {
@@ -606,14 +598,11 @@ const Record = () => {
         : [];
     }
     );
-    console.log("weanData: ", weanData);
+
 
     setSubmittedData(weanData);
   }, [animals, activeTab]);
 
-  // const filteredChildren = children.filter(
-  //   (child) => child?.parentId === parentId
-  // );
 
   const onSubmit = async (data) => {
     const apiUrl = API_ENDPOINTS[activeTab];
@@ -625,13 +614,13 @@ const Record = () => {
     } else {
       // Child
       formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
-      console.log("formData: ", formData);
-      // console.log(parentId, "parentId");
+
+      // 
     }
 
     try {
       const response = await postData(apiUrl, formData);
-      console.log('response: ', response);
+
       if (response.status) {
         toast.success(response.data.message, {
           autoClose: 3000,
@@ -666,7 +655,7 @@ const Record = () => {
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
     const dataToUpdate = submittedData[index];
-    console.log("submittedData[index]: ", submittedData[index]);
+
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
@@ -681,7 +670,7 @@ const Record = () => {
 
     try {
       const response = await updateData(apiUrl, recordId, dataToUpdate)
-      console.log('response: edit', response);
+
       if (response.status === 200 || response.status === 201) {
 
         const updatedData = [...submittedData];
@@ -715,7 +704,7 @@ const Record = () => {
     try {
       const response = await deleteData(apiUrl, recordId);
 
-      console.log("responsedetel: ", response);
+
       if (response?.success) {
         toast.success(response?.data?.message, {
           autoClose: 3000,
@@ -745,6 +734,16 @@ const Record = () => {
     setEditIndex(null);
     reset();
   };
+  useEffect(() => {
+
+    const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
+
+    if (animals.length < 0) {
+      button.classList.add("d-none")
+    } else {
+      button.classList.remove("d-none")
+    }
+  }, [])
 
   return (
 
@@ -763,20 +762,14 @@ const Record = () => {
                 className="mb-4"
               >
                 {TabItems.map((tab) => {
-                  if (tab.key === "Kid") {
-                    const hasKid = submittedData?.some(
-                      (animal) =>
-                        animal?.motherTag === selectedAnimal?.tagId ||
-                        animal?.fatherTag === selectedAnimal?.tagId
-                    );
-                    if (!hasKid) return null;
-                  }
+
 
                   return (
                     <Tab key={tab.key} eventKey={tab.key} title={tab.label} />
-                  );
-                })}
 
+                  )
+                }
+                )}
               </Tabs>
 
               {/* Show  Basic Details Form  Data  */}
@@ -796,7 +789,7 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={ field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g,"-") : selectedAnimal[field.name] || "-"}
+                            value={selectedAnimal[field.name] || ""}
                             readOnly
                             disabled
                           />
@@ -808,9 +801,8 @@ const Record = () => {
 
               </div>
 
-              {kidId === undefined && animals.length > 0 && (
+              {activeTab === "Kid" && (
                 <>
-
                   {loading ? (
                     <p>Loading...</p>
                   ) : animals.length > 0 ? (
