@@ -12,14 +12,8 @@ import {
 import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnimalCard from "../../common/animalCard";
-import { RiDeleteBinFill } from "react-icons/ri";
-// import { FaPencil } from "react-icons/fa6";
-import { PiTrashSimpleBold } from "react-icons/pi";
 import { GoPencil } from "react-icons/go";
 import axios from "axios";
-import moment from "moment";
-import Parent from "../formdatapage/parentCard";
-
 
 const Record = () => {
   const animalName = sessionStorage.getItem("animalName");
@@ -60,10 +54,25 @@ const Record = () => {
         ],
       },
       { label: "Date of Purchasing", name: "purchaseDate", type: "date" },
-      { label: "Last Vaccine Date", name: "lastVaccineDate", type: "date", conditional: "purchaseDate" },
-      { label: "Last Vaccine Name", name: "lastVaccineName", type: "text", conditional: "purchaseDate" },
+      {
+        label: "Last Vaccine Date",
+        name: "lastVaccineDate",
+        type: "date",
+        conditional: "purchaseDate",
+      },
+      {
+        label: "Last Vaccine Name",
+        name: "lastVaccineName",
+        type: "text",
+        conditional: "purchaseDate",
+      },
       { label: "Comments (if any)", name: "comments", type: "text" },
-      { label: "Pregnant", name: "isPregnant", type: "checkbox", conditional: "gender === 'Female'" },
+      {
+        label: "Pregnant",
+        name: "isPregnant",
+        type: "checkbox",
+        conditional: "gender === 'Female'",
+      },
       {
         label: "Date of Mating",
         name: "dateMading",
@@ -143,7 +152,7 @@ const Record = () => {
         name: "kiddingDeliveryDate",
         label: "Last Delivery Date (kidding)",
         type: "date",
-        required: true
+        required: true,
       },
     ],
     Vaccine: [
@@ -151,7 +160,24 @@ const Record = () => {
         name: "vaccineName",
         label: "Vaccine Name",
         type: "select",
-        options: ["Deworming (Internal)", "Deworming (External)", "PPR", "Enterotoxaemia (ET) + (TT)", "Hemorrhagic septicaemia (HS)", "Foot and Mouth Disease (FMD)", "Goat Pox", "Booster (ET) + (TT)", "Booster (HS)", "Booster (FMD)", "Booster Goat Pox", "Repeat PPR", "Repeat ET + TT", "Repeat HS", "Repeat FMD", "Repeat Goat Pox"],
+        options: [
+          "Deworming (Internal)",
+          "Deworming (External)",
+          "PPR",
+          "Enterotoxaemia (ET) + (TT)",
+          "Hemorrhagic septicaemia (HS)",
+          "Foot and Mouth Disease (FMD)",
+          "Goat Pox",
+          "Booster (ET) + (TT)",
+          "Booster (HS)",
+          "Booster (FMD)",
+          "Booster Goat Pox",
+          "Repeat PPR",
+          "Repeat ET + TT",
+          "Repeat HS",
+          "Repeat FMD",
+          "Repeat Goat Pox",
+        ],
       },
       {
         name: "vaccineDate",
@@ -230,13 +256,7 @@ const Record = () => {
         name: "maleId",
         label: "Male Tag Id",
         type: "select",
-        options: [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-        ],
+        options: ["1", "2", "3", "4", "5"],
       },
       {
         name: "heat",
@@ -416,24 +436,26 @@ const Record = () => {
     AnimalStatus: "/user/animaldata/transferAnimal",
   };
 
-  const TabItems = [{ label: "Basic Details", key: "BasicDetails" },
-  { label: "Post Wean", key: "PostWean" },
-  { label: "Milk", key: "Milk" },
-  { label: "Vaccine", key: "Vaccine" },
-  { label: "Deworm", key: "Deworm" },
-  { label: "Estrus Heat", key: "EstrusHeat" },
-  { label: "Kid", key: "Kid" },
-  { label: `${animalName} Status`, key: "AnimalStatus" },]
+  const TabItems = [
+    { label: "Basic Details", key: "BasicDetails" },
+    { label: "Post Wean", key: "PostWean" },
+    { label: "Milk", key: "Milk" },
+    { label: "Vaccine", key: "Vaccine" },
+    { label: "Deworm", key: "Deworm" },
+    { label: "Estrus Heat", key: "EstrusHeat" },
+    { label: "Kid", key: "Kid" },
+    { label: `${animalName} Status`, key: "AnimalStatus" },
+  ];
 
   const GET_API_ENDPOINTS = {
     PostWean: "/post-wean/get-all-post-wean",
-    Milk: "/milk-record/get-milk-record-by-id",
-    Vaccine: "/vaccine/reminders/:userId",
+    Milk: "/milk-record/get-all-milk-records",
+    Vaccine: "/vaccine/get-all-vaccine",
     Deworm: "/dewormdata/getAllDeworm",
-    EstrusHeat: "/estrus-heat/get-heat-record-by-id",
+    EstrusHeat: "/estrus-heat/get-all-heat-records",
     Kid: "/user/animaldata/newEntity/getAllById",
-    AnimalStatus: "/user/animaldata/getAllTransferAnimal"
-  }
+    AnimalStatus: "/user/animaldata/getAllTransferAnimal",
+  };
 
   const API_UPDATEENDPOINTS = {
     PostWean: "/post-wean/update-post-wean-by-id",
@@ -455,9 +477,7 @@ const Record = () => {
     // Kid: "/user/animaldata/child",
   };
 
-
   const [animals, setAnimals] = useState([]);
-  console.log('animals: ', animals);
 
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
@@ -482,68 +502,64 @@ const Record = () => {
   const parentId = location.state?.parentId;
   const motherTag = location?.state?.motherTag;
   const fatherTag = location?.state?.fatherTag;
-  // 
+  //
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
-  const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
+  const { animalData = {}, defaultForm = "BasicDetails" } =
+    location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
 
-
-
-
   const uid = sessionStorage.getItem("uid");
-  
 
   // Show all Records Postwean, milk etc.....
   const fetchRecordDetails = async () => {
     try {
       let endpoint = GET_API_ENDPOINTS[activeTab];
-      if (activeTab === "Vaccine" || activeTab === "Deworm" || activeTab === "PostWean" || activeTab === "Milk" || activeTab === "Estrus Heat") {
+      if (
+        activeTab === "Vaccine" ||
+        activeTab === "Deworm" ||
+        activeTab === "PostWean" ||
+        activeTab === "Milk" ||
+        activeTab === "EstrusHeat"
+      ) {
         endpoint += `?uid=${uid}`;
       } else if (activeTab === "Kid") {
         endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
       const response = await getData(endpoint);
-      console.log('response: =====================', response);
-      // 
+
       const allAnimals = response.animals || [];
 
       if (activeTab === "Kid") {
-      // 
-      const ShowKids = allAnimals.filter(
-        (animal) =>
-          animal.fatherTag === selectedAnimal.tagId ||
-          animal.motherTag === selectedAnimal.tagId
-      );
+        const ShowKids = allAnimals.filter(
+          (animal) =>
+            animal.fatherTag === selectedAnimal.tagId ||
+            animal.motherTag === selectedAnimal.tagId
+        );
 
+        // Filter kids (having both motherTag and fatherTag)
+        // const Kids = allAnimals.filter(
+        //   (animal) => animal.motherTag && animal.fatherTag
+        // );
 
-      // Filter kids (having both motherTag and fatherTag)
-      // const Kids = allAnimals.filter(
-      //   (animal) => animal.motherTag && animal.fatherTag
-      // );
-
-      setAnimals(ShowKids);
-      if (ShowKids.length > 0) setLoading(false);
+        setAnimals(ShowKids);
+        if (ShowKids.length > 0) setLoading(false);
       }
       setSubmittedData(response?.data || []);
-
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     fetchRecordDetails();
   }, [activeTab]);
 
-
   // Get All Animal API Start Here
   const fetchKidAnimal = async () => {
     try {
       const response = await axios.get(
-        `https://079d-106-222-218-209.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
-
+        `https://1a4b-2401-4900-8821-99bf-d135-1f3f-4b27-d546.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -562,20 +578,16 @@ const Record = () => {
       const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
       if (!ShowKids.length > 0) {
-        button.classList.add("d-none")
+        button.classList.add("d-none");
       } else {
-        button.classList.remove("d-none")
+        button.classList.remove("d-none");
       }
-
-
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
     fetchKidAnimal();
   }, []);
-
 
   useEffect(() => {
     const tabMapping = {
@@ -592,39 +604,26 @@ const Record = () => {
       const dataToUse = i[key];
       return Array.isArray(dataToUse)
         ? dataToUse.map((entry) => ({
-          ...entry,
-          uid: entry.uid || i.uid || uid,
-          tagId: entry.tagId || i.tagId || tagId,
-          parentId: entry.parentId || i.parentId || parentId,
-        }))
+            ...entry,
+            uid: entry.uid || i.uid || uid,
+            tagId: entry.tagId || i.tagId || tagId,
+            parentId: entry.parentId || i.parentId || parentId,
+          }))
         : [];
-    }
-    );
-
+    });
 
     setSubmittedData(weanData);
   }, [animals, activeTab]);
 
-
   const onSubmit = async (data) => {
+    const uid = sessionStorage.getItem("uid");
     const apiUrl = API_ENDPOINTS[activeTab];
     let formData = {}; // Declare once
 
-    // if (kidId === undefined) {
-      // Parent
-      formData = { ...data, uniqueId, parentId, uid, tagId };
-      console.log('uid: ', uid);
-      console.log('formData: ', formData);
-    // } else {
-      // Child
-      // formData = { ...data, childUniqueId: uniqueId, parentId, uid, tagId };
-
-      // 
-    // }
+    formData = { ...data, uniqueId, parentId, uid, tagId };
 
     try {
       const response = await postData(apiUrl, formData);
-      console.log('response: submitttttttttttttt', response);
 
       if (response.status) {
         toast.success(response.data.message, {
@@ -633,10 +632,7 @@ const Record = () => {
         });
 
         // Update submittedData after form submission
-        setSubmittedData((prevData) => [
-          ...prevData,
-          formData,
-        ]);
+        setSubmittedData((prevData) => [...prevData, formData]);
 
         // if (kidId === undefined) {
         //   setTimeout(() => navigate("/record/:name/:uniqueId"), 1000);
@@ -656,11 +652,9 @@ const Record = () => {
 
   // ====================================================
 
-
   //  APi Edit Form Data Function
   const handleUpdateApi = async (index) => {
     const dataToUpdate = submittedData[index];
-
 
     // Call Update Api
     const apiUrl = API_UPDATEENDPOINTS[activeTab];
@@ -672,16 +666,15 @@ const Record = () => {
       return;
     }
 
-
     try {
-      const response = await updateData(apiUrl, recordId, dataToUpdate)
-
+      const response = await updateData(apiUrl, recordId, dataToUpdate);
       if (response.status === 200 || response.status === 201) {
-
         const updatedData = [...submittedData];
         updatedData[index] = { ...updatedData[index], ...response.data }; // Update data with API response
         setSubmittedData(updatedData);
-
+        setShowForm(false); // Hide the form after update
+        // setEditIndex(null);
+        // reset();
         toast.success(response.data.message, {
           autoClose: 3000,
           transition: Bounce,
@@ -709,15 +702,15 @@ const Record = () => {
     try {
       const response = await deleteData(apiUrl, recordId);
 
-
       if (response?.success) {
         toast.success(response?.data?.message, {
           autoClose: 3000,
           transition: Bounce,
         });
 
-        setSubmittedData(prev =>
-          prev.filter(item => item._id !== recordId));
+        setSubmittedData((prev) =>
+          prev.filter((item) => item._id !== recordId)
+        );
 
         setTimeout(fetchRecordDetails, 1000);
       } else {
@@ -727,7 +720,6 @@ const Record = () => {
       toast.error(error?.message || "Submission failed.");
     }
   };
-
 
   const isShowForm = showForm[activeTab] || false;
 
@@ -740,18 +732,16 @@ const Record = () => {
     reset();
   };
   useEffect(() => {
-
     const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
     if (animals.length < 0) {
-      button.classList.add("d-none")
+      button.classList.add("d-none");
     } else {
-      button.classList.remove("d-none")
+      button.classList.remove("d-none");
     }
-  }, [])
+  }, []);
 
   return (
-
     <>
       <Navbar />
       <div className="row">
@@ -767,14 +757,10 @@ const Record = () => {
                 className="mb-4"
               >
                 {TabItems.map((tab) => {
-
-
                   return (
                     <Tab key={tab.key} eventKey={tab.key} title={tab.label} />
-
-                  )
-                }
-                )}
+                  );
+                })}
               </Tabs>
 
               {/* Show  Basic Details Form  Data  */}
@@ -794,7 +780,13 @@ const Record = () => {
                           <Form.Label>{field.label}</Form.Label>
                           <Form.Control
                             type="text"
-                            value={field?.type == "date" ? new Date(selectedAnimal[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : selectedAnimal[field.name] || ""}
+                            value={
+                              field?.type == "date"
+                                ? new Date(selectedAnimal[field.name])
+                                    .toLocaleDateString("en-GB")
+                                    .replace(/\//g, "-")
+                                : selectedAnimal[field.name] || ""
+                            }
                             readOnly
                             disabled
                           />
@@ -803,7 +795,6 @@ const Record = () => {
                     ))}
                   </div>
                 )}
-
               </div>
 
               {activeTab === "Kid" && (
@@ -813,7 +804,10 @@ const Record = () => {
                   ) : animals.length > 0 ? (
                     <div className="row">
                       {animals.map((animal, index) => (
-                        <div key={index} className="col-lg-3 width-20 px-3 pt-4">
+                        <div
+                          key={index}
+                          className="col-lg-3 width-20 px-3 pt-4"
+                        >
                           <AnimalCard {...animal} showDetailsButton={false} />
                         </div>
                       ))}
@@ -822,16 +816,11 @@ const Record = () => {
                     <p>No Kid animals found.</p>
                   )}
                 </>
-
               )}
-
-
 
               {activeTab !== "Kid" && (
                 <>
                   <div className="d-flex justify-content-between align-items-center">
-
-
                     {/* Show blank form  through  add buttons */}
                     {activeTab !== "BasicDetails" && (
                       <>
@@ -841,17 +830,19 @@ const Record = () => {
                         <button
                           className="btn text-white px-4 border font-sm-12 rounded-pill me-lg-5 mb-2"
                           style={{
-                            background: "linear-gradient(to right, #60A5FA, #EC4899)",
+                            background:
+                              "linear-gradient(to right, #60A5FA, #EC4899)",
                           }}
                           onClick={toggleFormForActiveTab}
-                        // onClick={() => {
-                        //   setShowForm((prev) => !prev);
-                        //   setEditIndex(null);
-                        //   reset();
-                        // }}
+                          // onClick={() => {
+                          //   setShowForm((prev) => !prev);
+                          //   setEditIndex(null);
+                          //   reset();
+                          // }}
                         >
-                          <span className="me-1">+</span> {TabItems.find((tab) => tab.key === activeTab)?.label || activeTab
-                          }
+                          <span className="me-1">+</span>{" "}
+                          {TabItems.find((tab) => tab.key === activeTab)
+                            ?.label || activeTab}
                         </button>
                       </>
                     )}
@@ -860,17 +851,13 @@ const Record = () => {
                   {isShowForm && (
                     <Form
                       onSubmit={handleSubmit(onSubmit)}
-                    // className={showForm ? "d-block" : "d-none"}
+                      // className={showForm ? "d-block" : "d-none"}
                     >
                       <div className="row mb-4">
                         <div className="col-lg-3 pb-3">
                           <Form.Group>
                             <Form.Label>Tag ID</Form.Label>
-                            <Form.Control
-                              type="text"
-                              value={tagId}
-                              readOnly
-                            />
+                            <Form.Control type="text" value={tagId} readOnly />
                           </Form.Group>
                         </div>
                         {activeTab === "PostWean" && (
@@ -909,9 +896,7 @@ const Record = () => {
                                       {...register(field.name, {
                                         required: field.required,
                                       })}
-                                      disabled={
-                                        !editActive && InputPreFillData
-                                      }
+                                      disabled={!editActive && InputPreFillData}
                                       name={field.name} // Radio ke liye name zaroori hai
                                     />
                                   ))}
@@ -955,48 +940,50 @@ const Record = () => {
                         {/* Animal Stauts Form  */}
                         {activeTab === `${animalName} stauts` && (
                           <>
-                            {fieldConfigs[`${animalName}Status`]?.map((field, index) => (
-                              <div key={index} className="col-lg-3 pb-3">
-                                <Form.Group>
-                                  <Form.Label>{field.label}</Form.Label>
+                            {fieldConfigs[`${animalName}Status`]?.map(
+                              (field, index) => (
+                                <div key={index} className="col-lg-3 pb-3">
+                                  <Form.Group>
+                                    <Form.Label>{field.label}</Form.Label>
 
-                                  {field?.type === "select" ? (
-                                    // ✅ Corrected Select Field
-                                    <Form.Select
-                                      {...register(field.name, {
-                                        required: field.required,
-                                      })}
-                                      disabled={!editActive && InputPreFillData}
-                                    >
-                                      <option value="">Select an option</option>{" "}
-
-                                      {field?.options?.map((option, idx) => (
-                                        <option key={idx} value={option}>
-                                          {option}
-                                        </option>
-                                      ))}
-                                    </Form.Select>
-                                  ) : (
-
-                                    <Form.Control
-                                      type={field.type}
-                                      {...register(field.name, { required: field.required })}
-                                    />
-                                  )}
-                                </Form.Group>
-                              </div>
-                            ))}
+                                    {field?.type === "select" ? (
+                                      // ✅ Corrected Select Field
+                                      <Form.Select
+                                        {...register(field.name, {
+                                          required: field.required,
+                                        })}
+                                        disabled={
+                                          !editActive && InputPreFillData
+                                        }
+                                      >
+                                        <option value="">
+                                          Select an option
+                                        </option>{" "}
+                                        {field?.options?.map((option, idx) => (
+                                          <option key={idx} value={option}>
+                                            {option}
+                                          </option>
+                                        ))}
+                                      </Form.Select>
+                                    ) : (
+                                      <Form.Control
+                                        type={field.type}
+                                        {...register(field.name, {
+                                          required: field.required,
+                                        })}
+                                      />
+                                    )}
+                                  </Form.Group>
+                                </div>
+                              )
+                            )}
                           </>
-                        )
-
-
-                        }
-
+                        )}
                       </div>
                       <Button
                         type="submit"
                         className="record-btn"
-                      // disabled={editActive ? !isDirty : !!InputPreFillData}
+                        // disabled={editActive ? !isDirty : !!InputPreFillData}
                       >
                         Submit
                       </Button>
@@ -1021,27 +1008,33 @@ const Record = () => {
                               </Form.Group>
                             </div>
 
-                            {fieldConfigs[activeTab]?.map((field, fieldIndex) => (
-                              <div key={fieldIndex} className="col-lg-3 pb-3">
-                                <Form.Group>
-                                  <Form.Label>{field?.label}</Form.Label>
-                                  <Form.Control
-                                    type={field?.type}
-                                    value={submittedData[editIndex]?.[field.name] || ""}
-                                    onChange={(e) => {
-                                      const newValue = e.target.value;
+                            {fieldConfigs[activeTab]?.map(
+                              (field, fieldIndex) => (
+                                <div key={fieldIndex} className="col-lg-3 pb-3">
+                                  <Form.Group>
+                                    <Form.Label>{field?.label}</Form.Label>
+                                    <Form.Control
+                                      type={field?.type}
+                                      value={
+                                        submittedData[editIndex]?.[
+                                          field.name
+                                        ] || ""
+                                      }
+                                      onChange={(e) => {
+                                        const newValue = e.target.value;
 
-                                      const updatedData = [...submittedData];
-                                      updatedData[editIndex] = {
-                                        ...updatedData[editIndex],
-                                        [field.name]: newValue,
-                                      };
-                                      setSubmittedData(updatedData);
-                                    }}
-                                  />
-                                </Form.Group>
-                              </div>
-                            ))}
+                                        const updatedData = [...submittedData];
+                                        updatedData[editIndex] = {
+                                          ...updatedData[editIndex],
+                                          [field.name]: newValue,
+                                        };
+                                        setSubmittedData(updatedData);
+                                      }}
+                                    />
+                                  </Form.Group>
+                                </div>
+                              )
+                            )}
                           </div>
 
                           <Button
@@ -1070,61 +1063,82 @@ const Record = () => {
                       // submittedData.map((data, index) => (
                       <div className="table-responsive">
                         <table class="table table-hover text-center align-middle">
-                          <thead >
+                          <thead>
                             <tr>
-                              <th scope="col" className="heading text-nowrap">S No.</th>
-                              <th className="heading text-nowrap px-2">Tag Id</th>
+                              <th scope="col" className="heading text-nowrap">
+                                S No.
+                              </th>
+                              <th className="heading text-nowrap px-2">
+                                Tag Id
+                              </th>
                               {fieldConfigs[activeTab]?.map((field, i) => (
-                                <th key={i} className="heading text-nowrap px-4">{field.label}</th>
+                                <th
+                                  key={i}
+                                  className="heading text-nowrap px-4"
+                                >
+                                  {field.label}
+                                </th>
                               ))}
+                               {activeTab !== "Vaccine" && (
                               <th className="heading text-nowrap">Actions</th>
+                               )}
                             </tr>
                           </thead>
                           <tbody>
                             {submittedData.map((data, index) => (
-                              <tr onClick={() => {
-                                setEditIndex(index);     // open the form and load data
-                                setShowForm(false);      // hide blank form if open
-                              }}
-                                key={index} role="button" className={`row-border row-shadow ${index % 2 === 0 ? "bg-light-blue" : "bg-light-gray"
-                                  }`}>
+                              <tr
+                                onClick={() => {
+                                  setEditIndex(index); // open the form and load data
+                                  setShowForm(false); // hide blank form if open
+                                }}
+                                key={index}
+                                role="button"
+                                className={`row-border row-shadow ${
+                                  index % 2 === 0
+                                    ? "bg-light-blue"
+                                    : "bg-light-gray"
+                                }`}
+                              >
                                 <td className="text-nowrap">{index + 1}</td>
                                 <td className="text-nowrap">{data?.tagId}</td>
                                 {fieldConfigs[activeTab]?.map((field, i) => {
                                   return (
-                                    <td key={i}>{field?.type == "date" ? new Date(data?.[field.name]).toLocaleDateString("en-GB").replace(/\//g, "-") : data?.[field.name] || "-"}</td>
-                                  )
+                                    <td key={i}>
+                                      {field?.type == "date"
+                                        ? new Date(data?.[field.name])
+                                            .toLocaleDateString("en-GB")
+                                            .replace(/\//g, "-")
+                                        : data?.[field.name] || "-"}
+                                    </td>
+                                  );
                                 })}
-                                <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
-                                  <div
-                                    className="me-3"
-                                    onClick={() => handleUpdateApi(index)}
-                                  >
-                                    <GoPencil className="text-primary fs-5" />
-
-                                  </div>
-
-                                </td>
+                                {activeTab !== "Vaccine" && (
+                                  <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
+                                    <div
+                                      className="me-3"
+                                      onClick={() => handleUpdateApi(index)}
+                                    >
+                                      <GoPencil className="text-primary fs-5" />
+                                    </div>
+                                  </td>
+                                )}
                               </tr>
                             ))}
-
                           </tbody>
                         </table>
                       </div>
-
                     ) : (
                       <div>
                         {activeTab !== "BasicDetails" && (
                           <>
-                            <p className={!showForm ? "d-block" : "d-none"}>No Data Found .....</p>
+                            <p className={!showForm ? "d-block" : "d-none"}>
+                              No Data Found .....
+                            </p>
                           </>
                         )}
                       </div>
                     )}
-
                   </div>
-
-
                 </>
               )}
             </Card.Body>
