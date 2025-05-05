@@ -522,7 +522,8 @@ const Record = () => {
         activeTab === "Deworm" ||
         activeTab === "PostWean" ||
         activeTab === "Milk" ||
-        activeTab === "EstrusHeat"
+        activeTab === "EstrusHeat"||
+        activeTab === "AnimalStatus"
       ) {
         endpoint += `?uid=${uid}`;
       } else if (activeTab === "Kid") {
