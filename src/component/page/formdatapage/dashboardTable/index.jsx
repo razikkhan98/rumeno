@@ -19,7 +19,7 @@ const DashboardTable = ({ data }) => {
                     UniqueId
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    Parent
+                    Animal
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Status
@@ -39,14 +39,14 @@ const DashboardTable = ({ data }) => {
                   >
                     <th scope="row">{index + 1}</th>
                     <td>{parent.uniqueId}</td>
-                    <td>{parent.parentId}</td>
+                    <td>{parent.animalName || "N/A"}</td>
                     <td>
                       <span
                         style={{
                           backgroundColor:
-                            parent.status.toLowerCase() === "completed"
+                            parent?.status?.toLowerCase() === "completed"
                               ? "lightgreen"
-                              : parent.status.toLowerCase() === "pending"
+                              : parent?.status?.toLowerCase() === "pending"
                               ? "lightcoral"
                               : "lightgray",
                           color: "white", // Ensures text is visible on all backgrounds
@@ -55,17 +55,17 @@ const DashboardTable = ({ data }) => {
                           padding: "5px 10px", // Adjusts spacing inside the cell
                         }}
                       >
-                        {parent.status}
+                        {parent.status  || parent.type}
                       </span>
                     </td>
 
                     <td>
                       <NavLink to={"/record"}>
                       <button
-                        className="dashboard-table-btn"
+                        className="dashboard-table-btn shadow"
                         disabled={
                           // Enable the button only if status is 'completed'
-                          parent.status.toLowerCase() !== "completed"
+                          parent?.status?.toLowerCase() !== "completed"
                         }
                       >
                         Add

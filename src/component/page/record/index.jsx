@@ -460,7 +460,7 @@ const Record = () => {
   const API_UPDATEENDPOINTS = {
     PostWean: "/post-wean/update-post-wean-by-id",
     Milk: "/milk-record/update-milk-record",
-    Vaccine: "/user/animal/vaccinedata/update",
+    // Vaccine: "/user/animal/vaccinedata/u pdate",
     Deworm: "/dewormdata/update",
     EstrusHeat: "/estrus-heat/update-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/update",
@@ -482,7 +482,7 @@ const Record = () => {
   // const [postWean, setPostWean] = useState();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isActive, setIsActive] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [InputPreFillData, setInputPreFillData] = useState(null);
   const [editActive, setEditActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -525,7 +525,7 @@ const Record = () => {
         activeTab === "EstrusHeat"||
         activeTab === "AnimalStatus"
       ) {
-        endpoint += `?uid=${uid}`;
+        endpoint += `?uid=${uid}&tagId=${tagId}`;
       } else if (activeTab === "Kid") {
         endpoint += `?animalName=${animalName}&uid=${uid}`;
       }
@@ -560,7 +560,7 @@ const Record = () => {
   const fetchKidAnimal = async () => {
     try {
       const response = await axios.get(
-        `https://1a4b-2401-4900-8821-99bf-d135-1f3f-4b27-d546.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
+        `https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -662,10 +662,10 @@ const Record = () => {
 
     const recordId = dataToUpdate?._id;
 
-    if (!recordId || !apiUrl) {
-      toast.error("Missing ID or API endpoint for update.");
-      return;
-    }
+    // if (!recordId || !apiUrl) {
+    //   toast.error("Missing ID or API endpoint for update.");
+    //   return;
+    // }
 
     try {
       const response = await updateData(apiUrl, recordId, dataToUpdate);
@@ -674,9 +674,10 @@ const Record = () => {
         updatedData[index] = { ...updatedData[index], ...response.data }; // Update data with API response
         setSubmittedData(updatedData);
         setShowForm(false); // Hide the form after update
-        // setEditIndex(null);
+        setEditIndex(null);
         // reset();
-        toast.success(response.data.message, {
+        setIsUpdate(true)
+        toast.success(response?.message, {
           autoClose: 3000,
           transition: Bounce,
         });
@@ -704,7 +705,7 @@ const Record = () => {
       const response = await deleteData(apiUrl, recordId);
 
       if (response?.success) {
-        toast.success(response?.data?.message, {
+        toast.success(response?.message, {
           autoClose: 3000,
           transition: Bounce,
         });
@@ -713,6 +714,7 @@ const Record = () => {
           prev.filter((item) => item._id !== recordId)
         );
 
+        setEditIndex(null)
         setTimeout(fetchRecordDetails, 1000);
       } else {
         // throw new Error(response.data.message);
@@ -1030,6 +1032,7 @@ const Record = () => {
                                           [field.name]: newValue,
                                         };
                                         setSubmittedData(updatedData);
+                                        setIsUpdate(true);
                                       }}
                                     />
                                   </Form.Group>
@@ -1042,6 +1045,7 @@ const Record = () => {
                             type="button"
                             className="btn-success px-4"
                             onClick={() => handleUpdateApi(editIndex)}
+                            disabled={!isUpdate}
                           >
                             Update
                           </Button>
@@ -1050,6 +1054,7 @@ const Record = () => {
                             type="button"
                             className="btn-danger mx-2"
                             onClick={() => handleDeleteApi(editIndex)}
+                            disabled={!isUpdate}
                           >
                             Delete
                           </Button>
@@ -1088,10 +1093,6 @@ const Record = () => {
                           <tbody>
                             {submittedData.map((data, index) => (
                               <tr
-                                onClick={() => {
-                                  setEditIndex(index); // open the form and load data
-                                  setShowForm(false); // hide blank form if open
-                                }}
                                 key={index}
                                 role="button"
                                 className={`row-border row-shadow ${
@@ -1117,7 +1118,10 @@ const Record = () => {
                                   <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
                                     <div
                                       className="me-3"
-                                      onClick={() => handleUpdateApi(index)}
+                                      onClick={() => {
+                                        setEditIndex(index); // open the form and load data
+                                        setShowForm(false); // hide blank form if open
+                                      }}
                                     >
                                       <GoPencil className="text-primary fs-5" />
                                     </div>
