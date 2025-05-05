@@ -16,7 +16,7 @@ const DashboardTable = ({ data }) => {
                     S No.
                   </th>
                   <th scope="col" className="text-chinese-black-color">
-                    UniqueId
+                    TagId
                   </th>
                   <th scope="col" className="text-chinese-black-color">
                     Parent
@@ -38,7 +38,7 @@ const DashboardTable = ({ data }) => {
                     }`}
                   >
                     <th scope="row">{index + 1}</th>
-                    <td>{parent.uniqueId}</td>
+                    <td>{parent.tagId}</td>
                     <td>{parent.parentId}</td>
                     <td>
                       <span

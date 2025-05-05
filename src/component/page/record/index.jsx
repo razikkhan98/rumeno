@@ -135,6 +135,7 @@ const Record = () => {
         label: "Milk Liter",
         type: "text",
         placeholder: "Enter Milk Volume",
+        required: true,
       },
       {
         name: "numberOfKidsSuckingMilk",
@@ -178,11 +179,13 @@ const Record = () => {
           "Repeat FMD",
           "Repeat Goat Pox",
         ],
+        required: true,
       },
       {
         name: "vaccineDate",
         label: "Vaccine Date",
         type: "date",
+        required: true,
       },
     ],
     Deworm: [
@@ -197,6 +200,7 @@ const Record = () => {
         label: "Deworm Date",
         type: "date",
         placeholder: "Enter Deworm Date",
+        required: true,
       },
       {
         name: "endoName",
@@ -257,6 +261,7 @@ const Record = () => {
         label: "Male Tag Id",
         type: "select",
         options: ["1", "2", "3", "4", "5"],
+        required: true,
       },
       {
         name: "heat",
@@ -276,6 +281,7 @@ const Record = () => {
         name: "heatDate",
         label: "Estrus Heat Date",
         type: "date",
+        required: true,
       },
       {
         name: "dateMading",
@@ -416,6 +422,7 @@ const Record = () => {
         label: `${animalName} Status`,
         type: "select",
         options: ["Sale out", "Death"],
+        required: true,
       },
       {
         label: `${animalName} Date`,

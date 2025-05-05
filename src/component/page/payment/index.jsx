@@ -41,7 +41,7 @@ const Payment = () => {
 
   // Calculate total amount correctly
   const totalAmount = cart?.reduce(
-    (total, item) => total + item.quantity * item.price,
+    (total, item) => total + item.quantity * item.selectedWeight * item.price,
     0
   );
   const tax = totalAmount * 0.05; // Example: 15% tax
@@ -117,8 +117,8 @@ const Payment = () => {
         <div className="pt-5">
           <Header title="Minromix.." subtitle="Cart" />
         </div>
-        <div className="container pt-lg-5">
-          <div className="row pt-lg-5">
+        <div className="container">
+          <div className="row">
             <div className="text-center">
               <p className="text-chinese-black-color font-24-400">
                 Payment process

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
 import moment from "moment";
+import axios from "axios";
 
 const GoatDetailForm = () => {
 
@@ -23,7 +24,7 @@ const GoatDetailForm = () => {
     clearErrors,
   } = useForm();
   const handlePurchaseClick = () => {
-    setIsPurchased(true);        
+    setIsPurchased(!isPurchased);
     // clearErrors("motherTag");   
   };
   const selectedAnimal = sessionStorage.getItem("animalName");
@@ -34,18 +35,20 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
   const animalData = location.state; // This will be the full animal object
+
+
   // 
 
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
-  
+
 
 
 
   const storedIndex = localStorage.getItem("currentIndex");
-  
+
   const onSubmit = async (data) => {
     try {
       const uid = sessionStorage.getItem("uid"); // Retrieve UID from sessionStorage
@@ -63,7 +66,7 @@ const GoatDetailForm = () => {
         // farmName,
         farmHouseName,
       };
-      
+
 
 
       // Determine API endpoint dynamically based on type
@@ -78,7 +81,7 @@ const GoatDetailForm = () => {
         : postData(endpoint, formData));
 
 
-      if (response.data.message === "success" || response.data.message === "Animal added successfully"  ) {
+      if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
           `Animal ${type === "edit" ? "updated" : "added"} successfully`,
           {
@@ -99,10 +102,43 @@ const GoatDetailForm = () => {
     }
   };
 
-  const endpoint = "user/animaldata/newEntity/getAll";
+
+
+  const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
+  const animalName = sessionStorage.getItem("animalName");
+  const uid = sessionStorage.getItem("uid");
+
+
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await axios.get(
+          `https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+
+          // http://localhost:8000/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=Goat&uid=RAZ1233
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        setGetAnimalTagIds(response.data);
+      } catch (error) {
+        toast.error(
+          error.message || "Error fetching animal data. Please try again."
+        );
+      } finally {
+        // setLoading(false);
+      }
+    };
+    fetchAnimals();
+  }, []); // Fetch only once on mount
 
   useEffect(() => {
     if (animalData) {
+      console.log('animalData: ', animalData);
       // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
       // 
       // const animalData = filteredAnimals[storedIndex];
@@ -121,11 +157,12 @@ const GoatDetailForm = () => {
       setValue("weightKg", animalData.weightKg || "");
       setValue("birthDate", moment(animalData.birthDate).format('YYYY-MM-DD') || "");
       setValue("dateMading", moment(animalData.dateMading).format('YYYY-MM-DD') || "");
+      console.log('animalData.dateMading: ', animalData.dateMading);
       setValue("motherWeanDate", moment(animalData.motherWeanDate).format('YYYY-MM-DD') || "");
       setValue("childWeanDate", moment(animalData.childWeanDate).format('YYYY-MM-DD') || "");
       setValue("vaccineDate", moment(animalData.vaccineDate).format('YYYY-MM-DD') || "");
       setValue("lastVaccineDate", moment(animalData.lastVaccineDate).format('YYYY-MM-DD') || "");
-      setValue("lastVaccineName", animalData.lastVaccineName || "");   
+      setValue("lastVaccineName", animalData.lastVaccineName || "");
       setValue("vaccineName", animalData.vaccineName || "");
       setValue("childWeanWeight", animalData.childWeanWeight || "");
       setValue("birthWeight", animalData.birthWeight || "");
@@ -137,7 +174,8 @@ const GoatDetailForm = () => {
       setValue("bodyScore", animalData.bodyScore || "");
       setValue("comments", animalData.comments || "");
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
-      setIsPurchased(animalData.purchaseDate ? true : false)
+      setIsPurchased(animalData.purchaseDate ? true : false);
+      setValue("isPregnant", animalData.dateMading ? true : false || "isPregnant", animalData.failed ? true : false || "isPregnant", animalData.currentPregnancyMonth ? true : false);
     }
   }, [setValue]); // Fetch only once on mount
 
@@ -150,6 +188,13 @@ const GoatDetailForm = () => {
     setGender(e.target.value);
     setValue("gender", e.target.value || "");
   };
+
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("somedate")[0]?.setAttribute('max', today)
+
+
+
+
 
   return (
     <>
@@ -167,6 +212,7 @@ const GoatDetailForm = () => {
                 </p>
                 <p className="detail-para mb-0">Fill basic details</p>
               </div>
+
               {/* <div className="d-flex pe-3">
                 <div class="form-check me-2">
                   <input
@@ -194,7 +240,8 @@ const GoatDetailForm = () => {
                     Female
                   </label>
                 </div>
-              </div> */}
+              </div>  */}
+
               <div className="d-flex pe-3">
                 <button
                   type="button"
@@ -222,7 +269,7 @@ const GoatDetailForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="row mt-3">
-               
+
 
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Tag ID</label>
@@ -281,6 +328,7 @@ const GoatDetailForm = () => {
                   <label className="form-lable-detail">Birth Date</label>
                   <input
                     type="date"
+                    max={today}
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate", {
@@ -304,7 +352,7 @@ const GoatDetailForm = () => {
                     })}
                   >
                     <option value="">Select Tag Id</option>
-                    {["01", "02", "03", "04","05", "11"].map((tagId) => (
+                    {getAnimalTagIds?.femaleTagIds?.map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>
@@ -325,18 +373,18 @@ const GoatDetailForm = () => {
                     })}
                   >
                     <option value="">Select Tag Id</option>
-                    {["01", "02", "03", "04","05", "22"].map((tagId) => (
+                    {getAnimalTagIds?.maleTagIds?.map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>
                     ))}
                   </select>
                   {isPurchased ? "" : errors.fatherTag && (
-                    <p className="text-danger">{errors.motherTag.message}</p>
+                    <p className="text-danger">{errors.fatherTag.message}</p>
                   )}
                 </div>
 
-                
+
                 <div className="col-lg-2 lh-lg">
                   <label className="form-lable-detail">Birth Type</label>
                   <select
@@ -360,17 +408,17 @@ const GoatDetailForm = () => {
                     {...register("birthWeight")}
                   />
                 </div>
-                {gender && 
-                <div className="col-lg-2 lh-lg">
-                  <label className="form-lable-detail">Gender</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    // placeholder="Enter Father Breed"
-                    disabled={gender}
-                    {...register("gender")}
-                  />
-                </div>
+                {gender &&
+                  <div className="col-lg-2 lh-lg">
+                    <label className="form-lable-detail">Gender</label>
+                    <input
+                      type="text"
+                      className="form-control form-control-detail"
+                      // placeholder="Enter Father Breed"
+                      disabled={gender}
+                      {...register("gender")}
+                    />
+                  </div>
                 }
               </div>
 
@@ -406,9 +454,10 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
+                    max={today}
                     // disabled={birthDate}
                     className="form-control form-control-detail"
-                    {...register("purchaseDate" , {
+                    {...register("purchaseDate", {
                       required: !isPurchased ? false : "Purchase Date is required",
                     })}
                   />
@@ -424,6 +473,7 @@ const GoatDetailForm = () => {
                     </label>
                     <input
                       type="date"
+                      max={today}
                       className="form-control form-control-detail"
                       {...register("lastVaccineDate")}
                     />
@@ -497,6 +547,7 @@ const GoatDetailForm = () => {
                     <label className="form-lable-detail">Date of Mating</label>
                     <input
                       type="date"
+                      max={today}
                       className="form-control form-control-detail"
                       {...register("dateMading")}
                     />
@@ -534,6 +585,7 @@ const GoatDetailForm = () => {
                     </label>
                     <input
                       type="date"
+                      max={today}
                       className="form-control form-control-detail"
                       {...register("motherWeanDate")}
                     />
@@ -595,11 +647,12 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
+                    max={today}
                     className="form-control form-control-detail"
                     {...register("vaccineDate")}
                   />
                 </div>
-                
+
               </div>
 
 
