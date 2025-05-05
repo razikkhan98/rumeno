@@ -41,7 +41,7 @@ const Payment = () => {
 
   // Calculate total amount correctly
   const totalAmount = cart?.reduce(
-    (total, item) => total + item.quantity * item.price,
+    (total, item) => total + item.quantity * item.selectedWeight * item.price,
     0
   );
   const tax = totalAmount * 0.05; // Example: 15% tax
