@@ -1033,6 +1033,7 @@ const Record = () => {
                                         };
                                         setSubmittedData(updatedData);
                                         setIsUpdate(true);
+                                        
                                       }}
                                     />
                                   </Form.Group>
