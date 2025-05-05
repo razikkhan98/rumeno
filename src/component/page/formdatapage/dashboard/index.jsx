@@ -142,7 +142,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://1a4b-2401-4900-8821-99bf-d135-1f3f-4b27-d546.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          "https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
           {
             params: { uid, animalName },
             headers: {
@@ -172,6 +172,7 @@ const Dashboard = () => {
       cardcircle: "card-orange-circle",
       img: Animal,
       value: stats.TotalAnimals || " ",
+      details: stats.TotalAnimalsData || [],
     },
 
     // {
@@ -283,42 +284,6 @@ const Dashboard = () => {
                   <>
                     {cardData?.map((card, index) => (
                       <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
-                        {/* <Card
-                        className="mb-3 card-hover"
-                        onClick={() => setSelectedCard(card)}
-                        style={{
-                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-                          cursor: "pointer",
-                          transition:
-                            "transform 0.3s ease, box-shadow 0.3s ease",
-                        }}
-                      >
-                        <Card.Header
-                          className="d-flex justify-content-center align-items-center px-4 py-3"
-                          style={{
-                            backgroundColor: "#B8E0F7",
-                            borderRadius: "10px 10px 0px 0px",
-                          }}
-                        >
-                          <div className="text-chinese-black-color">
-                            {card.title}
-                          </div>
-                        </Card.Header>
-                        <Card.Body>
-                          <div
-                            className="py-2 d-flex align-items-center justify-content-center px-2"
-                            style={{ color: "#707070" }}
-                          >
-                            <div
-                              className="card-content"
-                              style={{ fontSize: "20px" }}
-                            >
-                              {card.value}
-                            </div>
-                          </div>
-                        </Card.Body>
-                      </Card> */}
-
                         <Card
                           className={`dashboard-cards card-hover rounded-3 shadow px-lg-4 py-4 ${card.cardborder}`}
                           onClick={() => setSelectedCard(card)}
