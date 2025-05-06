@@ -58,6 +58,9 @@ body {
 .bg-white {
   background-color: var(--white-color) !important;
 }
+.bg-f3fafc{
+  background-color: #F3FAFC;
+}
 
 /* Common text Color Css */
 .text-color-orange {
@@ -1921,7 +1924,11 @@ body {
   border-radius: 4px !important;
   border: 1px solid #ebebeb !important;
 }
-
+.addtocart-dropdown{
+  width: 562px !important;
+  position: absolute !important;
+  right: -370% !important;
+}
 .addsize-btn:hover {
   border-radius: 4px !important;
   /* border: 1px solid var(--chinese-black-color) !important; */
@@ -2017,6 +2024,12 @@ body {
 }
 
 @media (max-width: 580px) {
+  .addtocart-dropdown{
+    width: 402px !important;
+    position: absolute !important;
+    /* right: 100% !important; */
+    left: -10% !important;
+  }
   .addsize-btn {
     width: 42%;
     height: 36px !important;
@@ -2087,6 +2100,12 @@ body {
     border-radius: 4px !important;
     border: 1px solid #ebebeb !important;
   }
+  .addtocart-dropdown{
+    width: 360px !important;
+    position: absolute !important;
+    /* right: 100% !important; */
+    left: -0% !important;
+  }
 }
 
 /* <--------- AddtoCart End ---------> */
@@ -2134,6 +2153,10 @@ body {
   .font-13-500{
     font-size: 13px !important;
     font-weight: 500 !important;
+  }
+  .font-12-400{
+    font-size: 12px !important;
+    font-weight: 400 !important;
   }
   .font-12-500{
     font-size: 12px !important;

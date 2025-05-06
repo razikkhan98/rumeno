@@ -66,12 +66,12 @@ const Sidebar = () => {
               >
                 {selectedAnimal}
               </p>
-              <p
+              {/* <p
                 className="text-muted-gray-color mb-0"
                 style={{ fontSize: "12px", fontWeight: "500" }}
               >
                 8 {selectedAnimal}s • 3 Babies
-              </p>
+              </p> */}
             </div>
 
             <div className="border border-1 mb-4"></div>

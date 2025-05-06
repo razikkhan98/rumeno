@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const Header = ({ title,subtitle, link, showSortFilter = false }) => {
     return (
         <>
-            <div className='bg-light-sky-blue-color pb-4 pt-4 d-flex align-items-center'>
+            <div className='bg-light-sky-blue-color pb-3 pt-3 d-flex align-items-center'>
                 <div className='container d-flex justify-content-between align-items-center'>
                     <div className='font-14-400 d-flex'>
                         <NavLink to={link} className="text-decoration-none">

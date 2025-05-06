@@ -115,7 +115,7 @@ const Parent = () => {
                 {filteredAnimals?.map((animal, index) => 
                 
                 {
-                  console.log("animal.vaccineName==",animal)
+                  console.log("animal======",animal)
                   return(
                     <div key={index} className="width-20 px-3 pt-1">
                     <AnimalCard

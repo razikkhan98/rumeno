@@ -365,7 +365,7 @@ const Mainnav = () => {
                       <NavLink to="/service" className="text-decoration-none">
                       <li className="cursor">Why Choose US?</li>
                       </NavLink>
-                      <NavLink to="/service" className="text-decoration-none">
+                      <NavLink to="/consulting" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
                       <NavLink

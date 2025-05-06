@@ -117,8 +117,8 @@ const Payment = () => {
         <div className="pt-5">
           <Header title="Minromix.." subtitle="Cart" />
         </div>
-        <div className="container pt-lg-5">
-          <div className="row pt-lg-5">
+        <div className="container">
+          <div className="row">
             <div className="text-center">
               <p className="text-chinese-black-color font-24-400">
                 Payment process
