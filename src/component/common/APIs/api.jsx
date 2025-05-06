@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno"; 
+export const API_BASE_URL = "https://8693-2401-4900-8823-f1f0-94d7-bb8b-eea4-1766.ngrok-free.app/rumeno"; 
 
 // const API_BASE_URL = "http://localhost:8000/rumeno"; // Localhost URL for development
 

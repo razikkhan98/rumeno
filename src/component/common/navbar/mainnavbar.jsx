@@ -18,7 +18,7 @@ const Mainnav = () => {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
 
@@ -94,9 +94,11 @@ const Mainnav = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("uid");
+    sessionStorage.removeItem("cart");
     setIsLoggedIn(false);
     setOpen(false);
     setTimeout(() => navigate("/"), 1000);
+    clearCart();
   };
 
   const isRouteActive = (pathname, routeList = []) => {
@@ -477,6 +479,7 @@ const Mainnav = () => {
               </NavLink>
             </>
           )}
+          {isLoggedIn ? (
           <NavLink to="/cart">
             <div className="position-relative">
               <div
@@ -505,6 +508,7 @@ const Mainnav = () => {
               )}
             </div>
           </NavLink>
+          ) : (<></>)}
 
           {/* User Profile PopUp for Large Screen */}
           {isLoggedIn ? (

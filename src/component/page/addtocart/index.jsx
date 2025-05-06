@@ -88,7 +88,7 @@ const Addtocart = () => {
   };
 
   // Handle Add to Cart
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     if (!isAuthenticated) {
       console.log("Redirecting to login...");
       setTimeout(() => {
@@ -99,6 +99,9 @@ const Addtocart = () => {
     }
     console.log('selectedWeightHandleAddToCart: ', selectedWeight);
     addToCart(product, selectedWeight);
+    console.log('product, selectedWeight: ', product, selectedWeight);
+
+    //  const response = await postData("/addtoCart",);
   };
 
 
@@ -278,13 +281,14 @@ const Addtocart = () => {
                   </p>
                   <div className="d-flex align-items-center gap-3 pt-lg-5 mt-lg-5">
                     <div
-                      className="buynow-btn d-flex align-items-center justify-content-between"
+                      className="buynow-btn d-flex align-items-center justify-content-center"
                       style={{
                         borderColor: "#EC7229",
                       }}
                     >
+                      <NavLink to="/cart">
                       <Button
-                        onClick={() => handleAddToCart(product)}
+                        // onClick={() => handleAddToCart(product)}
                         className="fs-5 border-0 rounded-3 px-4 py-2 w-100"
                         style={{
                           background: "#ffffff",
@@ -293,6 +297,7 @@ const Addtocart = () => {
                       >
                         Buy Now
                       </Button>
+                      </NavLink>
                       {/* <Button
                         onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"

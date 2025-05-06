@@ -101,6 +101,7 @@ import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
 import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
 import Header from "../../../common/Header/header";
+import { API_BASE_URL } from "../../../common/APIs/api";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -142,7 +143,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          `${API_BASE_URL}/user/animaldata/parentchild/getAllCount`,
           {
             params: { uid, animalName },
             headers: {
