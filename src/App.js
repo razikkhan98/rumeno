@@ -38,6 +38,9 @@ import PrivacyPolicy from "./component/page/PrivacyPolicy/policy";
 import { useLocation } from "react-router-dom";
 import AllProducts from "./component/page/products/allProducts";
 import FarmHouseEquipment from "./component/page/FarmHouseEquipment/equipment";
+import ServiceFaq from "./component/page/service/faq";
+import HumanConsumable from "./component/page/products/human";
+import CropSeed from "./component/page/products/cropSeed";
 
 
 const App = () => {
@@ -68,6 +71,7 @@ const App = () => {
           <Route path="/consulting" element={<Consulting />} />
           <Route path="/dairyconsultant" element={<DairyConsultantService />} />
           <Route path="/goatfarming" element={<GoatFarmingService />} />
+          <Route path="/faq" element={<ServiceFaq />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/register" element={<Register />} />
@@ -78,6 +82,9 @@ const App = () => {
           <Route path="/addChild" element={<AddChild />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/humanCunsumable" element={<HumanConsumable />} />
+          <Route path="/cropseed" element={<CropSeed />} />
+
 
 
 

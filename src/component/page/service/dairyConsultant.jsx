@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Common Components
 import Footer from "../../common/footer";
@@ -11,6 +11,7 @@ import Service2 from "../../assets/img/service-img/dairy-img-2.png";
 import Service3 from "../../assets/img/service-img/dairy-img-3.png";
 import Service4 from "../../assets/img/service-img/dairy-img-4.png";
 import Header from "../../common/Header/header";
+import { useLocation } from "react-router-dom";
 
 // Json Role
 
@@ -50,6 +51,18 @@ const DairyFaq = [
 ];
 
 const DairyConsultantService = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100); // slight delay to ensure element is mounted
+      }
+    }
+  }, [location]);
   return (
     <>
       <Navbar />
@@ -111,7 +124,7 @@ const DairyConsultantService = () => {
             </div>
           </div>
 
-          <div className="row my-5 g-0 bg-white service-border">
+          <div className="row my-5 g-0 bg-white service-border" id="DairyManagement">
             {/* secong img */}
             <div className="col-lg-7 py-lg-4 px-5">
               <div className="">

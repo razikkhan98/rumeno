@@ -226,6 +226,7 @@ const Payment = () => {
                               <input
                                 type="radio"
                                 value="COD"
+                                className="payment-radio"
                                 {...register("payment", {
                                   required: "Please select a payment method",
                                 })}
@@ -240,6 +241,7 @@ const Payment = () => {
                               <input
                                 type="radio"
                                 value="UPI"
+                                className="payment-radio"
                                 {...register("payment", {
                                   required: "Please select a payment method",
                                 })}

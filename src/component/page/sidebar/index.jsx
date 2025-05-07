@@ -20,6 +20,7 @@ const Sidebar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal; // Default: Goat
+  const setfarmHouseName = sessionStorage?.getItem("farmHouseName");
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
 
@@ -32,21 +33,21 @@ const Sidebar = () => {
     }
   };
 
-  
-    useEffect(() => {
-      const user = sessionStorage?.getItem("uid");
-  
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false); 
-      }
-    }, []);
+
+  useEffect(() => {
+    const user = sessionStorage?.getItem("uid");
+
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const handleLogout = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
-    
+
   };
   return (
     <div className="side">
@@ -54,10 +55,11 @@ const Sidebar = () => {
         <div className="col-lg-12">
           <div className="sidebar bg-white border-end p-4">
             <div className="text-center mb-3">
+              <h5 className="mb-3 text-uppercase">{setfarmHouseName}</h5>
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
-                
+
                 <NavLink to={"/farmdata"}>
-                <img src={animalImages[selectedAnimal]} alt="Animal" />
+                  <img src={animalImages[selectedAnimal]} alt="Animal" />
                 </NavLink>
               </div>
               <p
@@ -79,7 +81,7 @@ const Sidebar = () => {
             {/* Navigation Links */}
             <div className="nav flex-column gap-3">
               <NavLink
-              onClick={ handleClick }
+                onClick={handleClick}
                 to="/farmdata/dashboard"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
@@ -98,7 +100,7 @@ const Sidebar = () => {
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-               {selectedAnimal}
+                {selectedAnimal}
               </NavLink>
 
               {/* <NavLink

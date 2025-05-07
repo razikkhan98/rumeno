@@ -43,13 +43,13 @@ const Mainnav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if(isNavbarOpen) {
+      if (isNavbarOpen) {
         setIsNavbarOpen(false);
       }
-      if(isProductsOpen) {
+      if (isProductsOpen) {
         setIsProductsOpen(false);
       }
-      if(isServicesOpen) {
+      if (isServicesOpen) {
         setIsServicesOpen(false)
       }
     };
@@ -58,16 +58,16 @@ const Mainnav = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  },[isNavbarOpen, isProductsOpen, isServicesOpen]);
+  }, [isNavbarOpen, isProductsOpen, isServicesOpen]);
 
 
 
   const location = useLocation();
-  
+
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    
+
     setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
     setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
@@ -110,12 +110,12 @@ const Mainnav = () => {
     "/dogproduct",
     "productDetails",
   ]);
-  
+
 
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-      // style={{ backgroundColor: "#DDF0F8" }}
+    // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-lg-5 px-3 d-flex">
         <a className="navbar-brand me-lg-2 me-0" href="/#">
@@ -133,7 +133,7 @@ const Mainnav = () => {
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
-                  // style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                // style={{ height: "24px", width: "24px", color: "#FB9038" }}
                 />
               </div>
               {cart && Object.keys(cart).length > 0 && (
@@ -156,10 +156,10 @@ const Mainnav = () => {
 
           {!isLoggedIn ? (
             <><NavLink to="/login" className={"farm-btn my-3 mx-2"}>
-            <button className="btn rounded-pill text-white">
-              Login
-            </button>
-          </NavLink> </>
+              <button className="btn rounded-pill text-white">
+                Login
+              </button>
+            </NavLink> </>
           ) : (
             <> </>
           )}
@@ -238,9 +238,8 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${
-            isNavbarOpen ? "custom-collapse-show" : ""
-          }`}
+          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
+            }`}
           id="navbarNav"
         >
           {/* Links Section */}
@@ -248,9 +247,8 @@ const Mainnav = () => {
             <NavLink to={"/"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <a
-                  className={`nav-link ${
-                    String(location?.pathname) === "/" ? "active" : ""
-                  }`}
+                  className={`nav-link ${String(location?.pathname) === "/" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Home")}
                 >
                   Home
@@ -268,9 +266,8 @@ const Mainnav = () => {
               </a>
               <div
                 //  ref={dropdownRef}
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isProductsOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -317,13 +314,17 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink
-                        to={""}
+                        to={"/equipment"}
                         className="text-decoration-none"
                       >
                         <li>Farmhouse Equipments</li>
                       </NavLink>
+                      <NavLink to={"/humanCunsumable"} className="text-decoration-none">
                         <li>Human Consumable</li>
-                        <li>Crop Seeds</li>
+                      </NavLink>
+                      <NavLink to={"/cropseed"} className="text-decoration-none">
+                      <li>Crop Seeds</li>
+                      </NavLink>
                     </ul>
                   </div>
                   <div>
@@ -338,23 +339,21 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <div
-                className={`nav-link ${
-                  String(location?.pathname) === "/service" ||
-                  String(location?.pathname) === "/equipment" ||
-                  String(location?.pathname) === "/goatfarming" ||
-                  String(location?.pathname) === "/dairyconsultant"
+                className={`nav-link ${String(location?.pathname) === "/service" ||
+                    String(location?.pathname) === "/equipment" ||
+                    String(location?.pathname) === "/goatfarming" ||
+                    String(location?.pathname) === "/dairyconsultant"
                     ? "active"
                     : ""
-                }`}
+                  }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isServicesOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3 px-1">
                   <div className="ms-lg-4 ms-2">
@@ -363,19 +362,19 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink to="/service" className="text-decoration-none">
-                      <li className="cursor">Why Choose US?</li>
+                        <li className="cursor">Why Choose US?</li>
                       </NavLink>
                       <NavLink to="/consulting" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
                       <NavLink
-                        to={"/equipment"}
+                        to={"/service#Business"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">Business Startup Support </li>
                       </NavLink>
                       <NavLink
-                        to={"/equipment"}
+                        to={"/service#QueryForm"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">Query Form</li>
@@ -395,7 +394,7 @@ const Mainnav = () => {
                         <li>About</li>
                       </NavLink>
                       <NavLink
-                        to={"/goatfarming"}
+                        to={"/faq"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">FAQs</li>
@@ -414,7 +413,7 @@ const Mainnav = () => {
                         <li>About</li>
                       </NavLink>
                       <NavLink
-                        to={"/dairyconsultant"}
+                        to={"/dairyconsultant#DairyManagement"}
                         className="text-decoration-none"
                       >
                         <li>Dairy Management</li>
@@ -427,9 +426,8 @@ const Mainnav = () => {
             <NavLink to={"/blog"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${
-                    String(location?.pathname) === "/blog" ? "active" : ""
-                  }`}
+                  className={`nav-link ${String(location?.pathname) === "/blog" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Blogs")}
                 >
                   Blogs
@@ -439,9 +437,8 @@ const Mainnav = () => {
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${
-                    String(location?.pathname) === "/contactus" ? "active" : ""
-                  }`}
+                  className={`nav-link ${String(location?.pathname) === "/contactus" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
@@ -461,7 +458,7 @@ const Mainnav = () => {
             </li>
           </ul>
         </div>
-        
+
         {/* Action Buttons for laptop screen */}
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
           {isLoggedIn ? (

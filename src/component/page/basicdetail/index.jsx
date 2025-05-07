@@ -105,6 +105,7 @@ const GoatDetailForm = () => {
 
 
   const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
+  console.log('getAnimalTagIds: ', getAnimalTagIds);
   const animalName = sessionStorage.getItem("animalName");
   const uid = sessionStorage.getItem("uid");
 
@@ -113,7 +114,7 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
 
           // http://localhost:8000/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=Goat&uid=RAZ1233
           {
@@ -126,9 +127,9 @@ const GoatDetailForm = () => {
 
         setGetAnimalTagIds(response.data);
       } catch (error) {
-        toast.error(
-          error.message || "Error fetching animal data. Please try again."
-        );
+        // toast.error(
+        //   error.message || "Error fetching animal data. Please try again."
+        // );
       } finally {
         // setLoading(false);
       }
@@ -579,7 +580,7 @@ const GoatDetailForm = () => {
                       <option value="no">No</option>
                     </select>
                   </div>
-                  <div className="col-lg-2 lh-lg">
+                  {/* <div className="col-lg-2 lh-lg">
                     <label className="form-lable-detail">
                       Mother Wean Date
                     </label>
@@ -589,7 +590,7 @@ const GoatDetailForm = () => {
                       className="form-control form-control-detail"
                       {...register("motherWeanDate")}
                     />
-                  </div>
+                  </div> */}
                 </div>
               )}
 
