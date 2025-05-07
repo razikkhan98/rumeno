@@ -400,6 +400,10 @@ body {
   height: 100%;
 }
 
+.user-icon-img {
+  width: 38px;
+  height: 38px;
+}
 @media (max-width: 992px) {
   .form-data {
     height: auto;
@@ -2787,9 +2791,33 @@ body {
   width: 100%;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
   accent-color: var(--orange-color) !important;
   background-color: var(--white-color);
+} */
+
+input[type="radio"].payment-radio {
+  appearance: none; /* Remove default styling */
+  width: 18px;
+  height: 18px;
+  border: 2px solid #EC7229; /* Orange border */
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Inner dot when checked */
+input[type="radio"].payment-radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #EC7229; /* Orange fill */
+  border-radius: 50%;
 }
 
 .dairy-img {

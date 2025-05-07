@@ -17,6 +17,8 @@ import axios from "axios";
 
 const Record = () => {
   const animalName = sessionStorage.getItem("animalName");
+const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
+
   const fieldConfigs = {
     BasicDetails: [
       { label: "Tag ID", name: "tagId", type: "text", required: true },
@@ -260,7 +262,7 @@ const Record = () => {
         name: "maleId",
         label: "Male Tag Id",
         type: "select",
-        options: ["1", "2", "3", "4", "5"],
+        options: getAnimalTagIds.maleTagIds || [],
         required: true,
       },
       {
@@ -518,7 +520,6 @@ const Record = () => {
     location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
-
   const uid = sessionStorage.getItem("uid");
 
   // Show all Records Postwean, milk etc.....
@@ -564,11 +565,12 @@ const Record = () => {
     fetchRecordDetails();
   }, [activeTab]);
 
+
   // Get All Animal API Start Here
   const fetchKidAnimal = async () => {
     try {
       const response = await axios.get(
-        `https://ab40-2401-4900-8823-f1f0-8820-98b3-d0ac-a93f.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
+        `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -597,6 +599,34 @@ const Record = () => {
   useEffect(() => {
     fetchKidAnimal();
   }, []);
+
+
+  useEffect(() => {
+    const fetchAnimals = async () => {
+      try {
+        const response = await axios.get(
+          `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        setGetAnimalTagIds(response.data);
+      } catch (error) {
+        // toast.error(
+        //   error.message || "Error fetching animal data. Please try again."
+        // );
+      } finally {
+        // setLoading(false);
+      }
+    };
+    fetchAnimals();
+  }, []); 
+
+
 
   useEffect(() => {
     const tabMapping = {
@@ -819,7 +849,7 @@ const Record = () => {
                           key={index}
                           className="col-lg-3 width-20 px-3 pt-4"
                         >
-                          <AnimalCard {...animal} showDetailsButton={false} />
+                          <AnimalCard age={animal.ageYear} {...animal} showDetailsButton={false} />
                         </div>
                       ))}
                     </div>
@@ -1002,7 +1032,7 @@ const Record = () => {
                   )}
 
                   {/* Show Prefillled form Data */}
-                  {editIndex !== null && activeTab !== "AnimalStatus" && (
+                  {editIndex !== null && activeTab !== "AnimalStatus" &&  (
                     <>
                       <div>
                         <h4>Submitted Data</h4>
@@ -1063,7 +1093,7 @@ const Record = () => {
                             type="button"
                             className="btn-danger mx-2"
                             onClick={() => handleDeleteApi(editIndex)}
-                            disabled={!isUpdate}
+                            // disabled={!isUpdate}
                           >
                             Delete
                           </Button>
