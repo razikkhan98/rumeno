@@ -15,7 +15,13 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 :root {
   --orange-color: #ec7229;
   --light-orange-color: rgba(253, 199, 158, 0.2);
@@ -376,6 +382,10 @@ body {
   .user-icon-img {
     width: 35px;
     height: 35px;
+  }
+  .user-icon-img img{
+    width: 100%;
+    height: 100%;
   }
   .user-icon img {
     margin-left: 10px;

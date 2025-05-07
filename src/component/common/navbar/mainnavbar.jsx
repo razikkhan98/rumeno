@@ -112,6 +112,18 @@ const Mainnav = () => {
     "/dogproduct",
     "productDetails",
   ]);
+
+
+  const [image, setImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    if(selectedImage){
+      setImage(selectedImage);
+      setPreviewUrl(URL.createObjectURL(selectedImage));
+    }
+  }
   
 
   return (
@@ -520,9 +532,10 @@ const Mainnav = () => {
                 onClick={toggleDropdown}
               >
                 <img
-                  src={User}
+                  src={ previewUrl || User}
                   alt="User"
                   className="rounded-circle user-icon-img"
+                  // style={{ width: '36px', height: '36px', objectFit: 'cover' }}
                 />
                 <MdOutlineKeyboardArrowDown />
               </div>
@@ -535,13 +548,23 @@ const Mainnav = () => {
                       <div
                         className="user-icon mt-3 d-flex align-items-center justify-content-center"
                         style={{ cursor: "pointer" }}
+                        onClick={() => document.getElementById('profileImageInput').click()}
                       >
                         <img
-                          src={User}
+                          src={ previewUrl || User}
                           alt="User"
                           className="rounded-circle user-icon-img"
+                          // style={{ width: '36px', height: '36px', objectFit: 'cover' }}
                         />
                       </div>
+                      {/* Hidden file input */}
+                      <input
+                        id="profileImageInput"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: 'none' }}
+                      />
                       <p className="text-center mb-0 pt-2">{username}</p>
                       <p className="text-center mb-2">{userEmail}</p>
 
