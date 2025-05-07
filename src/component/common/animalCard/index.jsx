@@ -71,6 +71,7 @@ const AnimalCard = ({
     { label: "Age", value: age, icon: <PiCalendarBlankFill /> },
     // { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
   ];
+  console.log('age: ', age);
 
   const modalDetails = [
     { label: "Tag Id", value: tagId, icon: <RiRulerFill /> },

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
-import { deleteData, getData } from "../../../common/APIs/api";
+import { API_BASE_URL, deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -19,7 +19,7 @@ const Parent = () => {
   const fetchAnimal = async () => {
     try {
       const response = await axios.get(
-        "https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        `${API_BASE_URL}/user/animaldata/newEntity/getAllById`,
         {
           params: { animalName: selectedAnimal, uid },
           headers: {
