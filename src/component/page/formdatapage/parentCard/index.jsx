@@ -55,8 +55,6 @@ const Parent = () => {
  
 
 
-
-
   // Delete  Animal Card
   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
     if (childrenCount > 0) {

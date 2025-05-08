@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../assets/img/logo/logorumneo.svg";
 // import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import User from "../../assets/img/user/user-11.jpg";
+import User from "../../assets/img/user/user-13.jpg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../Context";
