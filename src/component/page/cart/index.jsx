@@ -67,11 +67,11 @@ const Cart = () => {
                     <div className="col-lg-2 col-sm-3 text-end">
                       <p className="font-16-400 text-gray-color">QUANTITY</p>
                     </div>
-                    <div className="col-lg-3 col-sm-3 text-end">
-                      <p className="font-16-400 text-gray-color">TOTAL</p>
-                    </div>
                     <div className="col-lg-1 col-sm-2 text-end">
                       <p className="font-16-400 text-gray-color">DELETE</p>
+                    </div>
+                    <div className="col-lg-3 col-sm-3 text-end">
+                      <p className="font-16-400 text-gray-color">TOTAL</p>
                     </div>
                   </div>
 
@@ -137,14 +137,7 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      {/* Total Price for Item */}
-                      <div className="col-5 col-sm-3 text-end d-flex justify-content-end">
-                        <p className="mb-0 font-24-500 font-14-500 text-muted-gray-color">
-                          ₹ {item.price * Number(item.selectedWeight) * item.quantity} /-
-                        </p>
-                      </div>
                       <div className="col-2 col-sm-1 text-end d-flex justify-content-end">
-                        
                         <button
                           className="btn fs-4 text-danger p-0"
                           onClick={() => removeFromCart(item.id, item.selectedWeight)}
@@ -152,13 +145,19 @@ const Cart = () => {
                           <RiDeleteBin6Line />
                         </button>
                       </div>
+                      {/* Total Price for Item */}
+                      <div className="col-5 col-sm-3 text-end d-flex justify-content-end">
+                        <p className="mb-0 font-24-500 font-14-500 text-muted-gray-color">
+                          ₹ {item.price * Number(item.selectedWeight) * item.quantity} /-
+                        </p>
+                      </div>
                       
                     </div>
                   ))}
 
                   {/* Summary Section */}
                   <div className="row justify-content-end mb-2">
-                    <div className="col-6 col-md-3 font-12-500 text-center">
+                    <div className="col-6 col-md-3 font-12-500 text-end">
                       <span className="font-16-400 font-11-400 text-gray-color me-3">
                         TAX:
                       </span>{" "}
@@ -167,7 +166,7 @@ const Cart = () => {
                   </div>
 
                   <div className="row justify-content-end pb-3 border-bottom">
-                    <div className="col-6 col-md-3 font-12-500 text-center">
+                    <div className="col-6 col-md-3 font-12-500 text-end">
                       <span className="font-16-400 font-11-400 text-gray-color me-3">
                         GST:
                       </span>{" "}
@@ -176,7 +175,7 @@ const Cart = () => {
                   </div>
 
                   <div className="row justify-content-end mb-2 mt-3">
-                    <div className="col-8 col-md-3 text-center px-0 me-lg-5">
+                    <div className="col-8 col-md-3 text-end px-0 me-lg-1">
                       <span className="font-16-400 font-11-400 text-gray-color me-2">
                         AMOUNT TO PAY:
                       </span>

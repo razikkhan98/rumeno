@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../sidebar";
 import Navbar from "../../common/navbar/mainnavbar";
-import { getData, postData, updateData } from "../../common/APIs/api";
+import { API_BASE_URL, getData, postData, updateData } from "../../common/APIs/api";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../common/Context";
@@ -65,7 +65,9 @@ const GoatDetailForm = () => {
         animalName, // Add animalName to the form data
         // farmName,
         farmHouseName,
+
       };
+      console.log('formData: ', formData);
 
 
 
@@ -80,6 +82,15 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
 
+      if (type !== "edit") {
+        await postData(`/vaccine/register-animal-vaccine`,
+          {
+            animalTagId: formData.tagId,
+            birthDate: formData.birthDate,
+            uid: formData.uid,
+          }
+        );
+      }
 
       if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
@@ -114,7 +125,7 @@ const GoatDetailForm = () => {
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `${API_BASE_URL}/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
 
           // http://localhost:8000/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=Goat&uid=RAZ1233
           {
@@ -176,7 +187,7 @@ const GoatDetailForm = () => {
       setValue("comments", animalData.comments || "");
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
       setIsPurchased(animalData.purchaseDate ? true : false);
-      setValue( "isPregnant", animalData.currentPregnancyMonth ? true : false);
+      setValue("isPregnant", animalData.currentPregnancyMonth ? true : false);
     }
   }, [setValue]); // Fetch only once on mount
 
@@ -189,9 +200,11 @@ const GoatDetailForm = () => {
     setGender(e.target.value);
     setValue("gender", e.target.value || "");
   };
+  const btnDisabled = type === "edit" ? true : false;
 
   let today = new Date().toISOString().split('T')[0];
   document.getElementsByName("somedate")[0]?.setAttribute('max', today)
+
 
 
 
@@ -253,6 +266,7 @@ const GoatDetailForm = () => {
                 </button>
                 <button
                   type="button"
+                  disabled={btnDisabled}
                   className={` me-2 ${gender === "Male" ? "gender-btn" : "gender-btn-light"}`}
                   onClick={() => handleSelect({ target: { value: "Male" } })}
                 >
@@ -260,6 +274,7 @@ const GoatDetailForm = () => {
                 </button>
                 <button
                   type="button"
+                  disabled={btnDisabled}
                   className={`${gender === "Female" ? "gender-btn" : "gender-btn-light"}`}
                   onClick={() => handleSelect({ target: { value: "Female" } })}
                 >
@@ -333,10 +348,10 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate", {
-                      required: "Birth Date is required",
+                      required: isPurchased ? false : "Birth Date is required",
                     })}
                   />
-                  {errors.birthDate && (
+                  {isPurchased ? "" : errors.birthDate && (
                     <p className="text-danger">{errors.birthDate.message}</p>
                   )}
                 </div>
@@ -431,6 +446,7 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
+                    max={today}
                     className="form-control form-control-detail"
                     {...register("motherWeanDate")}
                   />

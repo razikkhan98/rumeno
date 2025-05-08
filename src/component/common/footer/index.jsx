@@ -107,7 +107,7 @@ const Footer = () => {
                 >
                  <span>
                  <PiEnvelopeSimpleFill
-                    className="me-2 rounded-circle p-1"
+                    className="me-3 rounded-circle p-1"
                     style={{
                       background: "#DD3675",
                       height: "24px",

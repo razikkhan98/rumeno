@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Card, Tab, Tabs } from "react-bootstrap";
 import Sidebar from "../sidebar";
-import Navbar from "../../common/navbar";
+import Navbar from "../../common/navbar/mainnavbar";
 import {
   getData,
   postData,
   deleteData,
   updateData,
+  API_BASE_URL,
 } from "../../common/APIs/api";
 import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -570,7 +571,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
   const fetchKidAnimal = async () => {
     try {
       const response = await axios.get(
-        `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno//user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
+        `${API_BASE_URL}/user/animaldata/newEntity/getAllById?animalName=${animalName}&uid=${uid}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -775,6 +776,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
   useEffect(() => {
     const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
+    console.log('animalskid===========: ', animals);
     if (animals.length < 0) {
       button.classList.add("d-none");
     } else {
@@ -782,10 +784,14 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     }
   }, []);
 
+  let today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("somedate")[0]?.setAttribute('max', today)
+
   return (
     <>
       <Navbar />
-      <div className="row">
+      <div className="container-fuild pt-5">
+      <div className="row pt-5">
         <div className="col-lg-2">
           <Sidebar />
         </div>
@@ -931,6 +937,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                                   {field?.options?.map((option, idx) => (
                                     <Form.Check
                                       key={idx}
+                                      max={today}
                                       type="radio"
                                       label={option}
                                       value={option}
@@ -962,6 +969,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                                 // Normal input fields
                                 <Form.Control
                                   type={field.type}
+                                  max={today}
                                   {...register(field.name, {
                                     required: field.required,
                                   })}
@@ -993,6 +1001,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                                         {...register(field.name, {
                                           required: field.required,
                                         })}
+                                        max={today}
                                         disabled={
                                           !editActive && InputPreFillData
                                         }
@@ -1001,13 +1010,14 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                                           Select an option
                                         </option>{" "}
                                         {field?.options?.map((option, idx) => (
-                                          <option key={idx} value={option}>
+                                          <option key={idx} value={option} max={today}>
                                             {option}
                                           </option>
                                         ))}
                                       </Form.Select>
                                     ) : (
                                       <Form.Control
+                                        max={today}
                                         type={field.type}
                                         {...register(field.name, {
                                           required: field.required,
@@ -1056,6 +1066,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                                     <Form.Label>{field?.label}</Form.Label>
                                     <Form.Control
                                       type={field?.type}
+                                      max={today}
                                       value={
                                         submittedData[editIndex]?.[
                                           field.name
@@ -1188,6 +1199,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
             </Card.Body>
           </Card>
         </div>
+      </div>
       </div>
     </>
   );

@@ -123,10 +123,11 @@ export const CartProvider = ({ children }) => {
     const updatedStoredCart = storedCart.filter(item => !(item.id === id && item.selectedWeight === selectedWeight));
     sessionStorage.setItem('cart', JSON.stringify(updatedStoredCart));
   };
-
+  
+  const clearCart = () => setCart([])
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid, userName, setUserName, userEmail, setUserEmail, removeFromCart,farmHouseName, setFarmHouseName }}>
+    <CartContext.Provider value={{ cart, addToCart, incrementQuantity, decrementQuantity, uid, setuid, userName, setUserName, userEmail, setUserEmail, removeFromCart,farmHouseName, setFarmHouseName, clearCart }}>
       {children}
     </CartContext.Provider>
   );
