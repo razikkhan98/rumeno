@@ -55,7 +55,7 @@ const Sidebar = () => {
         <div className="col-lg-12">
           <div className="sidebar bg-white border-end p-4">
             <div className="text-center mb-3">
-              <p className="mb-3 text-uppercase josefin-sans-font-family-600 fs-5 farmName-heading text-truncate">{setfarmHouseName}</p>
+              <p className="mb-3 text-uppercase josefin-sans-font-family-600 fs-5 farmName-heading ">{setfarmHouseName}</p>
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
 
                 <NavLink to={"/farmdata"}>

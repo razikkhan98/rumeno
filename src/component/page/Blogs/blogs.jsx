@@ -37,22 +37,21 @@ const Blogs = () => {
                                         rel="noreferrer"
                                         target="_blank"
                                     >
-
                                         <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
                                     </a>
-                                    <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
+                                    <p className='font-12-400'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
                                 </div>
                                 <div className='col-lg-4 col-md-4'>
                                     <img src={Blog3} className='blog-mini-img rounded-3' alt="Loading" />
                                     <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
-                                    <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
+                                    <p className='font-12-400'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
                                 </div>
                                 <div className='col-lg-4 col-md-4'>
                                     <img src={Blog4} className='blog-mini-img rounded-3' alt="Loading" />
                                     <p className='font-size-14 mt-4'>Cute Overload: The San Diego Humane Society Kitten Nursery</p>
-                                    <p className='font-size-10'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
+                                    <p className='font-12-400'>No one can resist the adorable charm of a kitten - their whimsical antics, tiny mews, and their astonishing capacity for both chaos
                                         and cuddles. Sadly, thousands of these furry miracles face abandonment each year. Thankfully, some organizations dedicate their...</p>
                                 </div>
                             </div>

@@ -48,7 +48,7 @@ const VeterinaryService = () => {
     <>
       {/* Navbar Start */}
       <Navbar />
-      <div className="service-bg-color products">
+      <div className="service-bg-color products" id="Veterinary">
         <div className="pt-lg-4">
           <Header title="Services" link="/" subtitle="Veteriniary Services" />
         </div>
@@ -187,7 +187,7 @@ const VeterinaryService = () => {
 
         {/* Team Member section Start */}
 
-        <div className="bg-white py-5" id="Team">
+        <div className="bg-white py-5 scroll-section" id="Team">
           <div className="container py-5">
             <div className="text-center py-5">
               <p className="service-heading">Our Consulting Team Members</p>
@@ -236,7 +236,7 @@ const VeterinaryService = () => {
       </div>
 
       {/* Business Section Start */}
-      <div className="business" id="Business">
+      <div className="business scroll-section" id="Business">
         <div className="container text-center py-5">
           <p className="service-heading pt-4">Business Start-Up Support</p>
           <p className="text-justify lh-base py-4">
@@ -293,7 +293,7 @@ const VeterinaryService = () => {
         <Faq faqs={BusinessFqa} showHeading={false} />
 
         {/* Service Form Section Start */}
-        <div id="QueryForm">
+        <div id="QueryForm" className="scroll-section">
         <ServiceForm />
         </div>
       </div>

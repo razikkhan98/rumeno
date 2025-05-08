@@ -41,6 +41,7 @@ import FarmHouseEquipment from "./component/page/FarmHouseEquipment/equipment";
 import ServiceFaq from "./component/page/service/faq";
 import HumanConsumable from "./component/page/products/human";
 import CropSeed from "./component/page/products/cropSeed";
+import AddAnimalCards from "./component/page/formdatapage/addAnimalCards/addAnimalCards";
 
 
 const App = () => {
@@ -84,6 +85,7 @@ const App = () => {
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/humanCunsumable" element={<HumanConsumable />} />
           <Route path="/cropseed" element={<CropSeed />} />
+          <Route path="/addanimal" element={<AddAnimalCards />} />
 
 
 
