@@ -260,24 +260,34 @@ const Mainnav = () => {
           <ul className="navbar-nav gap-lg-4 me-auto mb-2 mb-lg-0 text-center">
             <NavLink to={"/"} className={"text-decoration-none"}>
               <li className="nav-item">
-                <a
+                <div
                   className={`nav-link ${String(location?.pathname) === "/" ? "active" : ""
                     }`}
                   onClick={() => handleLinkClick("Home")}
                 >
                   Home
-                </a>
+                </div>
               </li>
             </NavLink>
 
             <li className="nav-item">
-              <a
-                className={`nav-link ${active ? "active" : ""}`}
+              <div
+                className={`nav-link ${String(location?.pathname) === "/products" ||
+                  String(location?.pathname) === "/allproducts" ||
+                  String(location?.pathname) === "/goatproduct" ||
+                  String(location?.pathname) === "/cattleproduct" ||
+                  String(location?.pathname) === "/poultryproduct" ||
+                  String(location?.pathname) === "/dogproduct" ||
+                  String(location?.pathname) === "/equipment" ||
+                  String(location?.pathname) === "/humanCunsumable" ||
+                  String(location?.pathname) === "/cropseed"
+                  ? "active"
+                  : " "}`}
                 onClick={() => handleLinkClick("Products")}
-                aria-expanded={isProductsOpen}
+              // aria-expanded={isProductsOpen}
               >
                 Products
-              </a>
+              </div>
               <div
                 //  ref={dropdownRef}
                 className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
@@ -337,7 +347,7 @@ const Mainnav = () => {
                         <li>Human Consumable</li>
                       </NavLink>
                       <NavLink to={"/cropseed"} className="text-decoration-none">
-                      <li>Crop Seeds</li>
+                        <li>Crop Seeds</li>
                       </NavLink>
                     </ul>
                   </div>
@@ -354,11 +364,12 @@ const Mainnav = () => {
             <li className="nav-item">
               <div
                 className={`nav-link ${String(location?.pathname) === "/service" ||
-                    String(location?.pathname) === "/equipment" ||
-                    String(location?.pathname) === "/goatfarming" ||
-                    String(location?.pathname) === "/dairyconsultant"
-                    ? "active"
-                    : ""
+                  String(location?.pathname) === "/faq" ||
+                  String(location?.pathname) === "/consulting" ||
+                  String(location?.pathname) === "/goatfarming" ||
+                  String(location?.pathname) === "/dairyconsultant"
+                  ? "active"
+                  : ""
                   }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
