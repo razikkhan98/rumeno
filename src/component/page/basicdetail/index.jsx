@@ -36,9 +36,8 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
   const animalData = location.state; // This will be the full animal object
+ 
 
-
-  // 
 
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
@@ -189,7 +188,7 @@ const GoatDetailForm = () => {
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
       setIsPurchased(animalData.purchaseDate ? true : false);
       setValue("isPregnant", animalData.currentPregnancyMonth ? true : false);
-      setValue("isVaccine", animalData.lastVaccineName ? true : false );
+      setValue("isVaccine", animalData.lastVaccineName ? true : false);
     }
   }, [setValue]); // Fetch only once on mount
 
@@ -258,7 +257,7 @@ const GoatDetailForm = () => {
                 </div>
               </div>  */}
 
-               {/* <div className="d-flex pe-3">
+              {/* <div className="d-flex pe-3">
                 <button
                   type="button"
                   className={`me-2 ${isPurchased ? "gender-btn" : "gender-btn-light"} `}
@@ -387,9 +386,9 @@ const GoatDetailForm = () => {
                   <select
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
-                    {...register("fatherTag", {
-                      required: isPurchased ? false : "Father Tag is required",
-                    })}
+                  // {...register("fatherTag", {
+                  //   required: isPurchased ? false : "Father Tag is required",
+                  // })}
                   >
                     <option value="">Select Tag Id</option>
                     <option value="not applicable">Not Applicable</option>
@@ -399,9 +398,9 @@ const GoatDetailForm = () => {
                       </option>
                     ))}
                   </select>
-                  {isPurchased ? "" : errors.fatherTag && (
+                  {/* {isPurchased ? "" : errors.fatherTag && (
                     <p className="text-danger">{errors.fatherTag.message}</p>
-                  )}
+                  )} */}
                 </div>
 
 
@@ -429,20 +428,20 @@ const GoatDetailForm = () => {
                   />
                 </div>
                 {/* {gender && */}
-                  <div className="col-lg-2 col-6 lh-lg">
-                    <label className="form-lable-detail">Gender</label>
-                    <select
-                      className="form-select form-control-detail"
-                      onChange={handleSelect}
-                      // placeholder="Enter Father Breed"
-                      // disabled={gender}
-                      {...register("gender")}
-                    >
-                      <option value="">Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                    </select>
-                  </div>
+                <div className="col-lg-2 col-6 lh-lg">
+                  <label className="form-lable-detail">Gender</label>
+                  <select
+                    className="form-select form-control-detail"
+                    onChange={handleSelect}
+                    // placeholder="Enter Father Breed"
+                    // disabled={gender}
+                    {...register("gender")}
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
                 {/* } */}
               </div>
 
@@ -453,7 +452,7 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
-                    max={today}
+                    // max={today}
                     className="form-control form-control-detail"
                     {...register("motherWeanDate")}
                   />
@@ -473,24 +472,24 @@ const GoatDetailForm = () => {
                     <option value="5">5: Fatty bulky body</option>
                   </select>
                 </div>
-                <div className="col-lg-3 col-6 lh-lg">
-                  <label className="form-lable-detail">
-                    Date of Purchasing
-                  </label>
-                  <input
-                    type="date"
-                    max={today}
-                    // disabled={birthDate}
-                    className="form-control form-control-detail"
-                    {...register("purchaseDate", {
-                      required: !isPurchased ? false : "Purchase Date is required",
-                    })}
-                  />
-                  {!isPurchased ? "" : errors.purchaseDate && (
-                    <p className="text-danger">{errors.purchaseDate.message}</p>
-                  )}
-                </div>
 
+                  <div className="col-lg-3 col-6 lh-lg">
+                    <label className="form-lable-detail">
+                      Date of Purchasing
+                    </label>
+                    <input
+                      type="date"
+                      max={today}
+                      // disabled={birthDate}
+                      className="form-control form-control-detail"
+                      {...register("purchaseDate", {
+                        required: "Purchase Date is required",
+                      })}
+                    />
+                    {errors.purchaseDate && (
+                      <p className="text-danger">{errors.purchaseDate.message}</p>
+                    )}
+                  </div>
                 {/* {purchaseDate && (
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">
@@ -532,8 +531,8 @@ const GoatDetailForm = () => {
                   />
                 </div>
               </div>
-              
-                <div className="row mt-3">
+
+              <div className="row mt-3">
                 {gender === "Female" && (
                   <div className="col-lg-2 lh-lg">
                     <div class="form-check d-flex align-items-center gap-2">
@@ -552,22 +551,22 @@ const GoatDetailForm = () => {
                 )}
 
 
-                   <div className="col-lg-2 lh-lg">
-                    <div class="form-check d-flex align-items-center gap-2">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                        {...register("isVaccine")}
-                      />
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Vaccine
-                      </label>
-                    </div>
-                  </div> 
+                <div className="col-lg-2 lh-lg">
+                  <div class="form-check d-flex align-items-center gap-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                      {...register("isVaccine")}
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Vaccine
+                    </label>
+                  </div>
                 </div>
-              
+              </div>
+
 
               {isPregnant && gender === "Female" && (
                 <div className="row mt-2">
@@ -632,8 +631,8 @@ const GoatDetailForm = () => {
                       className="form-control form-control-detail"
                       {...register("lastVaccineName")}
                     />
+                  </div>
                 </div>
-              </div>
               )}
 
               {/* {isChild && gender === "Female" && (

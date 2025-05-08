@@ -1,33 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../../sidebar';
 import Navbar from "../../../common/navbar/mainnavbar";
 import { Card } from "react-bootstrap";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 // Images
 import Purchase from "../../../assets/img/dashboard/purchase.svg";
 import FarmEntry from "../../../assets/img/dashboard/farm entry.svg";
+import NewBorn from "../../../assets/img/dashboard/new-born-1.jpg"
 
 const AddAnimalCards = () => {
+    const navigate = useNavigate();
+
     const cardData = [
         {
             title: "Animal Purchase",
             cardborder: "card-orange-border",
             cardcircle: "card-orange-circle",
               img: Purchase,
-            //   value: stats.TotalAnimals || " ",
-            //   details: stats.TotalAnimalsData || [],
         },
         {
             title: "Animal Register",
             cardborder: "card-blue-border",
             cardcircle: "card-blue-circle",
               img: FarmEntry,
-            //   value: stats.VaccineCount || " ",
-            //   details: stats.VaccineData || [],
         },
-
+        {
+            title: "New Born Register",
+            cardborder: "card-orange-border",
+            cardcircle: "card-orange-circle",
+              img: NewBorn,
+        },
     ];
+    // const handleCardClick = (card) => {
+    //     navigate("/parentform", { state: {  title: card.title } });
+    //   };
 
     return (
         <>
@@ -46,7 +53,7 @@ const AddAnimalCards = () => {
                                     <NavLink to="/parentform" className={"text-decoration-none"}>
                                         <Card
                                             className={`dashboard-cards card-hover rounded-3 px-lg-4 py-4 ${card.cardborder}`}
-                                        //   onClick={() => setSelectedCard(card)}
+                                            // onClick={() => handleCardClick(card)}
                                         >
                                             <div className="row gap-2 align-items-center justify-content-between">
                                                 <div className="col-lg-3 col-3">
@@ -57,8 +64,8 @@ const AddAnimalCards = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-lg-7 col-7">
-                                                    <Card.Title>{card.value}</Card.Title>
-                                                    <Card.Subtitle className="mb-2 dashboard-card-title text-chinese-black-color">
+                                                    {/* <Card.Title>{card.value}</Card.Title> */}
+                                                    <Card.Subtitle className="mb-2 dashboard-card-title text-chinese-black-color font-14-500">
                                                         {" "}
                                                         {card.title}
                                                     </Card.Subtitle>
