@@ -37,9 +37,18 @@ input[type=number]::-webkit-outer-spin-button {
   display: none;
 }
 .farmName-heading {
-  width: 210px;
+  display: block; /* or inline-block if needed */
+  width: 100%;
+  text-align: center;
   color: rgb(97, 178, 231);
   text-shadow: 1px 1px 2px #9dd8f4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scroll-section {
+  scroll-margin-top: 80px; /* If your header is 100px tall */
 }
 /* <------- Common Classes --------> */
 
@@ -3040,6 +3049,9 @@ input[type="radio"].payment-radio:checked::before {
 /* Dashboard Cards */
 .dashboard-cards {
   transition: "transform 0.3s ease, box-shadow 0.3s ease";
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: 0px 4px 10px 1px #54525226;
+
 }
 .dashboard-cards img {
   width: 100% !important;

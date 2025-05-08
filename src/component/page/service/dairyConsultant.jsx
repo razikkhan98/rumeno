@@ -66,7 +66,7 @@ const DairyConsultantService = () => {
   return (
     <>
       <Navbar />
-      <div className="service-bg-color products">
+      <div className="service-bg-color products" id="Service">
         <div className="pt-lg-4 mt-n1">
           <Header title="Services" link="/" subtitle="Dairy Consultant Service" />
         </div>
@@ -124,9 +124,9 @@ const DairyConsultantService = () => {
             </div>
           </div>
 
-          <div className="row my-5 g-0 bg-white service-border" id="DairyManagement">
+          <div className="row my-5 g-0 bg-white service-border scroll-section" id="DairyManagement">
             {/* secong img */}
-            <div className="col-lg-7 py-lg-4 px-5">
+            <div className="col-lg-7 py-4  px-5">
               <div className="">
                 <p className="content-heading">
                   Understanding Dairy Farm Management Services

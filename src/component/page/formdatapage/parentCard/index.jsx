@@ -93,7 +93,7 @@ const Parent = () => {
             <div className="d-flex justify-content-between align-items-center mt-2">
               <p className="font-18-500 text-chinese-black-color ps-lg-3">Animal</p>
               {/* Add Goat Button */}
-              <NavLink to="/parentform">
+              <NavLink to="/addanimal">
                 <button
                   className="btn add-animal-btn text-white px-4 border rounded-pill"
                   style={{
