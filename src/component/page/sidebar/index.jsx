@@ -103,7 +103,7 @@ const Sidebar = () => {
                 {selectedAnimal}
               </NavLink>
 
-              <NavLink
+              {/* <NavLink
                 to="/addanimal"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
@@ -112,7 +112,7 @@ const Sidebar = () => {
                 })}
               >
                 Add Animal
-              </NavLink>
+              </NavLink> */}
             </div>
 
             <div className="mt-4 pt-3 border-top">
