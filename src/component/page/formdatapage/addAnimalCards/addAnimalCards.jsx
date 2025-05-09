@@ -18,19 +18,21 @@ const AddAnimalCards = () => {
             cardborder: "card-orange-border",
             cardcircle: "card-orange-circle",
               img: Purchase,
+              type: "purchase",
         },
         {
             title: "Animal Register",
             cardborder: "card-blue-border",
             cardcircle: "card-blue-circle",
               img: FarmEntry,
+              type : "a-register"
         },
-        {
-            title: "New Born Register",
-            cardborder: "card-orange-border",
-            cardcircle: "card-orange-circle",
-              img: NewBorn,
-        },
+        // {
+        //     title: "New Born Register",
+        //     cardborder: "card-orange-border",
+        //     cardcircle: "card-orange-circle",
+        //       img: NewBorn,
+        // },
     ];
     // const handleCardClick = (card) => {
     //     navigate("/parentform", { state: {  title: card.title } });
@@ -50,7 +52,7 @@ const AddAnimalCards = () => {
                         <div className='row'>
                             {cardData?.map((card, index) => (
                                 <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
-                                    <NavLink to="/parentform" className={"text-decoration-none"}>
+                                    <NavLink to={`/parentform?validation=${card.type}`} className={"text-decoration-none"}>
                                         <Card
                                             className={`dashboard-cards card-hover rounded-3 px-lg-4 py-4 ${card.cardborder}`}
                                             // onClick={() => handleCardClick(card)}

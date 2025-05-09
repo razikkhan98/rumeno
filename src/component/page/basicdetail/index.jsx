@@ -43,6 +43,9 @@ const GoatDetailForm = () => {
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
+  
+  const validation = queryParams.get("validation");
+  console.log('validation: ', validation);
 
 
 
@@ -349,10 +352,10 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate", {
-                      required: isPurchased ? false : "Birth Date is required",
+                      required: validation === "purchase" ? false : "Birth Date is required",
                     })}
                   />
-                  {isPurchased ? "" : errors.birthDate && (
+                  {validation === "purchase" ? "" : errors.birthDate && (
                     <p className="text-danger">{errors.birthDate.message}</p>
                   )}
                 </div>
@@ -483,10 +486,10 @@ const GoatDetailForm = () => {
                       // disabled={birthDate}
                       className="form-control form-control-detail"
                       {...register("purchaseDate", {
-                        required: "Purchase Date is required",
+                        required: validation === "a-register" ? false : "Purchase Date is required",
                       })}
                     />
-                    {errors.purchaseDate && (
+                    { validation === "a-register" ? "" : errors.purchaseDate && (
                       <p className="text-danger">{errors.purchaseDate.message}</p>
                     )}
                   </div>
