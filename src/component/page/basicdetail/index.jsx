@@ -312,6 +312,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Age"
+                     step="any"
                     {...register("ageYear")}
                   />
                 </div>
@@ -321,6 +322,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Age"
+                     step="any"
                     {...register("ageMonth")}
                   />
                 </div>
@@ -331,6 +333,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Height"
+                     step="any"
                     {...register("height")}
                   />
                 </div>
@@ -341,6 +344,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Weight"
+                     step="any"
                     {...register("weightKg")}
                   />
                 </div>
@@ -368,7 +372,7 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("motherTag", {
-                      required: isPurchased ? false : "Mother Tag is required",
+                      required: validation === "purchase" ? false : "Mother Tag is required",
                     })}
                   >
                     <option value="">Select Tag Id</option>
@@ -379,7 +383,7 @@ const GoatDetailForm = () => {
                       </option>
                     ))}
                   </select>
-                  {isPurchased ? "" : errors.motherTag && (
+                  {validation === "purchase" ? "" : errors.motherTag && (
                     <p className="text-danger">{errors.motherTag.message}</p>
                   )}
                 </div>
@@ -700,7 +704,7 @@ const GoatDetailForm = () => {
               </div> */}
 
 
-              <div className="col-lg-3 pt-5 pe-5">
+              <div className="col-lg-3 py-5 pe-5">
                 <button
                   type="submit"
                   className="btn w-100 text-white py-2 rounded-pill"
