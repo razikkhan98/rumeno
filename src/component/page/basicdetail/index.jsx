@@ -91,6 +91,7 @@ const GoatDetailForm = () => {
             animalTagId: formData.tagId,
             birthDate: formData.birthDate,
             uid: formData.uid,
+            uniqueId: uniqueId,
           }
         );
       }
@@ -502,7 +503,9 @@ const GoatDetailForm = () => {
                   </select>
                 </div>
 
-                <div className="col-lg-3 col-6 lh-lg">
+                {validation === "a-register" ? false : (
+                  <>
+                  <div className="col-lg-3 col-6 lh-lg">
                   <label className="form-lable-detail">
                     Date of Purchasing
                   </label>
@@ -519,6 +522,8 @@ const GoatDetailForm = () => {
                     <p className="text-danger">{errors.purchaseDate.message}</p>
                   )}
                 </div>
+                  </>
+                )}
                 {/* {purchaseDate && (
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">

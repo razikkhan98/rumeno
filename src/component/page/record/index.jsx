@@ -18,7 +18,8 @@ import axios from "axios";
 
 const Record = () => {
   const animalName = sessionStorage.getItem("animalName");
-const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
+  const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
+  console.log('getAnimalTagIds: ', getAnimalTagIds);
 
   const fieldConfigs = {
     BasicDetails: [
@@ -440,7 +441,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     BasicDetails: "user/animaldata/newEntity",
     PostWean: "/post-wean/post-wean-add",
     Milk: "/milk-record/create-milk-record",
-    Vaccine: "/vaccine/add-vaccine",
+    Vaccine: "/vaccine/add-vaccine-to-animal",
     Deworm: "/dewormdata/addDeworm",
     EstrusHeat: "/estrus-heat/create-heat-record",
     // FarmSanitation: "/user/animal/sanitationdata/add",
@@ -496,9 +497,8 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
   const [isUpdate, setIsUpdate] = useState(false);
   const [InputPreFillData, setInputPreFillData] = useState(null);
   const [editActive, setEditActive] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState({});
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
-  const [editIndex, setEditIndex] = useState(null);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -521,6 +521,10 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     location.state || {};
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
+  // const [editIndices, setEditIndices] = useState({});
+  const [editIndex, setEditIndex] = useState({});
+
+  const currentEditIndex = editIndex[activeTab] ?? null;
   const uid = sessionStorage.getItem("uid");
 
   // Show all Records Postwean, milk etc.....
@@ -532,7 +536,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
         activeTab === "Deworm" ||
         activeTab === "PostWean" ||
         activeTab === "Milk" ||
-        activeTab === "EstrusHeat"||
+        activeTab === "EstrusHeat" ||
         activeTab === "AnimalStatus"
       ) {
         endpoint += `?uid=${uid}&tagId=${tagId}`;
@@ -559,7 +563,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
         if (ShowKids.length > 0) setLoading(false);
       }
       setSubmittedData(response?.data || []);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -594,7 +598,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
       } else {
         button.classList.remove("d-none");
       }
-    } catch (err) {}
+    } catch (err) { }
   };
 
   useEffect(() => {
@@ -606,7 +610,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://0760-2401-4900-8823-f1f0-8422-6228-36ec-b12.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `https://2b0e-2401-4900-8820-f438-55be-da17-80eb-d521.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
@@ -614,6 +618,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
             },
           }
         );
+        console.log('response: gebder======== ', response);
 
         setGetAnimalTagIds(response.data);
       } catch (error) {
@@ -625,7 +630,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
       }
     };
     fetchAnimals();
-  }, []); 
+  }, []);
 
 
 
@@ -644,11 +649,11 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
       const dataToUse = i[key];
       return Array.isArray(dataToUse)
         ? dataToUse.map((entry) => ({
-            ...entry,
-            uid: entry.uid || i.uid || uid,
-            tagId: entry.tagId || i.tagId || tagId,
-            parentId: entry.parentId || i.parentId || parentId,
-          }))
+          ...entry,
+          uid: entry.uid || i.uid || uid,
+          tagId: entry.tagId || i.tagId || tagId,
+          parentId: entry.parentId || i.parentId || parentId,
+        }))
         : [];
     });
 
@@ -660,7 +665,7 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     const apiUrl = API_ENDPOINTS[activeTab];
     let formData = {}; // Declare once
 
-    formData = { ...data, uniqueId, parentId, uid, tagId };
+    formData = { ...data, animalUniqueId: uniqueId, parentId, uid, tagId };
 
     try {
       const response = await postData(apiUrl, formData);
@@ -735,10 +740,10 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     const itemToDelete = submittedData[index];
     const recordId = itemToDelete?._id;
 
-    if (!recordId || !apiUrl) {
-      toast.error("Missing ID or API endpoint for deletion.");
-      return;
-    }
+    // if (!recordId || !apiUrl) {
+    //   toast.error("Missing ID or API endpoint for deletion.");
+    //   return;
+    // }
 
     try {
       const response = await deleteData(apiUrl, recordId);
@@ -770,13 +775,16 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
       ...prev,
       [activeTab]: !prev[activeTab],
     }));
-    setEditIndex(null);
+     setEditIndex((prev) => ({
+    ...prev,
+    [activeTab]: null,
+  }));
     reset();
   };
   useEffect(() => {
     const button = document.querySelector('[data-rr-ui-event-key="Kid"]');
 
-    console.log('animalskid===========: ', animals);
+    // console.log('animalskid===========: ', animals);
     if (animals.length < 0) {
       button.classList.add("d-none");
     } else {
@@ -791,139 +799,139 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
     <>
       <Navbar />
       <div className="container-fuild pt-5">
-      <div className="row pt-5">
-        <div className="col-lg-2">
-          <Sidebar />
-        </div>
-        <div className="col-lg-10 p-2">
-          <Card className="border-0 border-bottom">
-            <Card.Body>
-              <Tabs
-                activeKey={activeTab}
-                onSelect={(k) => setActiveTab(k)}
-                className="mb-4"
-              >
-                {TabItems.map((tab) => {
-                  return (
-                    <Tab key={tab.key} eventKey={tab.key} title={tab.label} />
-                  );
-                })}
-              </Tabs>
+        <div className="row pt-5">
+          <div className="col-lg-2">
+            <Sidebar />
+          </div>
+          <div className="col-lg-10 p-2">
+            <Card className="border-0 border-bottom">
+              <Card.Body>
+                <Tabs
+                  activeKey={activeTab}
+                  onSelect={(k) => setActiveTab(k)}
+                  className="mb-4"
+                >
+                  {TabItems.map((tab) => {
+                    return (
+                      <Tab key={tab.key} eventKey={tab.key} title={tab.label} />
+                    );
+                  })}
+                </Tabs>
 
-              {/* Show  Basic Details Form  Data  */}
-              <div>
-                {activeTab === "BasicDetails" && selectedAnimal && (
-                  <div className="row mb-4">
-                    {/* <div className="col-lg-3 pb-3">
+                {/* Show  Basic Details Form  Data  */}
+                <div>
+                  {activeTab === "BasicDetails" && selectedAnimal && (
+                    <div className="row mb-4">
+                      {/* <div className="col-lg-3 pb-3">
                           <Form.Group>
                             <Form.Label>Tag ID</Form.Label>
                             <Form.Control type="text" value={selectedAnimal.tagId} readOnly />
                           </Form.Group>
                         </div> */}
 
-                    {fieldConfigs["BasicDetails"]?.map((field, idx) => (
-                      <div key={idx} className="col-lg-3 pb-3">
-                        <Form.Group>
-                          <Form.Label>{field.label}</Form.Label>
-                          <Form.Control
-                            type="text"
-                            value={
-                              field?.type == "date"
-                                ? new Date(selectedAnimal[field.name])
+                      {fieldConfigs["BasicDetails"]?.map((field, idx) => (
+                        <div key={idx} className="col-lg-3 pb-3">
+                          <Form.Group>
+                            <Form.Label>{field.label}</Form.Label>
+                            <Form.Control
+                              type="text"
+                              value={
+                                field?.type == "date"
+                                  ? new Date(selectedAnimal[field.name])
                                     .toLocaleDateString("en-GB")
                                     .replace(/\//g, "-")
-                                : selectedAnimal[field.name] || ""
-                            }
-                            readOnly
-                            disabled
-                          />
-                        </Form.Group>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {activeTab === "Kid" && (
-                <>
-                  {loading ? (
-                    <p>Loading...</p>
-                  ) : animals.length > 0 ? (
-                    <div className="row">
-                      {animals.map((animal, index) => (
-                        <div
-                          key={index}
-                          className="col-lg-3 width-20 px-3 pt-4"
-                        >
-                          <AnimalCard age={animal.ageYear} {...animal} showDetailsButton={false} />
+                                  : selectedAnimal[field.name] || ""
+                              }
+                              readOnly
+                              disabled
+                            />
+                          </Form.Group>
                         </div>
                       ))}
                     </div>
-                  ) : (
-                    <p>No Kid animals found.</p>
                   )}
-                </>
-              )}
+                </div>
 
-              {activeTab !== "Kid" && (
-                <>
-                  <div className="d-flex justify-content-between align-items-center">
-                    {/* Show blank form  through  add buttons */}
-                    {activeTab !== "BasicDetails" && (
-                      <>
-                        <p className="record-para">
-                          Fill {activeTab} details below
-                        </p>
-                        <button
-                          className="btn text-white px-4 border font-sm-12 rounded-pill me-lg-5 mb-2"
-                          style={{
-                            background:
-                              "linear-gradient(to right, #60A5FA, #EC4899)",
-                          }}
-                          onClick={toggleFormForActiveTab}
+                {activeTab === "Kid" && (
+                  <>
+                    {loading ? (
+                      <p>Loading...</p>
+                    ) : animals.length > 0 ? (
+                      <div className="row">
+                        {animals.map((animal, index) => (
+                          <div
+                            key={index}
+                            className="col-lg-3 width-20 px-3 pt-4"
+                          >
+                            <AnimalCard age={animal.ageYear} {...animal} showDetailsButton={false} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p>No Kid animals found.</p>
+                    )}
+                  </>
+                )}
+
+                {activeTab !== "Kid" && (
+                  <>
+                    <div className="d-flex justify-content-between align-items-center">
+                      {/* Show blank form  through  add buttons */}
+                      {activeTab !== "BasicDetails" && (
+                        <>
+                          <p className="record-para">
+                            Fill {activeTab} details below
+                          </p>
+                          <button
+                            className="btn text-white px-4 border font-sm-12 rounded-pill me-lg-5 mb-2"
+                            style={{
+                              background:
+                                "linear-gradient(to right, #60A5FA, #EC4899)",
+                            }}
+                            onClick={toggleFormForActiveTab}
                           // onClick={() => {
                           //   setShowForm((prev) => !prev);
                           //   setEditIndex(null);
                           //   reset();
                           // }}
-                        >
-                          <span className="me-1">+</span>{" "}
-                          {TabItems.find((tab) => tab.key === activeTab)
-                            ?.label || activeTab}
-                        </button>
-                      </>
-                    )}
-                  </div>
+                          >
+                            <span className="me-1">+</span>{" "}
+                            {TabItems.find((tab) => tab.key === activeTab)
+                              ?.label || activeTab}
+                          </button>
+                        </>
+                      )}
+                    </div>
 
-                  {isShowForm && (
-                    <Form
-                      onSubmit={handleSubmit(onSubmit)}
+                    {isShowForm && (
+                      <Form
+                        onSubmit={handleSubmit(onSubmit)}
                       // className={showForm ? "d-block" : "d-none"}
-                    >
-                      <div className="row mb-4">
-                        <div className="col-lg-3 pb-3">
-                          <Form.Group>
-                            <Form.Label>Tag ID</Form.Label>
-                            <Form.Control type="text" value={tagId} readOnly />
-                          </Form.Group>
-                        </div>
-                        {activeTab === "PostWean" && (
+                      >
+                        <div className="row mb-4">
                           <div className="col-lg-3 pb-3">
                             <Form.Group>
-                              <Form.Label>Mother ID</Form.Label>
-                              <Form.Control
-                                type="text"
-                                value={motherTag}
-                                readOnly
-                              />
+                              <Form.Label>Tag ID</Form.Label>
+                              <Form.Control type="text" value={tagId} readOnly />
                             </Form.Group>
                           </div>
-                        )}
-                        {fieldConfigs[activeTab]?.map((field, index) => (
-                          <div key={index} className="col-lg-3 pb-3">
-                            <Form.Group>
-                              <Form.Label>{field.label}</Form.Label>
-                              {/* <Form.Control
+                          {activeTab === "PostWean" && (
+                            <div className="col-lg-3 pb-3">
+                              <Form.Group>
+                                <Form.Label>Mother ID</Form.Label>
+                                <Form.Control
+                                  type="text"
+                                  value={motherTag}
+                                  readOnly
+                                />
+                              </Form.Group>
+                            </div>
+                          )}
+                          {fieldConfigs[activeTab]?.map((field, index) => (
+                            <div key={index} className="col-lg-3 pb-3">
+                              <Form.Group>
+                                <Form.Label>{field.label}</Form.Label>
+                                {/* <Form.Control
                               type={field.type}
                               {...register(field.name, {
                                 required: field.required,
@@ -931,275 +939,277 @@ const [getAnimalTagIds, setGetAnimalTagIds] = useState([])
                               disabled={!editActive && InputPreFillData}
                             /> */}
 
-                              {field?.type === "radio" ? (
-                                // Radio buttons
-                                <div className="d-flex gap-3">
-                                  {field?.options?.map((option, idx) => (
-                                    <Form.Check
-                                      key={idx}
-                                      max={today}
-                                      type="radio"
-                                      label={option}
-                                      value={option}
-                                      {...register(field.name, {
-                                        required: field.required,
-                                      })}
-                                      disabled={!editActive && InputPreFillData}
-                                      name={field.name} // Radio ke liye name zaroori hai
-                                    />
-                                  ))}
-                                </div>
-                              ) : field?.type === "select" ? (
-                                // ✅ Corrected Select Field
-                                <Form.Select
-                                  {...register(field.name, {
-                                    required: field.required,
-                                  })}
-                                  disabled={!editActive && InputPreFillData}
-                                >
-                                  <option value="">Select an option</option>{" "}
-                                  {/* Placeholder */}
-                                  {field?.options?.map((option, idx) => (
-                                    <option key={idx} value={option}>
-                                      {option}
-                                    </option>
-                                  ))}
-                                </Form.Select>
-                              ) : (
-                                // Normal input fields
-                                <Form.Control
-                                  type={field.type}
-                                  max={today}
-                                  {...register(field.name, {
-                                    required: field.required,
-                                  })}
-                                  disabled={!editActive && InputPreFillData}
-                                />
-                              )}
-
-                              {errors[field.name] && (
-                                <span className="text-danger">
-                                  This field is required
-                                </span>
-                              )}
-                            </Form.Group>
-                          </div>
-                        ))}
-
-                        {/* Animal Stauts Form  */}
-                        {activeTab === `${animalName} stauts` && (
-                          <>
-                            {fieldConfigs[`${animalName}Status`]?.map(
-                              (field, index) => (
-                                <div key={index} className="col-lg-3 pb-3">
-                                  <Form.Group>
-                                    <Form.Label>{field.label}</Form.Label>
-
-                                    {field?.type === "select" ? (
-                                      // ✅ Corrected Select Field
-                                      <Form.Select
+                                {field?.type === "radio" ? (
+                                  // Radio buttons
+                                  <div className="d-flex gap-3">
+                                    {field?.options?.map((option, idx) => (
+                                      <Form.Check
+                                        key={idx}
+                                        max={today}
+                                        type="radio"
+                                        label={option}
+                                        value={option}
                                         {...register(field.name, {
                                           required: field.required,
                                         })}
-                                        max={today}
-                                        disabled={
-                                          !editActive && InputPreFillData
-                                        }
-                                      >
-                                        <option value="">
-                                          Select an option
-                                        </option>{" "}
-                                        {field?.options?.map((option, idx) => (
-                                          <option key={idx} value={option} max={today}>
-                                            {option}
-                                          </option>
-                                        ))}
-                                      </Form.Select>
-                                    ) : (
-                                      <Form.Control
-                                        max={today}
-                                        type={field.type}
-                                        {...register(field.name, {
-                                          required: field.required,
-                                        })}
+                                        disabled={!editActive && InputPreFillData}
+                                        name={field.name} // Radio ke liye name zaroori hai
                                       />
-                                    )}
-                                  </Form.Group>
-                                </div>
-                              )
-                            )}
-                          </>
-                        )}
-                      </div>
-                      <Button
-                        type="submit"
-                        className="record-btn"
-                        // disabled={editActive ? !isDirty : !!InputPreFillData}
-                      >
-                        Submit
-                      </Button>
-                    </Form>
-                  )}
+                                    ))}
+                                  </div>
+                                ) : field?.type === "select" ? (
+                                  // ✅ Corrected Select Field
+                                  <Form.Select
+                                    {...register(field.name, {
+                                      required: field.required,
+                                    })}
+                                    disabled={!editActive && InputPreFillData}
+                                  >
+                                    <option value="">Select an option</option>{" "}
+                                    {/* Placeholder */}
+                                    {field?.options?.map((option, idx) => (
+                                      <option key={idx} value={option}>
+                                        {option}
+                                      </option>
+                                    ))}
+                                  </Form.Select>
+                                ) : (
+                                  // Normal input fields
+                                  <Form.Control
+                                    type={field.type}
+                                    max={today}
+                                    {...register(field.name, {
+                                      required: field.required,
+                                    })}
+                                    disabled={!editActive && InputPreFillData}
+                                  />
+                                )}
 
-                  {/* Show Prefillled form Data */}
-                  {editIndex !== null && activeTab !== "AnimalStatus" &&  (
-                    <>
-                      <div>
-                        <h4>Submitted Data</h4>
-                        <Form className="my-3">
-                          <div className="row mb-4">
-                            <div className="col-lg-3 pb-3">
-                              <Form.Group>
-                                <Form.Label>Tag ID</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  value={submittedData[editIndex]?.tagId}
-                                  readOnly
-                                />
+                                {errors[field.name] && (
+                                  <span className="text-danger">
+                                    This field is required
+                                  </span>
+                                )}
                               </Form.Group>
                             </div>
+                          ))}
 
-                            {fieldConfigs[activeTab]?.map(
-                              (field, fieldIndex) => (
-                                <div key={fieldIndex} className="col-lg-3 pb-3">
-                                  <Form.Group>
-                                    <Form.Label>{field?.label}</Form.Label>
-                                    <Form.Control
-                                      type={field?.type}
-                                      max={today}
-                                      value={
-                                        submittedData[editIndex]?.[
+                          {/* Animal Stauts Form  */}
+                          {activeTab === `${animalName} stauts` && (
+                            <>
+                              {fieldConfigs[`${animalName}Status`]?.map(
+                                (field, index) => (
+                                  <div key={index} className="col-lg-3 pb-3">
+                                    <Form.Group>
+                                      <Form.Label>{field.label}</Form.Label>
+
+                                      {field?.type === "select" ? (
+                                        // ✅ Corrected Select Field
+                                        <Form.Select
+                                          {...register(field.name, {
+                                            required: field.required,
+                                          })}
+                                          max={today}
+                                          disabled={
+                                            !editActive && InputPreFillData
+                                          }
+                                        >
+                                          <option value="">
+                                            Select an option
+                                          </option>{" "}
+                                          {field?.options?.map((option, idx) => (
+                                            <option key={idx} value={option} max={today}>
+                                              {option}
+                                            </option>
+                                          ))}
+                                        </Form.Select>
+                                      ) : (
+                                        <Form.Control
+                                          max={today}
+                                          type={field.type}
+                                          {...register(field.name, {
+                                            required: field.required,
+                                          })}
+                                        />
+                                      )}
+                                    </Form.Group>
+                                  </div>
+                                )
+                              )}
+                            </>
+                          )}
+                        </div>
+                        <Button
+                          type="submit"
+                          className="record-btn"
+                        // disabled={editActive ? !isDirty : !!InputPreFillData}
+                        >
+                          Submit
+                        </Button>
+                      </Form>
+                    )}
+
+                    {/* Show Prefillled form Data */}
+                    {currentEditIndex !== null && activeTab !== "AnimalStatus" && fieldConfigs[activeTab] && (
+                      <>
+                        <div>
+                          <h4>Submitted Data</h4>
+                          <Form className="my-3">
+                            <div className="row mb-4">
+                              <div className="col-lg-3 pb-3">
+                                <Form.Group>
+                                  <Form.Label>Tag ID</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    value={submittedData[editIndex]?.tagId}
+                                    readOnly
+                                  />
+                                </Form.Group>
+                              </div>
+
+                              {fieldConfigs[activeTab]?.map(
+                                (field, fieldIndex) => (
+                                  <div key={fieldIndex} className="col-lg-3 pb-3">
+                                    <Form.Group>
+                                      <Form.Label>{field?.label}</Form.Label>
+                                      <Form.Control
+                                        type={field?.type}
+                                        max={today}
+                                        value={
+                                          submittedData[editIndex]?.[
                                           field.name
-                                        ] || ""
-                                      }
-                                      onChange={(e) => {
-                                        const newValue = e.target.value;
+                                          ] || ""
+                                        }
+                                        onChange={(e) => {
+                                          const newValue = e.target.value;
 
-                                        const updatedData = [...submittedData];
-                                        updatedData[editIndex] = {
-                                          ...updatedData[editIndex],
-                                          [field.name]: newValue,
-                                        };
-                                        setSubmittedData(updatedData);
-                                        setIsUpdate(true);
-                                        
-                                      }}
-                                    />
-                                  </Form.Group>
-                                </div>
-                              )
-                            )}
-                          </div>
+                                          const updatedData = [...submittedData];
+                                          updatedData[editIndex] = {
+                                            ...updatedData[editIndex],
+                                            [field.name]: newValue,
+                                          };
+                                          setSubmittedData(updatedData);
+                                          setIsUpdate(true);
 
-                          <Button
-                            type="button"
-                            className="btn-success px-4"
-                            onClick={() => handleUpdateApi(editIndex)}
-                            disabled={!isUpdate}
-                          >
-                            Update
-                          </Button>
+                                        }}
+                                      />
+                                    </Form.Group>
+                                  </div>
+                                )
+                              )}
+                            </div>
 
-                          <Button
-                            type="button"
-                            className="btn-danger mx-2"
-                            onClick={() => handleDeleteApi(editIndex)}
+                            <Button
+                              type="button"
+                              className="btn-success px-4"
+                              onClick={() => handleUpdateApi(editIndex)}
+                              disabled={!isUpdate}
+                            >
+                              Update
+                            </Button>
+
+                            <Button
+                              type="button"
+                              className="btn-danger mx-2"
+                              onClick={() => handleDeleteApi(editIndex)}
                             // disabled={!isUpdate}
-                          >
-                            Delete
-                          </Button>
-                        </Form>
-                      </div>
-                    </>
-                  )}
+                            >
+                              Delete
+                            </Button>
+                          </Form>
+                        </div>
+                      </>
+                    )}
 
-                  {/* ============================= */}
-                  <div className="mt-4">
-                    {submittedData.length > 0 ? (
-                      // submittedData.map((data, index) => (
-                      <div className="table-responsive">
-                        <table class="table table-hover text-center align-middle">
-                          <thead>
-                            <tr>
-                              <th scope="col" className="heading text-nowrap">
-                                S No.
-                              </th>
-                              <th className="heading text-nowrap px-2">
-                                Tag Id
-                              </th>
-                              {fieldConfigs[activeTab]?.map((field, i) => (
-                                <th
-                                  key={i}
-                                  className="heading text-nowrap px-4"
-                                >
-                                  {field.label}
+                    {/* ============================= */}
+                    <div className="mt-4">
+                      {submittedData.length > 0 ? (
+                        // submittedData.map((data, index) => (
+                        <div className="table-responsive">
+                          <table class="table table-hover text-center align-middle">
+                            <thead>
+                              <tr>
+                                <th scope="col" className="heading text-nowrap">
+                                  S No.
                                 </th>
-                              ))}
-                               {activeTab !== "Vaccine" && (
-                              <th className="heading text-nowrap">Actions</th>
-                               )}
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {submittedData.map((data, index) => (
-                              <tr
-                                key={index}
-                                role="button"
-                                className={`row-border row-shadow ${
-                                  index % 2 === 0
-                                    ? "bg-light-blue"
-                                    : "bg-light-gray"
-                                }`}
-                              >
-                                <td className="text-nowrap">{index + 1}</td>
-                                <td className="text-nowrap">{data?.tagId}</td>
-                                {fieldConfigs[activeTab]?.map((field, i) => {
-                                  return (
-                                    <td key={i}>
-                                      {field?.type == "date"
-                                        ? new Date(data?.[field.name])
-                                            .toLocaleDateString("en-GB")
-                                            .replace(/\//g, "-")
-                                        : data?.[field.name] || "-"}
-                                    </td>
-                                  );
-                                })}
+                                <th className="heading text-nowrap px-2">
+                                  Tag Id
+                                </th>
+                                {fieldConfigs[activeTab]?.map((field, i) => (
+                                  <th
+                                    key={i}
+                                    className="heading text-nowrap px-4"
+                                  >
+                                    {field.label}
+                                  </th>
+                                ))}
                                 {activeTab !== "Vaccine" && (
-                                  <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
-                                    <div
-                                      className="me-3"
-                                      onClick={() => {
-                                        setEditIndex(index); // open the form and load data
-                                        setShowForm(false); // hide blank form if open
-                                      }}
-                                    >
-                                      <GoPencil className="text-primary fs-5" />
-                                    </div>
-                                  </td>
+                                  <th className="heading text-nowrap">Actions</th>
                                 )}
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    ) : (
-                      <div>
-                        {activeTab !== "BasicDetails" && (
-                          <>
-                            <p className={!showForm ? "d-block" : "d-none"}>
-                              No Data Found .....
-                            </p>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </>
-              )}
-            </Card.Body>
-          </Card>
+                            </thead>
+                            <tbody>
+                              {submittedData.map((data, index) => (
+                                <tr
+                                  key={index}
+                                  role="button"
+                                  className={`row-border row-shadow ${index % 2 === 0
+                                      ? "bg-light-blue"
+                                      : "bg-light-gray"
+                                    }`}
+                                >
+                                  <td className="text-nowrap">{index + 1}</td>
+                                  <td className="text-nowrap">{data?.tagId}</td>
+                                  {fieldConfigs[activeTab]?.map((field, i) => {
+                                    return (
+                                      <td key={i}>
+                                        {field?.type == "date"
+                                          ? new Date(data?.[field.name])
+                                            .toLocaleDateString("en-GB")
+                                            .replace(/\//g, "-")
+                                          : data?.[field.name] || "-"}
+                                      </td>
+                                    );
+                                  })}
+                                  {activeTab !== "Vaccine" && (
+                                    <td className="d-flex align-items-center justify-content-center text-nowrap px-4 cart-text-truncate">
+                                      <div
+                                        className="me-3"
+                                        onClick={() => {
+                                          setEditIndex((prev) => ({
+                                            ...prev,
+                                            [activeTab]: index,
+                                          })); // open the form and load data
+                                          setShowForm(false); // hide blank form if open
+                                        }}
+                                      >
+                                        <GoPencil className="text-primary fs-5" />
+                                      </div>
+                                    </td>
+                                  )}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : (
+                        <div>
+                          {activeTab !== "BasicDetails" && (
+                            <>
+                              <p className={!showForm[activeTab]  ? "d-block" : "d-none"}>
+                                No Data Found .....
+                              </p>
+                            </>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </Card.Body>
+            </Card>
+          </div>
         </div>
-      </div>
       </div>
     </>
   );
