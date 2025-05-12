@@ -55,7 +55,7 @@ const Sidebar = () => {
         <div className="col-lg-12">
           <div className="sidebar bg-white border-end p-4">
             <div className="text-center mb-3">
-              <p className="mb-3 text-uppercase josefin-sans-font-family-600 fs-5 farmName-heading text-truncate">{setfarmHouseName}</p>
+              <p className="mb-3 text-uppercase josefin-sans-font-family-600 fs-5 farmName-heading ">{setfarmHouseName}</p>
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
 
                 <NavLink to={"/farmdata"}>
@@ -104,14 +104,14 @@ const Sidebar = () => {
               </NavLink>
 
               {/* <NavLink
-                to="/farmdata/child"
+                to="/addanimal"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Child
+                Add Animal
               </NavLink> */}
             </div>
 

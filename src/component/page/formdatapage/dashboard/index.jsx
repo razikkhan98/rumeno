@@ -242,8 +242,8 @@ const Dashboard = () => {
   ];
 
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-center font-24-500">Loading...</p>;
+  if (error) return <p className="text-center font-24-500">{error}</p>;
 
   return (
     <>
@@ -286,7 +286,7 @@ const Dashboard = () => {
                     {cardData?.map((card, index) => (
                       <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
                         <Card
-                          className={`dashboard-cards card-hover rounded-3 shadow px-lg-4 py-4 ${card.cardborder}`}
+                          className={`dashboard-cards card-hover rounded-3 px-lg-4 py-4 ${card.cardborder}`}
                           onClick={() => setSelectedCard(card)}
                         >
                           <div className="row gap-2 align-items-center justify-content-between">

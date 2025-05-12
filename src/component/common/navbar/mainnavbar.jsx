@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../assets/img/logo/logorumneo.svg";
 // import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import User from "../../assets/img/user/user-1.jpg";
+import User from "../../assets/img/user/user-13.jpg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../Context";
@@ -386,7 +386,7 @@ const Mainnav = () => {
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <NavLink to="/service" className="text-decoration-none">
+                      <NavLink to="/service#Veterinary" className="text-decoration-none">
                         <li className="cursor">Why Choose US?</li>
                       </NavLink>
                       <NavLink to="/consulting" className="text-decoration-none">
@@ -432,7 +432,7 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink
-                        to={"/dairyconsultant"}
+                        to={"/dairyconsultant#Service"}
                         className="text-decoration-none"
                       >
                         <li>About</li>

@@ -37,9 +37,18 @@ input[type=number]::-webkit-outer-spin-button {
   display: none;
 }
 .farmName-heading {
-  width: 210px;
+  display: block; /* or inline-block if needed */
+  width: 100%;
+  text-align: center;
   color: rgb(97, 178, 231);
   text-shadow: 1px 1px 2px #9dd8f4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scroll-section {
+  scroll-margin-top: 80px; /* If your header is 100px tall */
 }
 /* <------- Common Classes --------> */
 
@@ -2267,14 +2276,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* <------- Detail ------> */
-
+.basicdetail-heading{
+  display: flex;
+  justify-content: space-between;
+}
 .detail-head {
   font-size: 24px;
   font-weight: 500;
 }
 
 .detail-para {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--gray-color);
 }
@@ -2313,9 +2325,9 @@ input[type=number]::-webkit-outer-spin-button {
   color: white;
 } */
 .form-lable-detail {
-  color: var(--gray-color);
+  color: var(--chinese-black-color);
   font-size: 14px !important;
-  font-weight: 300 !important;
+  font-weight: 500 !important;
 }
 /* .form-control {
   color: rgba(112, 112, 112, 0.6) !important;
@@ -2363,6 +2375,14 @@ input[type=number]::-webkit-outer-spin-button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+@media (max-width: 580px) {
+  .basicdetail-heading{
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 /* <-----Parent & Child Card-----> */
@@ -3029,6 +3049,9 @@ input[type="radio"].payment-radio:checked::before {
 /* Dashboard Cards */
 .dashboard-cards {
   transition: "transform 0.3s ease, box-shadow 0.3s ease";
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: 0px 4px 10px 1px #54525226;
+
 }
 .dashboard-cards img {
   width: 100% !important;
