@@ -497,7 +497,7 @@ const Record = () => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [InputPreFillData, setInputPreFillData] = useState(null);
   const [editActive, setEditActive] = useState(false);
-  const [showForm, setShowForm] = useState({});
+  const [showForm, setShowForm] = useState(false);
   const [submittedData, setSubmittedData] = useState([]); // To store submitted data
   const [error, setError] = useState("");
 
@@ -522,9 +522,9 @@ const Record = () => {
   const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
   // const [editIndices, setEditIndices] = useState({});
-  const [editIndex, setEditIndex] = useState({});
+  const [editIndex, setEditIndex] = useState(null);
 
-  const currentEditIndex = editIndex[activeTab] ?? null;
+  // const currentEditIndex = editIndex[activeTab] ?? null;
   const uid = sessionStorage.getItem("uid");
 
   // Show all Records Postwean, milk etc.....
@@ -610,7 +610,7 @@ const Record = () => {
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://2b0e-2401-4900-8820-f438-55be-da17-80eb-d521.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `https://643d-106-222-219-54.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
@@ -684,6 +684,7 @@ const Record = () => {
         // } else {
         //   setTimeout(() => navigate(`/farmdata/child`), 1000);
         // }
+        
       } else {
         throw new Error(response.data.message);
       }
@@ -775,10 +776,7 @@ const Record = () => {
       ...prev,
       [activeTab]: !prev[activeTab],
     }));
-     setEditIndex((prev) => ({
-    ...prev,
-    [activeTab]: null,
-  }));
+      setEditIndex(null);
     reset();
   };
   useEffect(() => {
@@ -1050,7 +1048,7 @@ const Record = () => {
                     )}
 
                     {/* Show Prefillled form Data */}
-                    {currentEditIndex !== null && activeTab !== "AnimalStatus" && fieldConfigs[activeTab] && (
+                    {editIndex !== null && activeTab !== "AnimalStatus" && fieldConfigs[activeTab] && (
                       <>
                         <div>
                           <h4>Submitted Data</h4>
@@ -1176,10 +1174,7 @@ const Record = () => {
                                       <div
                                         className="me-3"
                                         onClick={() => {
-                                          setEditIndex((prev) => ({
-                                            ...prev,
-                                            [activeTab]: index,
-                                          })); // open the form and load data
+                                          setEditIndex(index); // open the form and load data
                                           setShowForm(false); // hide blank form if open
                                         }}
                                       >
