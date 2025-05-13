@@ -42,6 +42,7 @@ import ServiceFaq from "./component/page/service/faq";
 import HumanConsumable from "./component/page/products/human";
 import CropSeed from "./component/page/products/cropSeed";
 import AddAnimalCards from "./component/page/formdatapage/addAnimalCards/addAnimalCards";
+import Language from "./component/language/language";
 
 
 const App = () => {
@@ -58,7 +59,8 @@ const App = () => {
       <CartProvider>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Main />} />Poultryproduct
+          <Route path="/" element={<Language />} />
+          <Route path="/main" element={<Main />} />Poultryproduct
           <Route path="/goatproduct" element={<Products />} />
           <Route path="/allproducts" element={<AllProducts />} />
           <Route path="/equipment" element={<FarmHouseEquipment />} />

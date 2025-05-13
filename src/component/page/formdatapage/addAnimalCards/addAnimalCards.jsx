@@ -17,21 +17,21 @@ const AddAnimalCards = () => {
             title: "Animal Purchase",
             cardborder: "card-orange-border",
             cardcircle: "card-orange-circle",
-              img: Purchase,
-              type: "purchase",
+            img: Purchase,
+            type: "purchase",
         },
         {
             title: "Animal Register",
             cardborder: "card-blue-border",
             cardcircle: "card-blue-circle",
-              img: FarmEntry,
-              type : "a-register"
+            img: FarmEntry,
+            type : "a-register"
         },
         // {
         //     title: "New Born Register",
         //     cardborder: "card-orange-border",
         //     cardcircle: "card-orange-circle",
-        //       img: NewBorn,
+        //     img: NewBorn,
         // },
     ];
     // const handleCardClick = (card) => {

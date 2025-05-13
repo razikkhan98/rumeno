@@ -85,15 +85,15 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
 
-      if (type !== "edit") {
-        await postData(`/vaccine/register-animal-vaccine`,
-          {
-            animalTagId: formData.tagId,
-            birthDate: formData.birthDate,
-            uid: formData.uid,
-          }
-        );
-      }
+      // if (type !== "edit") {
+      //   await postData(`/vaccine/register-animal-vaccine`,
+      //     {
+      //       animalTagId: formData.tagId,
+      //       birthDate: formData.birthDate,
+      //       uid: formData.uid,
+      //     }
+      //   );
+      // }
 
       if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
@@ -148,12 +148,15 @@ const GoatDetailForm = () => {
         // setLoading(false);
       }
     };
+    // if(type !== "edit"){
+    //   fetchAnimals();
+    // }
     fetchAnimals();
   }, []); // Fetch only once on mount
 
   useEffect(() => {
     if (animalData) {
-      console.log('animalData: ', animalData);
+      console.log('animalData.fatherTag: ', animalData.fatherTag);
       // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
       // 
       // const animalData = filteredAnimals[storedIndex];
@@ -191,11 +194,12 @@ const GoatDetailForm = () => {
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
       setIsPurchased(animalData.purchaseDate ? true : false);
       setValue("isPregnant", animalData.currentPregnancyMonth ? true : false);
-      setValue("isVaccine", animalData.lastVaccineName ? true : false);
+      console.log('animalData.lastVaccineName: ', animalData.lastVaccineName);
+      setValue("isVaccine", animalData.lastVaccineName == "false" ? false : true);
     }
-  }, [setValue]); // Fetch only once on mount
+  }, [ setValue]); // Fetch only once on mount
 
-
+  
 
   // const [gender, setGender] = useState("");
   // console.log('gender: ', gender);
@@ -208,11 +212,6 @@ const GoatDetailForm = () => {
 
   let today = new Date().toISOString().split('T')[0];
   document.getElementsByName("somedate")[0]?.setAttribute('max', today)
-
-
-
-
-
 
   return (
     <>
@@ -352,7 +351,7 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate", {
-                      required: validation === "purchase" ? false : "Birth Date is required",
+                      required: validation === "a-register" ? "Birth Date is required" : false,
                     })}
                   />
                   {validation === "purchase" ? "" : errors.birthDate && (
@@ -368,18 +367,23 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("motherTag", {
-                      required: isPurchased ? false : "Mother Tag is required",
+                      required: validation === "a-register" ? "Mother Tag is required" : false,
                     })}
                   >
                     <option value="">Select Tag Id</option>
                     {/* <option value="not applicable">Not Applicable</option> */}
-                    {getAnimalTagIds?.femaleTagIds?.map((tagId) => (
+                    {type !== "edit" &&
+                    getAnimalTagIds?.femaleTagIds?.map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>
                     ))}
+
+                  {type === "edit" && animalData?.motherTag && (
+                      <option value={animalData.motherTag}>{animalData.motherTag}</option>
+                    )}
                   </select>
-                  {isPurchased ? "" : errors.motherTag && (
+                  {validation === "purchase" ? "" : errors.motherTag && (
                     <p className="text-danger">{errors.motherTag.message}</p>
                   )}
                 </div>
@@ -389,17 +393,19 @@ const GoatDetailForm = () => {
                   <select
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
-                  // {...register("fatherTag", {
-                  //   required: isPurchased ? false : "Father Tag is required",
-                  // })}
+                    {...register("fatherTag")}
                   >
                     <option value="">Select Tag Id</option>
+                    
                     <option value="not applicable">Not Applicable</option>
-                    {getAnimalTagIds?.maleTagIds?.map((tagId) => (
+                    {type !== "edit" && getAnimalTagIds?.maleTagIds?.map((tagId) => (
                       <option key={tagId} value={tagId}>
                         {tagId}
                       </option>
                     ))}
+                    {type === "edit" && animalData?.fatherTag && (
+                      <option value={animalData.fatherTag}>{animalData.fatherTag}</option>
+                    )}
                   </select>
                   {/* {isPurchased ? "" : errors.fatherTag && (
                     <p className="text-danger">{errors.fatherTag.message}</p>
@@ -455,7 +461,7 @@ const GoatDetailForm = () => {
                   </label>
                   <input
                     type="date"
-                    // max={today}
+                    max={today}
                     className="form-control form-control-detail"
                     {...register("motherWeanDate")}
                   />
@@ -476,6 +482,7 @@ const GoatDetailForm = () => {
                   </select>
                 </div>
 
+                {/* {type === "edit" || validation === "purchase" && */}
                   <div className="col-lg-3 col-6 lh-lg">
                     <label className="form-lable-detail">
                       Date of Purchasing
@@ -486,13 +493,14 @@ const GoatDetailForm = () => {
                       // disabled={birthDate}
                       className="form-control form-control-detail"
                       {...register("purchaseDate", {
-                        required: validation === "a-register" ? false : "Purchase Date is required",
+                        required: validation === "purchase" ? "Purchase Date is required" : false,
                       })}
                     />
                     { validation === "a-register" ? "" : errors.purchaseDate && (
                       <p className="text-danger">{errors.purchaseDate.message}</p>
                     )}
-                  </div>
+                  </div> 
+                    {/* } */}
                 {/* {purchaseDate && (
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">
