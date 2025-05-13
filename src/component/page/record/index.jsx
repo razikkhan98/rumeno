@@ -166,22 +166,22 @@ const Record = () => {
         label: "Vaccine Name",
         type: "select",
         options: [
-          "Deworming (Internal)",
-          "Deworming (External)",
-          "PPR",
-          "Enterotoxaemia (ET) + (TT)",
-          "Hemorrhagic septicaemia (HS)",
-          "Foot and Mouth Disease (FMD)",
-          "Goat Pox",
-          "Booster (ET) + (TT)",
-          "Booster (HS)",
-          "Booster (FMD)",
-          "Booster Goat Pox",
-          "Repeat PPR",
-          "Repeat ET + TT",
-          "Repeat HS",
-          "Repeat FMD",
-          "Repeat Goat Pox",
+          { label: "Deworming (Internal)", value: "Deworming" },
+          { label: "Deworming (External)", value: "Deworming" },
+          { label: "PPR", value: "PPR" },
+          { label: "Enterotoxaemia (ET) + (TT)", value: "ET + TT" },
+          { label: "Hemorrhagic septicaemia (HS)", value: "HS" },
+          { label: "Foot and Mouth Disease (FMD)", value: "FMD" },
+          { label: "Goat Pox", value: "Goat Pox" },
+          { label: "Booster (ET) + (TT)", value: "Booster ET + TT" },
+          { label: "Booster (HS)", value: "Booster HS" },
+          { label: "Booster (FMD)", value: "Booster FMD" },
+          { label: "Booster Goat Pox", value: "Booster Goat Pox" },
+          { label: "Repeat PPR", value: "Repeat PPR" },
+          { label: "Repeat ET + TT", value: "Repeat ET + TT" },
+          { label: "Repeat HS", value: "Repeat HS" },
+          { label: "Repeat FMD", value: "Repeat FMD" },
+          { label: "Repeat Goat Pox", value: "Repeat Goat Pox" },
         ],
         required: true,
       },
@@ -684,7 +684,7 @@ const Record = () => {
         // } else {
         //   setTimeout(() => navigate(`/farmdata/child`), 1000);
         // }
-        
+
       } else {
         throw new Error(response.data.message);
       }
@@ -776,7 +776,7 @@ const Record = () => {
       ...prev,
       [activeTab]: !prev[activeTab],
     }));
-      setEditIndex(null);
+    setEditIndex(null);
     reset();
   };
   useEffect(() => {
@@ -966,8 +966,8 @@ const Record = () => {
                                     <option value="">Select an option</option>{" "}
                                     {/* Placeholder */}
                                     {field?.options?.map((option, idx) => (
-                                      <option key={idx} value={option}>
-                                        {option}
+                                      <option key={idx} value={option.value}>
+                                        {option.label}
                                       </option>
                                     ))}
                                   </Form.Select>
@@ -1152,8 +1152,8 @@ const Record = () => {
                                   key={index}
                                   role="button"
                                   className={`row-border row-shadow ${index % 2 === 0
-                                      ? "bg-light-blue"
-                                      : "bg-light-gray"
+                                    ? "bg-light-blue"
+                                    : "bg-light-gray"
                                     }`}
                                 >
                                   <td className="text-nowrap">{index + 1}</td>
@@ -1191,7 +1191,7 @@ const Record = () => {
                         <div>
                           {activeTab !== "BasicDetails" && (
                             <>
-                              <p className={!showForm[activeTab]  ? "d-block" : "d-none"}>
+                              <p className={!showForm[activeTab] ? "d-block" : "d-none"}>
                                 No Data Found .....
                               </p>
                             </>

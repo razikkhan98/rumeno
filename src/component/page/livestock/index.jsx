@@ -46,7 +46,8 @@ const Livestock = () => {
       btnLink: "/protraining",
     },
     {
-      description: ["Coming Soon . . . . . . . . . ."],
+      textclass: "coming-soon-text",
+      description: ["Coming Soon . . . . . . . . ."],
       showButton: false,
     },
   ];
@@ -96,7 +97,7 @@ const Livestock = () => {
 
                       <p className="mb-0 livestock-text">
                         {item.description.map((para, i) => (
-                          <span key={i}>
+                          <span key={i} className={`${item.textclass}`}>
                             {para}
                             <br />
                           </span>
