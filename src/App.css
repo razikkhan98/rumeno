@@ -8,6 +8,7 @@
 
 body {
   font-family: "Poppins", serif;
+  top: 0px !important;
 }
 
 html,
@@ -231,6 +232,220 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .border-radius-20 {
   border-radius: 20px;
+}
+
+
+/* <------- Translate --------> */
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none;
+}
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none;
+}
+.VIpgJd-ZVi9od-ORHb {
+  display: none;
+}
+div.goog-te-gadget {
+  font-size: 0px;
+}
+.VIpgJd-ZVi9od-aZ2wEe {
+  display: none;
+}
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO {
+  display: none;
+}
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+  display: none;
+}
+/* #translate .goog-te-gadget > div:nth-child(2) {
+  display: none;
+} */
+.goog-te-combo {
+  padding: 8px 5px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.goog-te-gadget .goog-te-combo:nth-child(1) {
+  display: none !important;
+}
+
+/* @media (max-width: 580px) {
+  .goog-te-gadget .goog-te-combo:nth-child(3) {
+  display: none !important;
+  }
+  .goog-te-gadget .goog-te-combo:nth-child(4) {
+    display: none !important;
+  }
+} */
+/* .goog-te-gadget .goog-te-combo:nth-child(2) {
+  display: none !important;
+} */
+.area {
+  background: #4e54c8 !important;
+  width: 100%;
+  height: 100vh;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+}
+.circles li:first-child {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+.circles li:nth-child(3) {
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+.circles li:nth-child(5) {
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+    border-radius: 0;
+  }
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+.lang-box {
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  border-radius: 12px;
+  backdrop-filter: brightness(2.7) !important;
+  position: absolute;
+  bottom: 35%;
+}
+.lang-img img {
+  width: 100%;
+  border-radius: 12px;
+}
+.lang-box2 {
+  width: 100%;
+  height: 100%;
+  align-items: baseline;
+  display: inline-grid;
+}
+.lang-link a {
+  text-decoration: none;
+}
+.btn-grad-bt {
+  background-image: linear-gradient(
+    to right,
+    #16a085 0,
+    #f4d03f 51%,
+    #16a085 100%
+  );
+  margin: 10px;
+  padding: 6px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #fff;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  border: 0;
+}
+.btn-grad-bt:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+.gradient-custom-2 {
+  background: linear-gradient(to right, #87ceeb, #dd3675, #dd3675, #ee7724);
+  border: none;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .lang-box1 {
+    justify-content: center;
+    display: flex;
+  }
+  .lang-img img {
+    width: 100%;
+    height: auto;
+  }
+  .lang-box2 {
+    margin: 10px 0;
+  }
+  .lang-link {
+    margin: 10px 0;
+  }
 }
 
 /* <------- Main Navbar ---------> */

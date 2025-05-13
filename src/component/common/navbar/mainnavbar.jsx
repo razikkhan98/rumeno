@@ -9,6 +9,12 @@ import { CartContext } from "../Context";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import FarmerDetails from "../farmerDetailsModal/farmerDetails";
 import { useNavigate } from "react-router-dom";
+import TranslateButton from "../translate/translate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLanguage,
+} from "@fortawesome/free-solid-svg-icons";
+
 
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -124,6 +130,12 @@ const Mainnav = () => {
       setPreviewUrl(URL.createObjectURL(selectedImage));
     }
   }
+
+  const [showSelect, setShowSelect] = useState(false);
+
+  const toggleSelect = () => {
+    setShowSelect(!showSelect);
+  };
   
 
   return (
@@ -142,6 +154,7 @@ const Mainnav = () => {
 
         {/* Action Buttons  for mobile screen*/}
         <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto">
+          
           <NavLink to="/cart">
             <div className="position-relative">
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
@@ -470,7 +483,10 @@ const Mainnav = () => {
                 </div>
               </li>
             </NavLink>
+            
+            
             <li className="d-lg-none nav-itme mt-2">
+              
               {isLoggedIn ? (
                 <>
                   {" "}
@@ -486,6 +502,17 @@ const Mainnav = () => {
 
         {/* Action Buttons for laptop screen */}
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
+          <NavLink>
+              <li className="h-100 gap-2 d-flex justify-content-center align-items-center">
+                  <FontAwesomeIcon
+                    type="button"
+                    onClick={toggleSelect}
+                    className="nav-lang-switch-icons m-0 h1 text-gray-color"
+                    icon={faLanguage}
+                  />
+                  {showSelect && <TranslateButton />}
+                </li>
+            </NavLink>
           {isLoggedIn ? (
             <>
               {" "}

@@ -149,12 +149,15 @@ const GoatDetailForm = () => {
         // setLoading(false);
       }
     };
+    // if(type !== "edit"){
+    //   fetchAnimals();
+    // }
     fetchAnimals();
   }, []); // Fetch only once on mount
 
   useEffect(() => {
     if (animalData) {
-      console.log('animalData: ', animalData);
+      console.log('animalData.fatherTag: ', animalData.fatherTag);
       // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
       // 
       // const animalData = filteredAnimals[storedIndex];
@@ -192,11 +195,12 @@ const GoatDetailForm = () => {
       setValue("currentPregnancyMonth", animalData.currentPregnancyMonth || "");
       setIsPurchased(animalData.purchaseDate ? true : false);
       setValue("isPregnant", animalData.currentPregnancyMonth ? true : false);
-      setValue("isVaccine", animalData.lastVaccineName ? true : false);
+      console.log('animalData.lastVaccineName: ', animalData.lastVaccineName);
+      setValue("isVaccine", animalData.lastVaccineName == "false" ? false : true);
     }
-  }, [setValue]); // Fetch only once on mount
+  }, [ setValue]); // Fetch only once on mount
 
-
+  
 
   // const [gender, setGender] = useState("");
   // console.log('gender: ', gender);
@@ -209,11 +213,6 @@ const GoatDetailForm = () => {
 
   let today = new Date().toISOString().split('T')[0];
   document.getElementsByName("somedate")[0]?.setAttribute('max', today)
-
-
-
-
-
 
   return (
     <>
@@ -432,6 +431,7 @@ const GoatDetailForm = () => {
                     {...register("fatherTag")}
                   >
                     <option value="">Select Tag Id</option>
+                    
                     <option value="not applicable">Not Applicable</option>
                     {type !== "edit" ? (
                       <>
