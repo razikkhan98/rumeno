@@ -36,14 +36,14 @@ const GoatDetailForm = () => {
   const location = useLocation();
   const uniqueId = location.state?.uniqueId;
   const animalData = location.state; // This will be the full animal object
- 
+
 
 
   // const tagId = location.state?.tagId;
   const queryParams = new URLSearchParams(location.search);
 
   const type = queryParams.get("type");
-  
+
   const validation = queryParams.get("validation");
   console.log('validation: ', validation);
 
@@ -85,15 +85,16 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
 
-      // if (type !== "edit") {
-      //   await postData(`/vaccine/register-animal-vaccine`,
-      //     {
-      //       animalTagId: formData.tagId,
-      //       birthDate: formData.birthDate,
-      //       uid: formData.uid,
-      //     }
-      //   );
-      // }
+      if (type !== "edit") {
+        await postData(`/vaccine/register-animal-vaccine`,
+          {
+            animalTagId: formData.tagId,
+            birthDate: formData.birthDate,
+            uid: formData.uid,
+            uniqueId: uniqueId,
+          }
+        );
+      }
 
       if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
@@ -304,6 +305,27 @@ const GoatDetailForm = () => {
                     <p className="text-danger">{errors.tagId.message}</p>
                   )}
                 </div>
+                {validation === "a-register" ? false : (
+                  <>
+                    <div className="col-lg-2 col-6 lh-lg">
+                      <label className="form-lable-detail">
+                        Date of Purchasing
+                      </label>
+                      <input
+                        type="date"
+                        max={today}
+                        // disabled={birthDate}
+                        className="form-control form-control-detail"
+                        {...register("purchaseDate", {
+                          required: type === "edit" || validation === "a-register" ? false : "Purchase Date is required",
+                        })}
+                      />
+                      {type === "edit" || validation === "a-register" ? "" : errors.purchaseDate && (
+                        <p className="text-danger">{errors.purchaseDate.message}</p>
+                      )}
+                    </div>
+                  </>
+                )}
 
                 <div className="col-lg-2 col-6 lh-lg">
                   <label className="form-lable-detail">Age Year</label>
@@ -311,6 +333,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Age"
+                    step="any"
                     {...register("ageYear")}
                   />
                 </div>
@@ -320,6 +343,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Age"
+                    step="any"
                     {...register("ageMonth")}
                   />
                 </div>
@@ -330,6 +354,7 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Height"
+                    step="any"
                     {...register("height")}
                   />
                 </div>
@@ -340,9 +365,14 @@ const GoatDetailForm = () => {
                     type="number"
                     className="form-control form-control-detail"
                     placeholder="Enter Weight"
+                    step="any"
                     {...register("weightKg")}
                   />
                 </div>
+
+              </div>
+
+              <div className="row mt-3">
                 <div className="col-lg-2 col-6 lh-lg">
                   <label className="form-lable-detail">Birth Date</label>
                   <input
@@ -351,39 +381,44 @@ const GoatDetailForm = () => {
                     // disabled={purchaseDate}
                     className="form-control form-control-detail"
                     {...register("birthDate", {
-                      required: validation === "a-register" ? "Birth Date is required" : false,
+                      required: type === "edit" || validation === "purchase" ? false : "Birth Date is required",
                     })}
                   />
-                  {validation === "purchase" ? "" : errors.birthDate && (
+                  {type === "edit" || validation === "purchase" ? "" : errors.birthDate && (
                     <p className="text-danger">{errors.birthDate.message}</p>
                   )}
                 </div>
-              </div>
 
-              <div className="row mt-3">
                 <div className="col-lg-2 col-6 lh-lg">
                   <label className="form-lable-detail">Mother Tag Id</label>
                   <select
                     // disabled={purchaseDate}
                     className="form-select form-control-detail"
                     {...register("motherTag", {
-                      required: validation === "a-register" ? "Mother Tag is required" : false,
+                      required: type === "edit" || validation === "purchase" ? false : "Mother Tag is required",
                     })}
                   >
                     <option value="">Select Tag Id</option>
                     {/* <option value="not applicable">Not Applicable</option> */}
-                    {type !== "edit" &&
-                    getAnimalTagIds?.femaleTagIds?.map((tagId) => (
-                      <option key={tagId} value={tagId}>
-                        {tagId}
-                      </option>
-                    ))}
-
-                  {type === "edit" && animalData?.motherTag && (
-                      <option value={animalData.motherTag}>{animalData.motherTag}</option>
+                    {type !== "edit" ? (
+                      <>
+                        {getAnimalTagIds?.femaleTagIds?.map((tagId) => (
+                          <option key={tagId} value={tagId}>
+                            {tagId}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {animalData?.motherTag && (
+                          <option key={animalData.motherTag} value={animalData.motherTag}>
+                            {animalData.motherTag}
+                          </option>
+                        )}
+                      </>
                     )}
                   </select>
-                  {validation === "purchase" ? "" : errors.motherTag && (
+                  {type === "edit" || validation === "purchase" ? "" : errors.motherTag && (
                     <p className="text-danger">{errors.motherTag.message}</p>
                   )}
                 </div>
@@ -398,13 +433,22 @@ const GoatDetailForm = () => {
                     <option value="">Select Tag Id</option>
                     
                     <option value="not applicable">Not Applicable</option>
-                    {type !== "edit" && getAnimalTagIds?.maleTagIds?.map((tagId) => (
-                      <option key={tagId} value={tagId}>
-                        {tagId}
-                      </option>
-                    ))}
-                    {type === "edit" && animalData?.fatherTag && (
-                      <option value={animalData.fatherTag}>{animalData.fatherTag}</option>
+                    {type !== "edit" ? (
+                      <>
+                        {getAnimalTagIds?.maleTagIds?.map((tagId) => (
+                          <option key={tagId} value={tagId}>
+                            {tagId}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {animalData?.fatherTag && (
+                          <option key={animalData.fatherTag} value={animalData.fatherTag}>
+                            {animalData.fatherTag}
+                          </option>
+                        )}
+                      </>
                     )}
                   </select>
                   {/* {isPurchased ? "" : errors.fatherTag && (
@@ -455,18 +499,19 @@ const GoatDetailForm = () => {
               </div>
 
               <div className="row mt-3">
-                <div className="col-lg-3 col-6 lh-lg">
-                  <label className="form-lable-detail">
-                    Mother's wean Date
-                  </label>
-                  <input
-                    type="date"
-                    max={today}
-                    className="form-control form-control-detail"
-                    {...register("motherWeanDate")}
-                  />
-                </div>
-
+                {validation !== "a-register" ? false : (
+                  <div className="col-lg-3 col-6 lh-lg">
+                    <label className="form-lable-detail">
+                      Mother's wean Date
+                    </label>
+                    <input
+                      type="date"
+                      // max={today}
+                      className="form-control form-control-detail"
+                      {...register("motherWeanDate")}
+                    />
+                  </div>
+                )}
                 <div className="col-lg-3 col-6 lh-lg">
                   <label className="form-lable-detail">Body Score</label>
                   <select
@@ -482,25 +527,16 @@ const GoatDetailForm = () => {
                   </select>
                 </div>
 
-                {/* {type === "edit" || validation === "purchase" && */}
-                  <div className="col-lg-3 col-6 lh-lg">
-                    <label className="form-lable-detail">
-                      Date of Purchasing
-                    </label>
-                    <input
-                      type="date"
-                      max={today}
-                      // disabled={birthDate}
-                      className="form-control form-control-detail"
-                      {...register("purchaseDate", {
-                        required: validation === "purchase" ? "Purchase Date is required" : false,
-                      })}
-                    />
-                    { validation === "a-register" ? "" : errors.purchaseDate && (
-                      <p className="text-danger">{errors.purchaseDate.message}</p>
-                    )}
-                  </div> 
-                    {/* } */}
+                <div className="col-lg-4 lh-lg">
+                  <label className="form-lable-detail">Comments (if any)</label>
+                  <input
+                    type="text"
+                    className="form-control form-control-detail"
+                    placeholder="Enter comment"
+                    {...register("comments")}
+                  />
+                </div>
+
                 {/* {purchaseDate && (
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">
@@ -531,17 +567,8 @@ const GoatDetailForm = () => {
               {/* <div className="row mt-3">
               </div> */}
 
-              <div className="row mt-3">
-                <div className="col-lg-4 lh-lg">
-                  <label className="form-lable-detail">Comments (if any)</label>
-                  <input
-                    type="text"
-                    className="form-control form-control-detail"
-                    placeholder="Enter comment"
-                    {...register("comments")}
-                  />
-                </div>
-              </div>
+              {/* <div className="row mt-3">
+              </div> */}
 
               <div className="row mt-3">
                 {gender === "Female" && (
@@ -635,7 +662,15 @@ const GoatDetailForm = () => {
                   </div>
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">
+                     {validation === "a-register" ?(
+                      <>
                       Last Vaccine Name
+                      </>
+                     ) : (
+                       <>
+                       Vaccine <span className="font-12-500">(Before Purchase Date)</span>
+                      </>
+                     )}
                     </label>
                     <input
                       type="text"
@@ -708,7 +743,7 @@ const GoatDetailForm = () => {
               </div> */}
 
 
-              <div className="col-lg-3 pt-5 pe-5">
+              <div className="col-lg-3 py-5 pe-5">
                 <button
                   type="submit"
                   className="btn w-100 text-white py-2 rounded-pill"

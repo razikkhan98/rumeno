@@ -104,14 +104,14 @@ const Sidebar = () => {
               </NavLink>
 
               {/* <NavLink
-                to="/farmdata/child"
+                to="/addanimal"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Child
+                Add Animal
               </NavLink> */}
             </div>
 

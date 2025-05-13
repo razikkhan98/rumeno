@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import Goat from "../../assets/img/goatfeed/goatfeed.png";
 import Cattle from "../../assets/img/goatfeed/cattle-imgg.jpg";
 import Dog from "../../assets/img/goatfeed/dog.jpg";
-import Cow from "../../assets/img/goatfeed/cowimg.png";
+import Poultry from "../../assets/img/goatfeed/poultry-1.jpg";
 import Fish from "../../assets/img/goatfeed/FISH1.webp";
 import Pigeon from "../../assets/img/goatfeed/pigeon.jpg";
 
@@ -44,7 +44,7 @@ const feeddata = [
   },
 ];
 
-const images = [Goat, Cattle, Dog, Cow, Fish, Pigeon];
+const images = [Goat, Cattle, Dog, Poultry, Fish, Pigeon];
 
 const Goatfeed = () => {
   // const [activeIndex, setActiveIndex] = useState(0);

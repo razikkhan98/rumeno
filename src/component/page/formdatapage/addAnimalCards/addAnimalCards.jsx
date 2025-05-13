@@ -21,7 +21,7 @@ const AddAnimalCards = () => {
             type: "purchase",
         },
         {
-            title: "Animal Register",
+            title: "New Born",
             cardborder: "card-blue-border",
             cardcircle: "card-blue-circle",
             img: FarmEntry,

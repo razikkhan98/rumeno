@@ -242,8 +242,8 @@ const Dashboard = () => {
   ];
 
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-center font-24-500">Loading...</p>;
+  if (error) return <p className="text-center font-24-500">{error}</p>;
 
   return (
     <>
