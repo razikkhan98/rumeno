@@ -136,6 +136,11 @@ const Mainnav = () => {
   const toggleSelect = () => {
     setShowSelect(!showSelect);
   };
+
+  const [showLangauge, setShowLanguage] = useState(false);
+  const toggleLang = () => {
+    setShowLanguage(!showLangauge);
+  }
   
 
   return (
@@ -497,6 +502,17 @@ const Mainnav = () => {
                 <></>
               )}
             </li>
+            <NavLink className="d-lg-none">
+              <li className="h-100 gap-2 d-flex justify-content-center align-items-center">
+                  <FontAwesomeIcon
+                    type="button"
+                    onClick={toggleLang}
+                    className="nav-lang-switch-icons m-0 h1 text-gray-color"
+                    icon={faLanguage}
+                  />
+                  {showLangauge && <TranslateButton />}
+                </li>
+            </NavLink>
           </ul>
         </div>
 
