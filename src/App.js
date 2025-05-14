@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
@@ -43,6 +43,8 @@ import HumanConsumable from "./component/page/products/human";
 import CropSeed from "./component/page/products/cropSeed";
 import AddAnimalCards from "./component/page/formdatapage/addAnimalCards/addAnimalCards";
 import Language from "./component/language/language";
+import axios from "axios";
+import { API_BASE_URL } from "./component/common/APIs/api";
 
 
 const App = () => {
@@ -51,6 +53,25 @@ const App = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    const fetchVaccineAlerts = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/vaccine/alert-vaccine`);
+        console.log('response: ', response);
+      } catch (error) {
+      }
+    };
+
+    // Initial fetch
+    fetchVaccineAlerts();
+
+    // Set interval to fetch every 10 seconds
+    const interval = setInterval(() => {
+      fetchVaccineAlerts();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   // return null;
 

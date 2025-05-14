@@ -170,7 +170,7 @@ const TranslateButton = () => {
     const loadGoogleTranslate = () => {
       window.google.translate.TranslateElement(
         {
-          pageLanguage: "en",
+          pageLanguage: "en,hi",
           autoDisplay: false,
           includedLanguages: "en,hi,mr,gu,pa,bn,ur,te,ta,kn,or,ml,as",
           layout:

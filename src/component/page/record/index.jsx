@@ -610,7 +610,7 @@ const Record = () => {
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://643d-106-222-219-54.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `https://e398-2401-4900-8820-b2c5-9ced-1af6-c83e-e3cc.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true",

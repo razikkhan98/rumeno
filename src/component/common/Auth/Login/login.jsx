@@ -61,7 +61,7 @@ const Login = () => {
         theme: "light",
         transition: Bounce,
       });
-      setTimeout(() => navigate("/"), 1000);
+      setTimeout(() => navigate("/main"), 1000);
     } catch (error) {
       toast.error(error?.message || "Login failed!", {
         position: "top-right",
