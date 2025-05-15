@@ -490,7 +490,7 @@ const Mainnav = () => {
             </NavLink>
             
             
-            <li className="d-lg-none nav-itme mt-2">
+            <li className="d-lg-none nav-item mt-2">
               
               {isLoggedIn ? (
                 <>
@@ -502,7 +502,7 @@ const Mainnav = () => {
                 <></>
               )}
             </li>
-            <NavLink className="d-lg-none">
+            <NavLink className="d-lg-none mt-2">
               <li className="h-100 gap-2 d-flex justify-content-center align-items-center">
                   <FontAwesomeIcon
                     type="button"
