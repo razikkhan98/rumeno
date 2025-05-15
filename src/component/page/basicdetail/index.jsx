@@ -85,17 +85,6 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
 
-      if (type !== "edit") {
-        await postData(`/vaccine/register-animal-vaccine`,
-          {
-            animalTagId: formData.tagId,
-            birthDate: formData.birthDate,
-            uid: formData.uid,
-            uniqueId: uniqueId,
-          }
-        );
-      }
-
       if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
           `Animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -159,7 +148,6 @@ const GoatDetailForm = () => {
     if (animalData) {
       console.log('animalData.fatherTag: ', animalData.fatherTag);
       // const filteredAnimals = response.data?.filter((animal) => animal?.animalName === selectedAnimal);
-      // 
       // const animalData = filteredAnimals[storedIndex];
       setAnimalUniqueId(animalData.uniqueId)
       // localStorage.removeItem("currentIndex");
@@ -213,6 +201,18 @@ const GoatDetailForm = () => {
 
   let today = new Date().toISOString().split('T')[0];
   document.getElementsByName("somedate")[0]?.setAttribute('max', today)
+
+
+  const updateSeriesType = (type) => {
+  localStorage.setItem("seriesType", type);
+  setSeriesType(type);
+};
+
+
+  const [seriesType, setSeriesType] = useState(() => {
+  return localStorage.getItem("seriesType") || null;
+  });
+
 
   return (
     <>
@@ -299,6 +299,31 @@ const GoatDetailForm = () => {
                     placeholder="Enter Tag ID"
                     {...register("tagId", {
                       required: "Tag ID is required",
+                      validate: (value) => {
+                        if (!seriesType) {
+                          if (/^0[1-9][0-9]*$/.test(value)) {
+                            updateSeriesType("withZero");
+                            return true;
+                          } else if (/^[1-9][0-9]*$/.test(value)) {
+                            updateSeriesType("withoutZero");
+                            return true;
+                          } else {
+                            return "Invalid Tag ID format";
+                          }
+                        }
+
+                        if (seriesType === "withZero") {
+                          return /^0[1-9][0-9]*$/.test(value) || "Use format like 01, 02";
+                        } else if (seriesType === "withoutZero") {
+                          return /^[1-9][0-9]*$/.test(value) || "Use format like 1, 2 ";
+                        }
+
+                        return true;
+                      }
+                      
+                        // value.startsWith("0") && (value.length === 1 || value[1] !== "0")
+                        //   ? true
+                        //   : "Tag ID must start with 0",
                     })}
                   />
                   {errors.tagId && (
