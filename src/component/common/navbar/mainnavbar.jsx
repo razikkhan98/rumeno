@@ -276,10 +276,10 @@ const Mainnav = () => {
         >
           {/* Links Section */}
           <ul className="navbar-nav gap-lg-4 me-auto mb-2 mb-lg-0 text-center">
-            <NavLink to={"/"} className={"text-decoration-none"}>
+            <NavLink to={"/main"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${String(location?.pathname) === "/" ? "active" : ""
+                  className={`nav-link ${String(location?.pathname) === "/main" ? "active" : ""
                     }`}
                   onClick={() => handleLinkClick("Home")}
                 >

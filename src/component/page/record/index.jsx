@@ -510,6 +510,7 @@ const Record = () => {
     formState: { isDirty },
   } = useForm();
   const location = useLocation();
+  const defaultTab = location.state?.tab;
   const parentId = location.state?.parentId;
   const motherTag = location?.state?.motherTag;
   const fatherTag = location?.state?.fatherTag;
@@ -517,9 +518,9 @@ const Record = () => {
   const uniqueId = location.state?.uniqueId;
   const kidId = location.state?.kidId;
   const tagId = location.state?.tagId;
-  const { animalData = {}, defaultForm = "BasicDetails" } =
-    location.state || {};
-  const [activeTab, setActiveTab] = useState(defaultForm || "PostWean");
+  const { animalData = {}, defaultForm = "BasicDetails" } = location.state || {};
+  console.log('animalData: ', animalData);
+  const [activeTab, setActiveTab] = useState(defaultTab || defaultForm);
   const [selectedAnimal, setSelectedAnimal] = useState(animalData);
   // const [editIndices, setEditIndices] = useState({});
   const [editIndex, setEditIndex] = useState(null);
@@ -583,6 +584,7 @@ const Record = () => {
           },
         }
       );
+      // console.log('response:basic ', response);
 
       const allAnimals = response.data.animals || [];
       const ShowKids = allAnimals.filter(
@@ -610,7 +612,7 @@ const Record = () => {
     const fetchAnimals = async () => {
       try {
         const response = await axios.get(
-          `https://e398-2401-4900-8820-b2c5-9ced-1af6-c83e-e3cc.ngrok-free.app/rumeno/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
+          `${API_BASE_URL}/user/animaldata/newEntity/getTagIdsByGender?animalName=${animalName}&uid=${uid}`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true",
@@ -618,8 +620,6 @@ const Record = () => {
             },
           }
         );
-        console.log('response: gebder======== ', response);
-
         setGetAnimalTagIds(response.data);
       } catch (error) {
         // toast.error(

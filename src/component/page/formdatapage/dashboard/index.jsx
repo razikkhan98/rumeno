@@ -195,6 +195,8 @@ const Dashboard = () => {
       img: Vaccine,
       value: stats.VaccineCount || " ",
       details: stats.VaccineData || [],
+      tab: "Vaccine",
+
     },
     // {
     //   title: "Post Wean",
@@ -224,6 +226,8 @@ const Dashboard = () => {
       img: Deworm,
       value: stats.DewormCount || " ",
       details: stats.DewormData || [],
+      tab: "Deworm",
+
     },
     // {
     //   title: "Farm Sanitation",
@@ -315,7 +319,7 @@ const Dashboard = () => {
               {selectedCard && (
                 <div className="mt-4">
                   {/* <h5>{selectedCard.title} Details</h5> */}
-                  <DashboardTable data={selectedCard?.details} />
+                  <DashboardTable data={selectedCard?.details}  title={selectedCard?.tab}/>
                 </div>
               )}
             </div>
