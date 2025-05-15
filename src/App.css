@@ -267,9 +267,9 @@ div.goog-te-gadget {
   border-radius: 5px;
   background-color: #ffffff;
 }
-.goog-te-gadget .goog-te-combo:nth-child(1) {
+/* .goog-te-gadget .goog-te-combo:nth-child(1) {
   display: none !important;
-}
+} */
 
 /* @media (max-width: 580px) {
   .goog-te-gadget .goog-te-combo:nth-child(3) {
@@ -3324,4 +3324,7 @@ tr.bg-light-gray td {
   align-items: center;
   justify-content: center;
   /* margin-top: 20px; */
+}
+#goog-gt-tt{
+  display: none !important;
 }

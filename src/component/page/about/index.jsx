@@ -55,7 +55,7 @@ const About = () => {
                     <img src={Slide2} alt="Loading" />
                   </div>
                 </div> */}
-                <div className="col-lg-5">
+                <div className="col-lg-6">
                   <div className="about-content py-2">
                     <p className="text-uppercase responsive-heading about-heading">
                       About Rumeno Farmotech
@@ -87,7 +87,7 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                <div className="col-lg-6 d-flex align-items-center">
                   <div className="row py-lg-0 py-3">
                     <div className="col-sm-6 offset-sm-1 mb-2">
                       <img src={About1} className="w-100 img-fluid" alt="Loading" />
