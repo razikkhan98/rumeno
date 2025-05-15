@@ -20,6 +20,7 @@ const Sidebar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const location = useLocation();
   // const selectedAnimal = location.state?.animal; // Default: Goat
+  const setfarmHouseName = sessionStorage?.getItem("farmHouseName");
   const user = sessionStorage?.getItem("animalName");
   const selectedAnimal = user ? user : "Goat";
 
@@ -32,21 +33,21 @@ const Sidebar = () => {
     }
   };
 
-  
-    useEffect(() => {
-      const user = sessionStorage?.getItem("uid");
-  
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false); 
-      }
-    }, []);
+
+  useEffect(() => {
+    const user = sessionStorage?.getItem("uid");
+
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const handleLogout = () => {
     sessionStorage.removeItem("uid");
     setIsLoggedIn(false);
-    
+
   };
   return (
     <div className="side">
@@ -54,10 +55,11 @@ const Sidebar = () => {
         <div className="col-lg-12">
           <div className="sidebar bg-white border-end p-4">
             <div className="text-center mb-3">
+              <p className="mb-3 text-uppercase josefin-sans-font-family-600 fs-5 farmName-heading ">{setfarmHouseName}</p>
               <div className="sidebar-img mx-auto mb-1 d-flex align-items-center justify-content-center">
-                
+
                 <NavLink to={"/farmdata"}>
-                <img src={animalImages[selectedAnimal]} alt="Animal" />
+                  <img src={animalImages[selectedAnimal]} alt="Animal" />
                 </NavLink>
               </div>
               <p
@@ -66,12 +68,12 @@ const Sidebar = () => {
               >
                 {selectedAnimal}
               </p>
-              <p
+              {/* <p
                 className="text-muted-gray-color mb-0"
                 style={{ fontSize: "12px", fontWeight: "500" }}
               >
                 8 {selectedAnimal}s • 3 Babies
-              </p>
+              </p> */}
             </div>
 
             <div className="border border-1 mb-4"></div>
@@ -79,7 +81,7 @@ const Sidebar = () => {
             {/* Navigation Links */}
             <div className="nav flex-column gap-3">
               <NavLink
-              onClick={ handleClick }
+                onClick={handleClick}
                 to="/farmdata/dashboard"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
@@ -98,30 +100,30 @@ const Sidebar = () => {
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-               {selectedAnimal}
+                {selectedAnimal}
               </NavLink>
 
               {/* <NavLink
-                to="/farmdata/child"
+                to="/addanimal"
                 className="rounded-3 border-0 py-2 text-decoration-none text-chinese-black-color text-center"
                 style={({ isActive }) => ({
                   backgroundColor: isActive ? "#85C1E9" : "#B8E0F7",
                   fontWeight: isActive ? "600" : "500",
                 })}
               >
-                Child
+                Add Animal
               </NavLink> */}
             </div>
 
             <div className="mt-4 pt-3 border-top">
-              <button className="btn w-100 text-start mb-2 text-muted">
+              {/* <button className="btn w-100 text-start mb-2 text-muted">
                 <FaRegQuestionCircle className="me-2" />
                 Help
               </button>
               <button onClick={handleLogout} className="btn w-100 text-start text-danger">
                 <RiLogoutBoxRLine className="me-2" />
                 Logout
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

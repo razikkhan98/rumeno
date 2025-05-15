@@ -1,30 +1,33 @@
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Image1 from "../../assets/img/about/aboutimg.png";
+import About1 from "../../assets/img/about/about-1.webp";
+import About2 from "../../assets/img/about/about-2.webp";
 import Slide1 from "../../assets/img/about/slide1.png";
 import Slide2 from "../../assets/img/about/slide2.png";
 import Slide3 from "../../assets/img/about/slide3.png";
+import About3 from "../../assets/img/about/about-4.webp";
+import About4 from "../../assets/img/about/about-3.webp";
 import Slider from "react-slick";
 
 const About = () => {
-  const slide = [
-    {
-      id: 1,
-      image: Slide1,
-      alt: "Slide 1 - Rumeno Farmotech",
-    },
-    {
-      id: 2,
-      image: Slide2,
-      alt: "Slide 2 - Rumeno Farmotech",
-    },
-    {
-      id: 3,
-      image: Slide3,
-      alt: "Slide 3 - Rumeno Farmotech",
-    },
-  ];
+  // const slide = [
+  //   {
+  //     id: 1,
+  //     image: Slide1,
+  //     alt: "Slide 1 - Rumeno Farmotech",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: Slide2,
+  //     alt: "Slide 2 - Rumeno Farmotech",
+  //   },
+  //   {
+  //     id: 3,
+  //     image: Slide3,
+  //     alt: "Slide 3 - Rumeno Farmotech",
+  //   },
+  // ];
 
   const sliderSettings = {
     dots: false,
@@ -46,13 +49,18 @@ const About = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="row gap-3">
-                <div className="col-lg-7">
+              <div className="row py-4 justify-content-evenly">
+                {/* <div className="d-lg-none col-md-12 m-auto">
+                  <div className="about-mobile-img d-flex justify-content-center pt-4">
+                    <img src={Slide2} alt="Loading" />
+                  </div>
+                </div> */}
+                <div className="col-lg-6">
                   <div className="about-content py-2">
                     <p className="text-uppercase responsive-heading about-heading">
                       About Rumeno Farmotech
                     </p>
-                    <p className="about-para">
+                    <p className="about-para text-justify">
                       Rumeno Farmotech is a nutrition and feed supplement
                       technologies company <br /> Rumeno Farmotech offers a wide
                       range of products, including Probiotics, milk replacer,
@@ -78,22 +86,25 @@ const About = () => {
                     </div> */}
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-6 m-auto px-0">
-                  <div className="about-img m-auto">
-                    <img src={Image1} alt="Loading" />
+
+                <div className="col-lg-6 d-flex align-items-center">
+                  <div className="row py-lg-0 py-3">
+                    <div className="col-sm-6 offset-sm-1 mb-2">
+                      <img src={About1} className="w-100 img-fluid" alt="Loading" />
+                    </div>
+                    <div className="col-sm-5 align-self-end mb-2">
+                      <img src={About2} className="w-100 img-fluid" alt="Loading" />
+                    </div>
+                    <div className="col-sm-5 mb-2">
+                      <img src={About4} className="mt-3 w-100 img-fluid" alt="Loading" />
+                    </div>
+                    <div className="col-sm-6 mb-2">
+                      <img src={About3} className="w-100 mt-3 img-fluid" alt="Loading" />
+                    </div>
+
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-6 m-auto px-0">
-                  <div className="about-slideimg m-auto">
-                    <Slider {...sliderSettings}>
-                      {slide.map((item) => (
-                        <div key={item.id} className="about-slide">
-                          <img src={item.image} alt={item.alt} />
-                        </div>
-                      ))}
-                    </Slider>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>

@@ -21,6 +21,7 @@ const AnimalCard = ({
   tagId,
   height,
   gender,
+  hasKid,
   age,
   _id,
   birthDate,
@@ -57,6 +58,12 @@ const AnimalCard = ({
   farmSanitation,
   currentIndex,
   comments,
+  showDetailsButton,
+  failed,
+  childWeanDate,
+  childWeanWeight,
+  siblingDetails,
+  currentPregnancyMonth,
 }) => {
   const details = [
     // { label: "Height (Ft)", value: height, icon: <RiRulerFill /> },
@@ -64,6 +71,7 @@ const AnimalCard = ({
     { label: "Age", value: age, icon: <PiCalendarBlankFill /> },
     // { label: "Weight (kg)", value: weight, icon: <GiWeightScale /> },
   ];
+  console.log('age: ', age);
 
   const modalDetails = [
     { label: "Tag Id", value: tagId, icon: <RiRulerFill /> },
@@ -105,6 +113,7 @@ const AnimalCard = ({
 
   const editForm = () => {
     localStorage.setItem("currentIndex", currentIndex);
+    console.log('currentIndex: ', currentIndex);
   };
 
   const handleConfirmDelete = () => {
@@ -212,6 +221,8 @@ const AnimalCard = ({
                   parentId,
                   uniqueId,
                   tagId,
+                  motherTag,
+                  fatherTag,
                   defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                   animalData: {
                     parentId,
@@ -245,6 +256,11 @@ const AnimalCard = ({
                     vaccineName,
                     vaccineDate,
                     farmHouseName,
+                    failed,
+                    childWeanDate,
+                    childWeanWeight,
+                    siblingDetails,
+                    currentPregnancyMonth,
                   },
                 },
               })
@@ -334,8 +350,14 @@ const AnimalCard = ({
                   vaccineName,
                   vaccineDate,
                   farmHouseName,
+                  failed,
+                  childWeanDate,
+                  childWeanWeight,
+                  siblingDetails,
+                  currentPregnancyMonth,
                 },
               });
+              editForm() 
             }}
             variant="light"
             className="border px-1 py-0"
@@ -370,7 +392,8 @@ const AnimalCard = ({
             </Button>
           </Modal.Footer>
         </Modal>
-        {kidId === undefined ? (
+        {showDetailsButton && (
+           kidId === undefined ? (
           <>
             <Button
               size="sm"
@@ -382,6 +405,9 @@ const AnimalCard = ({
                     parentId,
                     uniqueId,
                     tagId,
+                    motherTag,
+                    hasKid,
+                    fatherTag,
                     defaultForm: "BasicDetails", // 👈 send this to show BasicDetails
                     animalData: {
                       parentId,
@@ -415,6 +441,11 @@ const AnimalCard = ({
                       vaccineName,
                       vaccineDate,
                       farmHouseName,
+                      failed,
+                      childWeanDate,
+                      childWeanWeight,
+                      siblingDetails,
+                      currentPregnancyMonth,
                     },
                   },
                 })
@@ -425,19 +456,6 @@ const AnimalCard = ({
           </>
         ) : (
           <>
-            {/* <Button
-              size="sm"
-              className="rounded-pill py-2 px-3 border-0"
-              style={{ background: "#FB9038", color: "white" }}
-              onClick={() =>
-                navigate(`/record/${kidId}/${uniqueId}`, {
-                  state: { kidId, uniqueId },
-                })
-              }
-            >
-              More
-            </Button> */}
-
             <Dropdown>
               <Dropdown.Toggle
                 size="sm"
@@ -475,6 +493,7 @@ const AnimalCard = ({
               </Dropdown.Menu>
             </Dropdown>
           </>
+        )
         )}
       </Card.Footer>
     </Card>

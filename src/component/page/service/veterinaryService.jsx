@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Common Components
 import Navbar from "../../common/navbar/mainnavbar";
@@ -13,6 +13,7 @@ import Service3 from "../../assets/img/service-img/sheep-grazing-field.png";
 import Doctor from "../../assets/img/service-img/Group 1171277285.png";
 import Sir from "../../assets/img/service-img/Group 1171277284.png";
 import Header from "../../common/Header/header";
+import { useLocation } from "react-router-dom";
 
 // FAQ Json
 const BusinessFqa = [
@@ -31,13 +32,25 @@ const BusinessFqa = [
   },
 ];
 const VeterinaryService = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100); // slight delay to ensure element is mounted
+      }
+    }
+  }, [location]);
   return (
     <>
       {/* Navbar Start */}
       <Navbar />
-      <div className="service-bg-color products">
+      <div className="service-bg-color products" id="Veterinary">
         <div className="pt-lg-4">
-          <Header title="Services" subtitle="Veteriniary Services" />
+          <Header title="Services" link="/" subtitle="Veteriniary Services" />
         </div>
         <div className="container pt-lg-5">
           <div className="text-center">
@@ -174,7 +187,7 @@ const VeterinaryService = () => {
 
         {/* Team Member section Start */}
 
-        <div className="bg-white py-5">
+        <div className="bg-white py-5 scroll-section" id="Team">
           <div className="container py-5">
             <div className="text-center py-5">
               <p className="service-heading">Our Consulting Team Members</p>
@@ -223,7 +236,7 @@ const VeterinaryService = () => {
       </div>
 
       {/* Business Section Start */}
-      <div className="business">
+      <div className="business scroll-section" id="Business">
         <div className="container text-center py-5">
           <p className="service-heading pt-4">Business Start-Up Support</p>
           <p className="text-justify lh-base py-4">
@@ -280,7 +293,9 @@ const VeterinaryService = () => {
         <Faq faqs={BusinessFqa} showHeading={false} />
 
         {/* Service Form Section Start */}
+        <div id="QueryForm" className="scroll-section">
         <ServiceForm />
+        </div>
       </div>
 
       {/* Footer Start */}

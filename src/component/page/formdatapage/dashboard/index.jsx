@@ -101,6 +101,7 @@ import Sanitation from "../../../assets/img/dashboard/sanitation1.svg";
 import Vaccine from "../../../assets/img/dashboard/vaccine1.svg";
 import Pregnant from "../../../assets/img/dashboard/pregnantgoat.svg";
 import Header from "../../../common/Header/header";
+import { API_BASE_URL } from "../../../common/APIs/api";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -142,7 +143,7 @@ const Dashboard = () => {
     const fetchAnimalData = async () => {
       try {
         const response = await axios.get(
-          "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/parentchild/getAllCount",
+          `${API_BASE_URL}/user/animaldata/parentchild/getAllCount`,
           {
             params: { uid, animalName },
             headers: {
@@ -172,6 +173,7 @@ const Dashboard = () => {
       cardcircle: "card-orange-circle",
       img: Animal,
       value: stats.TotalAnimals || " ",
+      details: stats.TotalAnimalsData || [],
     },
 
     // {
@@ -193,6 +195,8 @@ const Dashboard = () => {
       img: Vaccine,
       value: stats.VaccineCount || " ",
       details: stats.VaccineData || [],
+      tab: "Vaccine",
+
     },
     // {
     //   title: "Post Wean",
@@ -222,6 +226,8 @@ const Dashboard = () => {
       img: Deworm,
       value: stats.DewormCount || " ",
       details: stats.DewormData || [],
+      tab: "Deworm",
+
     },
     // {
     //   title: "Farm Sanitation",
@@ -240,8 +246,8 @@ const Dashboard = () => {
   ];
 
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-center font-24-500">Loading...</p>;
+  if (error) return <p className="text-center font-24-500">{error}</p>;
 
   return (
     <>
@@ -283,57 +289,21 @@ const Dashboard = () => {
                   <>
                     {cardData?.map((card, index) => (
                       <div key={index} className="col-lg-3 col-md-6 px-4 pt-4">
-                        {/* <Card
-                        className="mb-3 card-hover"
-                        onClick={() => setSelectedCard(card)}
-                        style={{
-                          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-                          cursor: "pointer",
-                          transition:
-                            "transform 0.3s ease, box-shadow 0.3s ease",
-                        }}
-                      >
-                        <Card.Header
-                          className="d-flex justify-content-center align-items-center px-4 py-3"
-                          style={{
-                            backgroundColor: "#B8E0F7",
-                            borderRadius: "10px 10px 0px 0px",
-                          }}
-                        >
-                          <div className="text-chinese-black-color">
-                            {card.title}
-                          </div>
-                        </Card.Header>
-                        <Card.Body>
-                          <div
-                            className="py-2 d-flex align-items-center justify-content-center px-2"
-                            style={{ color: "#707070" }}
-                          >
-                            <div
-                              className="card-content"
-                              style={{ fontSize: "20px" }}
-                            >
-                              {card.value}
-                            </div>
-                          </div>
-                        </Card.Body>
-                      </Card> */}
-
                         <Card
-                          className={`dashboard-cards card-hover rounded-3 shadow px-4 py-4 ${card.cardborder}`}
+                          className={`dashboard-cards card-hover rounded-3 px-lg-4 py-4 ${card.cardborder}`}
                           onClick={() => setSelectedCard(card)}
                         >
                           <div className="row gap-2 align-items-center justify-content-between">
-                            <div className="col-lg-3">
+                            <div className="col-lg-3 col-3">
                               <div
                                 className={`card-img-circle rounded-circle d-flex align-items-center justify-content-center ${card.cardcircle}`}
                               >
                                 <img src={card.img} alt="Loading" />
                               </div>
                             </div>
-                            <div className="col-lg-7">
+                            <div className="col-lg-7 col-7">
                               <Card.Title>{card.value}</Card.Title>
-                              <Card.Subtitle className="mb-2 text-muted">
+                              <Card.Subtitle className="mb-2 text-muted dashboard-card-title">
                                 {" "}
                                 {card.title}
                               </Card.Subtitle>
@@ -349,7 +319,7 @@ const Dashboard = () => {
               {selectedCard && (
                 <div className="mt-4">
                   {/* <h5>{selectedCard.title} Details</h5> */}
-                  <DashboardTable data={selectedCard?.details} />
+                  <DashboardTable data={selectedCard?.details}  title={selectedCard?.tab}/>
                 </div>
               )}
             </div>

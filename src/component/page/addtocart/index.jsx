@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../common/navbar/mainnavbar";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 import productImage from "../../assets/img/addtocart/addproduct.png";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { FiRefreshCw } from "react-icons/fi";
@@ -88,7 +88,7 @@ const Addtocart = () => {
   };
 
   // Handle Add to Cart
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     if (!isAuthenticated) {
       console.log("Redirecting to login...");
       setTimeout(() => {
@@ -99,6 +99,9 @@ const Addtocart = () => {
     }
     console.log('selectedWeightHandleAddToCart: ', selectedWeight);
     addToCart(product, selectedWeight);
+    console.log('product, selectedWeight: ', product, selectedWeight);
+
+    //  const response = await postData("/addtoCart",);
   };
 
 
@@ -172,7 +175,7 @@ const Addtocart = () => {
               <div className="col-lg-1"></div>
               <div className="col-lg-5">
                 <div className="addtocart-content">
-                  <p className="addtocart-content-title font-16-400">{product.name}</p>
+                  <p className="addtocart-content-title font-20-400">{product.name}</p>
                   <div className="d-flex align-items-center">
                     <span className="fs-3 me-2 colorEC7229">☆☆☆☆☆</span>
                     <span className="font-14-500 color707070">
@@ -180,16 +183,20 @@ const Addtocart = () => {
                     </span>
                   </div>
                   <p className="mt-2 pb-4 border-bottom font-24-500 font-17-600 d-flex align-items-center">
-                    ₹ {calculatedPrice.toFixed(2)} /-{" "}
-                    <span
-                      className="badge ms-2 p-2 font-14-300 colorffffff"
-                      style={{
-                        background: "#E32C2B",
-                      }}
-                    >
-                      <RiDiscountPercentFill className="me-1" />
-                      5% Off
-                    </span>
+                    <span> ₹ {calculatedPrice.toFixed(2)} /-{" "} </span>
+                    <Dropdown className="ms-2" >
+                      <Dropdown.Toggle
+                        className="badge p-2 font-14-300 text-white border-0 shadow"
+                        style={{ background: "#E32C2B" }}
+                      >
+                        <RiDiscountPercentFill className="me-1" />
+                        5% Off
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu className="p-3 mt-2 addtocart-dropdown bg-f3fafc border-0 shadow">
+                        <p className="mb-0 font-12-400 text-gray-color">Get 5% discount on susbscribing youtube channel & get extra 5% discount on next order by sharing 2 min video product feedback it is for the benefit of yourself in learning innovative ideas of livestock farming by watching youtube channel and your feedback will help new customers to gain the confidence in using products .Your feedback video will also help you to gain more discounts in future orders. If your feedback video gets 100 likes you will earn one loyality point which will equal to Rupees 25 per point. Your points will be counted and redeemed after 60 days.</p>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </p>
 
                   <p
@@ -274,13 +281,14 @@ const Addtocart = () => {
                   </p>
                   <div className="d-flex align-items-center gap-3 pt-lg-5 mt-lg-5">
                     <div
-                      className="buynow-btn d-flex align-items-center justify-content-between"
+                      className="buynow-btn d-flex align-items-center justify-content-center"
                       style={{
                         borderColor: "#EC7229",
                       }}
                     >
+                      <NavLink to="/cart">
                       <Button
-                        onClick={() => handleAddToCart(product)}
+                        // onClick={() => handleAddToCart(product)}
                         className="fs-5 border-0 rounded-3 px-4 py-2 w-100"
                         style={{
                           background: "#ffffff",
@@ -289,6 +297,7 @@ const Addtocart = () => {
                       >
                         Buy Now
                       </Button>
+                      </NavLink>
                       {/* <Button
                         onClick={() => decrementQuantity(product.id)}
                         className="border-0 rounded-3 fs-3"
@@ -393,7 +402,7 @@ const Addtocart = () => {
                 // Review Form Start here
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className="bg-skyblue border-radius-12 text-center py-5 px-5"
+                  className="bg-skyblue border-radius-12 text-center py-5 px-lg-5 px-3"
                 >
                   <p className="font-24-400 text-chinese-black-color">
                     Write a review
@@ -479,14 +488,14 @@ const Addtocart = () => {
                   <div className="d-flex justify-content-center gap-3">
                     <button
                       type="button"
-                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 py-2"
+                      className="rounded-3 px-3 border-orange text-color-orange font-14-500 font-sm-12 py-2"
                       onClick={() => setShowReviewForm(false)}
                     >
                       Cancel Review
                     </button>
                     <button
                       type="submit"
-                      className="rounded-3 border-orange px-3 bg-orange-color text-white-color font-14-500 py-2"
+                      className="rounded-3 border-orange px-3 bg-orange-color text-white-color font-14-500 font-sm-12 py-2"
                     >
                       Submit Review
                     </button>

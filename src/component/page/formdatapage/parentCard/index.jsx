@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../../common/navbar/mainnavbar";
 import Sidebar from "../../sidebar/index";
 import AnimalCard from "../../../common/animalCard/index";
-import { deleteData, getData } from "../../../common/APIs/api";
+import { API_BASE_URL, deleteData, getData } from "../../../common/APIs/api";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -17,10 +17,9 @@ const Parent = () => {
   const [error, setError] = useState("");
 
   const fetchAnimal = async () => {
-    console.log("Heloo")
     try {
       const response = await axios.get(
-        "https://3ea7-2401-4900-8822-ffcf-fd70-b384-8ddc-b6d.ngrok-free.app/rumeno/user/animaldata/newEntity/getAllById",
+        `${API_BASE_URL}/user/animaldata/newEntity/getAllById`,
         {
           params: { animalName: selectedAnimal, uid },
           headers: {
@@ -30,7 +29,7 @@ const Parent = () => {
         }
       );
       setAnimals(response.data.animals || []);
-      if(response.data.animals) {
+      if (response.data.animals) {
         setLoading(false)
       }
     } catch (err) {
@@ -46,15 +45,15 @@ const Parent = () => {
   const filteredAnimals = animals?.filter(
     (animal) => animal?.animalName === selectedAnimal
   );
+  console.log('filteredAnimals: ', filteredAnimals);
 
 
   // Add Goat 
   const addGoat = () => {
     localStorage.removeItem("currentIndex");
   };
+ 
 
-
-  
 
   // Delete  Animal Card
   const handleDeleteAnimal = async (uniqueId, childrenCount) => {
@@ -90,9 +89,9 @@ const Parent = () => {
             }}
           >
             <div className="d-flex justify-content-between align-items-center mt-2">
-              <p className="font-18-500 text-chinese-black-color ps-lg-3">Parent</p>
+              <p className="font-18-500 text-chinese-black-color ps-lg-3">Animal</p>
               {/* Add Goat Button */}
-              <NavLink to="/parentform">
+              <NavLink to="/addanimal">
                 <button
                   className="btn add-animal-btn text-white px-4 border rounded-pill"
                   style={{
@@ -111,9 +110,14 @@ const Parent = () => {
               <p>Loading...</p>
             ) : filteredAnimals?.length > 0 ? (
               <div className="row">
-                {filteredAnimals?.map((animal, index) => (
-                  <div key={index} className="width-20 px-3 pt-1">
+                {filteredAnimals?.map((animal, index) => 
+                
+                {
+                  console.log("animal======",animal)
+                  return(
+                    <div key={index} className="width-20 px-3 pt-1">
                     <AnimalCard
+                      showDetailsButton={true}
                       selectedAnimal={selectedAnimal}
                       parentId={animal.parentId}
                       tagId={animal.tagId}
@@ -125,6 +129,12 @@ const Parent = () => {
                       motherTag={animal.motherTag}
                       birthWeight={animal.birthWeight}
                       birthType={animal.birthType}
+                      birthDate={animal.birthDate}
+                      failed={animal.failed}
+                      siblingDetails={animal.siblingDetails}
+                      childWeanDate={animal.childWeanDate}
+                      childWeanWeight={animal.childWeanWeight}
+                      comments={animal.comments}
                       motherWeanDate={animal.motherWeanDate}
                       purchaseDate={animal.purchaseDate}
                       lastVaccineDate={animal.lastVaccineDate}
@@ -139,6 +149,7 @@ const Parent = () => {
                       ageMonth={animal.ageMonth}
                       bodyScore={animal.bodyScore}
                       pregnancyDetails={animal.pregnancyDetails}
+                      currentPregnancyMonth={animal.currentPregnancyMonth}
                       maleDetail={animal.maleDetail}
                       uniqueId={animal.uniqueId}
                       children={animal.children?.length > 0 ? animal.children?.length : "No Children"}
@@ -152,7 +163,8 @@ const Parent = () => {
                       currentIndex={index}
                     />
                   </div>
-                ))}
+                  )
+                })}
               </div>
             ) : (
               <p>No Parent animals found for {selectedAnimal}.</p>

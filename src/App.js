@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
@@ -20,6 +20,7 @@ import Addtocart from "./component/page/addtocart";
 import DairyConsultantService from "./component/page/service/dairyConsultant";
 import GoatFarmingService from "./component/page/service/goatFarming";
 import VeterinaryService from "./component/page/service/veterinaryService";
+import Consulting from "./component/page/service/consultingTeam";
 import Login from "./component/common/Auth/Login/login";
 import Forgot from "./component/common/Auth/Forgot/forgot";
 import Register from "./component/common/Auth/Register/register";
@@ -37,6 +38,13 @@ import PrivacyPolicy from "./component/page/PrivacyPolicy/policy";
 import { useLocation } from "react-router-dom";
 import AllProducts from "./component/page/products/allProducts";
 import FarmHouseEquipment from "./component/page/FarmHouseEquipment/equipment";
+import ServiceFaq from "./component/page/service/faq";
+import HumanConsumable from "./component/page/products/human";
+import CropSeed from "./component/page/products/cropSeed";
+import AddAnimalCards from "./component/page/formdatapage/addAnimalCards/addAnimalCards";
+import Language from "./component/language/language";
+import axios from "axios";
+import { API_BASE_URL } from "./component/common/APIs/api";
 
 
 const App = () => {
@@ -46,6 +54,25 @@ const App = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  useEffect(() => {
+    const fetchVaccineAlerts = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/vaccine/alert-vaccine`);
+        console.log('response: ', response);
+      } catch (error) {
+      }
+    };
+
+    // Initial fetch
+    fetchVaccineAlerts();
+
+    // Set interval to fetch every 10 seconds
+    const interval = setInterval(() => {
+      fetchVaccineAlerts();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   // return null;
 
   return (
@@ -53,7 +80,8 @@ const App = () => {
       <CartProvider>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Main />} />Poultryproduct
+          <Route path="/" element={<Language />} />
+          <Route path="/main" element={<Main />} />Poultryproduct
           <Route path="/goatproduct" element={<Products />} />
           <Route path="/allproducts" element={<AllProducts />} />
           <Route path="/equipment" element={<FarmHouseEquipment />} />
@@ -64,8 +92,10 @@ const App = () => {
           <Route path="/protraining" element={<ProTraining />} />
           <Route path="/productDetails/:id" element={<Addtocart />} />
           <Route path="/service" element={<VeterinaryService />} />
+          <Route path="/consulting" element={<Consulting />} />
           <Route path="/dairyconsultant" element={<DairyConsultantService />} />
           <Route path="/goatfarming" element={<GoatFarmingService />} />
+          <Route path="/faq" element={<ServiceFaq />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/register" element={<Register />} />
@@ -76,6 +106,10 @@ const App = () => {
           <Route path="/addChild" element={<AddChild />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/humanCunsumable" element={<HumanConsumable />} />
+          <Route path="/cropseed" element={<CropSeed />} />
+          <Route path="/addanimal" element={<AddAnimalCards />} />
+
 
 
 

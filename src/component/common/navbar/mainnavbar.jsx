@@ -2,13 +2,19 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../assets/img/logo/logorumneo.svg";
 // import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import User from "../../assets/img/user/loginuser.svg";
+import User from "../../assets/img/user/user-13.jpg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { CartContext } from "../Context";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import FarmerDetails from "../farmerDetailsModal/farmerDetails";
 import { useNavigate } from "react-router-dom";
+import TranslateButton from "../translate/translate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLanguage,
+} from "@fortawesome/free-solid-svg-icons";
+
 
 const Mainnav = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -18,7 +24,7 @@ const Mainnav = () => {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dropdownRef = useRef(null); // Step 1
 
@@ -43,13 +49,13 @@ const Mainnav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if(isNavbarOpen) {
+      if (isNavbarOpen) {
         setIsNavbarOpen(false);
       }
-      if(isProductsOpen) {
+      if (isProductsOpen) {
         setIsProductsOpen(false);
       }
-      if(isServicesOpen) {
+      if (isServicesOpen) {
         setIsServicesOpen(false)
       }
     };
@@ -58,16 +64,16 @@ const Mainnav = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  },[isNavbarOpen, isProductsOpen, isServicesOpen]);
+  }, [isNavbarOpen, isProductsOpen, isServicesOpen]);
 
 
 
   const location = useLocation();
-  
+
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    
+
     setIsProductsOpen(link === "Products" ? !isProductsOpen : false);
     setIsServicesOpen(link === "Services" ? !isServicesOpen : false);
   };
@@ -94,9 +100,11 @@ const Mainnav = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("uid");
+    sessionStorage.removeItem("cart");
     setIsLoggedIn(false);
     setOpen(false);
     setTimeout(() => navigate("/"), 1000);
+    clearCart();
   };
 
   const isRouteActive = (pathname, routeList = []) => {
@@ -110,12 +118,30 @@ const Mainnav = () => {
     "/dogproduct",
     "productDetails",
   ]);
+
+
+  const [image, setImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    if(selectedImage){
+      setImage(selectedImage);
+      setPreviewUrl(URL.createObjectURL(selectedImage));
+    }
+  }
+
+  const [showSelect, setShowSelect] = useState(false);
+
+  const toggleSelect = () => {
+    setShowSelect(!showSelect);
+  };
   
 
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light py-2 position-fixed w-100 bg-sky-blue-color"
-      // style={{ backgroundColor: "#DDF0F8" }}
+    // style={{ backgroundColor: "#DDF0F8" }}
     >
       <div className="container-fluid px-lg-5 px-3 d-flex">
         <a className="navbar-brand me-lg-2 me-0" href="/#">
@@ -128,12 +154,13 @@ const Mainnav = () => {
 
         {/* Action Buttons  for mobile screen*/}
         <div className="d-lg-none d-flex justify-content-end align-items-center ms-auto">
+          
           <NavLink to="/cart">
             <div className="position-relative">
               <div className="cart-navbar bg-light rounded-circle text-center d-flex align-items-center justify-content-center">
                 <PiShoppingCartSimpleFill
                   className="fs-5 cart-icon-nav"
-                  // style={{ height: "24px", width: "24px", color: "#FB9038" }}
+                // style={{ height: "24px", width: "24px", color: "#FB9038" }}
                 />
               </div>
               {cart && Object.keys(cart).length > 0 && (
@@ -156,10 +183,10 @@ const Mainnav = () => {
 
           {!isLoggedIn ? (
             <><NavLink to="/login" className={"farm-btn my-3 mx-2"}>
-            <button className="btn rounded-pill text-white">
-              Login
-            </button>
-          </NavLink> </>
+              <button className="btn rounded-pill text-white">
+                Login
+              </button>
+            </NavLink> </>
           ) : (
             <> </>
           )}
@@ -238,39 +265,46 @@ const Mainnav = () => {
         </button>
 
         <div
-          className={`navbar-collapse custom-collapse ${
-            isNavbarOpen ? "custom-collapse-show" : ""
-          }`}
+          className={`navbar-collapse custom-collapse ${isNavbarOpen ? "custom-collapse-show" : ""
+            }`}
           id="navbarNav"
         >
           {/* Links Section */}
           <ul className="navbar-nav gap-lg-4 me-auto mb-2 mb-lg-0 text-center">
-            <NavLink to={"/"} className={"text-decoration-none"}>
+            <NavLink to={"/main"} className={"text-decoration-none"}>
               <li className="nav-item">
-                <a
-                  className={`nav-link ${
-                    String(location?.pathname) === "/" ? "active" : ""
-                  }`}
+                <div
+                  className={`nav-link ${String(location?.pathname) === "/main" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Home")}
                 >
                   Home
-                </a>
+                </div>
               </li>
             </NavLink>
 
             <li className="nav-item">
-              <a
-                className={`nav-link ${active ? "active" : ""}`}
+              <div
+                className={`nav-link ${String(location?.pathname) === "/products" ||
+                  String(location?.pathname) === "/allproducts" ||
+                  String(location?.pathname) === "/goatproduct" ||
+                  String(location?.pathname) === "/cattleproduct" ||
+                  String(location?.pathname) === "/poultryproduct" ||
+                  String(location?.pathname) === "/dogproduct" ||
+                  String(location?.pathname) === "/equipment" ||
+                  String(location?.pathname) === "/humanCunsumable" ||
+                  String(location?.pathname) === "/cropseed"
+                  ? "active"
+                  : " "}`}
                 onClick={() => handleLinkClick("Products")}
-                aria-expanded={isProductsOpen}
+              // aria-expanded={isProductsOpen}
               >
                 Products
-              </a>
+              </div>
               <div
                 //  ref={dropdownRef}
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isProductsOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isProductsOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-4 ms-lg-5 py-3">
                   <div className="ms-4">
@@ -321,7 +355,11 @@ const Mainnav = () => {
                         className="text-decoration-none"
                       >
                         <li>Farmhouse Equipments</li>
+                      </NavLink>
+                      <NavLink to={"/humanCunsumable"} className="text-decoration-none">
                         <li>Human Consumable</li>
+                      </NavLink>
+                      <NavLink to={"/cropseed"} className="text-decoration-none">
                         <li>Crop Seeds</li>
                       </NavLink>
                     </ul>
@@ -338,23 +376,22 @@ const Mainnav = () => {
 
             <li className="nav-item">
               <div
-                className={`nav-link ${
-                  String(location?.pathname) === "/service" ||
-                  String(location?.pathname) === "/equipment" ||
+                className={`nav-link ${String(location?.pathname) === "/service" ||
+                  String(location?.pathname) === "/faq" ||
+                  String(location?.pathname) === "/consulting" ||
                   String(location?.pathname) === "/goatfarming" ||
                   String(location?.pathname) === "/dairyconsultant"
-                    ? "active"
-                    : ""
-                }`}
+                  ? "active"
+                  : ""
+                  }`}
                 // href=""
                 onClick={() => handleLinkClick("Services")}
               >
                 Services
               </div>
               <div
-                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${
-                  isServicesOpen ? "show" : ""
-                }`}
+                className={`products-collapse shadow mt-2 w-100 rounded-bottom-5 ${isServicesOpen ? "show" : ""
+                  }`}
               >
                 <div className="products-collapse-list gap-5 ms-lg-5 py-3 px-1">
                   <div className="ms-lg-4 ms-2">
@@ -362,20 +399,20 @@ const Mainnav = () => {
                       VETERINARY Services
                     </p>
                     <ul className="list-unstyled products-list text-start">
-                      <NavLink to="/service" className="text-decoration-none">
-                      <li className="cursor">Why Choose US?</li>
+                      <NavLink to="/service#Veterinary" className="text-decoration-none">
+                        <li className="cursor">Why Choose US?</li>
                       </NavLink>
-                      <NavLink to="/service" className="text-decoration-none">
+                      <NavLink to="/consulting" className="text-decoration-none">
                         <li className="cursor">Our Consulting team members</li>
                       </NavLink>
                       <NavLink
-                        to={"/equipment"}
+                        to={"/service#Business"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">Business Startup Support </li>
                       </NavLink>
                       <NavLink
-                        to={"/equipment"}
+                        to={"/service#QueryForm"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">Query Form</li>
@@ -395,7 +432,7 @@ const Mainnav = () => {
                         <li>About</li>
                       </NavLink>
                       <NavLink
-                        to={"/goatfarming"}
+                        to={"/faq"}
                         className="text-decoration-none"
                       >
                         <li className="cursor">FAQs</li>
@@ -408,13 +445,13 @@ const Mainnav = () => {
                     </p>
                     <ul className="list-unstyled products-list text-start">
                       <NavLink
-                        to={"/dairyconsultant"}
+                        to={"/dairyconsultant#Service"}
                         className="text-decoration-none"
                       >
                         <li>About</li>
                       </NavLink>
                       <NavLink
-                        to={"/dairyconsultant"}
+                        to={"/dairyconsultant#DairyManagement"}
                         className="text-decoration-none"
                       >
                         <li>Dairy Management</li>
@@ -427,9 +464,8 @@ const Mainnav = () => {
             <NavLink to={"/blog"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${
-                    String(location?.pathname) === "/blog" ? "active" : ""
-                  }`}
+                  className={`nav-link ${String(location?.pathname) === "/blog" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Blogs")}
                 >
                   Blogs
@@ -439,16 +475,18 @@ const Mainnav = () => {
             <NavLink to={"/contactus"} className={"text-decoration-none"}>
               <li className="nav-item">
                 <div
-                  className={`nav-link ${
-                    String(location?.pathname) === "/contactus" ? "active" : ""
-                  }`}
+                  className={`nav-link ${String(location?.pathname) === "/contactus" ? "active" : ""
+                    }`}
                   onClick={() => handleLinkClick("Contact Us")}
                 >
                   Contact Us
                 </div>
               </li>
             </NavLink>
+            
+            
             <li className="d-lg-none nav-itme mt-2">
+              
               {isLoggedIn ? (
                 <>
                   {" "}
@@ -461,9 +499,20 @@ const Mainnav = () => {
             </li>
           </ul>
         </div>
-        
+
         {/* Action Buttons for laptop screen */}
         <div className="d-none d-lg-flex justify-content-center align-items-center  gap-lg-4">
+          <NavLink>
+              <li className="h-100 gap-2 d-flex justify-content-center align-items-center">
+                  <FontAwesomeIcon
+                    type="button"
+                    onClick={toggleSelect}
+                    className="nav-lang-switch-icons m-0 h1 text-gray-color"
+                    icon={faLanguage}
+                  />
+                  {showSelect && <TranslateButton />}
+                </li>
+            </NavLink>
           {isLoggedIn ? (
             <>
               {" "}
@@ -477,6 +526,7 @@ const Mainnav = () => {
               </NavLink>
             </>
           )}
+          {isLoggedIn ? (
           <NavLink to="/cart">
             <div className="position-relative">
               <div
@@ -505,6 +555,7 @@ const Mainnav = () => {
               )}
             </div>
           </NavLink>
+          ) : (<></>)}
 
           {/* User Profile PopUp for Large Screen */}
           {isLoggedIn ? (
@@ -516,9 +567,11 @@ const Mainnav = () => {
                 onClick={toggleDropdown}
               >
                 <img
-                  src={User}
+                src={User}
+                  // src={ previewUrl || User}
                   alt="User"
                   className="rounded-circle user-icon-img"
+                  // style={{ width: '36px', height: '36px', objectFit: 'cover' }}
                 />
                 <MdOutlineKeyboardArrowDown />
               </div>
@@ -531,13 +584,24 @@ const Mainnav = () => {
                       <div
                         className="user-icon mt-3 d-flex align-items-center justify-content-center"
                         style={{ cursor: "pointer" }}
+                        // onClick={() => document.getElementById('profileImageInput').click()}
                       >
                         <img
-                          src={User}
+                        src={User}
+                          // src={ previewUrl || User}
                           alt="User"
                           className="rounded-circle user-icon-img"
+                          // style={{ width: '36px', height: '36px', objectFit: 'cover' }}
                         />
                       </div>
+                      {/* Hidden file input */}
+                      {/* <input
+                        id="profileImageInput"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: 'none' }}
+                      /> */}
                       <p className="text-center mb-0 pt-2">{username}</p>
                       <p className="text-center mb-2">{userEmail}</p>
 
