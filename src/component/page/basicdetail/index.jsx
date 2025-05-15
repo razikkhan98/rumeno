@@ -85,17 +85,6 @@ const GoatDetailForm = () => {
         ? updateData(endpoint, animalUniqueId, formData)
         : postData(endpoint, formData));
 
-      if (type !== "edit") {
-        await postData(`/vaccine/register-animal-vaccine`,
-          {
-            animalTagId: formData.tagId,
-            birthDate: formData.birthDate,
-            uid: formData.uid,
-            uniqueId: uniqueId,
-          }
-        );
-      }
-
       if (response.data.message === "success" || response.data.message === "Animal added successfully") {
         toast.success(
           `Animal ${type === "edit" ? "updated" : "added"} successfully`,
@@ -198,9 +187,9 @@ const GoatDetailForm = () => {
       console.log('animalData.lastVaccineName: ', animalData.lastVaccineName);
       setValue("isVaccine", animalData.lastVaccineName == "false" ? false : true);
     }
-  }, [ setValue]); // Fetch only once on mount
+  }, [setValue]); // Fetch only once on mount
 
-  
+
 
   // const [gender, setGender] = useState("");
   // console.log('gender: ', gender);
@@ -302,7 +291,7 @@ const GoatDetailForm = () => {
                     })}
                   />
                   {errors.tagId && (
-                    <p className="text-danger">{errors.tagId.message}</p>
+                    <p className="text-danger font-14-500">{errors.tagId.message}</p>
                   )}
                 </div>
                 {validation === "a-register" ? false : (
@@ -321,35 +310,54 @@ const GoatDetailForm = () => {
                         })}
                       />
                       {type === "edit" || validation === "a-register" ? "" : errors.purchaseDate && (
-                        <p className="text-danger">{errors.purchaseDate.message}</p>
+                        <p className="text-danger font-14-500">{errors.purchaseDate.message}</p>
                       )}
                     </div>
+
+                    <div className="col-lg-2 col-6 lh-lg">
+                      <label className="form-lable-detail">Age <span className="font-12-500">(Year)</span></label>
+                      <input
+                        type="number"
+                        className="form-control form-control-detail"
+                        placeholder="Enter Age"
+                        step="any"
+                        {...register("ageYear")}
+                      />
+                    </div>
+                    <div className="col-lg-2 col-6 lh-lg">
+                      <label className="form-lable-detail">Age <span className="font-12-500">(Month)</span></label>
+                      <input
+                        type="number"
+                        className="form-control form-control-detail"
+                        placeholder="Enter Age"
+                        step="any"
+                        {...register("ageMonth")}
+                      />
+                    </div>
+
+
                   </>
+                )}
+                {validation === "purchase" ? false : (
+                  <div className="col-lg-2 col-6 lh-lg">
+                    <label className="form-lable-detail">Birth Date</label>
+                    <input
+                      type="date"
+                      max={today}
+                      // disabled={purchaseDate}
+                      className="form-control form-control-detail"
+                      {...register("birthDate", {
+                        required: type === "edit" || validation === "purchase" ? false : "Birth Date is required",
+                      })}
+                    />
+                    {type === "edit" || validation === "purchase" ? "" : errors.birthDate && (
+                      <p className="text-danger font-14-500">{errors.birthDate.message}</p>
+                    )}
+                  </div>
                 )}
 
                 <div className="col-lg-2 col-6 lh-lg">
-                  <label className="form-lable-detail">Age Year</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    step="any"
-                    {...register("ageYear")}
-                  />
-                </div>
-                <div className="col-lg-2 col-6 lh-lg">
-                  <label className="form-lable-detail">Age Month</label>
-                  <input
-                    type="number"
-                    className="form-control form-control-detail"
-                    placeholder="Enter Age"
-                    step="any"
-                    {...register("ageMonth")}
-                  />
-                </div>
-
-                <div className="col-lg-2 col-6 lh-lg">
-                  <label className="form-lable-detail">Height (in Ft)</label>
+                  <label className="form-lable-detail">Height <span className="font-12-500">(in Ft)</span></label>
                   <input
                     type="number"
                     className="form-control form-control-detail"
@@ -360,7 +368,7 @@ const GoatDetailForm = () => {
                 </div>
 
                 <div className="col-lg-2 col-6 lh-lg">
-                  <label className="form-lable-detail">Weight (kg)</label>
+                  <label className="form-lable-detail">Weight <span className="font-12-500">(kg)</span></label>
                   <input
                     type="number"
                     className="form-control form-control-detail"
@@ -370,24 +378,12 @@ const GoatDetailForm = () => {
                   />
                 </div>
 
+
+
               </div>
 
               <div className="row mt-3">
-                <div className="col-lg-2 col-6 lh-lg">
-                  <label className="form-lable-detail">Birth Date</label>
-                  <input
-                    type="date"
-                    max={today}
-                    // disabled={purchaseDate}
-                    className="form-control form-control-detail"
-                    {...register("birthDate", {
-                      required: type === "edit" || validation === "purchase" ? false : "Birth Date is required",
-                    })}
-                  />
-                  {type === "edit" || validation === "purchase" ? "" : errors.birthDate && (
-                    <p className="text-danger">{errors.birthDate.message}</p>
-                  )}
-                </div>
+
 
                 <div className="col-lg-2 col-6 lh-lg">
                   <label className="form-lable-detail">Mother Tag Id</label>
@@ -419,7 +415,7 @@ const GoatDetailForm = () => {
                     )}
                   </select>
                   {type === "edit" || validation === "purchase" ? "" : errors.motherTag && (
-                    <p className="text-danger">{errors.motherTag.message}</p>
+                    <p className="text-danger font-14-500">{errors.motherTag.message}</p>
                   )}
                 </div>
 
@@ -431,7 +427,7 @@ const GoatDetailForm = () => {
                     {...register("fatherTag")}
                   >
                     <option value="">Select Tag Id</option>
-                    
+
                     <option value="not applicable">Not Applicable</option>
                     {type !== "edit" ? (
                       <>
@@ -455,6 +451,8 @@ const GoatDetailForm = () => {
                     <p className="text-danger">{errors.fatherTag.message}</p>
                   )} */}
                 </div>
+
+
 
 
                 <div className="col-lg-2 col-6 lh-lg">
@@ -662,15 +660,15 @@ const GoatDetailForm = () => {
                   </div>
                   <div className="col-lg-2 col-6 lh-lg">
                     <label className="form-lable-detail">
-                     {validation === "a-register" ?(
-                      <>
-                      Last Vaccine Name
-                      </>
-                     ) : (
-                       <>
-                       Vaccine <span className="font-12-500">(Before Purchase Date)</span>
-                      </>
-                     )}
+                      {validation === "a-register" ? (
+                        <>
+                          Last Vaccine Name
+                        </>
+                      ) : (
+                        <>
+                          Vaccine <span className="font-12-500">(Before Purchase Date)</span>
+                        </>
+                      )}
                     </label>
                     <input
                       type="text"
